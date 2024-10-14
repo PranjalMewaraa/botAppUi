@@ -18,7 +18,6 @@ export default function Leaderboard() {
   const { levels } = uesStore();
   const swiperRef = useRef<SwiperRef | null>(null);
 
-  const userData = useUserStore();
 
   const leaderboard = useQuery({
     queryKey: ["leaderboard", levels?.[activeIndex]?.id],
