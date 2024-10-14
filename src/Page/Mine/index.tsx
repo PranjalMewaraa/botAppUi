@@ -8,7 +8,6 @@ import { useUserStore } from "@/store/user-store";
 import { Mission } from "@/types/MissionType";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2Icon } from "lucide-react";
-import levelConfig from "@/config/level-config";
 
 // Define types for props
 interface LockInfoProps {
@@ -99,7 +98,7 @@ export default function Missions() {
   });
 
   return (
-    <div className="flex flex-col justify-end bg-cover flex-1" style={{ backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})` }}>
+    <div className="flex flex-col justify-end bg-cover flex-1" >
       <div className="flex flex-col flex-1 w-full h-full px-6 pb-24 mt-12 modal-body">
         <div className="flex items-center justify-center mt-10 space-x-1 text-gradient">
           <img src="/images/coins.png" alt="coins" className="object-contain w-14 h-14" />
