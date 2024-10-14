@@ -9,6 +9,7 @@ import { Mission } from "@/types/MissionType";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2Icon } from "lucide-react";
 import UserGameDetails from "@/components/UserGameDetails";
+import MissionDrawer from "@/components/MissionDrawer";
 
 // Define types for props
 interface LockInfoProps {
@@ -143,7 +144,7 @@ export default function Missions() {
           </div>
         </div>
       </div>
-     
+      <MissionDrawer open={openDrawer} onOpenChange={setOpenDrawer} mission={selectedMission} />
     </div>
   );
 }
