@@ -3,7 +3,7 @@ import BottomNavbar from "./components/v1/BottomNavBar"
 import Home from "./Page/Home";
 import Games from "./Page/Games";
 import Mine from "./Page/Mine";
-import Earn from "./pages/Earn";
+import Earn from "./Page/Earn";
 import Profile from "./Page/Profile";
 import Airdrop from "./pages/Airdrop";
 import Boost from "./pages/Boost";
