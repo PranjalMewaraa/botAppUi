@@ -1,4 +1,5 @@
-
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
 import { useEffect, useRef, useState } from "react";
 import SplashScreen from "./components/partials/SplashScreen";
 import FirstTimeScreen from "./components/partials/FirstTimeScreen";
@@ -10,7 +11,7 @@ import PlayOnYourMobile from "./pages/PlayOnYourMobile";
 import { useDebounce } from "@uidotdev/usehooks";
 import { toast } from "react-toastify";
 import useTelegramInitData from "./hooks/useTelegramInitData";
-import Game from "./Game";
+
 
 const webApp = window.Telegram.WebApp;
 const isDisktop = import.meta.env.DEV
@@ -278,7 +279,7 @@ function App() {
   if (isFirstLoad)
     return <FirstTimeScreen startGame={() => setIsFirstLoad(false)} />;
 
-  return <Game/>;
+  return <RouterProvider router={router}/>;
 }
 
 export default App;
