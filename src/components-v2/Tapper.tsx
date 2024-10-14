@@ -12,7 +12,6 @@ interface UserTapProps extends React.HTMLProps<HTMLDivElement> {
 
 const UserTap: React.FC<UserTapProps> = (props) => {
   const { updateLoading, ...Props } = props;
-  const userAnimateRef = useRef<HTMLDivElement | null>(null);
   const userTapButtonRef = useRef<HTMLButtonElement | null>(null);
   const pulseRefs = useRef<HTMLDivElement[]>([]); // Pulse effect refs
   const plusOneRefs = useRef<HTMLDivElement[]>([]); // Plus one effect refs
@@ -23,7 +22,6 @@ const UserTap: React.FC<UserTapProps> = (props) => {
   const { UserTap, incraseEnergy, ...user } = useUserStore();
 
   useEffect(() => {
-    // Initialize clicks count on component mount
     const current = localStorage.getItem("ClicksCount");
     clicksCountRef.current = current ? parseFloat(current) : 0;
     console.log("Initial count", clicksCountRef.current);
@@ -53,15 +51,71 @@ const UserTap: React.FC<UserTapProps> = (props) => {
         left: e.clientX + (Math.random() > 0.5 ? 5 : -5),
       },
     });
-    animateButton(e.clientX, e.clientY);
+    handlePulseAnimations(e.clientX, e.clientY, user.earn_per_tap);
   };
 
-  const animateButton = (x: number, y: number) => {
-    if (!userTapButtonRef.current) return;
+  const handlePulseAnimations = (x: number, y: number, earnPerTap: number) => {
     // Pulse effect
-    createPulseEffect(x, y);
+    const newPulse = document.createElement("div");
+    newPulse.className =
+      "absolute w-64 h-64 bg-yellow-500 -translate-y-32 rounded-full pointer-events-none";
+    document.body.appendChild(newPulse);
+    pulseRefs.current.push(newPulse);
 
-    // Button scaling
+    gsap.fromTo(
+      newPulse,
+      { scale: 0, opacity: 1 },
+      {
+        scale: 1.5,
+        opacity: 0.1,
+        duration: 0.6,
+        ease: "power1.out",
+        onComplete: () => {
+          newPulse.remove();
+          pulseRefs.current.shift();
+        },
+      }
+    );
+
+    // Plus one effect
+    const newPlusOne = document.createElement("div");
+    newPlusOne.className = "absolute text-2xl font-bold pointer-events-none";
+    newPlusOne.textContent = `+${earnPerTap}`;
+    document.body.appendChild(newPlusOne);
+    plusOneRefs.current.push(newPlusOne);
+
+    const randomX = (Math.random() - 0.5) * 100; // Random X offset
+    newPlusOne.style.left = `${x + randomX}px`;
+    newPlusOne.style.top = `${y}px`;
+    newPlusOne.style.transform = "translate(-50%, -50%)";
+    newPlusOne.style.zIndex = "20";
+
+    gsap.fromTo(
+      newPlusOne,
+      { y: 0, scale: 1, opacity: 0 },
+      {
+        y: -60,
+        scale: 1.4,
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out",
+        onComplete: () => {
+          gsap.to(newPlusOne, {
+            y: -100,
+            scale: 0.8,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            onComplete: () => {
+              newPlusOne.remove();
+              plusOneRefs.current.shift();
+            },
+          });
+        },
+      }
+    );
+
+    // Button scaling animation
     gsap.to(userTapButtonRef.current, {
       scale: 0.9,
       duration: 0.1,
@@ -71,59 +125,6 @@ const UserTap: React.FC<UserTapProps> = (props) => {
     });
 
     Telegram.WebApp.HapticFeedback.impactOccurred("medium");
-  };
-
-  const createPulseEffect = (x: number, y: number) => {
-    const pulse = document.createElement("div");
-    pulse.className = "absolute w-32 h-32 bg-yellow-500 rounded-full opacity-75";
-    pulse.style.top = `${y - 64}px`;
-    pulse.style.left = `${x - 64}px`;
-    document.body.appendChild(pulse);
-    pulseRefs.current.push(pulse);
-
-    gsap.fromTo(
-      pulse,
-      { scale: 0, opacity: 1 },
-      {
-        scale: 2,
-        opacity: 0,
-        duration: 0.6,
-        ease: "power1.out",
-        onComplete: () => {
-          pulse.remove();
-          pulseRefs.current.shift();
-        },
-      }
-    );
-
-    const plusOne = document.createElement("div");
-    plusOne.className = "absolute text-xl font-bold text-white";
-    plusOne.textContent = `+${user.earn_per_tap}`;
-    plusOne.style.top = `${y - 40}px`;
-    plusOne.style.left = `${x}px`;
-    document.body.appendChild(plusOne);
-    plusOneRefs.current.push(plusOne);
-
-    gsap.fromTo(
-      plusOne,
-      { y: 0, opacity: 0 },
-      {
-        y: -30,
-        opacity: 1,
-        duration: 0.5,
-        ease: "power1.out",
-        onComplete: () => {
-          gsap.to(plusOne, {
-            opacity: 0,
-            duration: 0.5,
-            onComplete: () => {
-              plusOne.remove();
-              plusOneRefs.current.shift();
-            },
-          });
-        },
-      }
-    );
   };
 
   return (
@@ -138,7 +139,7 @@ const UserTap: React.FC<UserTapProps> = (props) => {
             border: "1.5vh solid transparent",
             borderRadius: "50%",
             backgroundImage:
-              "url(/image/dollar.png)",
+              "radial-gradient(circle, #65d18f, #306244,#0e1e14), linear-gradient(to bottom, #306244, #0e1e14)",
             backgroundOrigin: "border-box",
             backgroundClip: "content-box, border-box",
           }}
@@ -152,17 +153,6 @@ const UserTap: React.FC<UserTapProps> = (props) => {
         </button>
       </div>
 
-      <div ref={userAnimateRef} className="user-tap-animate">
-        {clicks.map((click) => (
-          <div
-            key={click.id}
-            onAnimationEnd={() => removeClick(click.id)}
-            style={click.style}
-          >
-            +{click.value}
-          </div>
-        ))}
-      </div>
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <img
