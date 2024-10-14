@@ -42,7 +42,7 @@ const Profile = () => {
                 <button
                   key={key}
                   onClick={() => updateSkinId(Number(key))}
-                  className={`grid-cols-2 bg-gray-700 p-5 rounded-2xl ${buttonClass}`}
+                  className={` ${buttonClass}`}
                 >
                   <CharCard onLoad={handleImageLoad} src={src}/>
                 </button>
