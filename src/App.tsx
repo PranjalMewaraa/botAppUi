@@ -1,5 +1,4 @@
-import { RouterProvider } from "react-router-dom";
-import router from "./router";
+
 import { useEffect, useRef, useState } from "react";
 import SplashScreen from "./components/partials/SplashScreen";
 import FirstTimeScreen from "./components/partials/FirstTimeScreen";
