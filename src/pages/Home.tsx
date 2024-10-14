@@ -6,7 +6,6 @@ import UserGameDetails from "@/components/UserGameDetails";
 import { uesStore } from "@/store";
 import {  useState } from "react";
 
-
 export default function Home() {
   const user = useUserStore();
   const { maxLevel } = uesStore();
@@ -17,17 +16,12 @@ export default function Home() {
     setLoading(val)
   };
 
-  
   return (
     <div
       className="relative flex-1 px-5 pb-20 bg-center bg-cover"
       style={{
-        // backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,
-        // backgroundImage: 'url(./images/levels/bg.png)',
-        // backgroundImage: 'rgba(url(./images/levels/bg.png),0.5)',
         backgroundImage:
           "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./images/bg.png)",
-
         backgroundSize: "cover",
       }}
     >
@@ -61,9 +55,13 @@ export default function Home() {
           updateLoading={(bool: boolean) => {
             update(bool);
           }}
+          style={{
+            zIndex: 10, // Ensure it's placed above other elements if needed
+            position: 'relative',
+          }}
         /> 
 
-        <div className="flex  space-x-1.5 justify-center items-center select-none">
+        <div className="flex space-x-1.5 justify-center items-center select-none mt-4">
           <img
             src="/images/balance.png"
             alt="coins"
@@ -74,7 +72,7 @@ export default function Home() {
           </span>
         </div>
 
-        <div className="">
+        <div className="mt-4">
           <Link
             to={"/leaderboard"}
             className="flex items-center justify-between gap-2"

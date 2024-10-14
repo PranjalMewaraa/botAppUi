@@ -1,53 +1,45 @@
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import dollar from "/images/dollar.png";
 import { useClicksStore } from "../store/clicks-store";
 import { useUserStore } from "../store/user-store";
-
 import useSkinConfig from "../hooks/useSkinConfig";
 import skinConfig from "@/config/skin-config";
 
 interface PulseButtonProp extends React.HTMLProps<HTMLDivElement> {
-    updateLoading: (bool: boolean) => void;
+  updateLoading: (bool: boolean) => void;
 }
 
 const PulseButton: React.FC<PulseButtonProp> = (props) => {
-const { updateLoading, ...Props } = props;
+  const { updateLoading, ...Props } = props;
   const pulseRefs = useRef<HTMLDivElement[]>([]);
   const pulseRingRefs = useRef<HTMLDivElement[]>([]);
   const plusOneRefs = useRef<HTMLDivElement[]>([]);
   const dollarRef = useRef<HTMLImageElement | null>(null);
   const dollarRef2 = useRef<HTMLImageElement | null>(null);
   const { skinId } = useSkinConfig();
-  const clicksCountRef = useRef(0); 
+  const clicksCountRef = useRef(0);
+  const { addClick } = useClicksStore();
+  const { UserTap, incraseEnergy, ...user } = useUserStore();
 
-  //   const [tapCount, setTapCount] = useState<number>(
-//     Number(decrypt(localStorage.getItem("alkine-db-val-er") || "0")) || 0
-//   );  const maxTaps = 20000000;
-
-const { addClick } = useClicksStore();
-const { UserTap, incraseEnergy, ...user } = useUserStore();
- useEffect(() => {
-    // Initialize clicks count on component mount
+  useEffect(() => {
     const current = localStorage.getItem("ClicksCount");
     clicksCountRef.current = current ? parseFloat(current) : 0;
-  
     console.log("Initial count", clicksCountRef.current);
   }, []);
+
   useEffect(() => {
     useClicksStore.setState({ clicks: [] });
-
     const interval = setInterval(() => {
       incraseEnergy(3);
     }, 3000);
 
     return () => clearInterval(interval);
   }, []);
-  // Debounce state to prevent multiple tap registrations in a short time
+
   const [isDebouncing, setIsDebouncing] = useState(false);
-  const debounceTime = 200; // Time in ms
+  const debounceTime = 200;
 
   const setLocalStorageItem = (key: string, value: string) => {
     localStorage.setItem(key, value);
@@ -55,38 +47,31 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
   };
 
   const handleTouchStart = (event: React.TouchEvent | any) => {
-
-    
-    // Debounce check: Skip handling if already processing a recent touch
     if (isDebouncing) return;
-   
     if (!UserTap()) return;
+
     const current = localStorage.getItem("ClicksCount");
     setIsDebouncing(true);
     setTimeout(() => setIsDebouncing(false), debounceTime);
-   
-    // Delay to ensure all fingers are registered
+
     setTimeout(() => {
       const fingerCount = event.touches.length;
       handlePulseAnimations(fingerCount);
       if (fingerCount > 0 && fingerCount <= 5) {
-        // Add score based on finger count
-        
         setLocalStorageItem("ClickCount", current ? String(parseFloat(current) + 1) : "1");
         addClick({
-            id: new Date().getTime(),
-            value: user.earn_per_tap,
-            style: {
-              top: event.clientY,
-              left: event.clientX + (Math.random() > 0.5 ? 5 : -5),
-            },
-          });
+          id: new Date().getTime(),
+          value: user.earn_per_tap,
+          style: {
+            top: event.clientY,
+            left: event.clientX + (Math.random() > 0.5 ? 5 : -5),
+          },
+        });
       }
-    }, 50); // small delay to ensure all fingers are detected
+    }, 50);
   };
 
   const handlePulseAnimations = (fingerCount: number) => {
-    console.log('inside')
     const newPulse = document.createElement("div");
     newPulse.className =
       "absolute w-64 h-64 bg-yellow-400 -translate-y-32 rounded-full pointer-events-none";
@@ -139,11 +124,10 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
 
     const colors = ["#FFFF"];
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
-
     const pulseContainer = document.getElementById("pulseContainer");
     const pulseContainerRect = pulseContainer?.getBoundingClientRect();
     if (pulseContainerRect) {
-      const centerX = (Math.random()-0.1) * pulseContainerRect.width ;
+      const centerX = (Math.random() - 0.1) * pulseContainerRect.width;
       newPlusOne.style.left = `${centerX}px`;
       newPlusOne.style.top = `100px`;
       newPlusOne.style.transform = "translate(-50%, -50%)";
@@ -211,9 +195,9 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
       <button
         id="pulseContainer"
         className="absolute w-full h-full inset-0 flex items-center justify-center"
-        onTouchStart={handleTouchStart} 
+        onTouchStart={handleTouchStart}
         onClick={handleTouchStart}
-        disabled={user.available_energy < user.earn_per_tap} // Add touch event listener here
+        disabled={user.available_energy < user.earn_per_tap}
       >
         <div className="relative w-full h-full">
           <div
@@ -229,22 +213,16 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
               ref={dollarRef2}
               src={dollar}
               alt="Dollar Icon"
-              className="absolute z-20 inset-0 w-full h-full object-cover rounded-full "
-              style={{
-                opacity: 1,
-              }}
+              className="absolute z-20 inset-0 w-full h-full object-cover rounded-full"
+              style={{ opacity: 1 }}
             />
             <img
               ref={dollarRef}
               src={skinConfig.images[skinId || 1]}
-              alt="Goat Icon"
+              alt="Icon"
               onLoad={() => props.updateLoading(false)}
               className="absolute z-30 inset-0 w-[160px] h-[190px] -translate-y-20 object-cover rounded-full"
-              style={{
-                top: "45%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
+              style={{ top: "45%", left: "50%", transform: "translate(-50%, -50%)" }}
             />
           </div>
         </div>
