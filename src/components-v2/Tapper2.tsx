@@ -2,9 +2,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import dollar from "../../../assets/Images/dollar.png";
+import dollar from "/images/dollar.png";
 
-import balance from "../../../assets/Images/balance.png";
+import balance from "/images/balance.png";
 import { useClicksStore } from "../store/clicks-store";
 import { useUserStore } from "../store/user-store";
 
