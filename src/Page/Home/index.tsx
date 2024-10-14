@@ -31,7 +31,15 @@ const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
       </div>
       <ProgressIndicator />
       <PulseButton />
-      <BottomSection />
+      <div className="absolute bottom-24 w-full h-20 flex justify-left items-center">
+      <div className="flex text-white items-center gap-2 text-xl" onClick={()=>ButtonClick(6)}>
+        <span>
+          <img src={boost} alt="boost" />
+        </span>
+        Boost
+      </div>
+      <FABMenu />
+    </div>
     </div>
   );
 };
@@ -96,18 +104,6 @@ const ProgressIndicator: React.FC = () => {
   );
 };
 
-const BottomSection: React.FC = () => {
-  return (
-    <div className="absolute bottom-24 w-full h-20 flex justify-left items-center">
-      <div className="flex text-white items-center gap-2 text-xl">
-        <span>
-          <img src={boost} alt="boost" />
-        </span>
-        Boost
-      </div>
-      <FABMenu />
-    </div>
-  );
-};
+
 
 export default Home;

@@ -6,6 +6,7 @@ import Mine from "./Page/Mine";
 import Earn from "./pages/Earn";
 import Profile from "./Page/Profile";
 import Airdrop from "./pages/Airdrop";
+import Boost from "./pages/Boost";
 
 
 
@@ -49,6 +50,7 @@ function Game() {
       {activeIndex === 3 && <Mine/>}
       {activeIndex === 4 && <Earn/>}
       {activeIndex === 5 && <Profile/>}
+      {activeIndex === 5 && <Boost/>}
       </div>
       <BottomNavbar activeIndex={activeIndex} setActiveIndex={setActiveIndex}/>
     </div>
