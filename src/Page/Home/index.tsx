@@ -5,7 +5,7 @@ import PulseButton from "../../components/v1/TapperMultiTap";
 import FABMenu from "../../components/v1/Fab";
 import { useUserStore } from "@/store/user-store";
 import { uesStore } from "@/store";
-
+import set from "../../assets/Images/set.png"
 
 
 interface HomeProps {    
@@ -55,23 +55,20 @@ const ProfileBox: React.FC = () => {
 };
 
 const ProfitBox: React.FC = () => {
-  const user = useUserStore();
+ 
   return (
-    <div className="flex flex-col px-3 py-1 items-center rounded-full bg-[#283140]">
-      <p className="text-white text-sm">Profit / hour</p>
-      <p className="flex text-white items-center text-base gap-2">
-        <span>
-          <img src={ico} className="w-8 h-8" alt="goat_coin" />
-        </span>
-        + {user.production_per_hour}
-      </p>
+    <div className=" flex flex-col px-3 py-1  items-center rounded-full bg-[#283140] border-t border-r border-yellow-600">
+            <img src={set} alt="setting" />
     </div>
   );
 };
 
 const ProgressIndicator: React.FC = () => {
+  
   const { maxLevel } = uesStore();
   const user = useUserStore();
+  
+
   console.log((user.balance! / user.level!.to_balance) * 100)
   return (
     <div className="w-full h-24 mt-2 flex flex-col gap-1">
