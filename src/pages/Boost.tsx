@@ -12,6 +12,7 @@ import Price from "@/components/Price";
 import { uesStore } from "@/store";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import levelConfig from "@/config/level-config";
 dayjs.extend(relativeTime);
 
 // +500 energy - 1,000 - 1lvl
@@ -109,7 +110,7 @@ export default function Boost() {
   });
 
   return (
-    <div className="flex flex-col justify-end bg-cover flex-1 text-white" >
+    <div className="flex flex-col justify-end bg-cover flex-1" style={{backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,}}>
       <div className="min-h-[600px] w-full modal-body py-8 px-6">
         <h1 className="text-2xl font-bold text-center uppercase">
           Boost your game
