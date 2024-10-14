@@ -49,14 +49,14 @@ export default function Earn() {
   if (isLoading) return <LoadingPage />;
 
   return (
-    <div className="flex flex-col justify-end bg-cover flex-1" style={{backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,}}>
+    <div className="flex flex-col justify-end bg-cover flex-1 text-white">
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <img
           src="/images/coins.png"
           alt="coins"
           className="object-contain w-32 h-32 mx-auto"
         />
-        <h1 className="mt-4 text-2xl font-bold text-center uppercase">
+        <h1 className="mt-4 text-2xl font-bold text-center text-white uppercase">
           EARN MORE COINS
         </h1>
         {videoTasks.length > 0 && (

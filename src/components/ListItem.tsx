@@ -34,7 +34,7 @@ export default function ListItem({
         />
       )}
       <div className="text-sm font-medium text-left">
-        <p>{title}</p>
+        <p className="text-white">{title}</p>
         {subtitle}
       </div>
       <div className="ml-auto">{action}</div>
