@@ -3,8 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import dollar from "/images/dollar.png";
-
-import balance from "/images/balance.png";
 import { useClicksStore } from "../store/clicks-store";
 import { useUserStore } from "../store/user-store";
 
@@ -57,6 +55,7 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
   };
 
   const handleTouchStart = (event: React.TouchEvent | any) => {
+
     event.preventDefault();
     // Debounce check: Skip handling if already processing a recent touch
     if (isDebouncing) return;
@@ -65,10 +64,11 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
     const current = localStorage.getItem("ClicksCount");
     setIsDebouncing(true);
     setTimeout(() => setIsDebouncing(false), debounceTime);
-
+   
     // Delay to ensure all fingers are registered
     setTimeout(() => {
       const fingerCount = event.touches.length;
+      handlePulseAnimations(fingerCount);
       if (fingerCount > 0 && fingerCount <= 5) {
         // Add score based on finger count
         
@@ -81,7 +81,6 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
               left: event.clientX + (Math.random() > 0.5 ? 5 : -5),
             },
           });
-        handlePulseAnimations(fingerCount);
       }
     }, 50); // small delay to ensure all fingers are detected
   };
@@ -208,11 +207,12 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
 
   return (
     <div {...Props} className="relative flex flex-col items-center justify-center h-screen w-full">
-      <div
+      <button
         id="pulseContainer"
         className="absolute w-full h-full inset-0 flex items-center justify-center"
         onTouchStart={handleTouchStart} 
-        onClick={handleTouchStart} // Add touch event listener here
+        onClick={handleTouchStart}
+        disabled={user.available_energy < user.earn_per_tap} // Add touch event listener here
       >
         <div className="relative w-full h-full">
           <div
@@ -247,13 +247,7 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
             />
           </div>
         </div>
-      </div>
-      <div className="text-white absolute bottom-56 flex gap-4 items-center text-xl font-bold">
-        <span>
-          <img src={balance} alt="" />
-        </span>
-        {Math.floor(user.balance)}
-      </div>
+      </button>
     </div>
   );
 };
