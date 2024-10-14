@@ -7,12 +7,23 @@ import Earn from "./pages/Earn";
 import Profile from "./Page/Profile";
 import Airdrop from "./Page/Airdrop";
 import Boost from "./pages/Boost";
+import { $http } from "@/lib/http";
+import { PopupMessageType } from "@/types/PopupMessageType";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import PopupMessageDialog from "./components/PopupMessageDialog";
 
 
 
 function Game() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
+  const popupMessgae = useQuery({
+    queryKey: ["popup-message"],
+    queryFn: () => $http.$get<PopupMessageType>("/popups"),
+  });
   useEffect(() => {
     
     const updateVh = () => {
@@ -39,6 +50,21 @@ function Game() {
 
     scrollToTop();
   },[activeIndex,setActiveIndex])
+ 
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      window.Telegram.WebApp.BackButton.show();
+    } else {
+      window.Telegram.WebApp.BackButton.hide();
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    window.Telegram.WebApp.BackButton.onClick(() => {
+      navigate("/");
+    });
+  }, []);
 
   return (
     <div id="main_div" className=" max-w-screen-sm overflow-hidden relative"
@@ -53,6 +79,7 @@ function Game() {
       {activeIndex === 6 && <Boost/>}
       </div>
       <BottomNavbar activeIndex={activeIndex} setActiveIndex={setActiveIndex}/>
+      <PopupMessageDialog message={popupMessgae.data} />
     </div>
   )
 }
