@@ -111,7 +111,24 @@ const PulseButton: React.FC = () => {
 
     const newPlusOne = document.createElement("div");
     newPlusOne.className = "absolute text-2xl font-bold pointer-events-none";
-    newPlusOne.textContent = `❤️+${fingerCount}`;
+    
+    // Create the image element
+    const img = document.createElement("img");
+    img.src = "/image/ico.png"; // Replace with the path to your image
+    img.alt = "Heart Image"; // Alt text for accessibility
+    
+    // Optionally set the image dimensions
+    img.style.width = "20px";
+    img.style.height = "20px";
+    
+    // Clear the existing content (optional if needed)
+    newPlusOne.textContent = ""; // Clear any text content
+    
+    // Append the image and the finger count text to the div
+    newPlusOne.appendChild(img);
+    newPlusOne.appendChild(document.createTextNode(`+${fingerCount}`));
+    
+    // Append the newPlusOne element to the pulseContainer
     document.getElementById("pulseContainer")?.appendChild(newPlusOne);
     plusOneRefs.current.push(newPlusOne);
 
