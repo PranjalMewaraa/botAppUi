@@ -47,7 +47,8 @@ export default function Earn() {
   if (isLoading) return <LoadingPage />;
 
   return (
-    <div className="flex h-screen w-screen overflow-x-hidden overflow-y-scroll flex-col justify-end bg-cover flex-1 text-white">
+    <div className="w-screen h-screen overflow-hidden">
+    <div className="flex overflow-x-hidden overflow-y-scroll flex-col justify-end bg-cover flex-1 text-white">
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <img
           src="/images/coins.png"
@@ -172,6 +173,7 @@ export default function Earn() {
         open={isReferralTaskDrawerOpen}
         onOpenChange={setIsReferralTaskDrawerOpen}
       />
+    </div>
     </div>
   );
 }
