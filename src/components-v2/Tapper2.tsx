@@ -210,12 +210,12 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
     <div {...Props} className="relative flex flex-col items-center justify-center h-screen w-full">
       <button
         id="pulseContainer"
-        className="absolute w-full h-fit inset-0 flex items-center justify-center"
+        className="absolute w-full h-full inset-0 flex items-center justify-center"
         onTouchStart={handleTouchStart} 
         onClick={handleTouchStart}
         disabled={user.available_energy < user.earn_per_tap} // Add touch event listener here
       >
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-fit">
           <div
             className="absolute w-[168px] h-[168px] rounded-full border-4 border-transparent"
             style={{
