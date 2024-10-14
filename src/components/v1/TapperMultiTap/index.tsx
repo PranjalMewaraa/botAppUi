@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import dollar from "../../../assets/Images/dollar.png";
-import goat from "../../../assets/Images/goat.png";
+
 import balance from "../../../assets/Images/balance.png";
 import encrypt from "../../../utils/encrypt";
 import decrypt from "../../../utils/decrypt";
 import { useUserStore } from "@/store/user-store";
 import { useClicksStore } from "@/store/clicks-store";
+import skinConfig from "@/config/skin-config";
+import useSkinConfig from "@/hooks/useSkinConfig";
 
 const PulseButton: React.FC = () => {
+  const { skinId } = useSkinConfig();
   const pulseRefs = useRef<HTMLDivElement[]>([]);
   const pulseRingRefs = useRef<HTMLDivElement[]>([]);
   const plusOneRefs = useRef<HTMLDivElement[]>([]);
@@ -184,8 +187,9 @@ const PulseButton: React.FC = () => {
 
   return (
     <div className="relative flex flex-col items-center justify-center h-screen w-full">
-      <div
+      <button
         id="pulseContainer"
+        disabled={user.available_energy < user.earn_per_tap}
         className="absolute w-full overflow-hidden h-full inset-0 flex items-center justify-center"
         onTouchStart={handleTouchStart}  // Add touch event listener here
       >
@@ -210,7 +214,7 @@ const PulseButton: React.FC = () => {
             />
             <img
               ref={dollarRef}
-              src={goat}
+              src={skinConfig.images[skinId || 1]}
               alt="Goat Icon"
               className="absolute z-30 inset-0 w-[160px] h-[190px] -translate-y-20 object-cover rounded-full"
               style={{
@@ -221,7 +225,7 @@ const PulseButton: React.FC = () => {
             />
           </div>
         </div>
-      </div>
+      </button>
       <div className="text-white absolute bottom-56 flex gap-4 items-center text-xl font-bold">
         <span>
           <img src={balance} alt="" />
