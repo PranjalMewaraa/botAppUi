@@ -10,7 +10,7 @@ const Profile = () => {
    
   const [loading, setLoading] = useState(true);
   const [loadedCount, setLoadedCount] = useState(0);
-  
+  console.log(loading)
   useEffect(() => {
     // When all images are loaded, set loading to false
     if (loadedCount === Object.entries(skinConfig.images).length) {
@@ -23,7 +23,6 @@ const Profile = () => {
   return (
     
     <div className='w-full h-screen font-[ageo] flex flex-col p-4 gap-2'>
-    {loading && <div className="h-[100vh] w-[100%] text-center flex items-center justify-center  bg-black ">loading</div>}
     <div id="profile_header" className="w-full mt-2 h-24 flex justify-between items-center ">
          <ProfileBox/>
          <ProfitBox/>
