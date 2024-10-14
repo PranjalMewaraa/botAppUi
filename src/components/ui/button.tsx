@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "font-bold uppercase bg-[linear-gradient(180deg,#EEE8E2_0%,#C6C2BE_51.99%,_#C6C2BE_52%,#A48B74_100%)] text-black active:bg-[linear-gradient(180deg,#A48B74_0%,#C6C2BE_48%,#C6C2BE_48.01%,#EEE8E2_100%)] shadow-[0px_0px_20px_0px_rgba(255,218,163,0.27)] active:shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)_inset,_0px_0px_20px_0px_rgba(255,218,163,0.27)]",
+          "font-bold uppercase bg-[linear-gradient(180deg,#FFD700_0%,#FFBF00_51.99%,#FFBF00_52%,#B8860B_100%)] text-black active:bg-[linear-gradient(180deg,#B8860B_0%,#FFBF00_48%,#FFBF00_48.01%,#FFD700_100%)] shadow-[0px_0px_20px_0px_rgba(255,218,163,0.27)] active:shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)_inset,_0px_0px_20px_0px_rgba(255,218,163,0.27)]",
         destructive:
           "bg-red-500 text-gray-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-gray-50 dark:hover:bg-red-900/90",
         outline:
@@ -34,6 +34,7 @@ const buttonVariants = cva(
     },
   }
 );
+
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
