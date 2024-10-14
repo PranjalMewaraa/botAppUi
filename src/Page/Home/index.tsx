@@ -80,7 +80,7 @@ const ProgressIndicator: React.FC = () => {
 
   console.log((user.balance! / user.level!.to_balance) * 100)
   return (
-    <Link to={'/leaderboard'} className="w-full h-24 mt-2 flex flex-col gap-1">
+    <Link to={'/leaderboard'} className=" bg-transparent w-full h-24 mt-2 flex flex-col gap-1">
       <div className="flex w-full justify-between text-white">
         <p>{user.level?.name}</p>
         <p className="flex gap-2 items-center">
