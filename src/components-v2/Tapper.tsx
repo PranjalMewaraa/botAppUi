@@ -138,7 +138,7 @@ const UserTap: React.FC<UserTapProps> = (props) => {
             border: "1.5vh solid transparent",
             borderRadius: "50%",
             backgroundImage:
-              "radial-gradient(circle, #65d18f, #306244,#0e1e14), linear-gradient(to bottom, #306244, #0e1e14)",
+              "url(/image/dollar.png)",
             backgroundOrigin: "border-box",
             backgroundClip: "content-box, border-box",
           }}
