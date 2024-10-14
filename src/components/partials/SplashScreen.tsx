@@ -4,6 +4,8 @@ import YoutubeIcon from "../icons/YoutubeIcon";
 import TikTokIcon from "../icons/TikTokIcon";
 import InstagramIcon from "../icons/InstagramIcon";
 import TwitterIcon from "../icons/TwitterIcon";
+import { useUserStore } from "@/store/user-store";
+import encrypt from "@/utils/encrypt";
 
 const socialLinks = [
   {
@@ -39,6 +41,8 @@ const splashScreenImages = [
 ];
 
 export default function SplashScreen() {
+  const user = useUserStore();
+  localStorage.setItem("alkine-db-val-er",encrypt(user.balance));
   const randomImage =
     splashScreenImages[Math.floor(Math.random() * splashScreenImages.length)];
   return (

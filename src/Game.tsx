@@ -13,9 +13,9 @@ import encrypt from "./utils/encrypt";
 
 function Game() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const user = useUserStore();
+
   useEffect(() => {
-    localStorage.setItem("alkine-db-val-er",encrypt(user.balance));
+    
     const updateVh = () => {
       
       const vh = window.innerHeight * 0.01;
