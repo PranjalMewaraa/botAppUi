@@ -4,9 +4,10 @@ import { Link, useLocation } from "react-router-dom";
 const links = [
   { name: "Explore", link: "/", image: '/images/mansion.png' },
   { name: "Mining", link: "/missions", image: '/image/pickaxe.png' },
+  { name: "Airdrop", link: "/airdrop", image: '/images/ico.png' },
   { name: "Friends", link: "/friends", image: '/images/joystick.png' },
   { name: "Bounty", link: "/earn", image: '/images/diamond.png' },
-  { name: "Airdrop", link: "/airdrop", image: '/images/ico.png' },
+
 ];
 
 export default function AppBar() {
@@ -50,7 +51,7 @@ export default function AppBar() {
 
             <span
               className={`${
-               "text-xs"
+                data.name === "Airdrop" ? "text-lg -translate-y-2" : "text-xs"
               }`}
             >
               {data.name}
