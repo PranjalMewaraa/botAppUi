@@ -12,7 +12,7 @@ import Price from "@/components/Price";
 import { uesStore } from "@/store";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import levelConfig from "@/config/level-config";
+
 dayjs.extend(relativeTime);
 
 // +500 energy - 1,000 - 1lvl
