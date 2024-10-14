@@ -26,7 +26,7 @@ export default function Home() {
         // backgroundImage: 'url(./images/levels/bg.png)',
         // backgroundImage: 'rgba(url(./images/levels/bg.png),0.5)',
         backgroundImage:
-          "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./images/levels/bg.png)",
+          "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./images/bg.png)",
 
         backgroundSize: "cover",
       }}
