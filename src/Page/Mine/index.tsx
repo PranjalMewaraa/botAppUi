@@ -55,7 +55,7 @@ const MineCard: React.FC<MineCardProps> = ({ mission, setSelectedMission, setOpe
       <div className="w-full h-fit p-2 flex-col gap-2 bg-slate-800 text-white rounded-lg">
         <div className="text-lg w-full text-center font-bold">{mission.name}</div>
         <div className="w-full items-center py-2 text-lg flex gap-2">
-          <img src={mission.image} alt={mission.name} />
+          <img src={mission.image} alt={mission.name} className="w-1/3"/>
           <div className="flex flex-col gap-1 text-xs">
             Bonus per Hour
             <span className="text-sm">
