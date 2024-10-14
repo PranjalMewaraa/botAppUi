@@ -2,26 +2,53 @@
 import pic from "../../assets/Images/pic.png"
 import set from "../../assets/Images/set.png"
 import goat from "../../assets/Images/goat.png"
+import useSkinConfig from "@/hooks/useSkinConfig";
+import { ReactEventHandler, useEffect, useState } from "react";
+import skinConfig from "@/config/skin-config";
 
 const Profile = () => {
+  const { skinId, updateSkinId } = useSkinConfig();
+   
+  const [loading, setLoading] = useState(true);
+  const [loadedCount, setLoadedCount] = useState(0);
+  
+  useEffect(() => {
+    // When all images are loaded, set loading to false
+    if (loadedCount === Object.entries(skinConfig.images).length) {
+      setLoading(false);
+    }
+  }, [loadedCount, Object.entries(skinConfig.images).length]);  
+  const handleImageLoad = () => {
+    setLoadedCount(prevCount => prevCount + 1);
+  };
   return (
+    
     <div className='w-full h-screen font-[ageo] flex flex-col p-4 gap-2'>
+    {loading && <div className="h-[100vh] w-[100%] text-center flex items-center justify-center  bg-black ">loading</div>}
     <div id="profile_header" className="w-full mt-2 h-24 flex justify-between items-center ">
          <ProfileBox/>
          <ProfitBox/>
     </div>
-    <div className="w-full pt-4 text-center text-white">LeaderBoard</div>
+    <div className="w-full pt-4 text-center text-white">🏆 LeaderBoard</div>
     <div className="w-full h-64 mt-6 px-8 flex justify-center items-center">
         <div className=" aspect-square h-full bg-slate-800 rounded-2xl">
-        <img src={goat} alt="" />
+        <img src={skinConfig.images[skinId || 1]} alt="" />
         </div>
     </div>
     <div className="w-[90%] h-28 pl-8 overflow-x-scroll">
         <div className="w-fit flex h-full items-center gap-2">
-          <CharCard/>
-          <CharCard/>
-          <CharCard/>
-          <CharCard/>
+        {Object.entries(skinConfig.images).map(([key, src]) => {
+              const buttonClass = key == String(skinId) ? "border-4 border-white" : "";
+              return (
+                <button
+                  key={key}
+                  onClick={() => updateSkinId(Number(key))}
+                  className={`grid-cols-2 bg-gray-700 p-5 rounded-2xl ${buttonClass}`}
+                >
+                  <CharCard onLoad={handleImageLoad}/>
+                </button>
+              );
+            })}
         </div>
     </div>
  
@@ -32,10 +59,10 @@ const Profile = () => {
 }
 
 
-const CharCard = ()=>{
+const CharCard = (props: { onLoad: ReactEventHandler<HTMLImageElement> | undefined; })=>{
     return(
         <div className="w-24 h-3/4 bg-slate-800 flex items-center justify-center rounded-2xl">
-        <img src={goat} alt="" className="h-4/5"/>
+        <img src={goat} alt="" className="h-4/5" onLoad={props.onLoad}/>
         </div>
     )
 }
