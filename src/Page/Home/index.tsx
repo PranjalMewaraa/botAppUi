@@ -19,7 +19,7 @@ const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
   
   
   const ButtonClick=(index:number)=>{
-       console.log(activeIndex)
+       console.log('x',activeIndex)
         setActiveIndex(index);
   }  
 
@@ -32,7 +32,7 @@ const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
       <ProgressIndicator />
       <PulseButton />
       <div className="absolute bottom-24 w-full h-20 flex justify-left items-center">
-      <div className="flex text-white items-center gap-2 text-xl" onClick={()=>ButtonClick(6)}>
+      <div className="flex text-white items-center gap-2 text-xl" onClick={()=>setActiveIndex(6)}>
         <span>
           <img src={boost} alt="boost" />
         </span>
