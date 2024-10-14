@@ -5,7 +5,7 @@ import Games from "./Page/Games";
 import Mine from "./Page/Mine";
 import Earn from "./Page/Earn";
 import Profile from "./Page/Profile";
-import Airdrop from "./pages/Airdrop";
+import Airdrop from "./Page/Airdrop";
 import Boost from "./pages/Boost";
 
 
