@@ -34,7 +34,7 @@ const Profile = () => {
         <img src={skinConfig.images[skinId || 1]} alt="" />
         </div>
     </div>
-    <div className="w-[90%] h-28 pl-8 overflow-x-scroll">
+    <div className="w-[90%] h-fit pl-8 overflow-x-scroll">
         <div className="w-fit flex h-full items-center gap-2">
         {Object.entries(skinConfig.images).map(([key, src]) => {
               const buttonClass = key == String(skinId) ? "border-4 border-white" : "";
