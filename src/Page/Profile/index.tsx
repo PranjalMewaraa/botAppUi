@@ -1,7 +1,6 @@
 
 import pic from "../../assets/Images/pic.png"
 import set from "../../assets/Images/set.png"
-import goat from "../../assets/Images/goat.png"
 import useSkinConfig from "@/hooks/useSkinConfig";
 import { ReactEventHandler, useEffect, useState } from "react";
 import skinConfig from "@/config/skin-config";
@@ -45,7 +44,7 @@ const Profile = () => {
                   onClick={() => updateSkinId(Number(key))}
                   className={`grid-cols-2 bg-gray-700 p-5 rounded-2xl ${buttonClass}`}
                 >
-                  <CharCard onLoad={handleImageLoad}/>
+                  <CharCard onLoad={handleImageLoad} src={src}/>
                 </button>
               );
             })}
@@ -59,10 +58,10 @@ const Profile = () => {
 }
 
 
-const CharCard = (props: { onLoad: ReactEventHandler<HTMLImageElement> | undefined; })=>{
+const CharCard = (props: { src: string | undefined; onLoad: ReactEventHandler<HTMLImageElement> | undefined; })=>{
     return(
         <div className="w-24 h-3/4 bg-slate-800 flex items-center justify-center rounded-2xl">
-        <img src={goat} alt="" className="h-4/5" onLoad={props.onLoad}/>
+        <img src={props.src} alt="" className="h-4/5" onLoad={props.onLoad}/>
         </div>
     )
 }
