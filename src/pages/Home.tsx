@@ -65,7 +65,7 @@ export default function Home() {
 
         <div className="flex  space-x-1.5 justify-center items-center select-none">
           <img
-            src="/images/coins.png"
+            src="/images/balance.png"
             alt="coins"
             className="object-contain w-20 h-20"
           />

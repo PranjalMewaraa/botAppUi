@@ -12,9 +12,10 @@ interface UserTapProps extends React.HTMLProps<HTMLDivElement> {
 
 const UserTap: React.FC<UserTapProps> = (props) => {
   const { updateLoading, ...Props } = props;
+  const userAnimateRef = useRef<HTMLDivElement | null>(null);
   const userTapButtonRef = useRef<HTMLButtonElement | null>(null);
-  const pulseRefs = useRef<HTMLDivElement[]>([]); // Pulse effect refs
-  const plusOneRefs = useRef<HTMLDivElement[]>([]); // Plus one effect refs
+  const pulseRefs = useRef<HTMLDivElement[]>([]);
+  const plusOneRefs = useRef<HTMLDivElement[]>([]);
   const { skinId } = useSkinConfig();
   const clicksCountRef = useRef(0);
 
@@ -24,7 +25,6 @@ const UserTap: React.FC<UserTapProps> = (props) => {
   useEffect(() => {
     const current = localStorage.getItem("ClicksCount");
     clicksCountRef.current = current ? parseFloat(current) : 0;
-    console.log("Initial count", clicksCountRef.current);
   }, []);
 
   useEffect(() => {
@@ -51,14 +51,30 @@ const UserTap: React.FC<UserTapProps> = (props) => {
         left: e.clientX + (Math.random() > 0.5 ? 5 : -5),
       },
     });
-    handlePulseAnimations(e.clientX, e.clientY, user.earn_per_tap);
+    animateButton(e.clientX, e.clientY);
   };
 
-  const handlePulseAnimations = (x: number, y: number, earnPerTap: number) => {
-    // Pulse effect
+  const animateButton = (x: number, y: number) => {
+    if (!userTapButtonRef.current) return;
+    handlePulseAnimations(x,y);
+    // Button scaling animation
+    gsap.to(userTapButtonRef.current, {
+      scale: 0.9,
+      duration: 0.1,
+      yoyo: true,
+      repeat: 1,
+      ease: "power1.out",
+    });
+
+    // Haptic feedback
+    Telegram.WebApp.HapticFeedback.impactOccurred("medium");
+  };
+
+  const handlePulseAnimations = (x: number, y: number) => {
+    // Create pulse effect
     const newPulse = document.createElement("div");
     newPulse.className =
-      "absolute w-64 h-64 bg-yellow-500 -translate-y-32 rounded-full pointer-events-none";
+      "absolute w-64 h-64 bg-yellow-400 -translate-y-32 rounded-full pointer-events-none";
     document.body.appendChild(newPulse);
     pulseRefs.current.push(newPulse);
 
@@ -71,30 +87,29 @@ const UserTap: React.FC<UserTapProps> = (props) => {
         duration: 0.6,
         ease: "power1.out",
         onComplete: () => {
+          gsap.set(newPulse, { scale: 0, opacity: 1 });
           newPulse.remove();
           pulseRefs.current.shift();
         },
       }
     );
 
-    // Plus one effect
+    // Create plus one effect
     const newPlusOne = document.createElement("div");
     newPlusOne.className = "absolute text-2xl font-bold pointer-events-none";
-    newPlusOne.textContent = `+${earnPerTap}`;
+    newPlusOne.textContent = `+${user.earn_per_tap}`;
+    newPlusOne.style.left = `${x}px`;
+    newPlusOne.style.top = `${y}px`;
+    newPlusOne.style.transform = "translate(-50%, -50%)";
     document.body.appendChild(newPlusOne);
     plusOneRefs.current.push(newPlusOne);
 
-    const randomX = (Math.random() - 0.5) * 100; // Random X offset
-    newPlusOne.style.left = `${x + randomX}px`;
-    newPlusOne.style.top = `${y}px`;
-    newPlusOne.style.transform = "translate(-50%, -50%)";
-    newPlusOne.style.zIndex = "20";
-
     gsap.fromTo(
       newPlusOne,
-      { y: 0, scale: 1, opacity: 0 },
+      { y: 0, x: 0, scale: 1, opacity: 0, rotate: 0 },
       {
         y: -60,
+        x: (Math.random() - 0.5) * 50,
         scale: 1.4,
         opacity: 1,
         duration: 0.6,
@@ -102,6 +117,7 @@ const UserTap: React.FC<UserTapProps> = (props) => {
         onComplete: () => {
           gsap.to(newPlusOne, {
             y: -100,
+            x: (Math.random() - 0.5) * 50,
             scale: 0.8,
             opacity: 0,
             duration: 0.6,
@@ -114,17 +130,6 @@ const UserTap: React.FC<UserTapProps> = (props) => {
         },
       }
     );
-
-    // Button scaling animation
-    gsap.to(userTapButtonRef.current, {
-      scale: 0.9,
-      duration: 0.1,
-      yoyo: true,
-      repeat: 1,
-      ease: "power1.out",
-    });
-
-    Telegram.WebApp.HapticFeedback.impactOccurred("medium");
   };
 
   return (
@@ -153,6 +158,17 @@ const UserTap: React.FC<UserTapProps> = (props) => {
         </button>
       </div>
 
+      <div ref={userAnimateRef} className="user-tap-animate">
+        {clicks.map((click) => (
+          <div
+            key={click.id}
+            onAnimationEnd={() => removeClick(click.id)}
+            style={click.style}
+          >
+            +{click.value}
+          </div>
+        ))}
+      </div>
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <img
