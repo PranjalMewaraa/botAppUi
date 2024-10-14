@@ -114,7 +114,7 @@ const PulseButton: React.FC = () => {
     
     // Create the image element
     const img = document.createElement("img");
-    img.src = "/image/ico.png"; // Replace with the path to your image
+    img.src = "../../../assets/Images/ico.png"; // Replace with the path to your image
     img.alt = "Heart Image"; // Alt text for accessibility
     
     // Optionally set the image dimensions
