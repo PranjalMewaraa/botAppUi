@@ -1,13 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import dollar from "../../../assets/Images/dollar.png";
-import goat from "../../../assets/Images/goat.png";
+
 import balance from "../../../assets/Images/balance.png";
 import { useClicksStore } from "../store/clicks-store";
 import { useUserStore } from "../store/user-store";
-import { Link } from "react-router-dom";
+
 import useSkinConfig from "../hooks/useSkinConfig";
 import skinConfig from "@/config/skin-config";
 
@@ -29,7 +29,7 @@ const { updateLoading, ...Props } = props;
 //     Number(decrypt(localStorage.getItem("alkine-db-val-er") || "0")) || 0
 //   );  const maxTaps = 20000000;
 
-const { clicks, addClick, removeClick } = useClicksStore();
+const { addClick } = useClicksStore();
 const { UserTap, incraseEnergy, ...user } = useUserStore();
  useEffect(() => {
     // Initialize clicks count on component mount
@@ -207,7 +207,7 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen w-full">
+    <div {...Props} className="relative flex flex-col items-center justify-center h-screen w-full">
       <div
         id="pulseContainer"
         className="absolute w-full h-full inset-0 flex items-center justify-center"
