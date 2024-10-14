@@ -33,7 +33,7 @@ export default function AppBar() {
               <img src={links[0].image} className="w-6 h-6 p-1" alt="Home" />
             )}
             {data.name === "Friends" && (
-              <img src={links[1].image} className="w-6 h-6 p-1" alt="Games" />
+              <img src={links[3].image} className="w-6 h-6 p-1" alt="Games" />
             )}
             {data.name === "Airdrop" && (
               <img
@@ -43,7 +43,7 @@ export default function AppBar() {
               />
             )}
             {data.name === "Mining" && (
-              <img src={links[3].image} className="w-6 h-6 p-1" alt="Mine" />
+              <img src={links[1].image} className="w-6 h-6 p-1" alt="Mine" />
             )}
             {data.name === "Bounty" && (
               <img src={links[4].image} className="w-6 h-6 p-1" alt="Earn" />
