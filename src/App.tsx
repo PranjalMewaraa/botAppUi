@@ -271,7 +271,7 @@ function App() {
     user && sync(user).then(() => setShowSplashScreen(false));
   }, [timer]);
 
-  if (!user || isDisktop) return <PlayOnYourMobile />;
+  // if (!user || isDisktop) return <PlayOnYourMobile />;
 
   if (showSplashScreen) return <SplashScreen />;
 
