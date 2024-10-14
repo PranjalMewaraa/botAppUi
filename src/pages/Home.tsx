@@ -1,10 +1,11 @@
-import UserTap from "../components-v2/Tapper2";
+import UserTap from "../components/UserTap";
 import { useUserStore } from "../store/user-store";
 import { Link } from "react-router-dom";
 import UserGameDetails from "@/components/UserGameDetails";
 // import levelConfig from "@/config/level-config";
 import { uesStore } from "@/store";
 import {  useState } from "react";
+
 
 export default function Home() {
   const user = useUserStore();
@@ -16,12 +17,17 @@ export default function Home() {
     setLoading(val)
   };
 
+  
   return (
     <div
-      className="relative flex-1 px-5 pb-20 bg-center bg-cover"
+      className="flex-1 px-5 pb-20 bg-center bg-cover"
       style={{
+        // backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,
+        // backgroundImage: 'url(./images/levels/bg.png)',
+        // backgroundImage: 'rgba(url(./images/levels/bg.png),0.5)',
         backgroundImage:
-          "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./images/bg.png)",
+          "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./images/levels/bg.png)",
+
         backgroundSize: "cover",
       }}
     >
@@ -55,15 +61,11 @@ export default function Home() {
           updateLoading={(bool: boolean) => {
             update(bool);
           }}
-          style={{
-            zIndex: 10, // Ensure it's placed above other elements if needed
-            position: 'relative',
-          }}
         /> 
 
-        <div className="flex space-x-1.5 justify-center items-center select-none mt-4">
+        <div className="flex  space-x-1.5 justify-center items-center select-none">
           <img
-            src="/images/balance.png"
+            src="/images/coins.png"
             alt="coins"
             className="object-contain w-20 h-20"
           />
@@ -72,7 +74,7 @@ export default function Home() {
           </span>
         </div>
 
-        <div className="mt-4">
+        <div className="">
           <Link
             to={"/leaderboard"}
             className="flex items-center justify-between gap-2"
