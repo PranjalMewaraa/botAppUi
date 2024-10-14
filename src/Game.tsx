@@ -50,7 +50,7 @@ function Game() {
       {activeIndex === 3 && <Mine/>}
       {activeIndex === 4 && <Earn/>}
       {activeIndex === 5 && <Profile/>}
-      {activeIndex === 5 && <Boost/>}
+      {activeIndex === 6 && <Boost/>}
       </div>
       <BottomNavbar activeIndex={activeIndex} setActiveIndex={setActiveIndex}/>
     </div>
