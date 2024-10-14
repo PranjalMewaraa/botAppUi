@@ -41,7 +41,7 @@ export default function Leaderboard() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-end bg-cover flex-1" style={{backgroundImage: `url(${levelConfig.bg[userData?.level?.level || 1]})`,}}>
+    <div className="flex flex-col justify-end bg-cover flex-1 text-white" >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <div className="">
           <Swiper
@@ -93,7 +93,7 @@ export default function Leaderboard() {
         {levels?.[activeIndex] &&
           levels?.[activeIndex]?.level === level?.level && (
             <div className="mt-2">
-              <div className="flex items-center justify-between gap-2 ">
+              <div className="flex items-center justify-between gap-2 text-white">
                 <div className="flex items-center text-2xl font-bold">
                   <span>{level.name}</span>
                 </div>
