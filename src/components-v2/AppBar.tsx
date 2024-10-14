@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 
 
 const links = [
-  { name: "Explore", link: "/", image: 'public/images/mansion.png' },
+  { name: "Explore", link: "/", image: '/images/mansion.png' },
   { name: "Mining", link: "/missions", image: '/image/pickaxe.png' },
   { name: "Friends", link: "/friends", image: '/image/joystick.png' },
   { name: "Bounty", link: "/earn", image: '/images/diamond.png' },
