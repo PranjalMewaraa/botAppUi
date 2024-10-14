@@ -36,7 +36,7 @@ export default function Drawer({ hideClose, children, ...props }: DrawerProps) {
             <DrawerPrimitive.Title className="invisible">
               Drawer
             </DrawerPrimitive.Title>
-            <div className="px-6 py-12">{children}</div>
+            <div className="px-6 py-12 text-white">{children}</div>
           </div>
         </DrawerPrimitive.Content>
       </DrawerPrimitive.Portal>
