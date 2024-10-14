@@ -136,6 +136,7 @@ function App() {
 
     const signIn = async () => {
       if (localStorage.getItem("token") === null) {
+        console.log(import.meta.env.VITE_API_URL)
         const { data } = await $http.post<{
           token: string;
           first_login: boolean;

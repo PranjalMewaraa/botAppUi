@@ -6,9 +6,11 @@ declare module "axios" {
   }
 }
 
+
 const token = localStorage.getItem("token");
 
 const $http: AxiosInstance = axios.create({
+  
   baseURL: import.meta.env.VITE_API_URL + "/api",
   headers: {
     Accept: "application/json",
