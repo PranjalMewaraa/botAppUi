@@ -3,21 +3,14 @@ import { useMemo, useState } from "react";
 import TaskDrawer from "@/components/TaskDrawer";
 import ListItem from "@/components/ListItem";
 import Price from "@/components/Price";
-
+import DailyDrawer from "@/components/DailyDrawer";
 import CheckIcon from "@/components/icons/CheckIcon";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { $http } from "@/lib/http";
-import { cn, compactNumber } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { uesStore } from "@/store";
 import LoadingPage from "@/components/LoadingPage";
 import ReferralTaskDrawer from "@/components/ReferralTaskDrawer";
-import BottomDrawer from "@/components/v1/Drawer";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import { DailyTaskType } from "@/types/TaskType";
-import { toast } from "react-toastify";
-import { useUserStore } from "@/store/user-store";
-import { Loader2Icon } from "lucide-react";
 
 
 export default function Earn() {
@@ -27,34 +20,9 @@ export default function Earn() {
   const [isDailyDrawerOpen, setIsDailyDrawerOpen] = useState(false);
   const [isReferralTaskDrawerOpen, setIsReferralTaskDrawerOpen] =
     useState(false);
-    
   const [activeReferralTask, setActiveReferralTask] =
     useState<ReferralTaskType | null>(null);
-    const navigate = useNavigate();
-    const dailyTasks = useQuery({
-      queryKey: ["daily-tasks"],
-      queryFn: () => $http.$get<DailyTaskType[]>("/clicker/daily-tasks"),
-      staleTime: Infinity,
-    });
-  
-    const claimTaskMutation = useMutation({
-      mutationFn: () =>
-        $http.post<{ message: string; balance: number }>(
-          `/clicker/claim-daily-task`
-        ),
-      onSuccess: (response) => {
-        toast.success(response.data.message);
-        dailyTasks.refetch();
-        useUserStore.setState({
-          balance: response.data.balance,
-        });
-        navigate("/");
-      },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      onError: (error: any) => {
-        toast.error(error.response?.data?.message || "Something went wrong");
-      },
-    });  
+
   
   const { data, isLoading } = useQuery({
     queryKey: ["tasks"],
@@ -190,59 +158,10 @@ export default function Earn() {
           </>
         )}
       </div>
-      <BottomDrawer
-        isOpen={isDailyDrawerOpen}
-        onClose={()=>setIsDailyDrawerOpen(!isDailyDrawerOpen)}
-      >
-         <div>
-      <img src="/images/coins.png" alt="coins" className="mx-auto h-28" />
-      <h2 className="mt-1 text-2xl font-bold text-center">Daily Reward</h2>
-      <p className="mt-2.5 text-center font-medium">
-        Acquire coins for logging into the game daily without skipping
-      </p>
-      <div className="grid grid-cols-4 gap-3 mt-10 overflow-y-auto max-h-64">
-        {dailyTasks.data?.map((item, key) => (
-          <div
-            key={key}
-            className={cn(
-              "flex flex-col border-2 border-transparent items-center bg-white/10 rounded-xl opacity-90 py-2.5 px-4",
-              item.completed && "opacity-100 border-[#27D46C] bg-[#27D46C]/20",
-              item.available && !item.completed && "opacity-100 border-primary"
-            )}
-          >
-            <p className="text-sm font-medium">{item.name}</p>
-            <img
-              src="/images/coin.png"
-              alt="coin"
-              className="object-contain w-5 h-5"
-            />
-            <p
-              className={cn(
-                "font-bold text-primary",
-                item.completed && "text-[#27D46C]"
-              )}
-            >
-              {compactNumber(item.reward_coins)}
-            </p>
-          </div>
-        ))}
-      </div>
-      <Button
-        className="w-full mt-6"
-        disabled={
-          !dailyTasks.data?.some((item) => item.available && !item.completed) ||
-          claimTaskMutation.isPending ||
-          dailyTasks.isLoading
-        }
-        onClick={() => claimTaskMutation.mutate()}
-      >
-        {claimTaskMutation.isPending && (
-          <Loader2Icon className="w-6 h-6 mr-2 animate-spin" />
-        )}
-        Claim
-      </Button>
-      </div>
-      </BottomDrawer>
+      <DailyDrawer
+        open={isDailyDrawerOpen}
+        onOpenChange={setIsDailyDrawerOpen}
+      />
       <TaskDrawer
         task={activeTask}
         open={isTaskDrawerOpen}
