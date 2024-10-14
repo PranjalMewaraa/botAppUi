@@ -72,7 +72,7 @@ const TopNav = () => {
       </div>
       <div ref={contentRef} className="h-20 w-full transition-all duration-300">
         {activeSection === 'Games' && (
-          <div className="w-full h-dvh p-2 mt-4 overflow-y-scroll">
+          <div className="w-full h-fit p-2 mt-4 overflow-y-scroll">
             <div className="w-full h-fit flex flex-wrap">
               <GameCard />
               <GameCard />
