@@ -15,3 +15,19 @@
     font-family: ageolight;
     src: url(./assets/fonts/lght.woff2);
 }
+#main_div{
+    background: url("./assets/Images/bg.png");
+    background-position: center;
+    background-size: cover;
+  }
+  #recbg{
+    background: url("./assets/Images/recbg.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  #earn{
+    background: url("./assets/Images/earnbg.png");
+    background-position: center;
+    background-size: contain;
+  }
