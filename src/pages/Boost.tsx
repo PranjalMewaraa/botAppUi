@@ -109,7 +109,7 @@ export default function Boost() {
   });
 
   return (
-    <div className="flex flex-col justify-end bg-cover flex-1" style={{backgroundImage: `url(/images/bg.png)`,}}>
+    <div className="flex flex-col justify-end bg-cover flex-1 text-white" >
       <div className="min-h-[600px] w-full modal-body py-8 px-6">
         <h1 className="text-2xl font-bold text-center uppercase">
           Boost your game
