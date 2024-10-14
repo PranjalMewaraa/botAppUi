@@ -74,14 +74,6 @@ const ProgressIndicator: React.FC = () => {
     <div className="w-full h-24 mt-2 flex flex-col gap-1">
       <div className="flex w-full justify-between text-white">
         <p>{user.level?.name}</p>
-        <p>Level {user.level?.level}/{maxLevel}</p>
-      </div>
-      <div className="w-full h-4 bg-slate-700 p-[2px] rounded-full">
-        <div className="h-full bg-yellow-500 rounded-full" style={{
-            width: `${(user.balance / user.level!.to_balance) * 100}%`,
-        }}></div>
-      </div>
-      <div className="flex w-full justify-between text-white text-sm">
         <p className="flex gap-2 items-center">
           Profit per Hour{" "}
           <span>
@@ -89,6 +81,15 @@ const ProgressIndicator: React.FC = () => {
           </span>{" "}
           +{user.production_per_hour}
         </p>
+      </div>
+      <div className="w-full h-4 bg-slate-700 p-[2px] rounded-full">
+        <div className="h-full bg-yellow-500 rounded-full" style={{
+            width: `${(user.balance / user.level!.to_balance) * 100}%`,
+        }}></div>
+      </div>
+      <div className="flex w-full justify-between text-white text-sm">
+      <p>Level {user.level?.level}/{maxLevel}</p>
+        
         <p>Coins to Level Up - {user.level?.to_balance}</p>
       </div>
     </div>
