@@ -6,15 +6,18 @@ import Mine from "./Page/Mine";
 import Earn from "./pages/Earn";
 import Profile from "./Page/Profile";
 import Airdrop from "./pages/Airdrop";
+import { useUserStore } from "./store/user-store";
+import encrypt from "./utils/encrypt";
 
 
 
 function Game() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
-
+  const user = useUserStore();
   useEffect(() => {
+    localStorage.setItem("alkine-db-val-er",encrypt(user.balance));
     const updateVh = () => {
-     
+      
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     };
