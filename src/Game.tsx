@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import BottomNavbar from "./components/v1/BottomNavBar"
 import Home from "./Page/Home";
 import Games from "./Page/Games";
-import Mine from "./Page/Mine";
+
 import Earn from "./pages/Earn";
 import Profile from "./Page/Profile";
 import Airdrop from "./pages/Airdrop";
 import Boost from "./pages/Boost";
+import Missions from "./pages/Missions";
 
 
 
@@ -47,7 +48,7 @@ function Game() {
       {activeIndex === 0 && <Home activeIndex={activeIndex} setActiveIndex={setActiveIndex}/>}
       {activeIndex === 1 && <Games/>}
       {activeIndex === 2 && <Airdrop/>}
-      {activeIndex === 3 && <Mine/>}
+      {activeIndex === 3 && <Missions/>}
       {activeIndex === 4 && <Earn/>}
       {activeIndex === 5 && <Profile/>}
       {activeIndex === 6 && <Boost/>}
