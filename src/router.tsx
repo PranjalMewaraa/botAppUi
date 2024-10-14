@@ -22,10 +22,6 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "boost",
-        element: <Boost />,
-      },
-      {
         path: "leaderboard",
         element: <Leaderboard />,
       },
@@ -36,10 +32,6 @@ const router = createBrowserRouter([
       {
         path: "earn",
         element: <Earn />,
-      },
-      {
-        path: "missions",
-        element: <Missions />,
       },
       {
         path: "airdrop",
