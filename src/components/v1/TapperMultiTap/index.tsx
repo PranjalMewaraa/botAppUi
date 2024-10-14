@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import dollar from "../../../assets/Images/dollar.png";
 import goat from "../../../assets/Images/goat.png";
@@ -6,6 +6,7 @@ import balance from "../../../assets/Images/balance.png";
 import encrypt from "../../../utils/encrypt";
 import decrypt from "../../../utils/decrypt";
 import { useUserStore } from "@/store/user-store";
+import { useClicksStore } from "@/store/clicks-store";
 
 const PulseButton: React.FC = () => {
   const pulseRefs = useRef<HTMLDivElement[]>([]);
@@ -13,6 +14,8 @@ const PulseButton: React.FC = () => {
   const plusOneRefs = useRef<HTMLDivElement[]>([]);
   const dollarRef = useRef<HTMLImageElement | null>(null);
   const dollarRef2 = useRef<HTMLImageElement | null>(null);
+  // const { clicks, addClick, removeClick } = useClicksStore();
+  const user  = useUserStore();
 
   const [tapCount, setTapCount] = useState<number>(
     Number(decrypt(localStorage.getItem("alkine-db-val-er") || "0")) || 0
@@ -43,10 +46,20 @@ const PulseButton: React.FC = () => {
         setTapCount((prevCount) => Math.min(prevCount + fingerCount, maxTaps));
         setLocalStorageItem("alkine-db-val-er", encrypt((tapCount + fingerCount)));
         handlePulseAnimations(fingerCount);
+        Telegram.WebApp.HapticFeedback.impactOccurred("medium");
       }
     }, 50); // small delay to ensure all fingers are detected
   };
 
+  useEffect(() => {
+    useClicksStore.setState({ clicks: [] });
+
+    const interval = setInterval(() => {
+      user.incraseEnergy(3);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
  
   const handlePulseAnimations = (fingerCount: number) => {
     const newPulse = document.createElement("div");
@@ -167,7 +180,7 @@ const PulseButton: React.FC = () => {
       }
     );
   };
- const user =useUserStore();
+ 
 
   return (
     <div className="relative flex flex-col items-center justify-center h-screen w-full">
@@ -213,7 +226,7 @@ const PulseButton: React.FC = () => {
         <span>
           <img src={balance} alt="" />
         </span>
-        {Math.floor(user.balance)}
+        {Math.floor(tapCount)}
       </div>
     </div>
   );
