@@ -49,7 +49,7 @@ const ProfileBox: React.FC = () => {
       <div className="h-16 bg-[#283140] rounded-xl">
         <img src={pic} alt="Profile Picture" className="aspect-square h-full p-1 rounded-full" />
       </div>
-      <h1 className="text-white text-lg font-semibold">{user?.first_name} {user?.last_name}</h1>
+      <h1 className="text-white text-base font-semibold">{user?.first_name} {user?.last_name}</h1>
     </div>
   );
 };
