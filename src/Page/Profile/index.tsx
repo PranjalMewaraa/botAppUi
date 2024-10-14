@@ -4,6 +4,7 @@ import set from "../../assets/Images/set.png"
 import useSkinConfig from "@/hooks/useSkinConfig";
 import { ReactEventHandler, useEffect, useState } from "react";
 import skinConfig from "@/config/skin-config";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const { skinId, updateSkinId } = useSkinConfig();
@@ -27,7 +28,7 @@ const Profile = () => {
          <ProfileBox/>
          <ProfitBox/>
     </div>
-    <div className="w-full pt-4 text-center text-white">🏆 LeaderBoard</div>
+    <Link to={'/leaderboard'} className="w-full pt-4 text-center text-white">🏆 LeaderBoard</Link>
     <div className="w-full h-64 mt-6 px-8 flex justify-center items-center">
         <div className=" aspect-square h-full bg-slate-800 rounded-2xl">
         <img src={skinConfig.images[skinId || 1]} alt="" />

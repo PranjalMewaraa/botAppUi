@@ -6,7 +6,7 @@ import FABMenu from "../../components/v1/Fab";
 import { useUserStore } from "@/store/user-store";
 import { uesStore } from "@/store";
 import set from "../../assets/Images/set.png"
-import { Link } from "react-router-dom";
+
 
 
 interface HomeProps {    
@@ -80,7 +80,7 @@ const ProgressIndicator: React.FC = () => {
 
   console.log((user.balance! / user.level!.to_balance) * 100)
   return (
-    <Link to={'/leaderboard'} className=" bg-transparent w-full h-24 mt-2 flex flex-col gap-1">
+    <div className=" bg-transparent w-full h-24 mt-2 flex flex-col gap-1">
       <div className="flex w-full justify-between text-white">
         <p>{user.level?.name}</p>
         <p className="flex gap-2 items-center">
@@ -101,7 +101,7 @@ const ProgressIndicator: React.FC = () => {
         
         <p>Coins to Level Up - {user.level?.to_balance}</p>
       </div>
-    </Link>
+    </div>
   );
 };
 
