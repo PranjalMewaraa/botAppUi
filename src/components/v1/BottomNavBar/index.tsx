@@ -31,6 +31,7 @@ const BottomNavbar: FC<BottomNavbarProps> = ({ activeIndex, setActiveIndex }) =>
               activeIndex === index ? "text-yellow-500" : "text-slate-50"
             }`}
             onClick={() => handleButtonClick(index)}
+            onTouchStart={() => handleButtonClick(index)}
           >
             {label === "Home" && (
               <img src={mansion} className="w-6 h-6 p-1" alt="Home" />

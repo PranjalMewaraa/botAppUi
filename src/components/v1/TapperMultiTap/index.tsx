@@ -46,24 +46,7 @@ const PulseButton: React.FC = () => {
     }, 50); // small delay to ensure all fingers are detected
   };
 
-  const handleTouchStart2 = (event: { touches: string | any[]; }) => {
-    // Debounce check: Skip handling if already processing a recent touch
-    if (isDebouncing) return;
-
-    setIsDebouncing(true);
-    setTimeout(() => setIsDebouncing(false), debounceTime);
-
-    // Delay to ensure all fingers are registered
-    setTimeout(() => {
-      const fingerCount = event.touches.length;
-      if (fingerCount > 0 && fingerCount <= 5) {
-        // Add score based on finger count
-        setTapCount((prevCount) => Math.min(prevCount + fingerCount, maxTaps));
-        setLocalStorageItem("alkine-db-val-er", encrypt((tapCount + fingerCount)));
-        handlePulseAnimations(fingerCount);
-      }
-    }, 50); // small delay to ensure all fingers are detected
-  };
+ 
   const handlePulseAnimations = (fingerCount: number) => {
     const newPulse = document.createElement("div");
     newPulse.className =
@@ -189,8 +172,7 @@ const PulseButton: React.FC = () => {
       <div
         id="pulseContainer"
         className="absolute w-full h-full inset-0 flex items-center justify-center"
-        onTouchStart={handleTouchStart}
-        onClick={handleTouchStart2}  // Add touch event listener here
+        onTouchStart={handleTouchStart}  // Add touch event listener here
       >
         <div className="relative w-full h-full">
           <div
