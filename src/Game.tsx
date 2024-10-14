@@ -6,8 +6,6 @@ import Mine from "./Page/Mine";
 import Earn from "./pages/Earn";
 import Profile from "./Page/Profile";
 import Airdrop from "./pages/Airdrop";
-import { useUserStore } from "./store/user-store";
-import encrypt from "./utils/encrypt";
 
 
 
