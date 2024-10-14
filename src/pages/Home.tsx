@@ -1,4 +1,4 @@
-import UserTap from "../components/UserTap";
+import UserTap from "../components-v2/Tapper";
 import { useUserStore } from "../store/user-store";
 import { Link } from "react-router-dom";
 import UserGameDetails from "@/components/UserGameDetails";
