@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import dollar from "../../../assets/Images/dollar.png";
+import ico from "../../../assets/Images/ico.png";
 
 import balance from "../../../assets/Images/balance.png";
 import encrypt from "../../../utils/encrypt";
@@ -114,7 +115,7 @@ const PulseButton: React.FC = () => {
     
     // Create the image element
     const img = document.createElement("img");
-    img.src = "../../../assets/Images/ico.png"; // Replace with the path to your image
+    img.src = ico; // Replace with the path to your image
     img.alt = "Heart Image"; // Alt text for accessibility
     
     // Optionally set the image dimensions
