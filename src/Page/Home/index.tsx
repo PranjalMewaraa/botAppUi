@@ -6,6 +6,7 @@ import FABMenu from "../../components/v1/Fab";
 import { useUserStore } from "@/store/user-store";
 import { uesStore } from "@/store";
 import set from "../../assets/Images/set.png"
+import { Link } from "react-router-dom";
 
 
 interface HomeProps {    
@@ -32,12 +33,12 @@ const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
       <ProgressIndicator />
       <PulseButton />
       <div className="absolute bottom-24 w-full h-20 flex justify-left items-center">
-      <div className="flex text-white items-center gap-2 text-xl" onClick={()=>ButtonClick(6)}>
+      <Link to={'/boost'} className="flex text-white items-center gap-2 text-xl" >
         <span>
           <img src={boost} alt="boost" />
         </span>
         Boost
-      </div>
+      </Link>
       <FABMenu />
     </div>
     </div>
