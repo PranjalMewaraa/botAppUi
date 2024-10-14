@@ -47,7 +47,7 @@ export default function DailyDrawer({ ...props }: DrawerProps) {
           <div
             key={key}
             className={cn(
-              "flex flex-col border-2 border-transparent items-center bg-white/10 rounded-xl opacity-40 py-2.5 px-4",
+              "flex flex-col border-2 border-transparent items-center bg-white/10 rounded-xl opacity-90 py-2.5 px-4",
               item.completed && "opacity-100 border-[#27D46C] bg-[#27D46C]/20",
               item.available && !item.completed && "opacity-100 border-primary"
             )}
