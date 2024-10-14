@@ -60,7 +60,7 @@ const Profile = () => {
 
 const CharCard = (props: { src: string | undefined; onLoad: ReactEventHandler<HTMLImageElement> | undefined; })=>{
     return(
-        <div className="w-28 h-3/4 bg-slate-800 flex items-center justify-center rounded-2xl">
+        <div className="w-24 h-3/4 bg-slate-800 flex items-center justify-center rounded-2xl">
         <img src={props.src} alt="" className="h-4/5" onLoad={props.onLoad}/>
         </div>
     )
