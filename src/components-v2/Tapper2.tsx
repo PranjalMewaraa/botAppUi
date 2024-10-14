@@ -86,6 +86,7 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
   };
 
   const handlePulseAnimations = (fingerCount: number) => {
+    console.log('inside')
     const newPulse = document.createElement("div");
     newPulse.className =
       "absolute w-64 h-64 bg-yellow-400 -translate-y-32 rounded-full pointer-events-none";
