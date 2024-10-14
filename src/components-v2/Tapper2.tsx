@@ -211,7 +211,8 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
       <div
         id="pulseContainer"
         className="absolute w-full h-full inset-0 flex items-center justify-center"
-        onTouchStart={handleTouchStart}  // Add touch event listener here
+        onTouchStart={handleTouchStart} 
+        onClick={handleTouchStart} // Add touch event listener here
       >
         <div className="relative w-full h-full">
           <div
