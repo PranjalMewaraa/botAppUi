@@ -3,6 +3,9 @@ import ico from "../../assets/Images/ico.png";
 import boost from "../../assets/Images/boost.png";
 import PulseButton from "../../components/v1/TapperMultiTap";
 import FABMenu from "../../components/v1/Fab";
+import { useUserStore } from "@/store/user-store";
+import { uesStore } from "@/store";
+
 
 
 interface HomeProps {    
@@ -10,7 +13,10 @@ interface HomeProps {
     setActiveIndex: (index: number) => void;
 }
 
+
+
 const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
+  
   
   const ButtonClick=(index:number)=>{
        console.log(activeIndex)
@@ -35,7 +41,7 @@ const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
 
 const ProfileBox: React.FC = () => {
 
-
+  const user = useUserStore();
   return (
     <div
       className="h-full flex gap-4 items-center"
@@ -43,12 +49,13 @@ const ProfileBox: React.FC = () => {
       <div className="h-16 bg-[#283140] rounded-xl">
         <img src={pic} alt="Profile Picture" className="aspect-square h-full p-1 rounded-full" />
       </div>
-      <h1 className="text-white text-lg font-semibold">Pranjal (CEO)</h1>
+      <h1 className="text-white text-lg font-semibold">{user?.first_name} {user?.last_name}</h1>
     </div>
   );
 };
 
 const ProfitBox: React.FC = () => {
+  const user = useUserStore();
   return (
     <div className="flex flex-col px-3 py-1 items-center rounded-full bg-[#283140]">
       <p className="text-white text-sm">Profit / hour</p>
@@ -56,21 +63,25 @@ const ProfitBox: React.FC = () => {
         <span>
           <img src={ico} className="w-8 h-8" alt="goat_coin" />
         </span>
-        +10
+        {user.production_per_hour}
       </p>
     </div>
   );
 };
 
 const ProgressIndicator: React.FC = () => {
+  const { maxLevel } = uesStore();
+  const user = useUserStore();
   return (
     <div className="w-full h-24 mt-2 flex flex-col gap-1">
       <div className="flex w-full justify-between text-white">
-        <p>Rookie Trader</p>
-        <p>Level 1/15</p>
+        <p>{user.level?.name}</p>
+        <p>Level {user.level?.level}/{maxLevel}</p>
       </div>
       <div className="w-full h-4 bg-slate-700 p-[2px] rounded-full">
-        <div className="w-6 h-full bg-yellow-500 rounded-full"></div>
+        <div className="h-full bg-yellow-500 rounded-full" style={{
+                width: `${(user.balance! / user.level!.to_balance) * 100}%`,
+        }}></div>
       </div>
       <div className="flex w-full justify-between text-white text-sm">
         <p className="flex gap-2 items-center">
@@ -78,9 +89,9 @@ const ProgressIndicator: React.FC = () => {
           <span>
             <img src={ico} alt="coin" className="h-6 w-6" />
           </span>{" "}
-          +10
+          {user.production_per_hour}
         </p>
-        <p>Coins to Level Up - 75K</p>
+        <p>Coins to Level Up - 75</p>
       </div>
     </div>
   );
