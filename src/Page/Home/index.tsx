@@ -92,7 +92,7 @@ const ProgressIndicator: React.FC = () => {
           </span>{" "}
           +{user.production_per_hour}
         </p>
-        <p>Coins to Level Up - 75K</p>
+        <p>Coins to Level Up - {user.level?.to_balance}</p>
       </div>
     </div>
   );
