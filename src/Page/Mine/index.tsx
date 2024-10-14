@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import MissionDrawer from "@/components/MissionDrawer";
 import Price from "@/components/Price";
 import UserGameDetails from "@/components/UserGameDetails";
 import { $http } from "@/lib/http";
@@ -87,7 +86,8 @@ export default function Missions() {
   const [activeType, setActiveType] = useState(missionTypes?.[0]);
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
-
+   console.log(openDrawer)
+   console.log(selectedMission)
   const missions = useQuery({
     queryKey: ["/clicker/missions", activeType?.id],
     queryFn: () =>
@@ -143,7 +143,7 @@ export default function Missions() {
           </div>
         </div>
       </div>
-      <MissionDrawer open={openDrawer} onOpenChange={setOpenDrawer} mission={selectedMission} />
+     
     </div>
   );
 }
