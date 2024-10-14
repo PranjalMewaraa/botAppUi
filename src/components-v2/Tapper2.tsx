@@ -56,7 +56,7 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
 
   const handleTouchStart = (event: React.TouchEvent | any) => {
 
-    event.preventDefault();
+    
     // Debounce check: Skip handling if already processing a recent touch
     if (isDebouncing) return;
    
