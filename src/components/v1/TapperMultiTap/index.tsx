@@ -204,7 +204,7 @@ const PulseButton: React.FC = () => {
  
 
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen w-full z-50">
+    <div className="relative flex flex-col items-center justify-center h-screen w-full overflow-hidden z-50">
       <button
         id="pulseContainer"
         disabled={user.available_energy < user.earn_per_tap}
