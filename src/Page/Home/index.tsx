@@ -63,7 +63,7 @@ const ProfitBox: React.FC = () => {
         <span>
           <img src={ico} className="w-8 h-8" alt="goat_coin" />
         </span>
-        {user.production_per_hour}
+        + {user.production_per_hour}
       </p>
     </div>
   );
@@ -89,9 +89,9 @@ const ProgressIndicator: React.FC = () => {
           <span>
             <img src={ico} alt="coin" className="h-6 w-6" />
           </span>{" "}
-          {user.production_per_hour}
+          +{user.production_per_hour}
         </p>
-        <p>Coins to Level Up - 75</p>
+        <p>Coins to Level Up - 75K</p>
       </div>
     </div>
   );
