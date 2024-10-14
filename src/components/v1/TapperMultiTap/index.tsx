@@ -213,7 +213,7 @@ const PulseButton: React.FC = () => {
         <span>
           <img src={balance} alt="" />
         </span>
-        {user.balance}
+        {Math.floor(user.balance)}
       </div>
     </div>
   );
