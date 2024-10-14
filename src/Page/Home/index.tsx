@@ -81,7 +81,7 @@ const ProgressIndicator: React.FC = () => {
       </div>
       <div className="w-full h-4 bg-slate-700 p-[2px] rounded-full">
         <div className="h-full bg-yellow-500 rounded-full" style={{
-            width: `${(user.balance! / user.level!.to_balance) * 100}%`,
+            width: `${(user.balance / user.level!.to_balance) * 100}%`,
         }}></div>
       </div>
       <div className="flex w-full justify-between text-white text-sm">

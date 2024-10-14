@@ -5,6 +5,7 @@ import goat from "../../../assets/Images/goat.png";
 import balance from "../../../assets/Images/balance.png";
 import encrypt from "../../../utils/encrypt";
 import decrypt from "../../../utils/decrypt";
+import { useUserStore } from "@/store/user-store";
 
 const PulseButton: React.FC = () => {
   const pulseRefs = useRef<HTMLDivElement[]>([]);
@@ -166,6 +167,7 @@ const PulseButton: React.FC = () => {
       }
     );
   };
+ const user =useUserStore();
 
   return (
     <div className="relative flex flex-col items-center justify-center h-screen w-full">
@@ -211,7 +213,7 @@ const PulseButton: React.FC = () => {
         <span>
           <img src={balance} alt="" />
         </span>
-        {Math.floor(tapCount)}
+        {user.balance}
       </div>
     </div>
   );
