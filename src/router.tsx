@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./components/partials/Layout";
-import Home from "./Page/Home";
+import Home from "./pages/Home";
 
 import Leaderboard from "./pages/Leaderboard";
 import Earn from "./pages/Earn";
