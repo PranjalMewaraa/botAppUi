@@ -2,12 +2,12 @@ import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 
 interface DrawerProps {
-  children: React.ReactNode;
+  children: React.ReactNode ;
   isOpen: boolean;
   onClose: () => void;
 }
 
-const BottomDrawer: React.FC<DrawerProps> = ({ children, isOpen, onClose }) => {
+const BottomDrawer: React.FC<DrawerProps> = ({ children, isOpen, onClose, ...props }) => {
   const drawerRef = useRef<HTMLDivElement>(null);
   const layout = useRef<HTMLDivElement>(null);
 
@@ -44,7 +44,7 @@ const BottomDrawer: React.FC<DrawerProps> = ({ children, isOpen, onClose }) => {
   }, [isOpen]);
 
   return (
-    <div className="fixed inset-0 mt-10" ref={layout}>
+    <div className="fixed inset-0 mt-10" ref={layout} {...props}>
       {/* Drawer */}
       <div
         ref={drawerRef}
