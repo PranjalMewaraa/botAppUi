@@ -215,7 +215,7 @@ const { UserTap, incraseEnergy, ...user } = useUserStore();
         onClick={handleTouchStart}
         disabled={user.available_energy < user.earn_per_tap} // Add touch event listener here
       >
-        <div className="relative w-full h-fit">
+        <div className="relative w-full h-full">
           <div
             className="absolute w-[168px] h-[168px] rounded-full border-4 border-transparent"
             style={{
