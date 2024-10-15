@@ -21,13 +21,22 @@ export default function Leaderboard() {
 
   const leaderboard = useQuery({
     queryKey: ["leaderboard", levels?.[activeIndex]?.id],
-    queryFn: () =>
-      $http.$get<UserType[]>("/clicker/leaderboard", {
-        params: { level_id: levels?.[activeIndex].id },
-      }),
+    queryFn: () => {
+      const levelId = levels?.[activeIndex]?.id;
+      console.log("Fetching leaderboard for level_id:", levelId);
+      
+      if (!levelId) {
+        return Promise.reject(new Error("Level ID is undefined"));
+      }
+  
+      return $http.$get<UserType[]>("/clicker/leaderboard", {
+        params: { level_id: levelId },
+      });
+    },
     staleTime: Infinity,
-    enabled: !!levels?.[activeIndex]?.level,
+    enabled: !!levels?.[activeIndex]?.id,
   });
+  
 
   useEffect(() => {
     if (level?.level) {
