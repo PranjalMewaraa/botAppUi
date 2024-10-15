@@ -11,6 +11,7 @@ import PlayOnYourMobile from "./pages/PlayOnYourMobile";
 import { useDebounce } from "@uidotdev/usehooks";
 import { toast } from "react-toastify";
 import useTelegramInitData from "./hooks/useTelegramInitData";
+import encrypt from "./utils/encrypt";
 
 
 const webApp = window.Telegram.WebApp;
@@ -116,6 +117,7 @@ function App() {
           useUserStore.setState({
             balance: syncData.user.balance,
           });
+          // localStorage.setItem("alkine-db-val-er", encrypt(syncData.user.balance))
         } catch (error) {
           console.error("Failed to fetch sync data", error);
         }
@@ -288,6 +290,7 @@ function App() {
             useUserStore.setState({
               balance: syncData.user.balance,
             });
+            //localStorage.setItem("alkine-db-val-er", encrypt(syncData.user.balance))
           } catch (error) {
             console.error("Failed to fetch sync data", error);
           }
