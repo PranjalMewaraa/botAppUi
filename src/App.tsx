@@ -223,6 +223,7 @@ function App() {
     const intervalId = setInterval(executeEvery30sec, 3000);
     return () => clearInterval(intervalId);
   }, []);
+  
   useEffect(() => {
     if (clicksCountRef.current === 0) return;
     console.log(clicksCountRef.current);
