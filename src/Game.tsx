@@ -63,12 +63,12 @@ export default function Game() {
   return (
     <div
       id="main_div"
-      className="max-w-screen-sm w-screen overflow-hidden relative"
-      style={{ height: "calc(var(--vh, 1vh) * 100)" }}
+      className="max-w-screen-sm w-screen overflow-hidden relative h-[95%]"
+      // style={{ height: "calc(var(--vh, 1vh) * 100)" }}
     >
       <div
-        className="content-wrapper overflow-y-scroll"
-        style={{ height: "calc(var(--vh, 1vh) * 100)" }}
+        className="content-wrapper overflow-y-scroll h-[95%]"
+        // style={{ height: "calc(var(--vh, 1vh) * 100)" }}
       >
         {activeIndex === 0 && <Home activeIndex={activeIndex} setActiveIndex={setActiveIndex} />}
         {activeIndex === 1 && <Games />}
