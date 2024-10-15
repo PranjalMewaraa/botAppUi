@@ -18,7 +18,7 @@ const BottomNavbar: FC<BottomNavbarProps> = ({ activeIndex, setActiveIndex }) =>
 
   return (
     <div
-      className="absolute bottom-1 flex z-50 items-center justify-evenly w-full rounded-t-xl shadow-md p-2 border-r-2 border-b-2 border-l-2 border-t-1 border-yellow-500"
+      className="absolute bottom-0 pb-4 flex z-50 items-center justify-evenly w-full rounded-t-xl shadow-md p-2 border-r-2 border-b-2 border-l-2 border-t-1 border-yellow-500"
       style={{
         background: "linear-gradient(to right, #2D3748, #1A202C)",
       }}
