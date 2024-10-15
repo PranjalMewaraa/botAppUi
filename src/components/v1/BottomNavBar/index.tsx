@@ -27,30 +27,30 @@ const BottomNavbar: FC<BottomNavbarProps> = ({ activeIndex, setActiveIndex }) =>
         {["Home", "Games", "Airdrop", "Mine", "Earn"].map((label, index) => (
           <button
             key={label}
-            className={`flex flex-col items-center justify-center w-10 h-10 bg-transparent rounded-lg transition-all duration-300 ease-in-out hover:bg-slate-600 ${
+            className={`flex flex-col items-center justify-center w-12 h-12 bg-transparent rounded-lg transition-all duration-300 ease-in-out hover:bg-slate-600 ${
               activeIndex === index ? "text-yellow-500" : "text-slate-50"
             }`}
             onClick={() => handleButtonClick(index)}
             onTouchStart={() => handleButtonClick(index)}
           >
             {label === "Home" && (
-              <img src={mansion} className="w-6 h-6 p-1" alt="Home" />
+              <img src={mansion} className="w-8 h-8 p-1" alt="Home" />
             )}
             {label === "Games" && (
-              <img src={joystick} className="w-6 h-6 p-1" alt="Games" />
+              <img src={joystick} className="w-8 h-8 p-1" alt="Games" />
             )}
             {label === "Airdrop" && (
               <img
                 src={dollar}
-                className="w-10 h-10 p-1 -translate-y-5 scale-150"
+                className="w-12 h-12 p-1 -translate-y-5 scale-150"
                 alt="Airdrop"
               />
             )}
             {label === "Mine" && (
-              <img src={picaxe} className="w-6 h-6 p-1" alt="Mine" />
+              <img src={picaxe} className="w-8 h-8 p-1" alt="Mine" />
             )}
             {label === "Earn" && (
-              <img src={diamond} className="w-6 h-6 p-1" alt="Earn" />
+              <img src={diamond} className="w-8 h-8 p-1" alt="Earn" />
             )}
 
             <span
