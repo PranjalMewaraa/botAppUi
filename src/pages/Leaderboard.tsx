@@ -52,7 +52,7 @@ export default function Leaderboard() {
   }, []);
   console.log(leaderboard.data)
   return (
-    <div id="main_div" className="w-screen h-screen overflow-y-scroll">
+    <div id="main_div" className="w-screen h-screen overflow-y-hidden">
     <div className="flex flex-col justify-end bg-cover flex-1 text-white" >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <div className="">
@@ -123,8 +123,8 @@ export default function Leaderboard() {
               </div>
             </div>
           )}
-        <div className="relative flex-1 mt-6 h-fit">
-          <div className="absolute inset-0 w-full h-full divide-y divide-[#D9D9D9]/10 overflow-y-auto">
+        <div className=" flex-1 mt-6">
+          <div className="absolute w-full h-full divide-y divide-[#D9D9D9]/10 overflow-y-auto">
             {leaderboard.isLoading ? (
               <div className="flex items-center justify-center h-full">
                 <Loader2Icon className="w-12 h-12 animate-spin text-primary" />
