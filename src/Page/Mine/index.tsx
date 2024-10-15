@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Loader2Icon } from "lucide-react";
 import UserGameDetails from "@/components/UserGameDetails";
 import MissionDrawer from "@/components/MissionDrawer";
+import TopNav from "@/components/v1/TopNavMine";
 
 
 // Define types for props
@@ -99,17 +100,20 @@ export default function Missions() {
     staleTime: 1000 * 60,
     enabled: !!activeType?.id,
   });
-
+  const [section,setSection]=useState('Fun');
+  const handleSectionChange = (section: string) => {
+    setSection(section);
+  }
   return (
     <div className="flex flex-col justify-end bg-cover flex-1 text-white" >
       <div className="flex flex-col flex-1 w-full h-full px-6 pb-24 mt-12 modal-body">
-        
+       <TopNav active={section} handleClick={handleSectionChange}/> 
         <UserGameDetails className="mt-4"/>
         <div className="flex items-center justify-center mt-10 space-x-1 text-white">
           <img src="/images/coins.png" alt="coins" className="object-contain w-14 h-14" />
           <span className="text-3xl text-white font-bold">{Math.floor(user.balance)?.toLocaleString()}</span>
         </div>
-        <div className="mt-10">
+        {section==="Fun" && <div className="mt-10">
           <div className="flex gap-4">
             {missionTypes.map((type, key) => (
               <button
@@ -144,7 +148,9 @@ export default function Missions() {
               )}
             </div>
           </div>
-        </div>
+        </div> }
+        {section === "NFT" && <div className="font-[ageobold] text-lg text-white">Coming soon ... </div>}
+        
       </div>
       <MissionDrawer open={openDrawer} onOpenChange={setOpenDrawer} mission={selectedMission} />
     </div>
