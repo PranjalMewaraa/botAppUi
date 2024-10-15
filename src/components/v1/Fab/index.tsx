@@ -21,7 +21,6 @@ const OptionButtons: React.FC<OptionButtonsProps> = ({ src, style }) => {
 
 const FABMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const cloudRef = useRef<HTMLParagraphElement | null>(null);
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
@@ -35,30 +34,7 @@ const FABMenu: React.FC = () => {
 
   // Cloud's Animation
   useEffect(() => {
-    const tl = gsap.timeline({ repeat: -1, repeatDelay: 5 });
-
-    tl.to(cloudRef.current, {
-      x: -60,
-      opacity: 1,
-      duration: 1,
-      ease: "power2.out",
-    })
-      .to(cloudRef.current, {
-        x: -60,
-        opacity: 1,
-        duration: 3,
-        ease: "none",
-      })
-      .to(cloudRef.current, {
-        x: 0,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.in",
-      });
-
-    return () => {
-      tl.kill();
-    };
+   
   }, []);
 
   return (
@@ -86,13 +62,6 @@ const FABMenu: React.FC = () => {
         className="w-16 h-16 rounded-lg text-white text-2xl flex items-center justify-center -translate-x-5 transition-transform transform bg-[url(https://cdn1.iconfinder.com/data/icons/e-commerce-set-4/256/New-512.png)]"
         onClick={toggleMenu}
       >
-        <p
-          id="cloud"
-          className="text-sm bg-white p-1 text-black rounded-lg after:w-1 after:h-1 after:bg-white absolute -left-8 opacity-0"
-          ref={cloudRef}
-        >
-          Check out What&apos;s New
-        </p>
         <img src={goat2} alt="Goat Icon" />
       </button>
     </div>
