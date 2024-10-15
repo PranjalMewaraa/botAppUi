@@ -58,8 +58,8 @@ const PulseButton: React.FC = () => {
         "ClicksCount",
         current ? String(parseFloat(current) + fingerCount) : "1"
       );
-        setTapCount((prevCount) => Math.min(prevCount + fingerCount, maxTaps));
-        setLocalStorageItem("alkine-db-val-er", encrypt((tapCount + fingerCount)));
+        setTapCount((prevCount) => Math.min(prevCount + fingerCount*user.earn_per_tap, maxTaps));
+        setLocalStorageItem("alkine-db-val-er", encrypt((tapCount + fingerCount*user.earn_per_tap)));
         handlePulseAnimations(fingerCount);
         Telegram.WebApp.HapticFeedback.impactOccurred("medium");
       }
@@ -75,7 +75,7 @@ const PulseButton: React.FC = () => {
     // Delay to ensure proper click handling
     setTimeout(() => {
      
-      let clickCount = 1; // Default for single left-click
+      const clickCount = 1 * user.earn_per_tap; // Default for single left-click
       const current = localStorage.getItem("ClicksCount");
       localStorage.setItem(
         "ClicksCount",
@@ -113,7 +113,7 @@ const PulseButton: React.FC = () => {
       newPulse,
       { scale: 0, opacity: 1 },
       {
-        scale: 1.5,
+        scale: 1.2,
         opacity: 0.1,
         duration: 0.6,
         ease: "power1.out",
@@ -135,7 +135,7 @@ const PulseButton: React.FC = () => {
       newPulseRing,
       { scale: 0, opacity: 1 },
       {
-        scale: 1.5,
+        scale: 1.3,
         opacity: 0.1,
         duration: 1,
         ease: "power1.out",
@@ -164,7 +164,7 @@ const PulseButton: React.FC = () => {
     
     // Append the image and the finger count text to the div
     newPlusOne.appendChild(img);
-    newPlusOne.appendChild(document.createTextNode(`+${fingerCount}`));
+    newPlusOne.appendChild(document.createTextNode(`+${fingerCount*user.earn_per_tap}`));
     
     // Append the newPlusOne element to the pulseContainer
     document.getElementById("pulseContainer")?.appendChild(newPlusOne);
