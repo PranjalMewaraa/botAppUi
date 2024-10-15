@@ -15,14 +15,14 @@ import { Loader2Icon } from "lucide-react";
 export default function Leaderboard() {
   const { balance, level, ...user } = useUserStore();
   const [activeIndex, setActiveIndex] = useState(0);
-  const { levels } = uesStore();
+  const store = uesStore();
   const swiperRef = useRef<SwiperRef | null>(null);
 
 
   const leaderboard = useQuery({
-    queryKey: ["leaderboard", levels?.[activeIndex]?.id],
+    queryKey: ["leaderboard", store.levels?.[activeIndex]?.id],
     queryFn: () => {
-      const levelId = levels?.[activeIndex]?.id;
+      const levelId = store.levels?.[activeIndex]?.id;
       console.log("Fetching leaderboard for level_id:", levelId);
       
       if (!levelId) {
@@ -34,13 +34,13 @@ export default function Leaderboard() {
       });
     },
     staleTime: Infinity,
-    enabled: !!levels?.[activeIndex]?.id,
+    enabled: !!store.levels?.[activeIndex]?.id,
   });
   
 
   useEffect(() => {
     if (level?.level) {
-      const index = levels?.findIndex((item) => item.level === level.level);
+      const index = store.levels?.findIndex((item) => item.level === level.level);
       if (index !== -1) {
         setActiveIndex(index);
         if (swiperRef.current) swiperRef.current.swiper.slideTo(index);
@@ -98,8 +98,8 @@ export default function Leaderboard() {
             </button>
           </Swiper>
         </div>
-        {levels?.[activeIndex] &&
-          levels?.[activeIndex]?.level === level?.level && (
+        {store.levels?.[activeIndex] &&
+          store.levels?.[activeIndex]?.level === level?.level && (
             <div className="mt-2">
               <div className="flex items-center justify-between gap-2 text-white">
                 <div className="flex items-center text-2xl font-bold">
@@ -149,8 +149,8 @@ export default function Leaderboard() {
             )}
           </div>
         </div>
-        {levels &&
-          levels[activeIndex]?.level === level?.level &&
+        {store.levels &&
+          store.levels[activeIndex]?.level === level?.level &&
           !leaderboard.data?.some((item) => item.id === user.id) && (
             <div className="mt-2 flex items-center py-2 gap-2.5 px-4 bg-[#FFAB5D1A] rounded-xl">
               <span className="w-6 text-right text-primary">+99</span>
