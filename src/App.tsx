@@ -231,7 +231,7 @@ function App() {
   const handleLocalStorageUpdate = () => {
     // Check if we are currently debouncing
     if (isDebouncing) return;
-
+    if (clicksCountRef.current === 0) return;
     // Set debouncing to true
     setIsDebouncing(true);
     console.log("Debouncing started");
