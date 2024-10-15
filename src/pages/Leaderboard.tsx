@@ -52,7 +52,7 @@ export default function Leaderboard() {
   }, []);
   console.log(leaderboard.data)
   return (
-    <div className="w-screen h-screen overflow-y-scroll">
+    <div id="main_div" className="w-screen h-screen overflow-y-scroll">
     <div className="flex flex-col justify-end bg-cover flex-1 text-white" >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <div className="">
