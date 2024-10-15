@@ -35,7 +35,7 @@ export default function Settings() {
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 bg-slate-900">
         
         
-        <h1 className="text-2xl font-bold text-center uppercase text-white">
+        <h1 className="text-2xl mb-4 font-bold text-center uppercase text-white">
          Settings
         </h1>
        
