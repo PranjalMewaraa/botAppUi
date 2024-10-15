@@ -164,7 +164,7 @@ const PulseButton: React.FC = () => {
     
     // Append the image and the finger count text to the div
     newPlusOne.appendChild(img);
-    newPlusOne.appendChild(document.createTextNode(`+${fingerCount*user.earn_per_tap}`));
+    newPlusOne.appendChild(document.createTextNode(`+${fingerCount * user.earn_per_tap}`));
     
     // Append the newPlusOne element to the pulseContainer
     document.getElementById("pulseContainer")?.appendChild(newPlusOne);
