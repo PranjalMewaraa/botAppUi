@@ -57,7 +57,7 @@ const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
           <span >
             <img src={balance} alt="" />
           </span>
-          {Math.floor(tapCount)}
+          {Math.floor(user.balance)}
         </div>
         <div className="flex items-center space-x-2 gap-4 text-sm">
           Earn Per Tap 🤑 +{user.earn_per_tap} 

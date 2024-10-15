@@ -46,7 +46,7 @@ const PulseButton: React.FC = () => {
   const handleTouchStart = (event: React.TouchEvent) => {
     // Debounce check: Skip handling if already processing a recent touch
     if (isDebouncing) return;
-
+    if(!user.UserTap()) return;
     setIsDebouncing(true);
     setTimeout(() => setIsDebouncing(false), debounceTime);
 
@@ -70,7 +70,7 @@ const PulseButton: React.FC = () => {
   const handleMouseClick = () => {
     // Debounce check: Skip handling if already processing a recent click
     if (isDebouncing) return;
-  
+    if(!user.UserTap()) return;
     setIsDebouncing(true);
     setTimeout(() => setIsDebouncing(false), debounceTime);
   
@@ -84,13 +84,14 @@ const PulseButton: React.FC = () => {
         "ClicksCount",
         current ? String(parseFloat(current) + clickCount) : "1"
       );
-      setTapCount((prevCount) => {
-        const newCount = Math.min(prevCount + clickCount, maxTaps);
-        setLocalStorageItem("alkine-db-val-er", encrypt(newCount));
-        handlePulseAnimations(clickCount);
-        Telegram.WebApp.HapticFeedback.impactOccurred("light"); // Adjust as needed
-        return newCount;
-      });
+      handlePulseAnimations(clickCount);
+      Telegram.WebApp.HapticFeedback.impactOccurred("light"); 
+      // setTapCount((prevCount) => {
+      //   const newCount = Math.min(prevCount + clickCount, maxTaps);
+      //   setLocalStorageItem("alkine-db-val-er", encrypt(newCount));
+      //   // Adjust as needed
+      //   return newCount;
+      // });
     }, 50); 
   };
   
