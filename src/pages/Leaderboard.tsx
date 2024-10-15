@@ -1,14 +1,13 @@
-import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import { EffectFade, Navigation } from "swiper/modules";
-import SwapPrevIcon from "@/components/icons/SwapPrevIcon";
-import SwapNextIcon from "@/components/icons/SwapNextIcon";
+import { SwiperRef, } from "swiper/react";
+
+
 import { useEffect, useRef, useState } from "react";
 import { useUserStore } from "@/store/user-store";
 import { compactNumber } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { $http } from "@/lib/http";
 import { UserType } from "@/types/UserType";
-import levelConfig from "@/config/level-config";
+
 import { uesStore } from "@/store";
 import { Loader2Icon } from "lucide-react";
 
