@@ -231,6 +231,8 @@ function App() {
   const handleLocalStorageUpdate = () => {
     // Check if we are currently debouncing
     if (isDebouncing) return;
+    const current = localStorage.getItem("ClicksCount");
+    clicksCountRef.current = current ? parseFloat(current) : 0;
     if (clicksCountRef.current === 0) return;
     // Set debouncing to true
     setIsDebouncing(true);
