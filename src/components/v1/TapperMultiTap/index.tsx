@@ -245,7 +245,7 @@ const PulseButton: React.FC = () => {
         </div>
       </button>
       <div className="flex flex-col gap-2 absolute bottom-56">
-      <div className="text-white absolute bottom-56 flex gap-4 items-center text-xl font-bold">
+      <div className="text-white flex gap-4 items-center text-xl font-bold">
         <span>
           <img src={balance} alt="" />
         </span>
