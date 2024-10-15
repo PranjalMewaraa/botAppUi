@@ -60,6 +60,7 @@ const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
           {Math.floor(tapCount)}
         </div>
         <div className="flex items-center space-x-2 ">
+          Earn Per Tap 🤑 +{user.earn_per_tap} {' '}
           <span className="text-xs font-bold text-white">
           ⚡{user.available_energy} / {user.max_energy}
           </span>
