@@ -9,7 +9,7 @@ import { CopyIcon, Loader2Icon, Wallet2Icon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-import { useUserStore } from "@/store/user-store";
+
 
 export default function Wallet() {
   const [openDrawer, setOpenDrawer] = useState(false);
