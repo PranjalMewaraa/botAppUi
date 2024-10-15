@@ -59,7 +59,7 @@ export default function Boost() {
   const [activeBooster, setActiveBooster] = useState<BoosterTypes>("multi_tap");
   const { boosters, dailyResetEnergy, maxDailyResetEnergy } = uesStore();
   const { balance } = useUserStore();
-
+  console.log("boost", boosters)
   const user = useUserStore();
 
   const canUseDailyResetEnergy = useMemo(
