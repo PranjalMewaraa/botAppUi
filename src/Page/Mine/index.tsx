@@ -149,7 +149,7 @@ export default function Missions() {
             </div>
           </div>
         </div> }
-        {section === "NFT" && <div className="font-[ageobold] text-lg text-white h-1/3">Coming soon ... </div>}
+        {section === "NFT" && <div className="font-[ageobold] text-lg text-white h-1/2">Coming soon ... </div>}
         
       </div>
       <MissionDrawer open={openDrawer} onOpenChange={setOpenDrawer} mission={selectedMission} />
