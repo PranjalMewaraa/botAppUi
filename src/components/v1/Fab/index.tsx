@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef } from "react";
-import { gsap } from "gsap"; // Import GSAP
+import { useState, useEffect} from "react";
 import goat2 from "../../../assets/Images/goat2.png";
 
 interface OptionButtonsProps {
