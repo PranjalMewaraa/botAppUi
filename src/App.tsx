@@ -227,26 +227,35 @@ function App() {
   }, []);
  
  // Time in ms
-  useEffect(() => {
-    const handleLocalStorageUpdate = () => {
-      console.log("inside",isDebouncing)
-      if (isDebouncing) return;
+ useEffect(() => {
+  const handleLocalStorageUpdate = () => {
+    // Check if we are currently debouncing
+    if (isDebouncing) return;
 
-      setIsDebouncing(true);
-      console.log(isDebouncing)
-      setTimeout(() => setIsDebouncing(false), milliseconds);
-      sync(user)
-      console.log("localStorageUpdated event triggered");
-    };
+    // Set debouncing to true
+    setIsDebouncing(true);
+    console.log("Debouncing started");
 
-    // Add the event listener
-    window.addEventListener("localStorageUpdated", handleLocalStorageUpdate);
+    // Sync the user data
+    sync(user);
 
-    // Cleanup the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("localStorageUpdated", handleLocalStorageUpdate);
-    };
-  }, []);
+    // Reset debouncing after the specified time
+    setTimeout(() => {
+      setIsDebouncing(false);
+      console.log("Debouncing ended");
+    }, milliseconds);
+
+    console.log("localStorageUpdated event triggered");
+  };
+
+  // Add the event listener
+  window.addEventListener("localStorageUpdated", handleLocalStorageUpdate);
+
+  // Cleanup the event listener when the component unmounts
+  return () => {
+    window.removeEventListener("localStorageUpdated", handleLocalStorageUpdate);
+  };
+}, [isDebouncing, user]);
 
   useEffect(() => {
     if (clicksCountRef.current === 0) return;
