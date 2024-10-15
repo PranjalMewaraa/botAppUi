@@ -32,11 +32,11 @@ export default function Settings() {
   // }, [tonAddress]);
 
   return (
-    <div className="flex flex-col justify-end bg-cover flex-1" style={{backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,}}>
-      <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 bg-black">
+    <div className="flex flex-col justify-end bg-cover flex-1" >
+      <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 bg-slate-900">
         
         
-        <h1 className="text-2xl font-bold text-center uppercase">
+        <h1 className="text-2xl font-bold text-center uppercase text-white">
          Settings
         </h1>
        
