@@ -11,7 +11,7 @@ import PlayOnYourMobile from "./pages/PlayOnYourMobile";
 import { useDebounce } from "@uidotdev/usehooks";
 import { toast } from "react-toastify";
 import useTelegramInitData from "./hooks/useTelegramInitData";
-import encrypt from "./utils/encrypt";
+
 
 
 const webApp = window.Telegram.WebApp;
