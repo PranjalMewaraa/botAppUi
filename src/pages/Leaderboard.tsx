@@ -124,7 +124,7 @@ export default function Leaderboard() {
             </div>
           )}
         <div className=" flex-1 mt-6">
-          <div className="absolute w-full h-full divide-y divide-[#D9D9D9]/10 overflow-y-auto">
+          <div className="absolute w-full h-48 divide-y divide-[#D9D9D9]/10 overflow-y-auto">
             {leaderboard.isLoading ? (
               <div className="flex items-center justify-center h-full">
                 <Loader2Icon className="w-12 h-12 animate-spin text-primary" />
