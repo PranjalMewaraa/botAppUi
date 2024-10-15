@@ -11,9 +11,6 @@ import PlayOnYourMobile from "./pages/PlayOnYourMobile";
 import { useDebounce } from "@uidotdev/usehooks";
 import { toast } from "react-toastify";
 import useTelegramInitData from "./hooks/useTelegramInitData";
-import encrypt from "./utils/encrypt";
-import decrypt from "./utils/decrypt";
-
 
 
 const webApp = window.Telegram.WebApp;
@@ -76,8 +73,8 @@ function App() {
 
   useEffect(() => {
     // Initialize clicks count on component mount
-    const current = Number(decrypt(localStorage.getItem("alkine-db-val-er") || "0")) || 0;
-    clicksCountRef.current = current ? current : 0;
+    const current = localStorage.getItem("ClicksCount");
+    clicksCountRef.current = current ? parseFloat(current) : 0;
 
     console.log("Initial count", clicksCountRef.current);
   }, []);
@@ -92,15 +89,14 @@ function App() {
   }, []);
 
   const sync = async (user: any) => {
-    console.log("Ss",clicksCountRef.current)
     $http
       .post<Record<string, any>>("/clicker/tap", {
-        count: String(clicksCountRef.current),
+        count: clicksCountRef.current,
         energy: user.available_energy,
         timestamp: Math.floor(Date.now() / 1000),
       })
       .then(async ({ data }) => {
-        localStorage.setItem("alkine-db-val-er", encrypt(0));
+        localStorage.setItem("ClicksCount", "0");
         clicksCountRef.current = 0;
         const test = async () => {
           return await $http.$get<
@@ -132,7 +128,7 @@ function App() {
       })
       .catch(() => {
         console.log("Failed to post data");
-        localStorage.setItem("alkine-db-val-er", encrypt(clicksCountRef.current));
+        localStorage.setItem("ClicksCount", String(clicksCountRef.current));
       });
   };
 
@@ -165,7 +161,7 @@ function App() {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } & Record<string, any>
       >("/clicker/sync");
-      const current = Number(decrypt(localStorage.getItem("alkine-db-val-er") || "0")) || 0;
+      const current = localStorage.getItem("ClicksCount");
 
       if (Number(current) == 0 || current == null) {
         console.log("zzzzzzzzzzzzzzzzzzzzzzz");
@@ -204,7 +200,7 @@ function App() {
     };
 
     signIn().then(() => {
-      const current = Number(decrypt(localStorage.getItem("alkine-db-val-er") || "0")) || 0;
+      const current = localStorage.getItem("ClicksCount");
       if (Number(current) == 0 || current == null) {
         setShowSplashScreen(false);
       }
@@ -213,8 +209,8 @@ function App() {
 
   useEffect(() => {
     // Initialize clicks count on component mount
-    const current = Number(decrypt(localStorage.getItem("alkine-db-val-er") || "0")) || 0;
-    clicksCountRef.current = current ? current : 0;
+    const current = localStorage.getItem("ClicksCount");
+    clicksCountRef.current = current ? parseFloat(current) : 0;
 
     console.log("Initial count", clicksCountRef.current);
   }, []);
@@ -229,7 +225,7 @@ function App() {
   }, []);
   useEffect(() => {
     if (clicksCountRef.current === 0) return;
-
+    console.log(clicksCountRef);
     const sync = async (user: any) => {
       $http
         .post<Record<string, any>>("/clicker/tap", {
@@ -238,7 +234,7 @@ function App() {
           timestamp: Math.floor(Date.now() / 1000),
         })
         .then(async ({ data }) => {
-          localStorage.setItem("alkine-db-val-er", encrypt(0) );
+          localStorage.setItem("ClicksCount", "0");
           clicksCountRef.current = 0;
           const test = async () => {
             return await $http.$get<
@@ -270,7 +266,7 @@ function App() {
         })
         .catch(() => {
           console.log("Failed to post data");
-          localStorage.setItem("alkine-db-val-er", encrypt(clicksCountRef.current));
+          localStorage.setItem("ClicksCount", String(clicksCountRef.current));
         });
     };
     user && sync(user).then(() => setShowSplashScreen(false));

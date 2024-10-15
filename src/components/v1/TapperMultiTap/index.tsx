@@ -19,7 +19,14 @@ const PulseButton: React.FC = () => {
   const dollarRef2 = useRef<HTMLImageElement | null>(null);
   // const { clicks, addClick, removeClick } = useClicksStore();
   const user  = useUserStore();
-
+  const clicksCountRef = useRef(0); 
+  useEffect(() => {
+    // Initialize clicks count on component mount
+    const current = localStorage.getItem("ClicksCount");
+    clicksCountRef.current = current ? parseFloat(current) : 0;
+  
+    console.log("Initial count", clicksCountRef.current);
+  }, []);
   const [tapCount, setTapCount] = useState<number>(
     Number(decrypt(localStorage.getItem("alkine-db-val-er") || "0")) || 0
   );
@@ -46,6 +53,11 @@ const PulseButton: React.FC = () => {
       const fingerCount = event.touches.length;
       if (fingerCount > 0 && fingerCount <= 5) {
         // Add score based on finger count
+        const current = localStorage.getItem("ClicksCount");
+      localStorage.setItem(
+        "ClicksCount",
+        current ? String(parseFloat(current) + fingerCount) : "1"
+      );
         setTapCount((prevCount) => Math.min(prevCount + fingerCount, maxTaps));
         setLocalStorageItem("alkine-db-val-er", encrypt((tapCount + fingerCount)));
         handlePulseAnimations(fingerCount);
@@ -64,6 +76,11 @@ const PulseButton: React.FC = () => {
     setTimeout(() => {
      
       let clickCount = 1; // Default for single left-click
+      const current = localStorage.getItem("ClicksCount");
+      localStorage.setItem(
+        "ClicksCount",
+        current ? String(parseFloat(current) + clickCount) : "1"
+      );
       setTapCount((prevCount) => {
         const newCount = Math.min(prevCount + clickCount, maxTaps);
         setLocalStorageItem("alkine-db-val-er", encrypt(newCount));
