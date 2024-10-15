@@ -81,9 +81,9 @@ const ProfileBox = ()=>{
 }
 const ProfitBox = ()=>{
     return(
-        <div className=" flex flex-col px-3 py-1  items-center rounded-full bg-[#283140] border-t border-r border-yellow-600">
+        <Link to={'/settings'} className=" flex flex-col px-3 py-1  items-center rounded-full bg-[#283140] border-t border-r border-yellow-600">
             <img src={set} alt="setting" />
-        </div>
+        </Link>
     )
 }
 export default Profile

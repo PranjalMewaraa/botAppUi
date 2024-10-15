@@ -13,6 +13,14 @@ const router = createBrowserRouter([
     path: "/leaderboard",
     element: <Leaderboard/>,
   },
+  {
+    path: "/settings",
+    element: <Leaderboard/>,
+  },
+  {
+    path: "/wallet",
+    element: <Leaderboard/>,
+  },
 ]);
 
 export default router;
