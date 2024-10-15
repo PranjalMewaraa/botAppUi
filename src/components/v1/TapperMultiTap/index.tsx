@@ -256,7 +256,7 @@ const PulseButton: React.FC = () => {
             alt="coin"
             className="object-contain w-8 h-8"
           />
-          <span className="text-xs font-bold">
+          <span className="text-xs font-bold text-white">
             {user.available_energy} / {user.max_energy}
           </span>
         </div>
