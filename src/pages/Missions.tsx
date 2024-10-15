@@ -69,7 +69,7 @@ export default function Missions() {
                   <div
                     key={key}
                     className={cn(
-                      "flex flex-col py-3 px-3 bg-[#D9D9D9]/10 rounded-xl cursor-pointer",
+                      "flex flex-col py-3 px-3 bg-[#D9D9D9]/10 border-t border-yellow-500 rounded-xl cursor-pointer",
                       {
                         "opacity-40 cursor-not-allowed":
                           (mission?.required_user_level &&
