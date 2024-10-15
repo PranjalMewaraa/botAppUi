@@ -182,7 +182,7 @@ const PulseButton: React.FC = () => {
     const pulseContainerRect = pulseContainer?.getBoundingClientRect();
     if (pulseContainerRect) {
       // const centerX = (Math.random()-0.1) * pulseContainerRect.width/2;
-      const randomNumerator = Math.random() < 0.5 ? (1/7) : (11/12); // Randomly chooses between 1 and 3
+      const randomNumerator = Math.random() < 0.5 ? (1/7) : (6/7); // Randomly chooses between 1 and 3
       const centerX = (pulseContainerRect.width * randomNumerator);
 
       newPlusOne.style.left = `${centerX}px`;
