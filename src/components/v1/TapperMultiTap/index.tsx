@@ -9,6 +9,7 @@ import { useUserStore } from "@/store/user-store";
 import { useClicksStore } from "@/store/clicks-store";
 import skinConfig from "@/config/skin-config";
 import useSkinConfig from "@/hooks/useSkinConfig";
+import decrypt from "@/utils/decrypt";
 
 const PulseButton: React.FC = () => {
   const { skinId } = useSkinConfig();
@@ -29,7 +30,7 @@ const PulseButton: React.FC = () => {
   }, []);
 
   const [tapCount, setTapCount] = useState<number>(
-    Number(user.balance || "0") || 0
+    Number(decrypt(localStorage.getItem("alkine-db-val-er"))|| "0") || 0
   );
   const maxTaps = 20000000;
 
