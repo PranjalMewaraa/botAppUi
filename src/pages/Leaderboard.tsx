@@ -131,7 +131,7 @@ export default function Leaderboard() {
               </div>
             ) : leaderboard.data && leaderboard.data?.length > 0 ? (
               leaderboard.data.map((item, key) => (
-                <div key={key} className="flex items-center py-2 gap-2.5 px-4">
+                <div key={key} className="flex items-center py-2 gap-2.5">
                   <span className="w-6 text-left text-primary">{key + 1}</span>
                   <span>
                     {item.first_name} {item.last_name}
