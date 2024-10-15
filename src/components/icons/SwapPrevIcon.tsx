@@ -20,7 +20,7 @@ export default function SwapPrevIcon() {
           y2="9.99972"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#EEE8E2" />
+          <stop stopColor="#FFD700" /> {/* Gold color */}
           <stop offset="0.5199" stopColor="#C6C2BE" />
           <stop offset="0.52" stopColor="#C6C2BE" />
           <stop offset="1" stopColor="#A48B74" />
