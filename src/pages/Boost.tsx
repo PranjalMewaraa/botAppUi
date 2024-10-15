@@ -171,7 +171,7 @@ export default function Boost() {
                   className="object-contain w-5 h-5"
                 />
                 <span className="font-bold">
-                  {1000*Math.pow(2,boosters.multi_tap.level-1)}
+                  {Math.pow(2,boosters.multi_tap.level-1)}K
                   {/* {user?.earn_per_tap} */}
                 </span>
                 <span className="text-sm">{user?.earn_per_tap} PER TAP</span>
@@ -200,7 +200,7 @@ export default function Boost() {
                   className="object-contain w-5 h-5"
                 />
                 <span className="font-bold">
-                  {compactNumber(boosters.energy_limit.cost)}
+                  {Math.pow(2,boosters.energy_limit.cost)}K
                 </span>
                 <span className="text-sm">
                   {boosters.energy_limit.level} LVL
@@ -236,7 +236,7 @@ export default function Boost() {
               className="text-lg text-white"
               amount={
                 activeBooster !== "full_energy"
-                  ? boosters[activeBooster].cost.toLocaleString()
+                  ? `${Math.pow(2,boosters.multi_tap.level-1)}K`.toLocaleString()
                   : "Free"
               }
             />{" "}
