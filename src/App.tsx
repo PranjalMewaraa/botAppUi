@@ -92,7 +92,7 @@ function App() {
   }, []);
 
   const sync = async (user: any) => {
-    console.log(clicksCountRef.current)
+    console.log("Ss",clicksCountRef.current)
     $http
       .post<Record<string, any>>("/clicker/tap", {
         count: clicksCountRef.current,
