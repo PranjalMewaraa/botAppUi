@@ -229,8 +229,7 @@ function App() {
   useEffect(() => {
     const handleLocalStorageUpdate = () => {
       console.log("inside")
-      if (isDebouncing)
-         return;
+      if (isDebouncing) return;
 
       setIsDebouncing(true);
       setTimeout(() => setIsDebouncing(false), milliseconds);
