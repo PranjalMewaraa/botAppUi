@@ -67,7 +67,7 @@ export default function Game() {
       style={{ height: "calc(var(--vh, 1vh) * 100)" }}
     >
       <div
-        className="content-wrapper  overflow-y-scroll"
+        className="content-wrapper overflow-y-scroll"
         style={{ height: "calc(var(--vh, 1vh) * 100)" }}
       >
         {activeIndex === 0 && <Home activeIndex={activeIndex} setActiveIndex={setActiveIndex} />}
