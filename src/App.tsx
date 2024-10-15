@@ -25,6 +25,8 @@ function App() {
   const [showSplashScreen, setShowSplashScreen] = useState(true);
   const [isFirstLoad, setIsFirstLoad] = useState(false);
   const balance = useDebounce(userStore.balance, 500);
+  const [isDebouncing, setIsDebouncing] = useState(false);
+  const milliseconds = 15 * 1000; // 15000 milliseconds
 
   useEffect(() => {
     webApp.setHeaderColor("#000");
@@ -223,12 +225,11 @@ function App() {
     const intervalId = setInterval(executeEvery30sec, 3000);
     return () => clearInterval(intervalId);
   }, []);
-  const [isDebouncing, setIsDebouncing] = useState(false);
-  const milliseconds = 15 * 1000; // 15000 milliseconds
+ 
  // Time in ms
   useEffect(() => {
     const handleLocalStorageUpdate = () => {
-      console.log("inside")
+      console.log("inside",isDebouncing)
       if (isDebouncing) return;
 
       setIsDebouncing(true);
