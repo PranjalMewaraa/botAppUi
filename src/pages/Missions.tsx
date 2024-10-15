@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Loader2Icon } from "lucide-react";
 import { useState } from "react";
 import levelConfig from "@/config/level-config";
+import TopNav from "@/components/v1/TopNavMine";
 
 export default function Missions() {
   const user = useUserStore();
@@ -29,9 +30,15 @@ export default function Missions() {
     enabled: !!activeType?.id,
   });
 
+  const [section,setSection]=useState('FUN');
+  const handleSectionChange = (section: string) => {
+    setSection(section);
+  }
+
   return (
     <div className="flex flex-col justify-end bg-cover flex-1" style={{backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,}}>
       <div className="flex flex-col flex-1 w-full h-full px-6 pb-24 mt-12 modal-body">
+        <TopNav active={section} handleClick={handleSectionChange}/> 
         <UserGameDetails className="mt-4" />
         <div className="flex items-center justify-center mt-10 space-x-1 text-gradient">
           <img
