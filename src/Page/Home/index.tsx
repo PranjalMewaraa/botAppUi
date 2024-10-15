@@ -46,7 +46,7 @@ const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
   const user = useUserStore();
 
   return (
-    <div className="w-full h-screen font-[ageobold] flex flex-col p-4 gap-2">
+    <div className="w-full h-[95%] font-[ageobold] flex flex-col p-4 gap-2">
       <div id="profile_header" className="w-full mt-2 h-24 flex justify-between items-center" onClick={()=>ButtonClick(5)}>
         <ProfileBox />
         <ProfitBox />
