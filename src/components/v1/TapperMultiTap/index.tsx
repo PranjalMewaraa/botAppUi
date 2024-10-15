@@ -54,7 +54,7 @@ const PulseButton: React.FC = () => {
       }
     }, 50); // small delay to ensure all fingers are detected
   };
-  const handleMouseClick = (event: React.MouseEvent) => {
+  const handleMouseClick = () => {
     // Debounce check: Skip handling if already processing a recent click
     if (isDebouncing) return;
   
