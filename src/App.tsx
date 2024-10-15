@@ -131,7 +131,7 @@ function App() {
         localStorage.setItem("ClicksCount", String(clicksCountRef.current));
       });
   };
-
+//signin
   useEffect(() => {
     if (!user) return () => {};
 
@@ -223,7 +223,28 @@ function App() {
     const intervalId = setInterval(executeEvery30sec, 3000);
     return () => clearInterval(intervalId);
   }, []);
-  
+  const [isDebouncing, setIsDebouncing] = useState(false);
+  const milliseconds = 15 * 1000; // 15000 milliseconds
+ // Time in ms
+  useEffect(() => {
+    const handleLocalStorageUpdate = () => {
+      if (isDebouncing) return;
+
+      setIsDebouncing(true);
+      setTimeout(() => setIsDebouncing(false), milliseconds);
+      sync(user)
+      console.log("localStorageUpdated event triggered");
+    };
+
+    // Add the event listener
+    window.addEventListener("localStorageUpdated", handleLocalStorageUpdate);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("localStorageUpdated", handleLocalStorageUpdate);
+    };
+  }, []);
+
   useEffect(() => {
     if (clicksCountRef.current === 0) return;
     console.log(clicksCountRef.current);
