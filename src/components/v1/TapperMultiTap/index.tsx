@@ -266,17 +266,19 @@ const PulseButton: React.FC = () => {
           </div>
         </div>
       </button>
-      <div className="text-white absolute bottom-56 flex gap-4 items-center text-xl font-bold">
-        <span>
-          <img src={balance} alt="" />
-        </span>
-        {Math.floor(tapCount)}
-      </div>
-      <div className="flex items-center mt-24 space-x-2 ">
+      <div className="text-white absolute bottom-56 flex gap-4 flex-col items-center justify-center text-xl font-bold">
+        <div className="flex items-center gap-4">
+          <span >
+            <img src={balance} alt="" />
+          </span>
+          {Math.floor(tapCount)}
+        </div>
+        <div className="flex items-center mt-24 space-x-2 ">
           <span className="text-xs font-bold text-white">
           ⚡{user.available_energy} / {user.max_energy}
           </span>
-        </div>
+      </div>
+      </div>
     </div>
   );
 };
