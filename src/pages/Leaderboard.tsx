@@ -51,6 +51,7 @@ export default function Leaderboard() {
     }
   }, []);
   console.log(leaderboard.data)
+  console.log(user.telegram_id)
   return (
     <div id="main_div" className="w-screen h-[95%] bg-slate-950 overflow-hidden">
     <div className="flex flex-col justify-end bg-cover w-full h-full text-white" >
