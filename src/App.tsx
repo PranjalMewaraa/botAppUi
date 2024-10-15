@@ -233,6 +233,7 @@ function App() {
       if (isDebouncing) return;
 
       setIsDebouncing(true);
+      console.log(isDebouncing)
       setTimeout(() => setIsDebouncing(false), milliseconds);
       sync(user)
       console.log("localStorageUpdated event triggered");
