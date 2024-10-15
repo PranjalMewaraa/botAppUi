@@ -218,50 +218,6 @@ function App() {
     const executeEvery30sec = () => {
       console.log("Function executed every 30 sec", new Date());
       setTimer(new Date());
-      const sync = async (user: any) => {
-        $http
-          .post<Record<string, any>>("/clicker/tap", {
-            count: Math.floor(clicksCountRef.current),
-            energy: user.available_energy,
-            timestamp: Math.floor(Date.now() / 1000),
-          })
-          .then(async ({ data }) => {
-            localStorage.setItem("ClicksCount", "0");
-            clicksCountRef.current = 0;
-            const test = async () => {
-              return await $http.$get<
-                {
-                  user: UserType;
-                  boosters: Record<BoosterTypes, BoosterType>;
-                } & Record<string, any>
-              >("/clicker/sync");
-            };
-  
-            // Use the test function
-            try {
-              const syncData = await test();
-              console.log("Sync data", syncData.user.balance);
-              useUserStore.setState({
-                balance: syncData.user.balance,
-              });
-            } catch (error) {
-              console.error("Failed to fetch sync data", error);
-            }
-  
-            if (data.leveled_up) {
-              useUserStore.setState({
-                level: data.level || user.level,
-                earn_per_tap: data.earn_per_tap,
-                max_energy: data.max_energy,
-              });
-            }
-          })
-          .catch(() => {
-            console.log("Failed to post data");
-            localStorage.setItem("ClicksCount", String(clicksCountRef.current));
-          });
-      };
-      sync(user)
     };
 
     const intervalId = setInterval(executeEvery30sec, 3000);
