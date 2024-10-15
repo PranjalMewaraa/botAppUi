@@ -7,6 +7,7 @@ import { CHAIN, useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
 import { useCopyToClipboard } from "@uidotdev/usehooks";
 import { CopyIcon, Loader2Icon, Wallet2Icon, XIcon } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 
@@ -33,7 +34,7 @@ export default function Wallet() {
 
   return (
     <div id="main_div" className="min-h-screen flex flex-col justify-end bg-cover flex-1" >
-      <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
+      <div className=" relative flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <img
           src="/images/toncoin.png"
           alt="toncoin"
@@ -65,6 +66,7 @@ export default function Wallet() {
             action={isConnected && <CheckIcon className="text-green-500" />}
           />
         </div>
+        <Link to={'/settings'} className="absolute bottom-10 w-full text-center text-white">Back to Settings</Link>
       </div>
       <Drawer open={tonPay.isLoading} hideClose>
         <div className="flex flex-col items-center justify-center">
