@@ -26,8 +26,6 @@ function App() {
   const [showSplashScreen, setShowSplashScreen] = useState(true);
   const [isFirstLoad, setIsFirstLoad] = useState(false);
   const balance = useDebounce(userStore.balance, 500);
-  const [isDebouncing, setIsDebouncing] = useState(false);
-  const milliseconds = 15 * 1000; // 15000 milliseconds
 
   useEffect(() => {
     webApp.setHeaderColor("#000");
@@ -228,38 +226,7 @@ function App() {
     return () => clearInterval(intervalId);
   }, []);
  
- // Time in ms
- useEffect(() => {
-  const handleLocalStorageUpdate = () => {
-    // Check if we are currently debouncing
-    if (isDebouncing) return;
-    const current = localStorage.getItem("ClicksCount");
-    clicksCountRef.current = current ? parseFloat(current) : 0;
-    if (clicksCountRef.current === 0) return;
-    // Set debouncing to true
-    setIsDebouncing(true);
-    console.log("Debouncing started");
-
-    // Sync the user data
-    sync(user);
-
-    // Reset debouncing after the specified time
-    setTimeout(() => {
-      setIsDebouncing(false);
-      console.log("Debouncing ended");
-    }, milliseconds);
-
-    console.log("localStorageUpdated event triggered");
-  };
-
-  // Add the event listener
-  window.addEventListener("localStorageUpdated", handleLocalStorageUpdate);
-
-  // Cleanup the event listener when the component unmounts
-  return () => {
-    window.removeEventListener("localStorageUpdated", handleLocalStorageUpdate);
-  };
-}, [isDebouncing, user]);
+ 
 
   useEffect(() => {
     if (clicksCountRef.current === 0) return;
