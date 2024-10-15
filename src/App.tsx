@@ -225,11 +225,11 @@ function App() {
   }, []);
   useEffect(() => {
     if (clicksCountRef.current === 0) return;
-    console.log(clicksCountRef);
+    console.log(clicksCountRef.current);
     const sync = async (user: any) => {
       $http
         .post<Record<string, any>>("/clicker/tap", {
-          count: clicksCountRef.current,
+          count: Math.floor(clicksCountRef.current),
           energy: user.available_energy,
           timestamp: Math.floor(Date.now() / 1000),
         })
