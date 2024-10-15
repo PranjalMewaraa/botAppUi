@@ -4,7 +4,7 @@ import dollar from "../../../assets/Images/dollar.png";
 import ico from "../../../assets/Images/ico.png";
 
 import encrypt from "../../../utils/encrypt";
-import decrypt from "../../../utils/decrypt";
+
 import { useUserStore } from "@/store/user-store";
 import { useClicksStore } from "@/store/clicks-store";
 import skinConfig from "@/config/skin-config";
@@ -28,7 +28,7 @@ const PulseButton: React.FC = () => {
     console.log("Initial count", clicksCountRef.current);
   }, []);
   const [tapCount, setTapCount] = useState<number>(
-    Number(decrypt(localStorage.getItem("alkine-db-val-er") || "0")) || 0
+    Number(user.balance || "0") || 0
   );
   const maxTaps = 20000000;
 
