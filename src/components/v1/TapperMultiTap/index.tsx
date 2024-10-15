@@ -54,6 +54,27 @@ const PulseButton: React.FC = () => {
       }
     }, 50); // small delay to ensure all fingers are detected
   };
+  const handleMouseClick = (event: React.MouseEvent) => {
+    // Debounce check: Skip handling if already processing a recent click
+    if (isDebouncing) return;
+  
+    setIsDebouncing(true);
+    setTimeout(() => setIsDebouncing(false), debounceTime);
+  
+    // Delay to ensure proper click handling
+    setTimeout(() => {
+     
+      let clickCount = 1; // Default for single left-click
+      setTapCount((prevCount) => {
+        const newCount = Math.min(prevCount + clickCount, maxTaps);
+        setLocalStorageItem("alkine-db-val-er", encrypt(newCount));
+        handlePulseAnimations(clickCount);
+        Telegram.WebApp.HapticFeedback.impactOccurred("light"); // Adjust as needed
+        return newCount;
+      });
+    }, 50); 
+  };
+  
 
   useEffect(() => {
     useClicksStore.setState({ clicks: [] });
@@ -209,7 +230,8 @@ const PulseButton: React.FC = () => {
         id="pulseContainer"
         disabled={user.available_energy < user.earn_per_tap}
         className="absolute w-full h-full inset-0 flex items-center justify-center"
-        onTouchStart={handleTouchStart}  // Add touch event listener here
+        onTouchStart={handleTouchStart}  
+        onClick={handleMouseClick}
       >
         <div className="relative w-full h-full">
           <div
