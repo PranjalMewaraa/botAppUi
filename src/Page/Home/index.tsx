@@ -42,6 +42,7 @@ const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
   const [tapCount,setTapCount] = useState<number>(
     Number(decrypt(localStorage.getItem("alkine-db-val-er") || "0")) || 0
   );
+  console.log(tapCount)
   const user = useUserStore();
 
   return (
