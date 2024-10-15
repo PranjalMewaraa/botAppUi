@@ -18,7 +18,7 @@ export default function Leaderboard() {
   const store = uesStore();
   const swiperRef = useRef<SwiperRef | null>(null);
 
-
+  console.log(store.levels)
   const leaderboard = useQuery({
     queryKey: ["leaderboard", store.levels?.[activeIndex]?.id],
     queryFn: () => {
@@ -65,7 +65,7 @@ export default function Leaderboard() {
             }}
             onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
           >
-            {levels?.map((item, i) => (
+            {store.levels?.map((item, i) => (
               <SwiperSlide key={`slide-${i}`}>
                 <div
                   className="py-4 bg-center bg-cover rounded-xl"
