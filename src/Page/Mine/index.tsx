@@ -105,7 +105,7 @@ export default function Missions() {
     setSection(section);
   }
   return (
-    <div className="flex flex-col justify-end bg-cover flex-1 text-white" >
+    <div className="h-[95%] flex flex-col justify-end bg-cover flex-1 text-white" >
       <div className="flex flex-col flex-1 w-full h-full px-6 pb-24 mt-12 modal-body">
        <TopNav active={section} handleClick={handleSectionChange}/> 
         <UserGameDetails className="mt-4"/>
