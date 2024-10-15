@@ -39,10 +39,10 @@ export default function Wallet() {
           alt="toncoin"
           className="object-contain w-32 h-32 mx-auto"
         />
-        <h1 className="mt-4 text-2xl font-bold text-center uppercase">
+        <h1 className="mt-4 text-2xl font-bold text-center uppercase text-white">
           TON Wallet
         </h1>
-        <p className="mt-2.5 font-medium text-center">
+        <p className="mt-2.5 font-medium text-center text-white">
           Connect your TON wallet
         </p>
 
