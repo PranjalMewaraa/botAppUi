@@ -90,7 +90,7 @@ const { updateLoading, ...Props } = props;
  
   const tabMe = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (!UserTap()) return;
+    if (!UserTap(1)) return;
     // setClicksCount((prev) => prev + 1);
     const current = localStorage.getItem("ClicksCount");
     localStorage.setItem(
