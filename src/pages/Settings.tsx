@@ -7,8 +7,7 @@ import { useCopyToClipboard } from "@uidotdev/usehooks";
 import { CopyIcon, Loader2Icon, Wallet2Icon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import levelConfig from "@/config/level-config";
-import { useUserStore } from "@/store/user-store";
+
 import LIstLInk from "@/components/LIstLInk";
 
 export default function Settings() {
@@ -18,7 +17,7 @@ export default function Settings() {
   const tonAddress = useTonAddress();
   const { connected: isConnected } = useTonConnect();
 
-  const user = useUserStore();
+  
 
   const tonPay = useTonPay({
     onSuccess: () => toast.success("Your transaction has been completed"),
