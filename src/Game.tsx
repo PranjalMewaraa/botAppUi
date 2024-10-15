@@ -79,13 +79,11 @@ export default function Game() {
         {activeIndex === 6 && <Boost />}
         
       </div>
-
+      <PopupMessageDialog message={popupMessage.data} />
       {/* Force navbar to remain visible */}
       <div className="fixed bottom-0 left-0 w-full">
         <BottomNavbar activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
       </div>
-
-      <PopupMessageDialog message={popupMessage.data} />
     </div>
   );
 }
