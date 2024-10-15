@@ -95,7 +95,7 @@ function App() {
     console.log("Ss",clicksCountRef.current)
     $http
       .post<Record<string, any>>("/clicker/tap", {
-        count: clicksCountRef.current,
+        count: String(clicksCountRef.current),
         energy: user.available_energy,
         timestamp: Math.floor(Date.now() / 1000),
       })
