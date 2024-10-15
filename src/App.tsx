@@ -228,7 +228,7 @@ function App() {
  // Time in ms
   useEffect(() => {
     const handleLocalStorageUpdate = () => {
-      if (isDebouncing) return;
+      if (isDebouncing) console.log("debounce"); return;
 
       setIsDebouncing(true);
       setTimeout(() => setIsDebouncing(false), milliseconds);
