@@ -29,7 +29,10 @@ export default function Leaderboard() {
         return Promise.reject(new Error("Level ID is undefined"));
       }
   
-      return $http.$get<UserType[]>("/clicker/leaderboard", {
+      const url = `/clicker/leaderboard`;
+      console.log("Fetching leaderboard at URL:", `${$http.defaults.baseURL}${url}?level_id=${levelId}`);
+  
+      return $http.$get<UserType[]>(url, {
         params: { level_id: levelId },
       });
     },
