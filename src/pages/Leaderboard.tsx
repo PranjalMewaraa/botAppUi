@@ -55,7 +55,7 @@ export default function Leaderboard() {
     <div id="main_div" className="w-screen h-fit bg-slate-950 overflow-y-hidden">
     <div className="flex flex-col justify-end bg-cover flex-1 text-white" >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
-        <div className="">
+        {/* <div className="">
           <Swiper
             ref={swiperRef}
             spaceBetween={30}
@@ -101,7 +101,7 @@ export default function Leaderboard() {
               <SwapNextIcon />
             </button>
           </Swiper>
-        </div>
+        </div> */}
         {store.levels?.[activeIndex] &&
           store.levels?.[activeIndex]?.level === level?.level && (
             <div className="mt-2">
