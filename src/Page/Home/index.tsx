@@ -52,7 +52,7 @@ const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
       </div>
       <ProgressIndicator />
       <PulseButton />
-      <div className="text-white absolute bottom-52 flex gap-4 flex-col items-center justify-center text-xl font-bold">
+      <div className="text-white w-full absolute bottom-44 flex gap-4 flex-col items-center justify-center text-xl font-bold">
         <div className="flex items-center gap-4">
           <span >
             <img src={balance} alt="" />
