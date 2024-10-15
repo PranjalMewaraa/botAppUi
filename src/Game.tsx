@@ -77,6 +77,7 @@ export default function Game() {
         {activeIndex === 4 && <Earn />}
         {activeIndex === 5 && <Profile />}
         {activeIndex === 6 && <Boost />}
+        
       </div>
 
       {/* Force navbar to remain visible */}

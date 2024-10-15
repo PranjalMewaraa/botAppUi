@@ -9,6 +9,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 import LIstLInk from "@/components/LIstLInk";
+import { Link } from "react-router-dom";
 
 export default function Settings() {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -37,6 +38,7 @@ export default function Settings() {
         
         <h1 className="text-2xl mb-4 font-bold text-center uppercase text-white">
          Settings
+         <span className="text-white"><Link to={'/'}>X</Link> </span>
         </h1>
        
 
