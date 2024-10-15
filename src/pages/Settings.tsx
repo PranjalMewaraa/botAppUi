@@ -31,7 +31,7 @@ export default function Settings() {
   // }, [tonAddress]);
 
   return (
-    <div className="min-h-screen flex flex-col justify-end bg-cover flex-1" >
+    <div id="main_div" className="min-h-screen flex flex-col justify-end bg-cover flex-1" >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 bg-slate-900">
         
         
