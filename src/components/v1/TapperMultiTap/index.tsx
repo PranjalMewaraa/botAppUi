@@ -160,7 +160,8 @@ const PulseButton: React.FC = () => {
     const pulseContainer = document.getElementById("pulseContainer");
     const pulseContainerRect = pulseContainer?.getBoundingClientRect();
     if (pulseContainerRect) {
-      const centerX = (Math.random()-0.1) * pulseContainerRect.width/2;
+      // const centerX = (Math.random()-0.1) * pulseContainerRect.width/2;
+      const centerX = pulseContainerRect.width/2;
       newPlusOne.style.left = `${centerX}px`;
       newPlusOne.style.top = `100px`;
       newPlusOne.style.transform = "translate(-50%, -50%)";
