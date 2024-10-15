@@ -76,6 +76,7 @@ const PulseButton: React.FC = () => {
     setTimeout(() => {
      
       const clickCount = 1 * user.earn_per_tap; // Default for single left-click
+      console.log("mouse",clickCount)
       const current = localStorage.getItem("ClicksCount");
       localStorage.setItem(
         "ClicksCount",
