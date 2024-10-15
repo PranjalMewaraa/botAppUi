@@ -28,7 +28,7 @@ const PulseButton: React.FC = () => {
 
   // Debounce state to prevent multiple tap registrations in a short time
   const [isDebouncing, setIsDebouncing] = useState(false);
-  const debounceTime = 100; // Time in ms
+  const debounceTime = 150; // Time in ms
 
   const setLocalStorageItem = (key: string, value: string) => {
     localStorage.setItem(key, value);
@@ -160,7 +160,7 @@ const PulseButton: React.FC = () => {
     const pulseContainer = document.getElementById("pulseContainer");
     const pulseContainerRect = pulseContainer?.getBoundingClientRect();
     if (pulseContainerRect) {
-      const centerX = (Math.random()-0.1) * pulseContainerRect.width ;
+      const centerX = (Math.random()-0.1) * pulseContainerRect.width/2;
       newPlusOne.style.left = `${centerX}px`;
       newPlusOne.style.top = `100px`;
       newPlusOne.style.transform = "translate(-50%, -50%)";
