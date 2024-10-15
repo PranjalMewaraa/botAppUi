@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Game from "./Game";
 import Leaderboard from "./pages/Leaderboard";
+import Settings from "./pages/Settings";
+import Wallet from "./pages/Wallet";
 
 
 const router = createBrowserRouter([
@@ -15,11 +17,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/settings",
-    element: <Leaderboard/>,
+    element: <Settings/>,
   },
   {
     path: "/wallet",
-    element: <Leaderboard/>,
+    element: <Wallet/>,
   },
 ]);
 
