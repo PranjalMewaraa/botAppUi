@@ -171,10 +171,10 @@ export default function Boost() {
                   className="object-contain w-5 h-5"
                 />
                 <span className="font-bold">
-                  {compactNumber(boosters.multi_tap.cost)}
+                  {1000*Math.pow(2,boosters.multi_tap.level-1)}
                   {/* {user?.earn_per_tap} */}
                 </span>
-                <span className="text-sm">{user?.earn_per_tap} LVL</span>
+                <span className="text-sm">{user?.earn_per_tap} PER TAP</span>
                 {/* {user?.earn_per_tap} */}
               </div>
             </div>

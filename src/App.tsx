@@ -199,6 +199,7 @@ function App() {
         missionTypes: data.mission_types,
         totalReferals: data.total_referals,
       });
+
     };
 
     signIn().then(() => {
