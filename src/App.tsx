@@ -98,7 +98,7 @@ function App() {
         timestamp: Math.floor(Date.now() / 1000),
       })
       .then(async ({ data }) => {
-        localStorage.setItem("ClicksCount", "0");
+        localStorage.setItem("ClicksCount", "1");
         clicksCountRef.current = 0;
         const test = async () => {
           return await $http.$get<
