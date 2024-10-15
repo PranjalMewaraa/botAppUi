@@ -38,7 +38,7 @@ export default function Settings() {
         
         <h1 className="text-2xl mb-4 font-bold text-center uppercase text-white">
          Settings
-         <span className="text-white"><Link to={'/'}>X</Link> </span>
+         <span className="text-white"><Link to={'/'} className="text-white">X</Link> </span>
         </h1>
        
 
