@@ -28,9 +28,6 @@ const PulseButton: React.FC = () => {
     console.log("Initial count", clicksCountRef.current);
   }, []);
 
-  useEffect(()=>{
-    setTapCount(user.balance)
-  },[user.balance])
   const [tapCount, setTapCount] = useState<number>(
     Number(user.balance || "0") || 0
   );
