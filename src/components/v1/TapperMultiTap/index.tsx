@@ -3,7 +3,6 @@ import { gsap } from "gsap";
 import dollar from "../../../assets/Images/dollar.png";
 import ico from "../../../assets/Images/ico.png";
 
-import balance from "../../../assets/Images/balance.png";
 import encrypt from "../../../utils/encrypt";
 import decrypt from "../../../utils/decrypt";
 import { useUserStore } from "@/store/user-store";
@@ -267,19 +266,7 @@ const PulseButton: React.FC = () => {
           </div>
         </div>
       </button>
-      <div className="text-white absolute bottom-52 flex gap-4 flex-col items-center justify-center text-xl font-bold">
-        <div className="flex items-center gap-4">
-          <span >
-            <img src={balance} alt="" />
-          </span>
-          {Math.floor(tapCount)}
-        </div>
-        <div className="flex items-center space-x-2 ">
-          <span className="text-xs font-bold text-white">
-          ⚡{user.available_energy} / {user.max_energy}
-          </span>
-      </div>
-      </div>
+    
     </div>
   );
 };

@@ -6,6 +6,9 @@ import FABMenu from "../../components/v1/Fab";
 import { useUserStore } from "@/store/user-store";
 import { uesStore } from "@/store";
 import set from "../../assets/Images/set.png"
+import balance from "../../assets/Images/balance.png"
+import decrypt from "@/utils/decrypt";
+import { useEffect, useState } from "react";
 
 
 
@@ -23,6 +26,23 @@ const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
        console.log('x',activeIndex)
         setActiveIndex(index);
   }  
+  useEffect(()=>{
+    const handleLocalStorageUpdate = () => {
+     setTapCount(  Number(decrypt(localStorage.getItem("alkine-db-val-er") || "0")) || 0)
+    };
+
+    // Add the event listener
+    window.addEventListener("localStorageUpdated", handleLocalStorageUpdate);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("localStorageUpdated", handleLocalStorageUpdate);
+    };
+  },[])
+  const [tapCount,setTapCount] = useState<number>(
+    Number(decrypt(localStorage.getItem("alkine-db-val-er") || "0")) || 0
+  );
+  const user = useUserStore();
 
   return (
     <div className="w-full h-screen font-[ageo] flex flex-col p-4 gap-2">
@@ -32,6 +52,19 @@ const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
       </div>
       <ProgressIndicator />
       <PulseButton />
+      <div className="text-white absolute bottom-52 flex gap-4 flex-col items-center justify-center text-xl font-bold">
+        <div className="flex items-center gap-4">
+          <span >
+            <img src={balance} alt="" />
+          </span>
+          {Math.floor(tapCount)}
+        </div>
+        <div className="flex items-center space-x-2 ">
+          <span className="text-xs font-bold text-white">
+          ⚡{user.available_energy} / {user.max_energy}
+          </span>
+      </div>
+      </div>
       <div className="absolute bottom-24 w-full h-20 flex justify-left items-center">
       <div className="flex text-white items-center gap-2 text-xl" onClick={()=>ButtonClick(6)}>
         <span>
