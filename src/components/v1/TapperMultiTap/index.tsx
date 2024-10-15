@@ -251,7 +251,7 @@ const PulseButton: React.FC = () => {
           </span>
           {Math.floor(tapCount)}
         </div>
-        <div className="flex items-center space-x-2 ">
+        <div className="flex items-center space-x-2 justify-center ">
           
             <span className="text-xs font-bold text-white">
             ⚡️{user.available_energy} / {user.max_energy}
