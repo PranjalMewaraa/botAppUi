@@ -131,9 +131,9 @@ export default function Leaderboard() {
               </div>
             ) : leaderboard.data && leaderboard.data?.length > 0 ? (
               leaderboard.data.map((item, key) => (
-                <div key={key} className="flex items-center py-2 gap-2.5 w-11/12 px-4 bg-white rounded-md shadow-md">
+                <div key={key} className="flex items-center py-2 gap-2.5 w-11/12 px-4 bg-slate-800 rounded-md shadow-md">
                   <span className="w-6 text-left text-primary">{key + 1}</span>
-                  <span className="text-gray-900 font-medium">
+                  <span className="text-gray-100 font-medium">
                     {item.first_name} {item.last_name}
                   </span>
                   <div className="flex items-center gap-2 ml-auto">
@@ -142,7 +142,7 @@ export default function Leaderboard() {
                       alt="coin"
                       className="object-contain w-5 h-5"
                     />
-                    <span className="text-gray-700">{compactNumber(item.production_per_hour)}</span>
+                    <span className="text-gray-200">{compactNumber(item.production_per_hour)}</span>
                   </div>
                 </div>
 
