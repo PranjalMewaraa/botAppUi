@@ -36,8 +36,8 @@ export default function Settings() {
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24">
         
         
-        <h1 className="text-2xl mb-4 font-bold text-center uppercase text-white">
-         Settings
+        <h1 className="text-2xl mb-4 font-bold text-center uppercase text-white flex justify-between">
+         <span>Settings</span>
          <span className="text-white"><Link to={'/'} className="text-white">X</Link> </span>
         </h1>
        
