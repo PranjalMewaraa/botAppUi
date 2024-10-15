@@ -137,7 +137,7 @@ const PulseButton: React.FC = () => {
       newPulseRing,
       { scale: 0, opacity: 1 },
       {
-        scale: 1.3,
+        scale: 1.2,
         opacity: 0.1,
         duration: 1,
         ease: "power1.out",
