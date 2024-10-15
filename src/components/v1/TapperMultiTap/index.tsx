@@ -258,7 +258,7 @@ const PulseButton: React.FC = () => {
       >
         <div className="relative w-full h-full">
           <div
-            className="absolute w-[168px] h-[168px] rounded-full border-4 border-transparent"
+            className="absolute w-[188px] h-[188px] rounded-full border-4 border-transparent"
             style={{
               top: "30%",
               left: "50%",
