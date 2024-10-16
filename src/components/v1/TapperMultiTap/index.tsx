@@ -77,7 +77,7 @@ const PulseButton: React.FC = () => {
       setIsDebouncing(true);
       setTimeout(() => setIsDebouncing(false), debounceTime);
       if(!user.UserClick()) return;
-      handlePulseAnimations(user.earn_per_tap);
+      handlePulseAnimations(1);
       const clickCount = 1 * user.earn_per_tap; // Default for single left-click
       console.log("mouse",clickCount)
       const current = localStorage.getItem("ClicksCount");
