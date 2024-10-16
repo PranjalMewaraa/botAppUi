@@ -66,7 +66,7 @@ const PulseButton: React.FC = () => {
         handlePulseAnimations(fingerCount);
         Telegram.WebApp.HapticFeedback.impactOccurred("medium");
       }
-    }, 50); // small delay to ensure all fingers are detected
+    }, 75); // small delay to ensure all fingers are detected
   };
   const handleMouseClick = () => {
     // Debounce check: Skip handling if already processing a recent click
