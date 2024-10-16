@@ -263,9 +263,9 @@ const PulseButton: React.FC = () => {
             onTouchStart={handleTouchStart}  
             onClick={handleMouseClick}
             style={{
-              top: "25%",
+              top: "35%",
               left: "50%",
-              transform: "translate(-50%, -75%)",
+              transform: "translate(-50%, -65%)",
               boxShadow: "0 4px 30px rgba(255, 215, 1, 0.6)",
             }}
           >
