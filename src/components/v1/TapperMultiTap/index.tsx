@@ -87,7 +87,7 @@ const PulseButton: React.FC = () => {
         "ClicksCount",
         current ? String(parseFloat(current) + clickCount) : "1"
       );
-      handlePulseAnimations(clickCount);
+      handlePulseAnimations(user.earn_per_tap);
       Telegram.WebApp.HapticFeedback.impactOccurred("light"); 
       // setTapCount((prevCount) => {
       //   const newCount = Math.min(prevCount + clickCount, maxTaps);
