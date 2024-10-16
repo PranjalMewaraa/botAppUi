@@ -21,6 +21,8 @@ const PulseButton: React.FC = () => {
   // const { clicks, addClick, removeClick } = useClicksStore();
   const user  = useUserStore();
   const clicksCountRef = useRef(0); 
+  const [isTouching, setIsTouching] = useState(false);
+
   useEffect(() => {
     // Initialize clicks count on component mount
     const current = localStorage.getItem("ClicksCount");
@@ -45,10 +47,10 @@ const PulseButton: React.FC = () => {
 
   const handleTouchStart = (event: React.TouchEvent) => {
     // Debounce check: Skip handling if already processing a recent touch
-    if (isDebouncing) return;
-    
-    setIsDebouncing(true);
-    setTimeout(() => setIsDebouncing(false), debounceTime);
+    if (isDebouncing || isTouching) return; // Prevent multiple taps
+
+    setIsTouching(true); // Track that a touch event is happening
+    setTimeout(() => setIsTouching(false), debounceTime); // Reset touch tracking after debounce
 
     // Delay to ensure all fingers are registered
     setTimeout(() => {
@@ -70,7 +72,7 @@ const PulseButton: React.FC = () => {
   };
   const handleMouseClick = () => {
     // Debounce check: Skip handling if already processing a recent click
-    if (isDebouncing) return;
+    if (isTouching || isDebouncing) return;
     if(!user.UserTap(1)) return;
     setIsDebouncing(true);
     setTimeout(() => setIsDebouncing(false), debounceTime);

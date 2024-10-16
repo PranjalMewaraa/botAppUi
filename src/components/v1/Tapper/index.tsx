@@ -1,36 +1,116 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import dollar from "../../../assets/Images/dollar.png";
-import goat from "../../../assets/Images/goat.png";
-import balance from "../../../assets/Images/balance.png";
+import ico from "../../../assets/Images/ico.png";
+
 import encrypt from "../../../utils/encrypt";
-import decrypt from "../../../utils/decrypt";
+
+import { useUserStore } from "@/store/user-store";
+import { useClicksStore } from "@/store/clicks-store";
+import skinConfig from "@/config/skin-config";
+import useSkinConfig from "@/hooks/useSkinConfig";
+import decrypt from "@/utils/decrypt";
 
 const PulseButton: React.FC = () => {
+  const { skinId } = useSkinConfig();
   const pulseRefs = useRef<HTMLDivElement[]>([]);
   const pulseRingRefs = useRef<HTMLDivElement[]>([]);
   const plusOneRefs = useRef<HTMLDivElement[]>([]);
   const dollarRef = useRef<HTMLImageElement | null>(null);
   const dollarRef2 = useRef<HTMLImageElement | null>(null);
+  // const { clicks, addClick, removeClick } = useClicksStore();
+  const user  = useUserStore();
+  const clicksCountRef = useRef(0); 
+  useEffect(() => {
+    // Initialize clicks count on component mount
+    const current = localStorage.getItem("ClicksCount");
+    clicksCountRef.current = current ? parseFloat(current) : 0;
+  
+    console.log("Initial count", clicksCountRef.current);
+  }, []);
 
   const [tapCount, setTapCount] = useState<number>(
-    Number(decrypt(localStorage.getItem("alkine-db-val-er") || "0")) || 0
+    Number(decrypt(localStorage.getItem("alkine-db-val-er"))|| "0") || 0
   );
   const maxTaps = 20000000;
+
+  // Debounce state to prevent multiple tap registrations in a short time
+  const [isDebouncing, setIsDebouncing] = useState(false);
+  const debounceTime = 150; // Time in ms
 
   const setLocalStorageItem = (key: string, value: string) => {
     localStorage.setItem(key, value);
     window.dispatchEvent(new Event("localStorageUpdated"));
   };
 
-  const handleClick = () => {
-    setTapCount((prevCount) => Math.min(prevCount + 1, maxTaps));
+  const handleTouchStart = (event: React.TouchEvent) => {
+    // Debounce check: Skip handling if already processing a recent touch
+    if (isDebouncing) return;
+    
+    setIsDebouncing(true);
+    setTimeout(() => setIsDebouncing(false), debounceTime);
 
-    setLocalStorageItem("alkine-db-val-er", encrypt(tapCount));
+    // Delay to ensure all fingers are registered
+    setTimeout(() => {
+      const fingerCount = event.touches.length;
+      if(!user.UserTap(fingerCount)) return;
+      if (fingerCount > 0 && fingerCount < 5) {
+        // Add score based on finger count
+        const current = localStorage.getItem("ClicksCount");
+      localStorage.setItem(
+        "ClicksCount",
+        current ? String(parseFloat(current) + fingerCount) : "1"
+      );
+        setTapCount((prevCount) => Math.min(prevCount + fingerCount*user.earn_per_tap, maxTaps));
+        setLocalStorageItem("alkine-db-val-er", encrypt((tapCount + fingerCount*user.earn_per_tap)));
+        handlePulseAnimations(fingerCount);
+        Telegram.WebApp.HapticFeedback.impactOccurred("medium");
+      }
+    }, 75); // small delay to ensure all fingers are detected
+  };
+  const handleMouseClick = () => {
+    // Debounce check: Skip handling if already processing a recent click
+    if (isDebouncing) return;
+    if(!user.UserTap(1)) return;
+    setIsDebouncing(true);
+    setTimeout(() => setIsDebouncing(false), debounceTime);
+  
+    // Delay to ensure proper click handling
+    setTimeout(() => {
+     
+      const clickCount = 1 * user.earn_per_tap; // Default for single left-click
+      console.log("mouse",clickCount)
+      const current = localStorage.getItem("ClicksCount");
+      localStorage.setItem(
+        "ClicksCount",
+        current ? String(parseFloat(current) + clickCount) : "1"
+      );
+      handlePulseAnimations(clickCount);
+      Telegram.WebApp.HapticFeedback.impactOccurred("light"); 
+      // setTapCount((prevCount) => {
+      //   const newCount = Math.min(prevCount + clickCount, maxTaps);
+      //   setLocalStorageItem("alkine-db-val-er", encrypt(newCount));
+      //   // Adjust as needed
+      //   return newCount;
+      // });
+    }, 50); 
+  };
+  
 
+  useEffect(() => {
+    useClicksStore.setState({ clicks: [] });
+
+    const interval = setInterval(() => {
+      user.incraseEnergy(3);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+ 
+  const handlePulseAnimations = (fingerCount: number) => {
     const newPulse = document.createElement("div");
     newPulse.className =
-      "absolute w-64 h-64 bg-yellow-400 -translate-y-16 rounded-full pointer-events-none";
+      "absolute w-64 h-64 bg-yellow-400 -translate-y-28 rounded-full pointer-events-none";
     document.getElementById("pulseContainer")?.appendChild(newPulse);
     pulseRefs.current.push(newPulse);
 
@@ -38,7 +118,7 @@ const PulseButton: React.FC = () => {
       newPulse,
       { scale: 0, opacity: 1 },
       {
-        scale: 1.5,
+        scale: 1.2,
         opacity: 0.1,
         duration: 0.6,
         ease: "power1.out",
@@ -52,7 +132,7 @@ const PulseButton: React.FC = () => {
 
     const newPulseRing = document.createElement("div");
     newPulseRing.className =
-      "absolute w-96 h-96 border-4 border-blue-300 -translate-y-16 rounded-full pointer-events-none";
+      "absolute w-96 h-96 border-4 border-blue-300 -translate-y-28 rounded-full pointer-events-none";
     document.getElementById("pulseContainer")?.appendChild(newPulseRing);
     pulseRingRefs.current.push(newPulseRing);
 
@@ -60,7 +140,7 @@ const PulseButton: React.FC = () => {
       newPulseRing,
       { scale: 0, opacity: 1 },
       {
-        scale: 1.5,
+        scale: 1,
         opacity: 0.1,
         duration: 1,
         ease: "power1.out",
@@ -73,25 +153,45 @@ const PulseButton: React.FC = () => {
     );
 
     const newPlusOne = document.createElement("div");
-    newPlusOne.className = "absolute text-2xl  font-bold pointer-events-none";
-    newPlusOne.textContent = `🪙+1`;
+    newPlusOne.className = "absolute flex gap-1 text-2xl font-bold pointer-events-none";
+    
+    // Create the image element
+    const img = document.createElement("img");
+    img.src = ico; // Replace with the path to your image
+    img.alt = "Heart Image"; // Alt text for accessibility
+    
+    // Optionally set the image dimensions
+    img.style.width = "20px";
+    img.style.height = "20px";
+    
+    // Clear the existing content (optional if needed)
+    newPlusOne.textContent = ""; // Clear any text content
+    
+    // Append the image and the finger count text to the div
+    newPlusOne.appendChild(img);
+    newPlusOne.appendChild(document.createTextNode(`+${fingerCount * user.earn_per_tap}`));
+    
+    // Append the newPlusOne element to the pulseContainer
     document.getElementById("pulseContainer")?.appendChild(newPlusOne);
     plusOneRefs.current.push(newPlusOne);
 
-    const colors = ["#FFD700"];
+    const colors = ["#FFFF"];
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
     const pulseContainer = document.getElementById("pulseContainer");
     const pulseContainerRect = pulseContainer?.getBoundingClientRect();
     if (pulseContainerRect) {
-      const centerX = pulseContainerRect.width / 2;
+      const centerX =  pulseContainerRect.width/2;
+      // const randomNumerator = Math.random() < 0.5 ? (1/8) : (4/5); // Randomly chooses between 1 and 3
+      // const centerX = (pulseContainerRect.width * randomNumerator);
+
       newPlusOne.style.left = `${centerX}px`;
-      newPlusOne.style.top = `150px`;
+      newPlusOne.style.top = `100px`;
       newPlusOne.style.transform = "translate(-50%, -50%)";
       newPlusOne.style.zIndex = "20";
       newPlusOne.style.color = randomColor;
 
-      const randomX = (Math.random() - 0.3) * 100;
+      const randomX = (Math.random() - 0.1) * 100;
 
       gsap.fromTo(
         newPlusOne,
@@ -134,34 +234,39 @@ const PulseButton: React.FC = () => {
       }
     );
     gsap.fromTo(
-        dollarRef.current,
-        { rotation: 0, scale: 1 },
-        {
-          rotation: 0,
-          scale: 1.2,
-          duration: 0.1,
-          ease: "power1.out",
-          yoyo: true,
-          repeat: 3,
-        }
-      );
+      dollarRef.current,
+      { rotation: 0, scale: 1 },
+      {
+        rotation: 0,
+        scale: 1.2,
+        duration: 0.1,
+        ease: "power1.out",
+        yoyo: true,
+        repeat: 3,
+      }
+    );
   };
+ 
 
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen">
-      <div
+    <div className="relative flex flex-col items-center justify-center h-screen w-full  ">
+      <button
         id="pulseContainer"
+      
         className="absolute w-full h-full inset-0 flex items-center justify-center"
-        onClick={handleClick}
+
       >
-        <div className="relative">
-          <div
-            className="absolute w-[228px] h-[228px] rounded-full border-4 border-transparent"
+        <div className="relative w-full h-full">
+          <button
+            className="absolute w-[218px] h-[218px] rounded-full border-4 border-transparent"
+            disabled={user.available_energy < user.earn_per_tap}
+            onTouchStart={handleTouchStart}  
+            onClick={handleMouseClick}
             style={{
-              top: "30%",
+              top: "35%",
               left: "50%",
-              transform: "translate(-50%, -70%)",
-              boxShadow: "0 4px 30px rgba(255, 215, 1, 0.6)",
+              transform: "translate(-50%, -65%)",
+              boxShadow: "0 4px 40px rgba(255, 215, 1, 0.6)",
             }}
           >
             <img
@@ -175,19 +280,19 @@ const PulseButton: React.FC = () => {
             />
             <img
               ref={dollarRef}
-              src={goat}
+              src={skinConfig.images[skinId || 1]}
               alt="Goat Icon"
-              className="absolute z-30 inset-0 w-[220px] h-[250px] -translate-y-20 object-cover rounded-full"
+              className="absolute z-30 inset-0 w-[160px] h-[190px] -translate-y-20 object-cover rounded-full"
               style={{
                 top: "45%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
               }}
             />
-          </div>
+          </button>
         </div>
-      </div>
-      <div className="text-white absolute bottom-52 flex gap-4 items-center text-xl font-bold"><span><img src={balance} alt="" /></span>{tapCount}</div>
+      </button>
+    
     </div>
   );
 };
