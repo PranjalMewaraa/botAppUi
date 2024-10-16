@@ -3,7 +3,7 @@ import picaxe from '../../../assets/Images/pickaxe.png';
 import mansion from "../../../assets/Images/mansion.png";
 import joystick from "../../../assets/Images/joystick.png";
 import diamond from "../../../assets/Images/diamond.png";
-import dollar from "../../../assets/Images/ico.png";
+import dollar from "../../../assets/Images/dollar.png";
 
 // Define the prop types
 interface BottomNavbarProps {
