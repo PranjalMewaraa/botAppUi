@@ -268,7 +268,7 @@ const PulseButton: React.FC = () => {
               top: "35%",
               left: "50%",
               transform: "translate(-50%, -65%)",
-              boxShadow: "0 4px 40px rgba(255, 215, 1, 0.6)",
+              boxShadow: "0 4px 30px rgba(255, 215, 1, 0.6)",
             }}
           >
             <img
