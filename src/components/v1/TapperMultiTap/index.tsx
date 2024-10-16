@@ -252,14 +252,16 @@ const PulseButton: React.FC = () => {
     <div className="relative flex flex-col items-center justify-center h-screen w-full  ">
       <button
         id="pulseContainer"
-        disabled={user.available_energy < user.earn_per_tap}
+      
         className="absolute w-full h-full inset-0 flex items-center justify-center"
-        onTouchStart={handleTouchStart}  
-        onClick={handleMouseClick}
+
       >
         <div className="relative w-full h-full">
-          <div
+          <button
             className="absolute w-[198px] h-[198px] rounded-full border-4 border-transparent"
+            disabled={user.available_energy < user.earn_per_tap}
+            onTouchStart={handleTouchStart}  
+            onClick={handleMouseClick}
             style={{
               top: "30%",
               left: "50%",
@@ -287,7 +289,7 @@ const PulseButton: React.FC = () => {
                 transform: "translate(-50%, -50%)",
               }}
             />
-          </div>
+          </button>
         </div>
       </button>
     
