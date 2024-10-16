@@ -53,11 +53,7 @@ export default function Settings() {
             subtitle={"Goat tapper exchange"} 
             action=""       
           />
-          <LIstLInk
-            title={"Skin"}
-           
-            action="/skin"       
-          />
+      
           <LIstLInk
             title={"Delete Account"}
             action=""       
