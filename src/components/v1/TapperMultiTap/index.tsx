@@ -258,14 +258,14 @@ const PulseButton: React.FC = () => {
       >
         <div className="relative w-full h-full">
           <button
-            className="absolute w-[198px] h-[198px] rounded-full border-4 border-transparent"
+            className="absolute w-[208px] h-[208px] rounded-full border-4 border-transparent"
             disabled={user.available_energy < user.earn_per_tap}
             onTouchStart={handleTouchStart}  
             onClick={handleMouseClick}
             style={{
-              top: "30%",
+              top: "25%",
               left: "50%",
-              transform: "translate(-50%, -70%)",
+              transform: "translate(-50%, -75%)",
               boxShadow: "0 4px 30px rgba(255, 215, 1, 0.6)",
             }}
           >
