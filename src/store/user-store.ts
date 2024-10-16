@@ -24,7 +24,7 @@ export const useUserStore = create<UserStore>((set, get) => ({
   updated_at: "",
   username: "",
   UserTap(value) {
-    if (get().available_energy < get().earn_per_tap) return false;
+    if (get().available_energy < get().earn_per_tap * value) return false;
     set((state) => ({
       available_energy: state.available_energy - state.earn_per_tap * value,
       balance: state.balance + state.earn_per_tap * value,
