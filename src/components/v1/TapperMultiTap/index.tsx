@@ -74,12 +74,10 @@ const PulseButton: React.FC = () => {
     // Debounce check: Skip handling if already processing a recent click
     if (isTouching || isDebouncing) return;
    
-    setIsDebouncing(true);
-    setTimeout(() => setIsDebouncing(false), debounceTime);
-  
-    // Delay to ensure proper click handling
-    setTimeout(() => {
+      setIsDebouncing(true);
+      setTimeout(() => setIsDebouncing(false), debounceTime);
       if(!user.UserClick()) return;
+      handlePulseAnimations(user.earn_per_tap);
       const clickCount = 1 * user.earn_per_tap; // Default for single left-click
       console.log("mouse",clickCount)
       const current = localStorage.getItem("ClicksCount");
@@ -87,15 +85,9 @@ const PulseButton: React.FC = () => {
         "ClicksCount",
         current ? String(parseFloat(current) + clickCount) : "1"
       );
-      handlePulseAnimations(user.earn_per_tap);
       Telegram.WebApp.HapticFeedback.impactOccurred("light"); 
-      // setTapCount((prevCount) => {
-      //   const newCount = Math.min(prevCount + clickCount, maxTaps);
-      //   setLocalStorageItem("alkine-db-val-er", encrypt(newCount));
-      //   // Adjust as needed
-      //   return newCount;
-      // });
-    }, 50); 
+    
+ 
   };
   
 
@@ -115,7 +107,7 @@ const PulseButton: React.FC = () => {
       "absolute w-64 h-64 bg-yellow-400 -translate-y-28 rounded-full pointer-events-none";
     document.getElementById("pulseContainer")?.appendChild(newPulse);
     pulseRefs.current.push(newPulse);
-
+    console.log(fingerCount)
     gsap.fromTo(
       newPulse,
       { scale: 0, opacity: 1 },
