@@ -53,7 +53,7 @@ export default function Leaderboard() {
   console.log(leaderboard.data)
   console.log(user.telegram_id)
   return (
-    <div id="main_div" className="w-screen h-[95%] bg-slate-950 overflow-hidden">
+    <div id="main_div" className="w-screen h-screen bg-slate-950 overflow-hidden">
     <div className="flex flex-col justify-end bg-cover w-full h-full text-white" >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <div className="">
@@ -133,27 +133,25 @@ export default function Leaderboard() {
             ) : leaderboard.data && leaderboard.data?.length > 0 ? (
               leaderboard.data.map((item, key) => (
                 <div
-  key={key}
-  className="flex items-center py-2 gap-2.5 w-11/12 px-4 mb-1 bg-slate-800 rounded-md shadow-md"
-  style={{
-    border: item.telegram_id === user.telegram_id ? "2px solid #F59E0B" : "none",
-  }}
->
-  <span className="w-6 text-left text-primary">{key + 1}</span>
-  <span className="text-gray-100 font-medium">
-    {item.first_name} {item.last_name}
-  </span>
-  <div className="flex items-center gap-2 ml-auto">
-    <img
-      src="/images/coin.png"
-      alt="coin"
-      className="object-contain w-5 h-5"
-    />
-    <span className="text-gray-200">{compactNumber(item.production_per_hour)}</span>
-  </div>
-</div>
-
-
+                    key={key}
+                    className="flex items-center py-2 gap-2.5 w-11/12 px-4 mb-1 bg-slate-800 rounded-md shadow-md"
+                    style={{
+                      border: item.telegram_id === user.telegram_id ? "2px solid #F59E0B" : "none",
+                    }}
+                  >
+                    <span className="w-6 text-left text-primary">{key + 1}</span>
+                    <span className="text-gray-100 font-medium">
+                      {item.first_name} {item.last_name}
+                    </span>
+                    <div className="flex items-center gap-2 ml-auto">
+                      <img
+                        src="/images/coin.png"
+                        alt="coin"
+                        className="object-contain w-5 h-5"
+                      />
+                      <span className="text-gray-200">{compactNumber(item.production_per_hour)}</span>
+                    </div>
+                  </div>
               ))
             ) : (
               <div className="flex items-center justify-center h-full text-white">
