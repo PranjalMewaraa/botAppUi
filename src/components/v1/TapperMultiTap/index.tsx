@@ -110,7 +110,7 @@ const PulseButton: React.FC = () => {
   const handlePulseAnimations = (fingerCount: number) => {
     const newPulse = document.createElement("div");
     newPulse.className =
-      "absolute w-64 h-64 bg-yellow-400 -translate-y-32 rounded-full pointer-events-none";
+      "absolute w-64 h-64 bg-yellow-400 -translate-y-28 rounded-full pointer-events-none";
     document.getElementById("pulseContainer")?.appendChild(newPulse);
     pulseRefs.current.push(newPulse);
 
@@ -132,7 +132,7 @@ const PulseButton: React.FC = () => {
 
     const newPulseRing = document.createElement("div");
     newPulseRing.className =
-      "absolute w-96 h-96 border-4 border-blue-300 -translate-y-32 rounded-full pointer-events-none";
+      "absolute w-96 h-96 border-4 border-blue-300 -translate-y-28 rounded-full pointer-events-none";
     document.getElementById("pulseContainer")?.appendChild(newPulseRing);
     pulseRingRefs.current.push(newPulseRing);
 
@@ -266,7 +266,7 @@ const PulseButton: React.FC = () => {
               top: "35%",
               left: "50%",
               transform: "translate(-50%, -65%)",
-              boxShadow: "0 4px 30px rgba(255, 215, 1, 0.6)",
+              boxShadow: "0 4px 40px rgba(255, 215, 1, 0.6)",
             }}
           >
             <img
