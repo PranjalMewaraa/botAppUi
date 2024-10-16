@@ -3,6 +3,7 @@ import { create } from "zustand";
 
 type UserStore = UserType & {
   UserTap: (value: number) => boolean;
+  UserClick: () => boolean;
   incraseEnergy: (value: number) => void;
 };
 
@@ -28,6 +29,14 @@ export const useUserStore = create<UserStore>((set, get) => ({
     set((state) => ({
       available_energy: state.available_energy - state.earn_per_tap * value,
       balance: state.balance + state.earn_per_tap * value,
+    }));
+    return true;
+  },
+  UserClick() {
+    if (get().available_energy < get().earn_per_tap) return false;
+    set((state) => ({
+      available_energy: state.available_energy - state.earn_per_tap,
+      balance: state.balance + state.earn_per_tap,
     }));
     return true;
   },

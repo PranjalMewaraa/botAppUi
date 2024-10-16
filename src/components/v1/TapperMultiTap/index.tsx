@@ -73,13 +73,13 @@ const PulseButton: React.FC = () => {
   const handleMouseClick = () => {
     // Debounce check: Skip handling if already processing a recent click
     if (isTouching || isDebouncing) return;
-    if(!user.UserTap(1)) return;
+   
     setIsDebouncing(true);
     setTimeout(() => setIsDebouncing(false), debounceTime);
   
     // Delay to ensure proper click handling
     setTimeout(() => {
-     
+      if(!user.UserClick()) return;
       const clickCount = 1 * user.earn_per_tap; // Default for single left-click
       console.log("mouse",clickCount)
       const current = localStorage.getItem("ClicksCount");
