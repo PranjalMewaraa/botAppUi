@@ -27,9 +27,9 @@ const BottomNavbar: FC<BottomNavbarProps> = ({ activeIndex, setActiveIndex }) =>
         {["Home", "Games", "Airdrop", "Mine", "Earn"].map((label, index) => (
           <button
             key={label}
-            className={`flex flex-col items-center justify-center w-12 h-12 bg-transparent rounded-lg transition-all duration-300 ease-in-out hover:bg-slate-600 ${
+            className={`flex flex-col items-center justify-center w-12 h-12 bg-transparent rounded-lg transition-all duration-300 ease-in-out  ${
               activeIndex === index ? "text-yellow-500" : "text-slate-50"
-            }`}
+            } ${label!=="Airdrop"?"hover:bg-slate-600":""}`}
             onClick={() => handleButtonClick(index)}
             onTouchStart={() => handleButtonClick(index)}
           >
