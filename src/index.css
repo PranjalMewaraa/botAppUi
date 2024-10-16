@@ -31,3 +31,8 @@
     background-position: center;
     background-size: contain;
   }
+ #root{
+  background: url("./assets/Images/bg.png");
+  background-position: center;
+  background-size: cover;
+ }
