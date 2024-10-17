@@ -47,7 +47,7 @@ const PulseButton: React.FC = () => {
 
   const handleTouchStart = (event: React.TouchEvent) => {
     // Debounce check: Skip handling if already processing a recent touch
-    if (isDebouncing || isTouching) return; // Prevent multiple taps
+    if (isDebouncing) return; // Prevent multiple taps
     setTimeout(() => setIsDebouncing(false), debounceTime);
     setIsTouching(true); // Track that a touch event is happening
     setTimeout(() => setIsTouching(false), 150000); // Reset touch tracking after debounce
