@@ -47,17 +47,15 @@ const PulseButton: React.FC = () => {
   };
 
   const handleTouchStart = (event: React.TouchEvent) => {
-    // Debounce check: Skip handling if already processing a recent touch
-    const fingerCount = event.touches.length;
-    if (isDebouncing || isTouching) return; // Prevent multiple taps
-    setTimeout(() => setIsDebouncing(false), debounceTime);
-    setIsTouching(true); // Track that a touch event is happening
-    setTimeout(() => setIsTouching(false), debounceTime); // Reset touch tracking after debounce
-    setIsMobile(true);
-    setTimeout(() => setIsMobile(false), 15000);
-    // Delay to ensure all fingers are registered
+    
     setTimeout(() => {
-     
+      const fingerCount = event.touches.length;
+      if (isDebouncing || isTouching) return; // Prevent multiple taps
+      setTimeout(() => setIsDebouncing(false), debounceTime);
+      setIsTouching(true); // Track that a touch event is happening
+      setTimeout(() => setIsTouching(false), debounceTime); // Reset touch tracking after debounce
+      setIsMobile(true);
+      setTimeout(() => setIsMobile(false), 15000);
       if(!user.UserTap(fingerCount)) return;
       if (fingerCount > 0 && fingerCount < 5) {
         // Add score based on finger count
@@ -71,7 +69,7 @@ const PulseButton: React.FC = () => {
         handlePulseAnimations(fingerCount);
         Telegram.WebApp.HapticFeedback.impactOccurred("medium");
       }
-    }, 75); // small delay to ensure all fingers are detected
+    }, 175); // small delay to ensure all fingers are detected
   };
   const handleMouseClick = () => {
     // Debounce check: Skip handling if already processing a recent click
@@ -251,7 +249,6 @@ const PulseButton: React.FC = () => {
         id="pulseContainer"
         disabled={user.available_energy < user.earn_per_tap}
             onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchStart}  
             onClick={handleMouseClick}
         className="absolute w-full h-full inset-0 flex items-center justify-center"
 
