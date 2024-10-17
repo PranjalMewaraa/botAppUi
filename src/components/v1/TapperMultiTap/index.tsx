@@ -56,19 +56,21 @@ const PulseButton: React.FC = () => {
       setTimeout(() => setIsTouching(false), debounceTime); // Reset touch tracking after debounce
       setIsMobile(true);
       setTimeout(() => setIsMobile(false), 15000);
-      if(!user.UserTap(fingerCount)) return;
-      if (fingerCount > 0 && fingerCount < 5) {
-        // Add score based on finger count
-        const current = localStorage.getItem("ClicksCount");
-      localStorage.setItem(
-        "ClicksCount",
-        current ? String(parseFloat(current) + fingerCount) : "1"
-      );
-        setTapCount((prevCount) => Math.min(prevCount + fingerCount*user.earn_per_tap, maxTaps));
-        setLocalStorageItem("alkine-db-val-er", encrypt((tapCount + fingerCount*user.earn_per_tap)));
-        handlePulseAnimations(fingerCount);
-        Telegram.WebApp.HapticFeedback.impactOccurred("medium");
-      }
+      setTimeout(()=>{
+        if(!user.UserTap(fingerCount)) return;
+        if (fingerCount > 0 && fingerCount < 5) {
+          // Add score based on finger count
+          const current = localStorage.getItem("ClicksCount");
+        localStorage.setItem(
+          "ClicksCount",
+          current ? String(parseFloat(current) + fingerCount) : "1"
+        );
+          setTapCount((prevCount) => Math.min(prevCount + fingerCount*user.earn_per_tap, maxTaps));
+          setLocalStorageItem("alkine-db-val-er", encrypt((tapCount + fingerCount*user.earn_per_tap)));
+          handlePulseAnimations(fingerCount);
+          Telegram.WebApp.HapticFeedback.impactOccurred("medium");
+        }
+      },50)
     }, 175); // small delay to ensure all fingers are detected
   };
   const handleMouseClick = () => {
