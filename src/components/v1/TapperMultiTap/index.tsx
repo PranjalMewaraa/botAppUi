@@ -45,16 +45,19 @@ const PulseButton: React.FC = () => {
     localStorage.setItem(key, value);
     window.dispatchEvent(new Event("localStorageUpdated"));
   };
-
+  const timeoutRef = useRef<number | null>(null)
   const handleTouchStart = (event: React.TouchEvent) => {
     if (isDebouncing || isTouching) return; // Prevent multiple taps
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+     timeoutRef.current = window.setTimeout(() => {
+      const fingerCount = event.touches.length;
       setTimeout(() => setIsDebouncing(false), debounceTime);
       setIsTouching(true); // Track that a touch event is happening
       setTimeout(() => setIsTouching(false), debounceTime); // Reset touch tracking after debounce
       setIsMobile(true);
       setTimeout(() => setIsMobile(false), 15000);
-      setTimeout(() => {
-      const fingerCount = event.touches.length;
       if(!user.UserTap(fingerCount)) return;
       if (fingerCount > 0 && fingerCount < 5) {
           // Add score based on finger count
