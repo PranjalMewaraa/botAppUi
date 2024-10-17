@@ -48,6 +48,7 @@ const PulseButton: React.FC = () => {
 
   const handleTouchStart = (event: React.TouchEvent) => {
     // Debounce check: Skip handling if already processing a recent touch
+    const fingerCount = event.touches.length;
     if (isDebouncing || isTouching) return; // Prevent multiple taps
     setTimeout(() => setIsDebouncing(false), debounceTime);
     setIsTouching(true); // Track that a touch event is happening
@@ -56,7 +57,7 @@ const PulseButton: React.FC = () => {
     setTimeout(() => setIsMobile(false), 15000);
     // Delay to ensure all fingers are registered
     setTimeout(() => {
-      const fingerCount = event.touches.length;
+     
       if(!user.UserTap(fingerCount)) return;
       if (fingerCount > 0 && fingerCount < 5) {
         // Add score based on finger count
