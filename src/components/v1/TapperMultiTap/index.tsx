@@ -10,6 +10,7 @@ import { useClicksStore } from "@/store/clicks-store";
 import skinConfig from "@/config/skin-config";
 import useSkinConfig from "@/hooks/useSkinConfig";
 import decrypt from "@/utils/decrypt";
+import { flushSync } from "react-dom";
 
 const PulseButton: React.FC = () => {
   const { skinId } = useSkinConfig();
@@ -39,7 +40,7 @@ const PulseButton: React.FC = () => {
   // Debounce state to prevent multiple tap registrations in a short time
   const [isDebouncing, setIsDebouncing] = useState(false);
   const debounceTime = 150; // Time in ms
-
+  const [onMobile,setIsMobile]=useState(false);
   const setLocalStorageItem = (key: string, value: string) => {
     localStorage.setItem(key, value);
     window.dispatchEvent(new Event("localStorageUpdated"));
@@ -47,11 +48,12 @@ const PulseButton: React.FC = () => {
 
   const handleTouchStart = (event: React.TouchEvent) => {
     // Debounce check: Skip handling if already processing a recent touch
-    if (isDebouncing) return; // Prevent multiple taps
+    if (isDebouncing || isTouching) return; // Prevent multiple taps
     setTimeout(() => setIsDebouncing(false), debounceTime);
     setIsTouching(true); // Track that a touch event is happening
-    setTimeout(() => setIsTouching(false), 150000); // Reset touch tracking after debounce
-
+    setTimeout(() => setIsTouching(false), debounceTime); // Reset touch tracking after debounce
+    setIsMobile(true);
+    setTimeout(() => setIsMobile(false), 15000);
     // Delay to ensure all fingers are registered
     setTimeout(() => {
       const fingerCount = event.touches.length;
@@ -72,7 +74,7 @@ const PulseButton: React.FC = () => {
   };
   const handleMouseClick = () => {
     // Debounce check: Skip handling if already processing a recent click
-    if (isTouching || isDebouncing) return;
+    if (isTouching || isDebouncing || onMobile) return;
    
       setIsDebouncing(true);
       setTimeout(() => setIsDebouncing(false), debounceTime);
