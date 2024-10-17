@@ -113,7 +113,7 @@ export default function Earn() {
                   className={cn(
                     "disabled:opacity-50 disabled:mix-blend-luminosity"
                   )}
-                  disabled={item.is_rewarded}
+                  // disabled={item.is_rewarded}
                   action={
                     item.is_rewarded ? (
                       <CheckIcon className="w-6 h-6 text-[#27D46C]" />
