@@ -10,7 +10,7 @@ import { useClicksStore } from "@/store/clicks-store";
 import skinConfig from "@/config/skin-config";
 import useSkinConfig from "@/hooks/useSkinConfig";
 import decrypt from "@/utils/decrypt";
-import { flushSync } from "react-dom";
+
 
 const PulseButton: React.FC = () => {
   const { skinId } = useSkinConfig();
