@@ -47,30 +47,28 @@ const PulseButton: React.FC = () => {
   };
 
   const handleTouchStart = (event: React.TouchEvent) => {
-    
-    setTimeout(() => {
-      const fingerCount = event.touches.length;
-      if (isDebouncing || isTouching) return; // Prevent multiple taps
+    if (isDebouncing || isTouching) return; // Prevent multiple taps
       setTimeout(() => setIsDebouncing(false), debounceTime);
       setIsTouching(true); // Track that a touch event is happening
       setTimeout(() => setIsTouching(false), debounceTime); // Reset touch tracking after debounce
       setIsMobile(true);
       setTimeout(() => setIsMobile(false), 15000);
-      setTimeout(()=>{
-        if(!user.UserTap(fingerCount)) return;
-        if (fingerCount > 0 && fingerCount < 5) {
+      setTimeout(() => {
+      const fingerCount = event.touches.length;
+      if(!user.UserTap(fingerCount)) return;
+      if (fingerCount > 0 && fingerCount < 5) {
           // Add score based on finger count
-          const current = localStorage.getItem("ClicksCount");
-        localStorage.setItem(
+       const current = localStorage.getItem("ClicksCount");
+      localStorage.setItem(
           "ClicksCount",
           current ? String(parseFloat(current) + fingerCount) : "1"
-        );
-          setTapCount((prevCount) => Math.min(prevCount + fingerCount*user.earn_per_tap, maxTaps));
-          setLocalStorageItem("alkine-db-val-er", encrypt((tapCount + fingerCount*user.earn_per_tap)));
-          handlePulseAnimations(fingerCount);
-          Telegram.WebApp.HapticFeedback.impactOccurred("medium");
-        }
-      },50)
+      );
+      setTapCount((prevCount) => Math.min(prevCount + fingerCount*user.earn_per_tap, maxTaps));
+      setLocalStorageItem("alkine-db-val-er", encrypt((tapCount + fingerCount*user.earn_per_tap)));
+      handlePulseAnimations(fingerCount);
+      Telegram.WebApp.HapticFeedback.impactOccurred("medium");
+      }
+ 
     }, 175); // small delay to ensure all fingers are detected
   };
   const handleMouseClick = () => {
