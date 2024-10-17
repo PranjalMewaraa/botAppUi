@@ -249,7 +249,7 @@ const PulseButton: React.FC = () => {
       <button
         id="pulseContainer"
         disabled={user.available_energy < user.earn_per_tap}
-            onTouchStart={handleTouchStart}  
+            onTouchMove={handleTouchStart}  
             onClick={handleMouseClick}
         className="absolute w-full h-full inset-0 flex items-center justify-center"
 
