@@ -64,11 +64,9 @@ export default function GameDesktop() {
     <div
       id="main_div"
       className="w-[414px] h-[844px] overflow-hidden relative"
-      style={{ height: "calc(var(--vh, 1vh) * 100)" }}
     >
       <div
-        className="content-wrapper overflow-y-scroll"
-        style={{ height: "calc(var(--vh, 1vh) * 100)" }}
+        className="content-wrapper overflow-y-scroll w-full h-full"
       >
         {activeIndex === 0 && <Home activeIndex={activeIndex} setActiveIndex={setActiveIndex} />}
         {activeIndex === 1 && <Games />}
