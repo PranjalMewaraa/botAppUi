@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import dollar from "../../../assets/Images/dollar.png";
-import ico from "../../../assets/Images/ico.png";
+
 
 import encrypt from "../../../utils/encrypt";
 
