@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Price from "@/components/Price";
 
 import { $http } from "@/lib/http";
@@ -104,6 +104,10 @@ export default function Missions() {
   const handleSectionChange = (section: string) => {
     setSection(section);
   }
+  
+  useEffect(()=>{
+    window.dispatchEvent(new Event("UpdateBalance"));
+  },[activeType])  
   return (
     <div className="h-[95%] flex flex-col justify-end bg-cover flex-1 text-white" >
       <div className="flex flex-col flex-1 w-full h-full px-6 pb-24 mt-12">

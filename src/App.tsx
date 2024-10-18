@@ -228,6 +228,9 @@ function App() {
     return () => clearInterval(intervalId);
   }, []);
  
+  useEffect(()=>{
+
+  },[])
  
 
   useEffect(() => {
@@ -279,6 +282,19 @@ function App() {
     };
     user && sync(user).then(() => setShowSplashScreen(false));
   }, [timer]);
+
+  useEffect(() => {
+    const handleUpdateBalance = () => {
+      console.log("Balance update triggered");
+      user && sync(user);
+    };
+  
+    window.addEventListener("UpdateBalance", handleUpdateBalance);
+  
+    return () => {
+      window.removeEventListener("UpdateBalance", handleUpdateBalance);
+    };
+  }, []);
 
   if (isDisktop) return <GameDesktop/>;
  

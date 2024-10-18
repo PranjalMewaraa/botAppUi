@@ -1,5 +1,5 @@
 import { ReferralTaskType, TaskType } from "@/types/TaskType";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import TaskDrawer from "@/components/TaskDrawer";
 import ListItem from "@/components/ListItem";
 import Price from "@/components/Price";
@@ -22,6 +22,10 @@ export default function Earn() {
     useState(false);
   const [activeReferralTask, setActiveReferralTask] =
     useState<ReferralTaskType | null>(null);
+
+  useEffect(()=>{
+    window.dispatchEvent(new Event("UpdateBalance"));
+  },[activeTask])  
 
   
   const { data, isLoading } = useQuery({
