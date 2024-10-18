@@ -10,7 +10,7 @@ import GameDesktop from "./GameDesktop";
 const router2 = createBrowserRouter([
   {
     path: "/",
-    element: <Game/>,
+    element: <GameDesktop/>,
   },
   {
     path: "/desktop",
