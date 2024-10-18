@@ -301,7 +301,7 @@ function App() {
  
   if(!user) return <SplashScreen/>
   if (showSplashScreen) return <SplashScreen />;
-
+  if(!user && isDisktop) return <SplashScreen/>
   if (isFirstLoad){
     return <FirstTimeScreen startGame={() => setIsFirstLoad(false)} />;}
   else if ( isDisktop){ return <RouterProvider router ={router2}/>}
