@@ -12,6 +12,7 @@ import { useDebounce } from "@uidotdev/usehooks";
 import { toast } from "react-toastify";
 import useTelegramInitData from "./hooks/useTelegramInitData";
 import GameDesktop from "./GameDesktop";
+import router2 from "./router2";
 
 
 
@@ -296,7 +297,7 @@ function App() {
     };
   }, []);
 
-  if (isDisktop) return <GameDesktop/> ;
+  if (isDisktop) return <RouterProvider router ={router2}/> ;
  
   if(!user) return <SplashScreen/>
   if (showSplashScreen) return <SplashScreen />;
