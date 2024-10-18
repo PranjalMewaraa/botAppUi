@@ -11,6 +11,7 @@ import { uesStore } from "./store";
 import { useDebounce } from "@uidotdev/usehooks";
 import { toast } from "react-toastify";
 import useTelegramInitData from "./hooks/useTelegramInitData";
+import GameDesktop from "./GameDesktop";
 
 
 
@@ -279,9 +280,9 @@ function App() {
     user && sync(user).then(() => setShowSplashScreen(false));
   }, [timer]);
 
-  // if (!user || isDisktop) return <PlayOnYourMobile />;
-  console.log(isDisktop)
-
+  if (isDisktop) return <GameDesktop/>;
+ 
+  if(!user) return <SplashScreen/>
   if (showSplashScreen) return <SplashScreen />;
 
   if (isFirstLoad)
