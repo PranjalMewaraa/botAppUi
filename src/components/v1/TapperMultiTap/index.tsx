@@ -39,7 +39,7 @@ const PulseButton: React.FC = () => {
 
   // Debounce state to prevent multiple tap registrations in a short time
   const [isDebouncing, setIsDebouncing] = useState(false);
-  const debounceTime = 150; // Time in ms
+  const debounceTime = 50; // Time in ms
   const [onMobile,setIsMobile]=useState(false);
   const setLocalStorageItem = (key: string, value: string) => {
     localStorage.setItem(key, value);
