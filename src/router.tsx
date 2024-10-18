@@ -4,12 +4,17 @@ import Game from "./Game";
 import Leaderboard from "./pages/Leaderboard";
 import Settings from "./pages/Settings";
 import Wallet from "./pages/Wallet";
+import GameDesktop from "./GameDesktop";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Game/>,
+  },
+  {
+    path: "/desktop",
+    element: <GameDesktop/>,
   },
   {
     path: "/leaderboard",
