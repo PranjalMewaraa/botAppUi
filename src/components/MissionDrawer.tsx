@@ -9,7 +9,7 @@ import { Loader2Icon } from "lucide-react";
 import { Mission, MissionLevel } from "@/types/MissionType";
 import { UserType } from "@/types/UserType";
 import { useUserStore } from "@/store/user-store";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 export default function MissionDrawer({
   mission,
@@ -24,7 +24,9 @@ export default function MissionDrawer({
     if (!mission?.next_level?.cost) return false;
     return balance < mission?.next_level?.cost;
   }, [balance, mission?.next_level?.cost]);
-
+  useEffect(()=>{
+    window.dispatchEvent(new Event("UpdateBalance"));
+  },[])
   const upgradeMution = useMutation({
     mutationFn: () =>
       $http.post<{ message: string; user: UserType; next_level: MissionLevel }>(
