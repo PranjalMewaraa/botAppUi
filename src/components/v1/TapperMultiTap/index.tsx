@@ -39,7 +39,7 @@ const PulseButton: React.FC = () => {
 
   // Debounce state to prevent multiple tap registrations in a short time
   const [isDebouncing, setIsDebouncing] = useState(false);
-  const debounceTime = 50; // Time in ms
+  const debounceTime = 25; // Time in ms
   const [onMobile,setIsMobile]=useState(false);
   const setLocalStorageItem = (key: string, value: string) => {
     localStorage.setItem(key, value);
@@ -73,7 +73,7 @@ const PulseButton: React.FC = () => {
       Telegram.WebApp.HapticFeedback.impactOccurred("medium");
       }
  
-    }, 50); // small delay to ensure all fingers are detected
+    }, 25); // small delay to ensure all fingers are detected
   };
   const handleMouseClick = () => {
     // Debounce check: Skip handling if already processing a recent click
