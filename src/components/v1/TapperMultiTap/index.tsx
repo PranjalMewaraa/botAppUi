@@ -199,7 +199,7 @@ const PulseButton: React.FC = () => {
         {
           y: -60,
           x: randomX,
-          scale: 1.4,
+          scale: 1.25,
           opacity: 1,
           duration: 0.6,
           ease: "power2.out",
