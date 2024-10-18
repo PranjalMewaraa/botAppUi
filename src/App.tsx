@@ -297,15 +297,17 @@ function App() {
     };
   }, []);
 
-  if (user && isDisktop) return <RouterProvider router ={router2}/> ;
+   
  
   if(!user) return <SplashScreen/>
   if (showSplashScreen) return <SplashScreen />;
 
-  if (isFirstLoad)
-    return <FirstTimeScreen startGame={() => setIsFirstLoad(false)} />;
-
-  return <RouterProvider router={router}/>;
+  if (isFirstLoad){
+    return <FirstTimeScreen startGame={() => setIsFirstLoad(false)} />;}
+  else if ( isDisktop){ return <RouterProvider router ={router2}/>}
+  else{
+    return <RouterProvider router={router}/>;
+  }
 }
 
 export default App;
