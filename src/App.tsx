@@ -297,7 +297,7 @@ function App() {
     };
   }, []);
 
-  if (isDisktop) return <RouterProvider router ={router2}/> ;
+  if (user && isDisktop) return <RouterProvider router ={router2}/> ;
  
   if(!user) return <SplashScreen/>
   if (showSplashScreen) return <SplashScreen />;
