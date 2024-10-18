@@ -190,7 +190,7 @@ const PulseButton: React.FC = () => {
       newPlusOne.style.zIndex = "20";
       newPlusOne.style.color = randomColor;
 
-      const randomX = (Math.random() - 0.1) * 100;
+      const randomX = (Math.random() - 0.5) * 100;
 
       gsap.fromTo(
         newPlusOne,
