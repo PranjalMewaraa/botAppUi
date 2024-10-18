@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import dollar from "../../../assets/Images/dollar.png";
-
+import t from "../../../assets/Images/tappercoin.png";
 
 import encrypt from "../../../utils/encrypt";
 
@@ -271,7 +271,7 @@ const PulseButton: React.FC = () => {
           >
             <img
               ref={dollarRef2}
-              src={dollar}
+              src={t}
               alt="Dollar Icon"
               className="absolute z-20 inset-0 w-full h-full object-cover rounded-full "
               style={{
