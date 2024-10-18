@@ -6,7 +6,7 @@ import InstagramIcon from "../icons/InstagramIcon";
 import TwitterIcon from "../icons/TwitterIcon";
 import { useUserStore } from "@/store/user-store";
 import encrypt from "@/utils/encrypt";
-import coin from "../../assets/Images/dollar.png"
+import coin from "../../assets/Images/splashImage.png"
 const socialLinks = [
   {
     title: "Telegram",
@@ -36,31 +36,22 @@ const socialLinks = [
   },
 ];
 
-const splashScreenImages = [
-  "/images/splash-screen/bg.png",
-];
+
 
 export default function SplashScreen() {
   const user = useUserStore();
-  localStorage.setItem("alkine-db-val-er",encrypt(user.balance));
-  const randomImage =
-    splashScreenImages[Math.floor(Math.random() * splashScreenImages.length)];
+  localStorage.setItem("alkine-db-val-er",encrypt(user.balance)); 
   return (
     <div
+      id="main_div"
       className="flex flex-col items-center text-white justify-between pt-16 bg-cover bg-center w-full max-w-lg h-[--tg-viewport-height] mx-auto"
-      style={{ backgroundImage: `url('${randomImage}')` }}
-    >
-      <img src={coin} alt="logo" className="h-48 max-w-full" />
+    > 
+      <div className="flex flex-col w-full gap-2">
+        <img src={coin} alt="logo" className=" max-w-full" />
+        <p className="w-full text-center text-xl font-[ageobold] font-bold">Tap     .      Earn     .      Have Fun </p>
+      </div>
       <div className="flex flex-col items-center w-full">
         <div className="flex flex-col items-center w-full pb-6 bg-[url('/images/blur.png')] bg-cover bg-center">
-          <h1 className="text-6xl font-medium text-center uppercase text-shadow">
-          Goat Tapper
-          </h1>
-          <img
-            src="/images/loader.png"
-            alt="loader"
-            className="mt-3 animate-spin"
-          />
           <p className="mt-3 text-sm font-bold uppercase text-primary">
             Stay tuned
           </p>
