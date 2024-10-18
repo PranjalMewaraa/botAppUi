@@ -180,7 +180,7 @@ const PulseButton: React.FC = () => {
     const pulseContainer = document.getElementById("pulseContainer");
     const pulseContainerRect = pulseContainer?.getBoundingClientRect();
     if (pulseContainerRect) {
-      const centerX = (Math.random()-0.1) * pulseContainerRect.width/2;
+      const centerX = (Math.random()-0.1) * pulseContainerRect.width;
 
       // const randomNumerator = Math.random() < 0.5 ? (1/8) : (4/5); // Randomly chooses between 1 and 3
       // const centerX = (pulseContainerRect.width * randomNumerator);
