@@ -7,7 +7,7 @@ type Props = {
 export default function FirstTimeScreen({ startGame }: Props) {
   return (
     <div
-      className="flex flex-col items-center justify-center py-12 bg-cover bg-center w-full max-w-lg min-h-[--tg-viewport-height] mx-auto"
+      className="flex flex-col items-center text-white justify-center py-12 bg-cover bg-center w-full max-w-lg min-h-[--tg-viewport-height] mx-auto"
       style={{ backgroundImage: `url('/images/bg.png')` }}
     >
       <div className="flex flex-col items-center">

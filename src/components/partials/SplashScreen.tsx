@@ -47,7 +47,7 @@ export default function SplashScreen() {
     splashScreenImages[Math.floor(Math.random() * splashScreenImages.length)];
   return (
     <div
-      className="flex flex-col items-center justify-between pt-16 bg-cover bg-center w-full max-w-lg h-[--tg-viewport-height] mx-auto"
+      className="flex flex-col items-center text-white justify-between pt-16 bg-cover bg-center w-full max-w-lg h-[--tg-viewport-height] mx-auto"
       style={{ backgroundImage: `url('${randomImage}')` }}
     >
       <img src="/images/coin.png" alt="logo" className="h-48 max-w-full" />
