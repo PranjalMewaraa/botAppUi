@@ -11,7 +11,7 @@ import { uesStore } from "./store";
 import { useDebounce } from "@uidotdev/usehooks";
 import { toast } from "react-toastify";
 import useTelegramInitData from "./hooks/useTelegramInitData";
-import GameDesktop from "./GameDesktop";
+
 import router2 from "./router2";
 
 
