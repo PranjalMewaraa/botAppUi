@@ -296,7 +296,7 @@ function App() {
     };
   }, []);
 
-  if (isDisktop) return <GameDesktop/>;
+  if (isDisktop) return <div className="w-[420px] h-[814]px"><GameDesktop/></div> ;
  
   if(!user) return <SplashScreen/>
   if (showSplashScreen) return <SplashScreen />;
