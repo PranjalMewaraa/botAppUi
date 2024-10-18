@@ -64,7 +64,7 @@ export default function GameDesktop() {
     
     <div
       id="main_div"
-      className="max-w-screen-sm w-screen overflow-hidden relative"
+      className="max-w-screen-sm w-screen h-[800px] overflow-hidden relative"
     >
       <div
         className="content-wrapper overflow-y-scroll w-full h-full"
