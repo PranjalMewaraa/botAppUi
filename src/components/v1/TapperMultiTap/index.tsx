@@ -152,7 +152,7 @@ const PulseButton: React.FC = () => {
     );
 
     const newPlusOne = document.createElement("div");
-    newPlusOne.className = "absolute flex gap-1 text-2xl font-bold pointer-events-none";
+    newPlusOne.className = "absolute flex gap-1 items-center text-2xl font-bold pointer-events-none";
     
     // Create the image element
     const img = document.createElement("img");
