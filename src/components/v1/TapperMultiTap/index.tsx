@@ -60,7 +60,7 @@ const PulseButton: React.FC = () => {
       setTimeout(() => setIsTouching(false), debounceTime); // Reset touch tracking after debounce
      
       if(!user.UserTap(fingerCount)) return;
-      if (fingerCount > 0 && fingerCount < 5) {
+      if (fingerCount > 0 && fingerCount <= 5) {
           // Add score based on finger count
        const current = localStorage.getItem("ClicksCount");
       localStorage.setItem(
