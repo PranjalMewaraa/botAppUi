@@ -225,7 +225,7 @@ const PulseButton: React.FC = () => {
       dollarRef2.current,
       { rotation: 0, scale: 1 },
       {
-        rotation: 10,
+        rotation: 0,
         scale: 1.3,
         duration: 0.1,
         ease: "power1.out",

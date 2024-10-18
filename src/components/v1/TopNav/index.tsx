@@ -57,7 +57,7 @@ const TopNav = () => {
         ref={navRef}
         className="h-16 w-full p-2 flex bg-slate-800 rounded-xl gap-2"
       >
-        {['Games', 'Mini Game', 'XYZ'].map((section) => (
+        {['Games', 'Mini Games', 'XYZ'].map((section) => (
           <div
             key={section}
             data-section={section}
