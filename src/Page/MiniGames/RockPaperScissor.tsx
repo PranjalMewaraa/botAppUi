@@ -203,10 +203,12 @@ const RockPaperScissors: React.FC = () => {
   return (
     <div
       id="main_div"
-      className="w-full relative h-full text-white flex p-8 flex-col items-center "
+      className="w-full relative text-white flex p-8 flex-col items-center "
       style={{
         background: "radial-gradient(50% 50% at 50% 50%, #1B3251 0%, #161E40 100%)",
+        height: "calc(var(--vh, 1vh) * 100)"  
       }}
+      
     >
       <div className="flex w-full items-center justify-end">
         <Wallet balance={balance} />
