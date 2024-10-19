@@ -132,13 +132,14 @@ const RockPaperScissors: React.FC = () => {
       changeInBalance = calculateReward(difficulty as Difficulty);
       setGameMessage(`Congrats! You won the game and earned ${changeInBalance}`);
       user.IncreaseBalance(changeInBalance);
+      setBalance(user.balance)
     } else {
       changeInBalance = -calculateLoss(difficulty as Difficulty);
       setGameMessage(`You lost the game and lost ${-changeInBalance}`);
       user.descreaseBalance(changeInBalance)
+      setBalance(user.balance)
     }
 
-    setBalance(user.balance)
     setTimeout(() => {
       resetGame();
       setGameEnd(false);
