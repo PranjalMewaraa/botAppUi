@@ -134,7 +134,7 @@ const RockPaperScissors: React.FC = () => {
       user.IncreaseBalance(changeInBalance);
     } else {
       changeInBalance = -calculateLoss(difficulty as Difficulty);
-      setGameMessage(`You lost the game and lost ${-changeInBalance}`);
+      setGameMessage(`You lost the game and lost ${changeInBalance}`);
       user.descreaseBalance(-changeInBalance)
     }
 
