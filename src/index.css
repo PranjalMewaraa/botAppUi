@@ -20,6 +20,11 @@
     background-position: center;
     background-size: cover;
   }
+  #main_div2{
+    background: url("./assets/Images/IMG_5106.JPG");
+    background-position: center;
+    background-size: cover;
+  }  
   #recbg{
     background: url("./assets/Images/recbg.png");
     background-position: center;

@@ -43,13 +43,9 @@ export default function SplashScreen() {
   localStorage.setItem("alkine-db-val-er",encrypt(user.balance)); 
   return (
     <div
-      id="main_div"
+      id="main_div2"
       className="flex flex-col items-center text-white justify-between pt-16 bg-cover bg-center w-full max-w-lg h-[--tg-viewport-height] mx-auto"
     > 
-      <div className="flex flex-col w-full gap-2">
-        <img src={coin} alt="logo" className=" max-w-full" />
-        <p className="w-full text-center text-xl font-[ageobold] font-bold">Tap     .      Earn     .      Have Fun </p>
-      </div>
       <div className="flex flex-col items-center w-full">
         <div className="flex flex-col items-center w-full pb-6 bg-[url('/images/blur.png')] bg-cover bg-center">
           <p className="mt-3 text-sm font-bold uppercase text-primary">
