@@ -156,6 +156,9 @@ const RockPaperScissors: React.FC = () => {
     setGameMessage("");
     setBalance(user.balance)
   };
+  useEffect(()=>{
+    setBalance(user.balance)
+  },[gameEnded])
 
   const getOpponentChoice = (): string => {
     return choices[Math.floor(Math.random() * choices.length)];
