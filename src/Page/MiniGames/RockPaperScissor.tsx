@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, ReactNode } from "react";
 import { gsap } from "gsap";
 import { FaHandRock, FaHandPaper, FaHandScissors } from "react-icons/fa";
-import dollar from "../assets/dollar.png";
+import dollar from "../../assets/Images/dollar.png";
 import { useUserStore } from "@/store/user-store";
 
 // Enum for difficulty levels
