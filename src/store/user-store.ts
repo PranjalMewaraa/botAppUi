@@ -58,7 +58,7 @@ export const useUserStore = create<UserStore>((set, get) => ({
   },
   descreaseBalance: (value) => {
     set((state) => ({
-      balance: state.balance + value,
+      balance: state.balance - value,
     }));
   },
 }));
