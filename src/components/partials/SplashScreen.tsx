@@ -6,7 +6,6 @@ import InstagramIcon from "../icons/InstagramIcon";
 import TwitterIcon from "../icons/TwitterIcon";
 import { useUserStore } from "@/store/user-store";
 import encrypt from "@/utils/encrypt";
-import coin from "../../assets/Images/splashImage.png"
 const socialLinks = [
   {
     title: "Telegram",
