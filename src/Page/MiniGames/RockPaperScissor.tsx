@@ -212,7 +212,7 @@ const RockPaperScissors: React.FC = () => {
       
     >
       <div className="flex w-full items-center justify-end">
-        <Wallet balance={balance} />
+        <Wallet balance={Math.floor(balance)} />
       </div>
 
       <div className="flex flex-col mt-10 text-center text-white text-4xl font-extrabold">
@@ -234,7 +234,7 @@ const RockPaperScissors: React.FC = () => {
               />
             ))}
           </div>
-          <p className="w-4/5 mt-10">Choose a Difficulty Level to Launch the game</p>
+          <p className="w-4/5 mt-5">Choose a Difficulty Level to Launch the game</p>
         </>
       ) : (
         <>
