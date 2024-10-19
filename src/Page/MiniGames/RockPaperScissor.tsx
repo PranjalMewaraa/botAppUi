@@ -214,7 +214,7 @@ const RockPaperScissors: React.FC = () => {
         <Wallet balance={balance} />
       </div>
 
-      <div className="flex flex-col mt-10 text-white text-5xl font-extrabold">
+      <div className="flex flex-col mt-10 text-center text-white text-4xl font-extrabold">
         <span>ROCK</span>
         <span>PAPER</span>
         <span>SCISSOR</span>
