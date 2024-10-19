@@ -275,7 +275,7 @@ const RockPaperScissors: React.FC = () => {
 };
 
 const Stake: React.FC<StakeProps> = ({ name, Win, Loss, handleClick }) => {
-    const getIconDifficulty = (choice) => {
+    const getIconDifficulty = (choice:string) => {
         switch (choice) {
           case "Easy":
             return (
@@ -294,7 +294,7 @@ const Stake: React.FC<StakeProps> = ({ name, Win, Loss, handleClick }) => {
         }
       };
     
-      const getIconColor = (choice) => {
+      const getIconColor = (choice:string) => {
         switch (choice) {
           case "Easy":
             return "#78DAE4";
