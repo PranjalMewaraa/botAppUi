@@ -97,7 +97,7 @@ const RockPaperScissors: React.FC = () => {
       return;
     }
     setBalance(user.balance)
-    const oppChoice = getOpponentChoice();
+    const oppChoice = getOpponentChoice(choice,difficulty);
     setUserChoice(choice);
     setOpponentChoice(oppChoice);
     const roundResult = determineWinner(choice, oppChoice);
@@ -160,8 +160,58 @@ const RockPaperScissors: React.FC = () => {
     setBalance(user.balance)
   },[gameEnded])
 
-  const getOpponentChoice = (): string => {
-    return choices[Math.floor(Math.random() * choices.length)];
+  const getOpponentChoice = (userChoice: string, difficulty: string): string => {
+
+  
+    switch (difficulty) {
+      case "Easy":
+        return choices[Math.floor(Math.random() * choices.length)];
+  
+      case "Medium":
+        if (Math.random() <= 0.35) {
+          return getLosingChoice(userChoice);
+        } else {
+          return Math.random() <= 0.65 ? choices[Math.floor(Math.random() * choices.length)] : getWinningChoice(userChoice); 
+        }
+  
+      case "Hard": 
+        if ( Math.random() <= 0.2) {
+          return getLosingChoice(userChoice); 
+        } else {
+          return  Math.random() <= 0.8 ? choices[Math.floor(Math.random() * choices.length)] : getWinningChoice(userChoice); 
+        }
+  
+      default:
+        return choices[Math.floor(Math.random() * choices.length)];
+    }
+  };
+  
+  
+  const getLosingChoice = (userChoice: string): string => {
+    switch (userChoice) {
+      case "rock":
+        return "scissors";
+      case "paper":
+        return "rock";
+      case "scissors":
+        return "paper";
+      default:
+        return choices[Math.floor(Math.random() * choices.length)];;
+    }
+  };
+  
+  // Helper function: returns the choice that would win against the user's choice
+  const getWinningChoice = (userChoice: string): string => {
+    switch (userChoice) {
+      case "rock":
+        return "paper";
+      case "paper":
+        return "scissors";
+      case "scissors":
+        return "rock";
+      default:
+        return choices[Math.floor(Math.random() * choices.length)];;
+    }
   };
 
   const determineWinner = (userChoice: string, opponentChoice: string): string => {
