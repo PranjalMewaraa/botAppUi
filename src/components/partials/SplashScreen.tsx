@@ -43,10 +43,11 @@ export default function SplashScreen() {
   return (
     <div
       id="main_div2"
-      className="flex flex-col items-center text-white justify-between pt-16 bg-cover bg-center w-full max-w-lg h-[--tg-viewport-height] mx-auto"
+      className="relative flex flex-col items-center text-white justify-between pt-16 bg-cover bg-center w-full max-w-lg h-[--tg-viewport-height] mx-auto"
     > 
+     
       <div className="flex flex-col items-center w-full">
-        <div className="flex flex-col items-center w-full pb-6 bg-[url('/images/blur.png')] bg-cover bg-center">
+        <div className="bottom-0 flex flex-col items-center w-full pb-6 bg-[url('/images/blur.png')] bg-cover bg-center">
           <p className="mt-3 text-sm font-bold uppercase text-primary">
             Stay tuned
           </p>
