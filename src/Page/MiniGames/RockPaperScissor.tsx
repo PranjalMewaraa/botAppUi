@@ -171,14 +171,14 @@ const RockPaperScissors: React.FC = () => {
         if (Math.random() <= 0.35) {
           return getLosingChoice(userChoice);
         } else {
-          return Math.random() <= 0.65 ? choices[Math.floor(Math.random() * choices.length)] : getWinningChoice(userChoice); 
+          return Math.random() <= 0.60 ? choices[Math.floor(Math.random() * choices.length)] : getWinningChoice(userChoice); 
         }
   
       case "Hard": 
-        if ( Math.random() <= 0.2) {
+        if ( Math.random() <= 0.25) {
           return getLosingChoice(userChoice); 
         } else {
-          return  Math.random() <= 0.8 ? choices[Math.floor(Math.random() * choices.length)] : getWinningChoice(userChoice); 
+          return  Math.random() <= 0.7 ? choices[Math.floor(Math.random() * choices.length)] : getWinningChoice(userChoice); 
         }
   
       default:
