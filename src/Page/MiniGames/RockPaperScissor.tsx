@@ -252,6 +252,16 @@ const RockPaperScissors: React.FC = () => {
             ))}
           </div>
           {insuf ? <Link to={'/'} className="p-4">Exit Game</Link> : null}
+          <div className="w-full flex justify-between p-12 font-bold absolute bottom-0">
+            <p className="text-lg text-white">
+              You: <br />
+              <span>{userWins}</span>
+            </p>
+            <p className="text-lg text-white">
+              Goat: <br />
+              <span>{opponentWins}</span>
+            </p>
+          </div>
         </>
       )}
       <div
