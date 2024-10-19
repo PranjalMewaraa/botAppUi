@@ -154,6 +154,7 @@ const RockPaperScissors: React.FC = () => {
     setIsPlaying(false);
     setInsufficient(false);
     setGameMessage("");
+    setBalance(user.balance)
   };
 
   const getOpponentChoice = (): string => {
