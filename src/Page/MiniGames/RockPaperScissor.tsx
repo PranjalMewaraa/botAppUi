@@ -222,7 +222,7 @@ const RockPaperScissors: React.FC = () => {
       </div>
       {!isPlaying ? (
         <>
-          <p className="py-3 text-lg">Pick your Stake</p>
+          <p className="py-3 text-lg">Pick your Difficulty Stake</p>
           <div className="w-2/3 flex flex-col gap-4 my-4">
             {Object.values(Difficulty).map(level => (
               <Stake
@@ -234,12 +234,12 @@ const RockPaperScissors: React.FC = () => {
               />
             ))}
           </div>
-          <p className="w-4/5 mt-5">Choose a Difficulty Level to Launch the game</p>
+          
         </>
       ) : (
         <>
           <p className="py-3 text-lg mt-10">Pick your Weapon</p>
-          <div className=" flex flex-wrap gap-8 my-6">
+          <div className=" flex flex-wrap gap-8 mb-6">
             {choices.map((item) => (
               <IconChoice
                 key={item}
@@ -251,7 +251,7 @@ const RockPaperScissors: React.FC = () => {
               </IconChoice>
             ))}
           </div>
-          {insuf ? <Link to={'/'} className="p-4">Exit Game</Link> : null}
+          {insuf ? <Link to={'/'} className="py-1 px-4">Exit Game</Link> : null}
           <div className="w-full flex justify-between p-12 font-bold absolute bottom-0">
             <p className="text-lg text-white">
               You: <br />
