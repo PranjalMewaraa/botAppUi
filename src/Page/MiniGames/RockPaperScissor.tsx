@@ -196,7 +196,7 @@ const RockPaperScissors: React.FC = () => {
       case "scissors":
         return "paper";
       default:
-        return choices[Math.floor(Math.random() * choices.length)];;
+        return choices[Math.floor(Math.random() * choices.length)];
     }
   };
   
@@ -210,7 +210,7 @@ const RockPaperScissors: React.FC = () => {
       case "scissors":
         return "rock";
       default:
-        return choices[Math.floor(Math.random() * choices.length)];;
+        return choices[Math.floor(Math.random() * choices.length)];
     }
   };
 

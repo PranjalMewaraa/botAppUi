@@ -75,13 +75,17 @@ const TopNav = () => {
         {activeSection === 'Games' && (
           <div className="w-full h-fit p-2 mt-4 overflow-y-scroll">
             <div className="w-full h-fit flex flex-wrap">
+             
+            </div>
+          </div>
+        )}
+        {activeSection === 'Mini Game' && <div className="w-full h-fit p-2 mt-4 overflow-y-scroll">
+            <div className="w-full h-fit flex flex-wrap">
               <Link to={'/game/rps'}>
                 <GameCard />
               </Link>
             </div>
-          </div>
-        )}
-        {activeSection === 'Mini Game' && <div>H2I</div>}
+          </div>}
         {activeSection === 'XYZ' && <div>H3I</div>}
       </div>
     </>
