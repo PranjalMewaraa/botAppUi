@@ -1,0 +1,366 @@
+import React, { useState, useEffect, useRef, ReactNode } from "react";
+import { gsap } from "gsap";
+import { FaHandRock, FaHandPaper, FaHandScissors } from "react-icons/fa";
+import dollar from "../assets/dollar.png";
+import { useUserStore } from "@/store/user-store";
+
+// Enum for difficulty levels
+enum Difficulty {
+  Easy = "Easy",
+  Medium = "Medium",
+  Hard = "Hard",
+}
+
+// Type definitions for components' props
+interface StakeProps {
+  name: Difficulty;
+  Win: string;
+  Loss: string;
+  handleClick: (name: Difficulty) => void;
+}
+
+interface IconProps {
+  color: string;
+  children: ReactNode;
+}
+
+interface IconChoiceProps {
+  color: string;
+  pickChoice: () => void;
+  isGameEnd: boolean;
+  children: ReactNode;
+}
+
+interface WalletProps {
+  balance: number;
+}
+
+// GSAP animation hook
+const useGsapAnimation = (ref: React.RefObject<HTMLElement>, duration: number = 1) => {
+  useEffect(() => {
+    gsap.fromTo(ref.current, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration });
+  }, [ref, duration]);
+};
+
+const RockPaperScissors: React.FC = () => {
+
+  const user = useUserStore();
+  const [balance, setBalance] = useState<number>(user.balance); // Initial balance
+  const [userWins, setUserWins] = useState<number>(0);
+  const [opponentWins, setOpponentWins] = useState<number>(0);
+  const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
+  const [gameMessage, setGameMessage] = useState<string>("");
+  const [userChoice, setUserChoice] = useState<string | null>(null);
+  const [opponentChoice, setOpponentChoice] = useState<string | null>(null);
+  const choices = ["rock", "paper", "scissors"];
+  const playRef = useRef<HTMLDivElement | null>(null);
+  const messageRef = useRef<HTMLParagraphElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [insuf, setInsufficient] = useState<boolean>(false);
+  const [gameEnded, setGameEnd] = useState<boolean>(false);
+  
+  useGsapAnimation(playRef);
+
+  const calculateReward = (difficulty: Difficulty): number => {
+    switch (difficulty) {
+      case Difficulty.Easy:
+        return 150; 
+      case Difficulty.Medium:
+        return 300; 
+      case Difficulty.Hard:
+        return 1000; 
+      default:
+        return 0;
+    }
+  };
+
+  const calculateLoss = (difficulty: Difficulty): number => {
+    switch (difficulty) {
+      case Difficulty.Easy:
+        return 200; 
+      case Difficulty.Medium:
+        return 500; 
+      case Difficulty.Hard:
+        return 1200; 
+      default:
+        return 0;
+    }
+  };
+
+  const handlePlay = (choice: string) => {
+    if (!difficulty) return; // Prevent playing without selecting difficulty
+    const lossAmount = calculateLoss(difficulty);
+    if (balance < lossAmount) {
+      setGameMessage("Insufficient balance to play.");
+      setInsufficient(true);
+      return;
+    }
+    const oppChoice = getOpponentChoice();
+    setUserChoice(choice);
+    setOpponentChoice(oppChoice);
+    const roundResult = determineWinner(choice, oppChoice);
+
+    // Animate the game message
+    gsap.fromTo(
+      messageRef.current,
+      { opacity: 0, y: -10 },
+      { opacity: 1, y: 0, duration: 0.5 }
+    );
+
+    if (roundResult === "user") {
+      setUserWins(prev => prev + 1);
+      setGameMessage(`You won! You picked ${choice}, opponent picked ${oppChoice}`);
+    } else if (roundResult === "opponent") {
+      setOpponentWins(prev => prev + 1);
+      setGameMessage(`You lost! You picked ${choice}, opponent picked ${oppChoice}`);
+    } else {
+      setGameMessage(`It's a tie! Both picked ${choice}`);
+    }
+
+    // Check if someone won 3 rounds
+    if (userWins === 2 || opponentWins === 2) {
+      handleGameEnd();
+    }
+  };
+
+  const handleGameEnd = () => {
+    setGameEnd(true);
+    let changeInBalance = 0;
+    if (userWins > opponentWins) {
+      changeInBalance = calculateReward(difficulty as Difficulty);
+      setGameMessage(`Congrats! You won the game and earned ${changeInBalance}`);
+      user.IncreaseBalance(changeInBalance);
+    } else {
+      changeInBalance = -calculateLoss(difficulty as Difficulty);
+      setGameMessage(`You lost the game and lost ${-changeInBalance}`);
+      user.descreaseBalance(changeInBalance)
+    }
+
+    setBalance(user.balance)
+    setTimeout(() => {
+      resetGame();
+      setGameEnd(false);
+    }, 5000);
+  };
+
+  const resetGame = () => {
+    setUserWins(0);
+    setOpponentWins(0);
+    setUserChoice(null);
+    setOpponentChoice(null);
+    setIsPlaying(false);
+    setInsufficient(false);
+    setGameMessage("");
+  };
+
+  const getOpponentChoice = (): string => {
+    return choices[Math.floor(Math.random() * choices.length)];
+  };
+
+  const determineWinner = (userChoice: string, opponentChoice: string): string => {
+    if (userChoice === opponentChoice) return "tie";
+    if (
+      (userChoice === "rock" && opponentChoice === "scissors") ||
+      (userChoice === "scissors" && opponentChoice === "paper") ||
+      (userChoice === "paper" && opponentChoice === "rock")
+    ) {
+      return "user";
+    }
+    return "opponent";
+  };
+
+  const getIcon = (choice: string|null): ReactNode => {
+    switch (choice) {
+      case "rock":
+        return <FaHandRock size={48} color="white" />;
+      case "paper":
+        return <FaHandPaper size={48} color="white" />;
+      case "scissors":
+        return <FaHandScissors size={48} color="white" />;
+      default:
+        return null;
+    }
+  };
+
+  const setDifficultyLevel = (name: Difficulty) => {
+    setDifficulty(name);
+    setIsPlaying(true);
+  };
+
+  const getIconColor = (choice: string): string => {
+    switch (choice) {
+      case "rock":
+        return "#78DAE4";
+      case "paper":
+        return "#FEDE55";
+      case "scissors":
+        return "#F05580";
+      default:
+        return "#78DAE4";
+    }
+  };
+
+  return (
+    <div
+      id="main_div"
+      className="w-full relative h-full text-white flex p-8 flex-col items-center "
+      style={{
+        background: "radial-gradient(50% 50% at 50% 50%, #1B3251 0%, #161E40 100%)",
+      }}
+    >
+      <div className="flex w-full items-center justify-end">
+        <Wallet balance={balance} />
+      </div>
+
+      <div className="flex flex-col mt-10 text-white text-5xl font-extrabold">
+        <span>ROCK</span>
+        <span>PAPER</span>
+        <span>SCISSOR</span>
+      </div>
+      {!isPlaying ? (
+        <>
+          <p className="py-3 text-lg">Pick your Stake</p>
+          <div className="w-2/3 flex flex-col gap-4 my-4">
+            {Object.values(Difficulty).map(level => (
+              <Stake
+                key={level}
+                name={level}
+                handleClick={setDifficultyLevel}
+                Win={`${calculateReward(level)}`}
+                Loss={`${calculateLoss(level)}`}
+              />
+            ))}
+          </div>
+          <p className="w-4/5 mt-10">Choose a Difficulty Level to Launch the game</p>
+        </>
+      ) : (
+        <>
+          <p className="py-3 text-lg mt-10">Pick your Weapon</p>
+          <div className=" flex flex-wrap gap-8 my-6">
+            {choices.map((item) => (
+              <IconChoice
+                key={item}
+                color={getIconColor(item)}
+                pickChoice={() => handlePlay(item)}
+                isGameEnd={gameEnded}
+              >
+                {getIcon(item)}
+              </IconChoice>
+            ))}
+          </div>
+          {insuf ? <button className="p-4">Exit Game</button> : null}
+        </>
+      )}
+      <div
+        ref={playRef}
+        className="mt-10 flex flex-col items-center justify-center text-center"
+      >
+        <p ref={messageRef} className="text-2xl text-white">{gameMessage}</p>
+        {userChoice && (
+          <div className="flex mt-5">
+            <div className="flex flex-col items-center">
+              <span>You</span>
+              {getIcon(userChoice)}
+            </div>
+            <span className="mx-4">VS</span>
+            <div className="flex flex-col items-center">
+              <span>Opponent</span>
+              {getIcon(opponentChoice)}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const Stake: React.FC<StakeProps> = ({ name, Win, Loss, handleClick }) => {
+    const getIconDifficulty = (choice) => {
+        switch (choice) {
+          case "Easy":
+            return (
+              <FaHandRock size={40} color="white" className=" drop-shadow-xl" />
+            );
+          case "Medium":
+            return (
+              <FaHandPaper size={40} color="white" className=" drop-shadow-xl" />
+            );
+          case "Hard":
+            return (
+              <FaHandScissors size={40} color="white" className=" drop-shadow-xl" />
+            );
+          default:
+            return null;
+        }
+      };
+    
+      const getIconColor = (choice) => {
+        switch (choice) {
+          case "Easy":
+            return "#78DAE4";
+          case "Medium":
+            return "#FEDE55";
+          case "Hard":
+            return "#F05580";
+          default:
+            return "#78DAE4";
+        }
+      };
+    
+      return (
+        <div
+          className="flex my-2 justify-between items-center cursor-pointer"
+          onClick={() => handleClick(name)}
+        >
+          <Icon color={getIconColor(name)}>{getIconDifficulty(name)}</Icon>
+          <div className=" flex flex-col justify-evenly">
+            <strong>{name}</strong>
+            <p className="flex gap-2">
+              Win:
+              <span>
+                <img src={dollar} className="w-6" alt="" />
+              </span>
+              {Win}{" "}
+            </p>
+            <p className="flex gap-2">
+              Lose:
+              <span>
+                <img src={dollar} className="w-6" alt="" />
+              </span>
+              {Loss}
+            </p>
+          </div>
+        </div>
+      );
+};
+
+const Icon: React.FC<IconProps> = ({ color, children }) => (
+  <div
+    className={`flex justify-center items-center h-20 w-20 rounded-full cursor-pointer transition-transform transform hover:scale-110`}
+    style={{ backgroundColor: color }}
+  >
+    {children}
+  </div>
+);
+
+const IconChoice: React.FC<IconChoiceProps> = ({ color, pickChoice, isGameEnd, children }) => (
+    <button
+    className={`flex justify-center items-center h-20 w-20 rounded-full cursor-pointer transition-transform transform hover:scale-110`}
+    style={{ backgroundColor: color }}
+    onClick={pickChoice}
+    disabled={isGameEnd}
+  >
+    {children}
+  </button>
+);
+
+const Wallet: React.FC<WalletProps> = ({ balance }) => (
+<div className="flex gap-2 items-center pr-2 border bg-slate-700 rounded-3xl">
+      <span>
+        <img className="w-10" src={dollar} alt="" />
+      </span>
+      {balance}
+    </div>
+);
+
+export default RockPaperScissors;

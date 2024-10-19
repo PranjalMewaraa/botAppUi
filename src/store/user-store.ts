@@ -5,6 +5,8 @@ type UserStore = UserType & {
   UserTap: (value: number) => boolean;
   UserClick: () => boolean;
   incraseEnergy: (value: number) => void;
+  IncreaseBalance: (value: number) => void;
+  descreaseBalance: (value: number) => void;
 };
 
 export const useUserStore = create<UserStore>((set, get) => ({
@@ -47,6 +49,16 @@ export const useUserStore = create<UserStore>((set, get) => ({
         state.available_energy + value,
         state.max_energy
       ),
+    }));
+  },
+  IncreaseBalance: (value) => {
+    set((state) => ({
+      balance: state.balance + value,
+    }));
+  },
+  descreaseBalance: (value) => {
+    set((state) => ({
+      balance: state.balance + value,
     }));
   },
 }));

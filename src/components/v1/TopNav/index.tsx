@@ -1,6 +1,7 @@
 import { useState, useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import GameCard from '../GameCard';
+import { Link } from 'react-router-dom';
 
 const TopNav = () => {
   const [activeSection, setActiveSection] = useState('Games');
@@ -74,8 +75,9 @@ const TopNav = () => {
         {activeSection === 'Games' && (
           <div className="w-full h-fit p-2 mt-4 overflow-y-scroll">
             <div className="w-full h-fit flex flex-wrap">
-              <GameCard />
-              <GameCard />
+              <Link to={'/game/rps'}>
+                <GameCard />
+              </Link>
             </div>
           </div>
         )}

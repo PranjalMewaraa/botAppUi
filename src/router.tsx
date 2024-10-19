@@ -5,6 +5,7 @@ import Leaderboard from "./pages/Leaderboard";
 import Settings from "./pages/Settings";
 import Wallet from "./pages/Wallet";
 import GameDesktop from "./GameDesktop";
+import RockPaperScissors from "./Page/MiniGames/RockPaperScissor";
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
     path: "/wallet",
     element: <Wallet/>,
   },
+  {
+    path: "/game/rps",
+    element:<RockPaperScissors/>
+  }
 ]);
 
 export default router;
