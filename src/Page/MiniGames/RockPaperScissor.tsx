@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { FaHandRock, FaHandPaper, FaHandScissors } from "react-icons/fa";
 import dollar from "../../assets/Images/dollar.png";
 import { useUserStore } from "@/store/user-store";
+import { Link } from "react-router-dom";
 
 // Enum for difficulty levels
 enum Difficulty {
@@ -203,7 +204,7 @@ const RockPaperScissors: React.FC = () => {
   return (
     <div
       id="main_div"
-      className="w-full relative text-white flex p-8 flex-col items-center "
+      className="w-full relative text-white flex p-8 flex-col items-center overflow-hidden"
       style={{
         background: "radial-gradient(50% 50% at 50% 50%, #1B3251 0%, #161E40 100%)",
         height: "calc(var(--vh, 1vh) * 100)"  
@@ -250,14 +251,14 @@ const RockPaperScissors: React.FC = () => {
               </IconChoice>
             ))}
           </div>
-          {insuf ? <button className="p-4">Exit Game</button> : null}
+          {insuf ? <Link to={'/'} className="p-4">Exit Game</Link> : null}
         </>
       )}
       <div
         ref={playRef}
         className="mt-10 flex flex-col items-center justify-center text-center"
       >
-        <p ref={messageRef} className="text-2xl text-white">{gameMessage}</p>
+        <p ref={messageRef} className="text-2xl text-yellow-500">{gameMessage}</p>
         {userChoice && (
           <div className="flex mt-5">
             <div className="flex flex-col items-center">
