@@ -200,7 +200,7 @@ const RockPaperScissors: React.FC = () => {
     }
   };
   
-  // Helper function: returns the choice that would win against the user's choice
+  
   const getWinningChoice = (userChoice: string): string => {
     switch (userChoice) {
       case "rock":
