@@ -96,6 +96,7 @@ const RockPaperScissors: React.FC = () => {
       setInsufficient(true);
       return;
     }
+    setBalance(user.balance)
     const oppChoice = getOpponentChoice();
     setUserChoice(choice);
     setOpponentChoice(oppChoice);
