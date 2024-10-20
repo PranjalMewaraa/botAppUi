@@ -5,6 +5,7 @@ import Settings from "./pages/Settings";
 import Wallet from "./pages/Wallet";
 import GameDesktop from "./GameDesktop";
 import RockPaperScissors from "./Page/MiniGames/RockPaperScissor";
+import MineGame from "./Page/MiniGames/MineGame";
 
 
 const router2 = createBrowserRouter([
@@ -31,6 +32,10 @@ const router2 = createBrowserRouter([
   {
     path: "/game/rps",
     element:<RockPaperScissors/>
+  },
+  {
+    path: "/game/mine",
+    element:<MineGame/>
   }
 ]);
 
