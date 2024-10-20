@@ -234,7 +234,7 @@ const MineGame = () => {
 };
 
 const Wallet: React.FC<WalletProps> = ({ balance }) => (
-  <div className="flex gap-2 items-center pr-2 border bg-slate-700 rounded-3xl">
+  <div className="flex gap-2 items-center pr-2 border bg-slate-700 text-whites rounded-3xl">
         <span>
           <img className="w-10" src={dolar} alt="" />
         </span>
