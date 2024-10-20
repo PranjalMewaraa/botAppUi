@@ -132,6 +132,7 @@ const MineGame = () => {
     setGameOver(true);
     setMessage(`Game Over! You Won - ${Earning}`);
     user.IncreaseBalance(balance);
+    setBalance(10);
     setIsplaying(false);
   }
 
