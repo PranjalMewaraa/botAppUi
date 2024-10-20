@@ -105,7 +105,13 @@ const MineGame = () => {
   useEffect(() => {
     setMessage(`Current Profit - ${Math.floor(Earning)}`);
   }, [Earning]);
-
+  useEffect(()=>{
+    if (countOpen >= chances) {
+        setGrid(grid); // Pass the current grid instead of a newGrid that doesn't exist here
+        setGameOver(true);
+        setMessage(`Game Over! You Won - ${Earning}`);
+      }
+  },[countOpen])
   const revealCell = (index: number) => {
     const newGrid = [...grid];
     newGrid[index].status = "revealed";
