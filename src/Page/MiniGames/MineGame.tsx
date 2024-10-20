@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
 import { gsap } from "gsap";
 import dolar from "../../assets/Images/dollar.png"
+import { useUserStore } from "@/store/user-store";
+
 
 interface Cell {
   id: number;
   status: "hidden" | "revealed";
   type: "safe" | "mine";
 }
-
+interface WalletProps {
+  balance: number;
+}
 const MineGame = () => {
   const [balance, setBalance] = useState<number>(100);
   const [grid, setGrid] = useState<Cell[]>([]);
@@ -19,7 +23,7 @@ const MineGame = () => {
   const [countOpen, setCountOpen] = useState<number>(0);
   const [Earning, setEarning] = useState<number>(0);
   const [chances, setChances] = useState<number>(gridSize * gridSize - numMines);
-
+  const user = useUserStore()
   const profit: { [key: number]: number[] }[] = [
     {
       1: [0.24, 0.5, 0.75, 1, 1.25, 1.45, 1.65, 1.89, 2, 2.35, 2.65, 2.81, 3.21, 3.73, 4],
@@ -77,11 +81,6 @@ const MineGame = () => {
     if (gameOver) {
       return;
     }
-    if (countOpen >= chances) {
-      setGrid(grid); // Pass the current grid instead of a newGrid that doesn't exist here
-      setGameOver(true);
-      setMessage(`Game Over! You Won - ${Earning}`);
-    }
 
     const newGrid = [...grid];
     const clickedCell = newGrid[index];
@@ -90,7 +89,9 @@ const MineGame = () => {
       clickedCell.status = "revealed";
       setGrid(newGrid);
       setGameOver(true);
-      setMessage(`Game Over! You Lost - ${Math.floor(Earning)}`);
+      setMessage(`Game Over! You Lost - ${Math.floor(balance)}`);
+      user.descreaseBalance(balance);
+      setBalance(100);
       gsap.to(`#cell-${index}`, { scale: 1.2, backgroundColor: "#ff0000" }); // Animate mine explosion
     } else {
       revealCell(index);
@@ -105,11 +106,13 @@ const MineGame = () => {
   useEffect(() => {
     setMessage(`Current Profit - ${Math.floor(Earning)}`);
   }, [Earning]);
+
   useEffect(()=>{
     if (countOpen >= chances) {
         setGrid(grid); // Pass the current grid instead of a newGrid that doesn't exist here
         setGameOver(true);
         setMessage(`Game Over! You Won - ${Earning}`);
+        user.IncreaseBalance(balance)
       }
   },[countOpen])
   const revealCell = (index: number) => {
@@ -122,8 +125,15 @@ const MineGame = () => {
   const startGame = () => {
     setIsplaying(true);
     setChances(gridSize * gridSize - numMines);
+    user.descreaseBalance(balance)
     resetGame();
   };
+  const closeProfit=()=>{
+    setGameOver(true);
+    setMessage(`Game Over! You Won - ${Earning}`);
+    user.IncreaseBalance(balance);
+    setIsplaying(false);
+  }
 
   return (
     <div className="w-full flex flex-col items-center justify-center bg-gray-900 p-4"  
@@ -131,6 +141,9 @@ const MineGame = () => {
         background: "radial-gradient(50% 50% at 50% 50%, #1B3251 0%, #161E40 100%)",
         height: "calc(var(--vh, 1vh) * 100)"  
       }}>
+       <div className="flex w-full items-center justify-end">
+        <Wallet balance={Math.floor(user.balance)} />
+      </div>
       <h1 className="text-2xl text-white mb-4">Mine Game</h1>
       <h3 className="text-2xl text-white mb-4">{Math.floor(balance)}</h3>
       {isPlaying ? (
@@ -159,6 +172,13 @@ const MineGame = () => {
           <div className="mt-6 w-full flex flex-col gap-2 items-center">
             <p className="text-xl text-red-400">{message}</p>
             {!gameOver&&<p className="text-xl text-yellow-400">{`Win Multiplier - ${profit[numMines - 1][numMines][countOpen]}`}</p>}
+            {!gameOver && countOpen>0 &&
+            <button
+              onClick={closeProfit}
+              className="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500"
+            >
+              Close Profit
+            </button>}
             <button
               onClick={() => setIsplaying(false)}
               className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500"
@@ -212,5 +232,14 @@ const MineGame = () => {
     </div>
   );
 };
+
+const Wallet: React.FC<WalletProps> = ({ balance }) => (
+  <div className="flex gap-2 items-center pr-2 border bg-slate-700 rounded-3xl">
+        <span>
+          <img className="w-10" src={dolar} alt="" />
+        </span>
+        {balance}
+      </div>
+  );
 
 export default MineGame;
