@@ -199,7 +199,7 @@ const MineGame = () => {
       ) : (
         <>
           <div className="w-full flex flex-col gap-2">
-            <div className="m-4 w-full p-4 border border-white rounded-xl">
+            <div className="w-full p-4 border border-white rounded-xl">
               <ul className="w-full text-white text-center list-disc">
                 <li>Tiles have either treasure or a Mine </li>
                 <li>Every Correct tile increase multiplier </li>
@@ -246,7 +246,7 @@ const MineGame = () => {
             </button>
             <Link
             to={'/'}
-              className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-500"
+              className="px-4 py-2 w-full text-center bg-gray-600 text-white rounded-lg hover:bg-gray-500"
             >
               Back 
             </Link>
