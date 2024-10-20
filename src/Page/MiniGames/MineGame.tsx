@@ -13,7 +13,7 @@ interface WalletProps {
   balance: number;
 }
 const MineGame = () => {
-  const [balance, setBalance] = useState<number>(100);
+  const [balance, setBalance] = useState<number>(10);
   const [grid, setGrid] = useState<Cell[]>([]);
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
@@ -91,7 +91,7 @@ const MineGame = () => {
       setGameOver(true);
       setMessage(`Game Over! You Lost - ${Math.floor(balance)}`);
       user.descreaseBalance(balance);
-      setBalance(100);
+      setBalance(10);
       gsap.to(`#cell-${index}`, { scale: 1.2, backgroundColor: "#ff0000" }); // Animate mine explosion
     } else {
       revealCell(index);
@@ -206,18 +206,18 @@ const MineGame = () => {
             </div>
             <div className="m-4 flex flex-col">
               <label className="text-white mr-2">
-                Select Play Amount ( Max 500 ):
+                Select Play Amount ( Max 50 ):
               </label>
               <select
                 value={numMines}
                 onChange={(e) => setBalance(Number(e.target.value))}
                 className="bg-gray-800 text-white p-2 rounded"
               >
-                <option value={100}>100</option>
-                <option value={200}>200</option>
-                <option value={300}>300</option>
-                <option value={400}>400</option>
-                <option value={500}>500</option>
+                <option value={10}>10</option>
+                <option value={20}>20</option>
+                <option value={30}>30</option>
+                <option value={40}>40</option>
+                <option value={50}>50</option>
               </select>
             </div>
             <button
