@@ -120,7 +120,11 @@ const MineGame = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-gray-900 p-4">
+    <div className="w-full flex flex-col items-center justify-center bg-gray-900 p-4"  
+     style={{
+        background: "radial-gradient(50% 50% at 50% 50%, #1B3251 0%, #161E40 100%)",
+        height: "calc(var(--vh, 1vh) * 100)"  
+      }}>
       <h1 className="text-2xl text-white mb-4">Mine Game</h1>
       <h3 className="text-2xl text-white mb-4">{Math.floor(balance)}</h3>
       {isPlaying ? (
