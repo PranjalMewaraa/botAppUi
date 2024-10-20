@@ -145,9 +145,10 @@ const MineGame = () => {
         <Wallet balance={Math.floor(user.balance)} />
       </div>
       <h1 className="text-2xl text-white mb-4">Mine Game</h1>
-      <h3 className="text-2xl text-white mb-4">{Math.floor(balance)}</h3>
+      
       {isPlaying ? (
         <>
+          <h3 className="text-2xl text-white mb-4">{Math.floor(balance)}</h3>
           <div className="grid grid-cols-4 grid-rows-4 gap-2">
             {grid.map((cell, idx) => (
               <div
@@ -190,6 +191,15 @@ const MineGame = () => {
       ) : (
         <>
           <div className="w-full flex flex-col gap-2">
+            <div className="m-4 w-full p-4 border border-white rounded-xl">
+              <ul className="w-full text-white text-center">
+                <li>Tiles have either treasure or a Mine </li>
+                <li>Every Correct tile increase multiplier </li>
+                <li>You can close profit after atleast opening tiles equal to mines planted</li>
+                <li>if you hit mine, total profit will be lost</li>
+                <li>Try your Luck and Win Huge</li>
+              </ul>
+            </div>
             <div className="m-4 flex flex-col">
               <label className="text-white mr-2">Select Number of Mines:</label>
               <select
