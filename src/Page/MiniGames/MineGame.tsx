@@ -174,6 +174,22 @@ const MineGame = () => {
                 ))}
               </select>
             </div>
+            <div className="m-4 flex flex-col">
+              <label className="text-white mr-2">
+                Select Play Amount ( Max 500 ):
+              </label>
+              <select
+                value={numMines}
+                onChange={(e) => setBalance(Number(e.target.value))}
+                className="bg-gray-800 text-white p-2 rounded"
+              >
+                <option value={100}>100</option>
+                <option value={200}>200</option>
+                <option value={300}>300</option>
+                <option value={400}>400</option>
+                <option value={500}>500</option>
+              </select>
+            </div>
             <button
               onClick={startGame}
               className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500"

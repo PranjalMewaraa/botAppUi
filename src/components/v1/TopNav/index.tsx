@@ -84,6 +84,9 @@ const TopNav = () => {
               <Link to={'/game/rps'}>
                 <GameCard />
               </Link>
+              <Link to={'/game/mine'}>
+                <GameCard />
+              </Link>
             </div>
           </div>}
         {activeSection === 'XYZ' && <div>H3I</div>}
