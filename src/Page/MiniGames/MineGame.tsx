@@ -124,6 +124,10 @@ const MineGame = () => {
   };
 
   const startGame = () => {
+    if(user.balance < balance){
+      alert("You dont Have enough Balance");
+      return;
+    }
     setIsplaying(true);
     setChances(gridSize * gridSize - numMines);
     user.descreaseBalance(balance)
