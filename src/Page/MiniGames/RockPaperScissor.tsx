@@ -295,7 +295,7 @@ const RockPaperScissors: React.FC = () => {
       ) : (
         <>
           <p className="py-3 text-lg mt-10">Pick your Weapon</p>
-          <div className=" flex flex-wrap justify-between mb-6">
+          <div className="w-full px-4 flex flex-wrap justify-between mb-6">
             {choices.map((item) => (
               <IconChoice
                 key={item}
