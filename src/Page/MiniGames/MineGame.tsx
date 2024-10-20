@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { gsap } from "gsap";
 import dolar from "../../assets/Images/dollar.png"
 import { useUserStore } from "@/store/user-store";
+import { Link } from "react-router-dom";
 
 
 interface Cell {
@@ -239,6 +240,12 @@ const MineGame = () => {
             >
               Start Game
             </button>
+            <Link
+            to={'/'}
+              className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-500"
+            >
+              Back 
+            </Link>
           </div>
         </>
       )}
