@@ -156,9 +156,9 @@ const MineGame = () => {
               </div>
             ))}
           </div>
-          <div className="mt-6">
+          <div className="mt-6 w-full flex flex-col gap-2 items-center">
             <p className="text-xl text-red-400">{message}</p>
-            <p className="text-xl text-yellow-400">{`Win Multiplier - ${profit[numMines - 1][numMines][countOpen]}`}</p>
+            {!gameOver&&<p className="text-xl text-yellow-400">{`Win Multiplier - ${profit[numMines - 1][numMines][countOpen]}`}</p>}
             <button
               onClick={() => setIsplaying(false)}
               className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500"
