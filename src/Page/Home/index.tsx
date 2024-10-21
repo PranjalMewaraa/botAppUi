@@ -56,7 +56,7 @@ const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
       <div className="text-white w-[95%] absolute bottom-48 flex gap-2 flex-col items-center justify-center text-xl font-bold">
         <div className="flex text-xl items-center gap-4">
           <span >
-            <img src={balance} alt="" />
+            <img src={balance} alt="" className="w-12"/>
           </span>
           {Math.floor(user.balance)}
         </div>
