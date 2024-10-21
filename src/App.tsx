@@ -83,7 +83,6 @@ function App() {
   }, []);
   useEffect(() => {
     const executeEvery30sec = () => {
-      console.log("Function executed every 30 sec", new Date());
       setTimer(new Date());
     };
 
@@ -228,10 +227,7 @@ function App() {
     const intervalId = setInterval(executeEvery30sec, 3000);
     return () => clearInterval(intervalId);
   }, []);
- 
-  useEffect(()=>{
 
-  },[])
  
 
   useEffect(() => {
