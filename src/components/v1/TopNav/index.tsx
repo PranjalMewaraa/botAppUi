@@ -4,7 +4,7 @@ import GameCard from '../GameCard';
 import { Link } from 'react-router-dom';
 
 const TopNav = () => {
-  const [activeSection, setActiveSection] = useState('Games');
+  const [activeSection, setActiveSection] = useState('Mini Games');
   const contentRef = useRef<HTMLDivElement | null>(null);
   const navRef = useRef<HTMLDivElement | null>(null);
   const gsapCtx = useRef<ReturnType<typeof gsap.context> | null>(null);
