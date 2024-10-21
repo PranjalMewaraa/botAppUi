@@ -1,5 +1,5 @@
 import pic from "../../assets/Images/pic.png";
-import ico from "../../assets/Images/ico.png";
+import ico from "../../assets/Images/dollar.png";
 import boost from "../../assets/Images/boost.png";
 import PulseButton from "../../components/v1/TapperMultiTap";
 import FABMenu from "../../components/v1/Fab";
