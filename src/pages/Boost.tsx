@@ -88,8 +88,10 @@ export default function Boost() {
         });
         uesStore.setState((state) => {
           state.boosters[activeBooster].level += 1;
-          state.boosters[activeBooster].cost =
-            1000 * Math.pow(2, state.boosters[activeBooster].level - 1);
+          // state.boosters[activeBooster].cost =
+          //   1000 * Math.pow(2, state.boosters[activeBooster].level - 1);
+          state.boosters[activeBooster].cost =state.boosters[activeBooster].level + 1
+            // 1000 * Math.pow(2, state.boosters[activeBooster].level - 1);
           return state;
         });
       } else {
@@ -171,11 +173,11 @@ export default function Boost() {
                   className="object-contain w-5 h-5"
                 />
                 <span className="font-bold">
-                  {Math.pow(2,boosters.multi_tap.level-1)}K
-                  {/* {user?.earn_per_tap} */}
+                  { activeBooster !== "full_energy" && compactNumber(1000 * Math.pow(2, boosters[activeBooster].level - 1))}
                 </span>
-                <span className="text-sm">{user?.earn_per_tap} PER TAP</span>
-                {/* {user?.earn_per_tap} */}
+                <span className="text-sm">
+                  {boosters.multi_tap.level} LVL
+                </span>
               </div>
             </div>
           </button>
@@ -200,10 +202,10 @@ export default function Boost() {
                   className="object-contain w-5 h-5"
                 />
                 <span className="font-bold">
-                  {Math.pow(2,boosters.energy_limit.cost)}K
+                  {compactNumber(1000 * Math.pow(2,boosters.energy_limit.level))}
                 </span>
                 <span className="text-sm">
-                  {boosters.energy_limit.level} LVL
+                {boosters.energy_limit.level} LVL
                 </span>
               </div>
             </div>
@@ -236,8 +238,8 @@ export default function Boost() {
               className="text-lg text-white"
               amount={
                 activeBooster !== "full_energy"
-                  ? `${Math.pow(2,boosters.multi_tap.level-1)}K`.toLocaleString()
-                  : "Free"
+                ?compactNumber(1000*Math.pow(2,boosters[activeBooster].level - 1))
+                : "Free"
               }
             />{" "}
             {activeBooster !== "full_energy" && (
