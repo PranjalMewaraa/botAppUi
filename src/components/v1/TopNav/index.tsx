@@ -58,7 +58,7 @@ const TopNav = () => {
         ref={navRef}
         className="h-16 w-full p-2 flex bg-slate-800 rounded-xl gap-2"
       >
-        {['Games', 'Mini Games', 'XYZ'].map((section) => (
+        {['Mini Games', 'Games', 'Fantasy'].map((section) => (
           <div
             key={section}
             data-section={section}
@@ -73,9 +73,12 @@ const TopNav = () => {
       </div>
       <div ref={contentRef} className="h-20 w-full transition-all duration-300">
         {activeSection === 'Games' && (
-          <div className="w-full h-fit p-2 mt-4 overflow-y-scroll">
-            <div className="w-full h-fit flex flex-wrap">
+          <div className="w-full h-fit p-1 mt-4 overflow-y-scroll">
+            <div className="grid grid-cols-2 gap-4">
              
+                <GameCard name={"Coming Soon"} fee={100} />
+                <GameCard name={"Coming Soon"} fee={100} />
+            
             </div>
           </div>
         )}
@@ -90,7 +93,14 @@ const TopNav = () => {
               </div>
             </div>
           }
-        {activeSection === 'XYZ' && <div>H3I</div>}
+        {activeSection === 'Fantasy' && <div className="w-full h-fit p-1 mt-4 overflow-y-scroll">
+            <div className="grid grid-cols-2 gap-4">
+             
+                <GameCard name={"Coming Soon"} fee={100} />
+                <GameCard name={"Coming Soon"} fee={100} />
+            
+            </div>
+          </div>}
       </div>
     </>
   );
