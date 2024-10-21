@@ -148,7 +148,7 @@ const MineGame = () => {
         height: "calc(var(--vh, 1vh) * 100)"  
       }}>
        <div className="flex w-full items-center justify-between">
-        <Link to={'/'} className="text-white">🔙</Link>
+        <Link to={'/'} className="text-white text-2xl">🔙</Link>
         <Wallet balance={Math.floor(user.balance)} />
       </div>
       <h1 className="text-2xl text-white mb-4">Mine Game</h1>

@@ -268,7 +268,7 @@ const RockPaperScissors: React.FC = () => {
       
     >
       <div className="flex w-full items-center justify-between">
-        <Link to={'/'} className="text-white">🔙</Link>
+        <Link to={'/'} className="text-white text-2xl">🔙</Link>
         <Wallet balance={Math.floor(user.balance)} />
       </div>
 
