@@ -1,20 +1,23 @@
 import { useState, useEffect} from "react";
 import goat2 from "../../../assets/Images/goat2.png";
+import { Link } from "react-router-dom";
 
 interface OptionButtonsProps {
   src: string;
   style?: React.CSSProperties; 
+  path:string;
 }
 
-const OptionButtons: React.FC<OptionButtonsProps> = ({ src, style }) => {
+const OptionButtons: React.FC<OptionButtonsProps> = ({ src, style, path }) => {
   return (
-    <div
+    <Link
+      to={path}
       className="w-16 h-16 p-1 bg-slate-500 flex flex-col gap-1 rounded-lg"
       style={style}
     >
       <img className="w-full h-4/5" src={src} alt="Option" />
       <p className="text-white text-xs w-full text-center">Game</p>
-    </div>
+    </Link>
   );
 };
 
@@ -25,10 +28,9 @@ const FABMenu: React.FC = () => {
     setIsOpen((prev) => !prev);
   };
 
-  const options: string[] = [
-    "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/a/e/3/ae30e38eaa08f28edd529d465aaa495d26a2048a.png",
-    "https://motioneditz.com/wp-content/uploads/2021/10/1633490651944.webp",
-    "https://wallpapercave.com/wp/wp6591886.jpg",
+  const options: { src: string, path: string }[] = [
+    { src: "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/a/e/3/ae30e38eaa08f28edd529d465aaa495d26a2048a.png", path: "/game/mine" },
+    { src: "https://motioneditz.com/wp-content/uploads/2021/10/1633490651944.webp", path: "/game/rps" },
   ];
 
   // Cloud's Animation
@@ -46,7 +48,8 @@ const FABMenu: React.FC = () => {
         {options.map((option, index) => (
           <OptionButtons
             key={index}
-            src={option}
+            src={option.src}
+            path={option.path}
             style={{
               transition: "opacity 0.2s ease, transform 0.2s ease",
               transitionDelay: `${isOpen ? (2 - index) * 100 : index * 100}ms`,
