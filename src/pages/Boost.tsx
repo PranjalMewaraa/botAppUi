@@ -68,7 +68,8 @@ export default function Boost() {
 
   const insufficientBalance = useMemo(() => {
     if (!boosters?.[activeBooster]?.cost) return false;
-    return balance < boosters[activeBooster].cost;
+    // return balance < boosters[activeBooster].cost;
+    return balance < 1000 * Math.pow(2,boosters[activeBooster].level - 1);
   }, [balance, boosters, activeBooster]);
 
   const buyBoost = useMutation({
