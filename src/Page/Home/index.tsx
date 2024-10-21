@@ -61,7 +61,7 @@ const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
           {Math.floor(user.balance)}
         </div>
         <div className="flex items-center space-x-2 gap-4 text-sm">
-          Earn Per Tap 🤑 +{user.earn_per_tap} 
+          Earn / Tap 🤑 +{user.earn_per_tap} 
           <span className="text-sm font-bold text-white">
           ⚡{user.available_energy} / {user.max_energy}
           </span>
