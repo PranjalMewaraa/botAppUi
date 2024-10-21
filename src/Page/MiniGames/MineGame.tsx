@@ -147,7 +147,8 @@ const MineGame = () => {
         background: "radial-gradient(50% 50% at 50% 50%, #1B3251 0%, #161E40 100%)",
         height: "calc(var(--vh, 1vh) * 100)"  
       }}>
-       <div className="flex w-full items-center justify-end">
+       <div className="flex w-full items-center justify-between">
+        <Link to={'/'} className="text-white">🔙</Link>
         <Wallet balance={Math.floor(user.balance)} />
       </div>
       <h1 className="text-2xl text-white mb-4">Mine Game</h1>
