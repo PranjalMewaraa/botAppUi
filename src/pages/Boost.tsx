@@ -60,7 +60,6 @@ export default function Boost() {
   const { boosters, dailyResetEnergy, maxDailyResetEnergy } = uesStore();
   const { balance } = useUserStore();
   console.log("boost", boosters)
-  const user = useUserStore();
 
   const canUseDailyResetEnergy = useMemo(
     () => dayjs().isAfter(dailyResetEnergy.next_available_at),
