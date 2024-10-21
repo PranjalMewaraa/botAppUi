@@ -115,7 +115,7 @@ export default function Missions() {
        <TopNav active={section} handleClick={handleSectionChange}/> 
         <UserGameDetails className="mt-4"/>
         <div className="flex items-center justify-center mt-10 space-x-1 text-white">
-          <img src="/images/coins.png" alt="coins" className="object-contain w-14 h-14" />
+          <img src="/images/coin.png" alt="coins" className="object-contain w-14 h-14" />
           <span className="text-3xl text-white font-bold">{Math.floor(user.balance)?.toLocaleString()}</span>
         </div>
         {section==="Fun" && <div className="mt-10">
