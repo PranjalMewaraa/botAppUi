@@ -12,7 +12,6 @@ import UserGameDetails from "@/components/UserGameDetails";
 import MissionDrawer from "@/components/MissionDrawer";
 import TopNav from "@/components/v1/TopNavMine";
 import dollar from '../../assets/Images/TokenTycoon.png'
-import { it } from "node:test";
 
 
 // Define types for props
