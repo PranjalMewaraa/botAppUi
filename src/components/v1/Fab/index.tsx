@@ -6,9 +6,10 @@ interface OptionButtonsProps {
   src: string;
   style?: React.CSSProperties; 
   path:string;
+  name:string;
 }
 
-const OptionButtons: React.FC<OptionButtonsProps> = ({ src, style, path }) => {
+const OptionButtons: React.FC<OptionButtonsProps> = ({ src, style, path, name }) => {
   return (
     <Link
       to={path}
@@ -16,7 +17,7 @@ const OptionButtons: React.FC<OptionButtonsProps> = ({ src, style, path }) => {
       style={style}
     >
       <img className="w-full h-4/5" src={src} alt="Option" />
-      <p className="text-white text-xs w-full text-center">Game</p>
+      <p className="text-white text-xs w-full text-center">{name}</p>
     </Link>
   );
 };
@@ -28,9 +29,9 @@ const FABMenu: React.FC = () => {
     setIsOpen((prev) => !prev);
   };
 
-  const options: { src: string, path: string }[] = [
-    { src: "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/a/e/3/ae30e38eaa08f28edd529d465aaa495d26a2048a.png", path: "/game/mine" },
-    { src: "https://motioneditz.com/wp-content/uploads/2021/10/1633490651944.webp", path: "/game/rps" },
+  const options: { src: string, path: string, name:string }[] = [
+    { src: "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/a/e/3/ae30e38eaa08f28edd529d465aaa495d26a2048a.png", path: "/game/mine", name:"Mines" },
+    { src: "https://motioneditz.com/wp-content/uploads/2021/10/1633490651944.webp", path: "/game/rps",name:"RocK.." },
   ];
 
   // Cloud's Animation
@@ -49,6 +50,7 @@ const FABMenu: React.FC = () => {
           <OptionButtons
             key={index}
             src={option.src}
+            name={option.name}
             path={option.path}
             style={{
               transition: "opacity 0.2s ease, transform 0.2s ease",
