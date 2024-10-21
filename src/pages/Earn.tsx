@@ -1,5 +1,5 @@
 import { ReferralTaskType, TaskType } from "@/types/TaskType";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import TaskDrawer from "@/components/TaskDrawer";
 import ListItem from "@/components/ListItem";
 import Price from "@/components/Price";
@@ -11,23 +11,26 @@ import { cn } from "@/lib/utils";
 import { uesStore } from "@/store";
 import LoadingPage from "@/components/LoadingPage";
 import ReferralTaskDrawer from "@/components/ReferralTaskDrawer";
-
+import { useNavigate } from "react-router-dom";
+import RefferalAdditionalDrawer from "@/components/RefferalAdditionalDrawer";
+import AdditionalTaskDrawer from "@/components/AdditionalTaskDrawer";
 
 export default function Earn() {
+  const navigate = useNavigate();
   const { totalDailyRewards } = uesStore();
   const [activeTask, setActiveTask] = useState<TaskType | null>(null);
   const [isTaskDrawerOpen, setIsTaskDrawerOpen] = useState(false);
+  const [isAdditionalTaskDrawerOpen, setIsAdditionalTaskDrawerOpen] =
+    useState(false);
   const [isDailyDrawerOpen, setIsDailyDrawerOpen] = useState(false);
   const [isReferralTaskDrawerOpen, setIsReferralTaskDrawerOpen] =
+    useState(false);
+  const [isRefferalAdditionalDrawer, setIsRefferalAdditionalDrawer] =
     useState(false);
   const [activeReferralTask, setActiveReferralTask] =
     useState<ReferralTaskType | null>(null);
 
-  useEffect(()=>{
-    window.dispatchEvent(new Event("UpdateBalance"));
-  },[activeTask])  
 
-  
   const { data, isLoading } = useQuery({
     queryKey: ["tasks"],
     queryFn: () => $http.$get<TaskType[]>("/clicker/tasks"),
@@ -51,20 +54,32 @@ export default function Earn() {
   if (isLoading) return <LoadingPage />;
 
   return (
-    <div className="w-screen h-[90%] overflow-x-hidden overflow-y-scroll">
-    <div className="flex overflow-x-hidden overflow-y-scroll flex-col justify-end bg-cover flex-1 text-white">
+    <div className='w-screen h-[90%] overflow-x-hidden overflow-y-scroll'>
+    <div
+      className="flex overflow-x-hidden overflow-y-scroll flex-col justify-end bg-cover flex-1 text-white"
+    >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 ">
         <img
-          src="/images/do.png"
+          src="/images/coins.png"
           alt="coins"
-          className="object-contain w-28 h-28 mx-auto"
+          className="object-contain w-32 h-32 mx-auto"
         />
-        <h1 className="mt-4 text-2xl font-bold text-center text-white uppercase">
+        <h1 className="mt-4 text-2xl font-bold text-center uppercase">
           EARN MORE COINS
         </h1>
-        {videoTasks.length > 0 && (
+        <p className="mt-2.5 font-medium text-center p-2">Invite friends</p>
+        <ListItem
+          title={"Friends"}
+          image={"/images/friends.png"}
+          onClick={() => {
+            navigate("/friends");
+          }}
+        />
+        {videoTasks && videoTasks.length > 0 && (
           <>
-            <p className="mt-2.5 font-medium text-center">Goat Tapper YouTube</p>
+            <p className="mt-2.5 font-medium text-center">
+              Goat Tapper YouTube
+            </p>
             <div className="mt-4 space-y-2">
               {videoTasks.map((item) => (
                 <ListItem
@@ -75,15 +90,20 @@ export default function Earn() {
                   }
                   image={item.image || "/images/youtube.png"}
                   onClick={() => {
-                    setActiveTask(item);
-                    setIsTaskDrawerOpen(true);
+                    if (item.is_rewarded) {
+                      setActiveTask(item);
+                      setIsAdditionalTaskDrawerOpen(true);
+                    } else {
+                      setActiveTask(item);
+                      setIsTaskDrawerOpen(true);
+                    }
                   }}
                   action={
                     item.is_rewarded ? (
                       <CheckIcon className="w-6 h-6 text-[#27D46C]" />
                     ) : undefined
                   }
-                  disabled={item.is_rewarded}
+                  // disabled={item.is_rewarded}
                 />
               ))}
             </div>
@@ -102,7 +122,7 @@ export default function Earn() {
             onClick={() => setIsDailyDrawerOpen(true)}
           />
         </div>
-        {otherTasks.length > 0 && (
+        {otherTasks && otherTasks.length > 0 && (
           <>
             <p className="mt-8 font-medium text-center">All Tasks</p>
             <div className="mt-4 space-y-2">
@@ -114,54 +134,58 @@ export default function Earn() {
                     <Price amount={`+${item.reward_coins.toLocaleString()}`} />
                   }
                   image={item.image || "/images/bounty.png"}
-                  className={cn(
-                    "disabled:opacity-50 disabled:mix-blend-luminosity"
-                  )}
-                  disabled={item.is_rewarded}
                   action={
                     item.is_rewarded ? (
                       <CheckIcon className="w-6 h-6 text-[#27D46C]" />
                     ) : undefined
                   }
                   onClick={() => {
-                    setActiveTask(item);
-                    setIsTaskDrawerOpen(true);
+                    // setActiveTask(item)
+                    if (item?.is_rewarded) {
+                      setActiveTask(item);
+                      setIsAdditionalTaskDrawerOpen(true);
+                    } else {
+                      setActiveTask(item);
+                      setIsTaskDrawerOpen(true);
+                    }
                   }}
                 />
               ))}
             </div>
           </>
         )}
-        {referralTasks.data && referralTasks.data?.length > 0 && (
-          <>
-            <p className="mt-8 font-medium text-center">Referral Tasks</p>
-            <div className="mt-4 space-y-2">
-              {referralTasks.data.map((item) => (
-                <ListItem
-                  key={item.id}
-                  title={item.title}
-                  subtitle={
-                    <Price amount={`+${item.reward.toLocaleString()}`} />
-                  }
-                  image={"/images/bounty.png"}
-                  className={cn(
-                    "disabled:opacity-50 disabled:mix-blend-luminosity"
-                  )}
-                  disabled={!!item.is_completed}
-                  action={
-                    item.is_completed ? (
-                      <CheckIcon className="w-6 h-6 text-[#27D46C]" />
-                    ) : undefined
-                  }
-                  onClick={() => {
-                    setActiveReferralTask(item);
-                    setIsReferralTaskDrawerOpen(true);
-                  }}
-                />
-              ))}
-            </div>
-          </>
-        )}
+        {referralTasks &&
+          referralTasks.data &&
+          referralTasks.data?.length > 0 && (
+            <>
+              <p className="mt-8 font-medium text-center">Referral Tasks</p>
+              <div className="mt-4 space-y-2">
+                {referralTasks.data.map((item) => (
+                  <ListItem
+                    key={item.id}
+                    title={item.title}
+                    subtitle={
+                      <Price amount={`+${item.reward.toLocaleString()}`} />
+                    }
+                    image={"/images/bounty.png"}
+                    className={cn(
+                      "disabled:opacity-50 disabled:mix-blend-luminosity"
+                    )}
+                    disabled={!!item.is_completed}
+                    action={
+                      item.is_completed ? (
+                        <CheckIcon className="w-6 h-6 text-[#27D46C]" />
+                      ) : undefined
+                    }
+                    onClick={() => {
+                      setActiveReferralTask(item);
+                      setIsReferralTaskDrawerOpen(true);
+                    }}
+                  />
+                ))}
+              </div>
+            </>
+          )}
       </div>
       <DailyDrawer
         open={isDailyDrawerOpen}
@@ -172,10 +196,25 @@ export default function Earn() {
         open={isTaskDrawerOpen}
         onOpenChange={setIsTaskDrawerOpen}
       />
+      <AdditionalTaskDrawer
+        task={activeTask}
+        open={isAdditionalTaskDrawerOpen}
+        onOpenChange={setIsAdditionalTaskDrawerOpen}
+      />
+      <TaskDrawer
+        task={activeTask}
+        open={isTaskDrawerOpen}
+        onOpenChange={setIsTaskDrawerOpen}
+      />
       <ReferralTaskDrawer
         task={activeReferralTask}
         open={isReferralTaskDrawerOpen}
         onOpenChange={setIsReferralTaskDrawerOpen}
+      />
+      <RefferalAdditionalDrawer
+        task={activeReferralTask}
+        open={isRefferalAdditionalDrawer}
+        onOpenChange={setIsRefferalAdditionalDrawer}
       />
     </div>
     </div>
