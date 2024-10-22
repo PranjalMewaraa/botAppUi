@@ -148,7 +148,7 @@ const MineGame = () => {
   return (
     <div id="main_div" className="w-full flex flex-col items-center justify-center bg-gray-900 p-4"  
      style={{
-        background: "radial-gradient(50% 50% at 50% 50%, #1B3251 0%, #161E40 100%)",
+        // background: "radial-gradient(50% 50% at 50% 50%, #1B3251 0%, #161E40 100%)",
         height: "calc(var(--vh, 1vh) * 100)"  
       }}>
        <div className="flex w-full items-center justify-between">
