@@ -39,7 +39,7 @@ export default function Settings() {
         
         <h1 className="text-2xl mb-4 font-bold text-center uppercase text-white flex justify-between">
          <span>Settings</span>
-         <span className="text-white"><Link to={"/"} className="text-white"><FaArrowLeft onClick={()=>setActiveIndex(6)}/></Link> </span>
+         <span className="text-white"><Link to={"/"} className="text-white"><FaArrowLeft size={24} onClick={()=>setActiveIndex(6)}/></Link> </span>
         </h1>
        
 

@@ -152,7 +152,7 @@ const MineGame = () => {
         height: "calc(var(--vh, 1vh) * 100)"  
       }}>
        <div className="flex w-full items-center justify-between">
-        <Link to={'/'}><FaArrowLeft onClick={()=>setActiveIndex(1)}/></Link>
+        <Link to={'/'}><FaArrowLeft size={24} onClick={()=>setActiveIndex(1)}/></Link>
         <Wallet balance={Math.floor(user.balance)} />
       </div>
       <h1 className="text-2xl text-white mb-4">Mine Game</h1>
