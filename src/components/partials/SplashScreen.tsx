@@ -48,6 +48,9 @@ export default function SplashScreen() {
      
       <div className="flex flex-col items-center w-full absolute bottom-0">
         <div className="bottom-0 flex flex-col items-center w-full pb-6 bg-[url('/images/blur.png')] bg-cover bg-center">
+          <h1 className="text-6xl font-medium text-center uppercase text-shadow">
+          Goat Tapper
+          </h1>
           <p className="mt-3 text-sm font-bold uppercase text-primary">
             Stay tuned
           </p>
