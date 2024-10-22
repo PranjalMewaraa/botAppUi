@@ -60,7 +60,7 @@ export default function Leaderboard() {
     <div id="main_div" className="w-screen h-screen bg-slate-950 overflow-hidden">
       
     <div className="flex flex-col justify-end bg-cover w-full h-full text-white" >
-      <Link to={"/"} className="p-4"><FaArrowLeft size={24} onClick={()=>setActiveIndex(5)}/></Link>
+      <Link to={"/"} className="p-4"><FaArrowLeft size={24} color="white" className="text-white" onClick={()=>setActiveIndex(5)}/></Link>
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <div className="">
           <Swiper

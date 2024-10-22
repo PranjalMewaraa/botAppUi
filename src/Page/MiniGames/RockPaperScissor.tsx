@@ -273,7 +273,7 @@ const RockPaperScissors: React.FC = () => {
       
     >
       <div className="flex w-full items-center justify-between">
-      <Link to={'/'}><FaArrowLeft size={24} onClick={()=>setActiveIndex(1)}/></Link>
+      <Link to={'/'} className="text-white"><FaArrowLeft size={24} color="white" onClick={()=>setActiveIndex(1)}/></Link>
         <Wallet balance={Math.floor(user.balance)} />
       </div>
 
