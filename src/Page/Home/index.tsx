@@ -9,19 +9,16 @@ import set from "../../assets/Images/set.png"
 import balance from "../../assets/Images/balance.png"
 import decrypt from "@/utils/decrypt";
 import { useEffect, useState } from "react";
+import { useNavBar } from "@/utils/useNavBar";
 
 
 
-interface HomeProps {    
-    activeIndex:number;
-    setActiveIndex: (index: number) => void;
-}
 
 
 
-const Home: React.FC<HomeProps> = ({activeIndex,setActiveIndex}) => {
+const Home = () => {
   
-  
+  const { activeIndex, setActiveIndex } = useNavBar();
   const ButtonClick=(index:number)=>{
        console.log('x',activeIndex)
         setActiveIndex(index);

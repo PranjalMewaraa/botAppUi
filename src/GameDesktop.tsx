@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import BottomNavbar from "./components/v1/BottomNavBar"
 import Home from "./Page/Home";
 import Games from "./Page/Games";
@@ -12,10 +12,11 @@ import { PopupMessageType } from "@/types/PopupMessageType";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import PopupMessageDialog from "./components/PopupMessageDialog";
+import { useNavBar } from "./utils/useNavBar";
 
 
 export default function GameDesktop() {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const { activeIndex, setActiveIndex } = useNavBar();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -69,7 +70,7 @@ export default function GameDesktop() {
       <div
         className="content-wrapper overflow-y-scroll w-full h-full"
       >
-        {activeIndex === 0 && <Home activeIndex={activeIndex} setActiveIndex={setActiveIndex} />}
+        {activeIndex === 0 && <Home/>}
         {activeIndex === 1 && <Games />}
         {activeIndex === 2 && <Airdrop />}
         {activeIndex === 3 && <Mine />}

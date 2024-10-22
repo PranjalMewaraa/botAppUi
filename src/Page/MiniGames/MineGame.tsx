@@ -3,7 +3,8 @@ import { gsap } from "gsap";
 import dolar from "../../assets/Images/dollar.png"
 import { useUserStore } from "@/store/user-store";
 import { Link } from "react-router-dom";
-
+import { FaBackward } from "react-icons/fa";
+import { useNavBar } from "@/utils/useNavBar";
 
 interface Cell {
   id: number;
@@ -14,6 +15,8 @@ interface WalletProps {
   balance: number;
 }
 const MineGame = () => {
+  const { activeIndex, setActiveIndex } = useNavBar();
+  console.log(activeIndex)
   const [balance, setBalance] = useState<number>(10);
   const [grid, setGrid] = useState<Cell[]>([]);
   const [gameOver, setGameOver] = useState<boolean>(false);
@@ -148,7 +151,7 @@ const MineGame = () => {
         height: "calc(var(--vh, 1vh) * 100)"  
       }}>
        <div className="flex w-full items-center justify-between">
-        <Link to={'/'} className="text-white text-2xl">🔙</Link>
+        <FaBackward onClick={()=>setActiveIndex(1)}/>
         <Wallet balance={Math.floor(user.balance)} />
       </div>
       <h1 className="text-2xl text-white mb-4">Mine Game</h1>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef, ReactNode } from "react";
 import { gsap } from "gsap";
-import { FaHandRock, FaHandPaper, FaHandScissors } from "react-icons/fa";
+import { FaHandRock, FaHandPaper, FaHandScissors, FaBackward } from "react-icons/fa";
 import dollar from "../../assets/Images/dollar.png";
 import { useUserStore } from "@/store/user-store";
 import { Link } from "react-router-dom";
+
+import { useNavBar } from "@/utils/useNavBar";
 
 // Enum for difficulty levels
 enum Difficulty {
@@ -59,6 +61,8 @@ const RockPaperScissors: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [insuf, setInsufficient] = useState<boolean>(false);
   const [gameEnded, setGameEnd] = useState<boolean>(false);
+  const { activeIndex, setActiveIndex } = useNavBar();
+  console.log(activeIndex)
   
   useGsapAnimation(playRef);
 
@@ -269,7 +273,7 @@ const RockPaperScissors: React.FC = () => {
       
     >
       <div className="flex w-full items-center justify-between">
-        <Link to={'/'} className="text-white text-2xl">🔙</Link>
+        <FaBackward onClick={()=>setActiveIndex(1)}/>
         <Wallet balance={Math.floor(user.balance)} />
       </div>
 

@@ -7,9 +7,9 @@ import { useCopyToClipboard } from "@uidotdev/usehooks";
 import { CopyIcon, Loader2Icon, Wallet2Icon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "react-toastify";
-
 import LIstLInk from "@/components/LIstLInk";
-import { Link } from "react-router-dom";
+import { useNavBar } from "@/utils/useNavBar";
+import { FaBackward } from "react-icons/fa";
 
 export default function Settings() {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -17,7 +17,7 @@ export default function Settings() {
   const [, copy] = useCopyToClipboard();
   const tonAddress = useTonAddress();
   const { connected: isConnected } = useTonConnect();
-
+  const { activeIndex, setActiveIndex } = useNavBar();
   
   window.Telegram.WebApp.BackButton.show();
   const tonPay = useTonPay({
@@ -30,7 +30,7 @@ export default function Settings() {
   //     $http.post("/clicker/set-ton-wallet", { ton_wallet: tonAddress });
   //   }
   // }, [tonAddress]);
-
+  console.log(activeIndex)
   return (
     <div id="main_div" className="min-h-screen flex flex-col justify-end bg-cover flex-1" >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24">
@@ -38,7 +38,7 @@ export default function Settings() {
         
         <h1 className="text-2xl mb-4 font-bold text-center uppercase text-white flex justify-between">
          <span>Settings</span>
-         <span className="text-white"><Link to={'/'} className="text-white">X</Link> </span>
+         <span className="text-white"><div className="text-white" onClick={()=>setActiveIndex(6)}><FaBackward/></div> </span>
         </h1>
        
 
