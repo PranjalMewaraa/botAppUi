@@ -232,7 +232,7 @@ const MineGame = () => {
                 Select Play Amount ( Max 50 ):
               </label>
               <select
-                value={numMines}
+                value={balance}
                 onChange={(e) => setBalance(Number(e.target.value))}
                 className="bg-gray-800 text-white p-2 rounded"
               >
