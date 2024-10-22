@@ -15,7 +15,7 @@ const TopNav = () => {
       gsapCtx.current?.revert(); // Clean up animations on unmount
     };
   }, []);
-
+  const src ='https://media.wired.com/photos/62855b1bb6cfd378a30c474a/master/pass/Build-Game-Watch-It-Die-Hyper-Scape-Games.jpg'
   const handleSectionClick = (section: string) => {
     if (contentRef.current) {
       const tl = gsap.timeline();
@@ -76,8 +76,8 @@ const TopNav = () => {
           <div className="w-full h-fit p-1 mt-4 overflow-y-scroll">
             <div className="grid grid-cols-2 gap-4">
              
-                <GameCard name={"Coming Soon"} fee={100} />
-                <GameCard name={"Coming Soon"} fee={100} />
+                <GameCard name={"Coming Soon"} fee={100} src={src}/>
+                <GameCard name={"Coming Soon"} fee={100} src={src}/>
             
             </div>
           </div>
@@ -85,10 +85,10 @@ const TopNav = () => {
         {activeSection === 'Mini Games' && <div className="w-full h-fit p-1 mt-4 overflow-y-scroll">
               <div className="grid grid-cols-2 gap-4">
                 <Link to={'/game/rps'}>
-                  <GameCard name={"Rock Paper Scissor"} fee={100} />
+                  <GameCard name={"Rock Paper Scissor"} fee={100} src='/images/03.jpg'/>
                 </Link>
                 <Link to={'/game/mine'}>
-                  <GameCard name={"Mine Escape"} fee={10} />
+                  <GameCard name={"Mine Escape"} fee={10} src='/images/02.jpg'/>
                 </Link>
               </div>
             </div>
@@ -96,8 +96,8 @@ const TopNav = () => {
         {activeSection === 'Fantasy' && <div className="w-full h-fit p-1 mt-4 overflow-y-scroll">
             <div className="grid grid-cols-2 gap-4">
              
-                <GameCard name={"Coming Soon"} fee={100} />
-                <GameCard name={"Coming Soon"} fee={100} />
+                <GameCard name={"Coming Soon"} fee={100} src={src}/>
+                <GameCard name={"Coming Soon"} fee={100} src={src}/>
             
             </div>
           </div>}
