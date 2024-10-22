@@ -184,7 +184,7 @@ const MineGame = () => {
           <div className="mt-6 w-full flex flex-col gap-2 items-center">
             <p className="text-xl text-red-400">{message}</p>
             {!gameOver&&<p className="text-xl text-yellow-400">{`Win Multiplier - ${profit[numMines - 1][numMines][countOpen]}`}</p>}
-            <div className="flex justify-between">
+            <div className="flex justify-between w-full">
             {!gameOver && countOpen>0 &&
             <button
               onClick={closeProfit}
