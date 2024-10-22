@@ -301,6 +301,7 @@ const RockPaperScissors: React.FC = () => {
       ) : (
         <>
           <p className="py-3 text-lg mt-10">Pick your Weapon</p>
+          <p className="py-3 text-base mt-2">Win 3 Rounds to Victory</p>
           <div className="w-full px-4 flex flex-wrap justify-between mb-6">
             {choices.map((item) => (
               <IconChoice
