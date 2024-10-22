@@ -2,7 +2,7 @@ import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { EffectFade, Navigation } from "swiper/modules";
 import SwapPrevIcon from "@/components/icons/SwapPrevIcon";
 import SwapNextIcon from "@/components/icons/SwapNextIcon";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef} from "react";
 import { useUserStore } from "@/store/user-store";
 import { compactNumber } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
@@ -11,13 +11,15 @@ import { UserType } from "@/types/UserType";
 import levelConfig from "@/config/level-config";
 import { uesStore } from "@/store";
 import { Loader2Icon } from "lucide-react";
+import { Link } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
+import { useNavBar } from "@/utils/useNavBar";
 
 export default function Leaderboard() {
   const { balance, level, ...user } = useUserStore();
-  const [activeIndex, setActiveIndex] = useState(0);
   const store = uesStore();
   const swiperRef = useRef<SwiperRef | null>(null);
-
+  const { activeIndex, setActiveIndex } = useNavBar();
   console.log(store.levels)
   const leaderboard = useQuery({
     queryKey: ["leaderboard", store.levels?.[activeIndex]?.id],
@@ -39,7 +41,7 @@ export default function Leaderboard() {
     staleTime: Infinity,
     enabled: !!store.levels?.[activeIndex]?.id,
   });
-  
+
 
   useEffect(() => {
     if (level?.level) {
@@ -53,9 +55,12 @@ export default function Leaderboard() {
   window.Telegram.WebApp.BackButton.show();
   console.log(leaderboard.data)
   console.log(user.telegram_id)
+  
   return (
     <div id="main_div" className="w-screen h-screen bg-slate-950 overflow-hidden">
+      
     <div className="flex flex-col justify-end bg-cover w-full h-full text-white" >
+      <Link to={"/"}><FaArrowLeft onClick={()=>setActiveIndex(6)}/></Link>
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <div className="">
           <Swiper

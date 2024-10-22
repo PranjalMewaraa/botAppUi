@@ -9,7 +9,8 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import LIstLInk from "@/components/LIstLInk";
 import { useNavBar } from "@/utils/useNavBar";
-import { FaBackward } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Settings() {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -38,7 +39,7 @@ export default function Settings() {
         
         <h1 className="text-2xl mb-4 font-bold text-center uppercase text-white flex justify-between">
          <span>Settings</span>
-         <span className="text-white"><div className="text-white" onClick={()=>setActiveIndex(6)}><FaBackward/></div> </span>
+         <span className="text-white"><Link to={"/"} className="text-white"><FaArrowLeft onClick={()=>setActiveIndex(6)}/></Link> </span>
         </h1>
        
 

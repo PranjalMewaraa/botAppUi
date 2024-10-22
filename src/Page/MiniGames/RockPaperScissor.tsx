@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, ReactNode } from "react";
 import { gsap } from "gsap";
-import { FaHandRock, FaHandPaper, FaHandScissors, FaBackward } from "react-icons/fa";
+import { FaHandRock, FaHandPaper, FaHandScissors, FaArrowLeft } from "react-icons/fa";
 import dollar from "../../assets/Images/dollar.png";
 import { useUserStore } from "@/store/user-store";
 import { Link } from "react-router-dom";
@@ -273,7 +273,7 @@ const RockPaperScissors: React.FC = () => {
       
     >
       <div className="flex w-full items-center justify-between">
-        <FaBackward onClick={()=>setActiveIndex(1)}/>
+      <Link to={'/'}><FaArrowLeft onClick={()=>setActiveIndex(1)}/></Link>
         <Wallet balance={Math.floor(user.balance)} />
       </div>
 
