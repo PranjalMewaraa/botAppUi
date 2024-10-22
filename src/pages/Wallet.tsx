@@ -31,7 +31,7 @@ export default function Wallet() {
   //     $http.post("/clicker/set-ton-wallet", { ton_wallet: tonAddress });
   //   }
   // }, [tonAddress]);
-
+  window.Telegram.WebApp.BackButton.show();
   return (
     <div id="main_div" className="min-h-screen flex flex-col justify-end bg-cover flex-1" >
       <div className=" relative flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12">

@@ -19,7 +19,7 @@ export default function Settings() {
   const { connected: isConnected } = useTonConnect();
 
   
-
+  window.Telegram.WebApp.BackButton.show();
   const tonPay = useTonPay({
     onSuccess: () => toast.success("Your transaction has been completed"),
     onError: () => toast.error("Request rejected"),

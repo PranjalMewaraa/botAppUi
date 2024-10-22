@@ -50,6 +50,7 @@ export default function Leaderboard() {
       }
     }
   }, []);
+  window.Telegram.WebApp.BackButton.show();
   console.log(leaderboard.data)
   console.log(user.telegram_id)
   return (

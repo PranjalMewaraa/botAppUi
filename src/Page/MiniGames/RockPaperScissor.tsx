@@ -257,6 +257,7 @@ const RockPaperScissors: React.FC = () => {
     }
   };
 
+  window.Telegram.WebApp.BackButton.show();
   return (
     <div
       id="main_div"

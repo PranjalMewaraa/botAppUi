@@ -140,7 +140,7 @@ const MineGame = () => {
     setBalance(10);
     setIsplaying(false);
   }
-
+  window.Telegram.WebApp.BackButton.show();
   return (
     <div className="w-full flex flex-col items-center justify-center bg-gray-900 p-4"  
      style={{
