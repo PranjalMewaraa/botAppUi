@@ -30,8 +30,8 @@ const FABMenu: React.FC = () => {
   };
 
   const options: { src: string, path: string, name:string }[] = [
-    { src: "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/a/e/3/ae30e38eaa08f28edd529d465aaa495d26a2048a.png", path: "/game/mine", name:"Mines" },
-    { src: "https://motioneditz.com/wp-content/uploads/2021/10/1633490651944.webp", path: "/game/rps",name:"RocK.." },
+    { src: "/images/02.jpg", path: "/game/mine", name:"Mines" },
+    { src: "/images/03.jpg", path: "/game/rps",name:"RocK.." },
   ];
 
   // Cloud's Animation
