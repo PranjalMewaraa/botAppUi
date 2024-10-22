@@ -3,8 +3,9 @@ import { gsap } from "gsap";
 import dolar from "../../assets/Images/dollar.png"
 import { useUserStore } from "@/store/user-store";
 import { Link } from "react-router-dom";
-import { FaBackward } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
 import { useNavBar } from "@/utils/useNavBar";
+
 
 interface Cell {
   id: number;
@@ -151,7 +152,7 @@ const MineGame = () => {
         height: "calc(var(--vh, 1vh) * 100)"  
       }}>
        <div className="flex w-full items-center justify-between">
-        <FaBackward onClick={()=>setActiveIndex(1)}/>
+        <Link to={'/'}><FaArrowLeft onClick={()=>setActiveIndex(1)}/></Link>
         <Wallet balance={Math.floor(user.balance)} />
       </div>
       <h1 className="text-2xl text-white mb-4">Mine Game</h1>
