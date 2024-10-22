@@ -267,7 +267,7 @@ const RockPaperScissors: React.FC = () => {
       id="main_div"
       className="w-full relative text-white flex p-8 flex-col items-center overflow-hidden"
       style={{
-        background: "radial-gradient(50% 50% at 50% 50%, #1B3251 0%, #161E40 100%)",
+        //background: "radial-gradient(50% 50% at 50% 50%, #1B3251 0%, #161E40 100%)",
         height: "calc(var(--vh, 1vh) * 100)"  
       }}
       
