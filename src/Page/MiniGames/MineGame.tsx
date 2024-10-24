@@ -113,6 +113,7 @@ const MineGame = () => {
       setBalance(10);
       gsap.to(`#cell-${index}`, { scale: 1.2, backgroundColor: "#ff0000" }); // Animate mine explosion
     } else {
+      if(clickedCell.status==='revealed') return;
       revealCell(index);
       setCountOpen(countOpen + 1);
       const currentProfit = profit[numMines - 1][numMines][countOpen];
