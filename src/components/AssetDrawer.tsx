@@ -3,6 +3,7 @@
 import Drawer, { DrawerProps } from "./ui/drawer";
 import Price from "./Price";
 import { useState } from "react";
+import { compactNumber } from "@/lib/utils";
 
 export default function MissionDrawer({
   ...props
@@ -33,7 +34,7 @@ export default function MissionDrawer({
        <div className="flex items-center justify-center mx-auto mt-6 space-x-1 text-white">
         
         <span className="font-bold w-24">
-          {`$ ${cost*units}`}
+          {`$ ${compactNumber( cost*units)}`}
         </span>
       </div>
       </div>
