@@ -2,11 +2,15 @@
 
 import Drawer, { DrawerProps } from "./ui/drawer";
 import Price from "./Price";
+import { useState } from "react";
 
 export default function MissionDrawer({
   ...props
 }: DrawerProps) {
  
+  const [units,setUnits]=useState<number>(1);
+
+  
   return (
     <Drawer {...props}>
       <img
@@ -15,6 +19,9 @@ export default function MissionDrawer({
         className="object-contain h-32 mx-auto"
       />
       <h2 className="mt-6 text-2xl font-medium text-center">{"Property Info"}</h2>
+      <div className="p-2 w-full h-fit">
+          <QuantityAdjust quantity={units} setQuantity={setUnits}/>
+      </div>
       <div className="w-full flex justify-between p-2">
        <div className="flex gap-4 items-center mx-auto mt-6 w-fit">
         <p className="text-xs text-center">Bonus / hour</p>
@@ -46,4 +53,25 @@ export default function MissionDrawer({
       <button className="w-full py-2 bg-yellow-500">Purchase Now</button>
     </Drawer>
   );
+}
+interface QuantityAdjustProps {
+  quantity: number;
+  setQuantity:(num:number)=>void;
+}
+const QuantityAdjust: React.FC<QuantityAdjustProps> = ({quantity,setQuantity})=>{
+
+  const handleAdd = ()=>{
+    setQuantity(quantity+1);
+  }
+  
+  const handleMinus = ()=>{
+    setQuantity(quantity-1);
+  }
+  return (
+    <div className="flex gap-4">
+      <button className="w-36 h-36 rounded-md bg-yellow-500" onClick={handleMinus}>-</button>
+      <div className="w-36 h-36">{quantity}</div>
+      <button className="w-36 h-36 rounded-md bg-yellow-500" onClick={handleAdd}>+</button>
+    </div>
+  )
 }
