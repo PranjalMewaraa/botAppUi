@@ -116,7 +116,7 @@ export default function Missions() {
   },[activeType])  
 
   const navigation = useNavigate()
-;  useEffect(()=>{
+  useEffect(()=>{
     if(section==='NFT' || section === "Asset Tokenize"){
       navigation('/soon');
    }

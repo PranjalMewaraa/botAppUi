@@ -1,7 +1,7 @@
-import { useState, useRef, useLayoutEffect, useEffect } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import GameCard from '../GameCard';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const TopNav = () => {
   const [activeSection, setActiveSection] = useState('Mini Games');
@@ -63,14 +63,6 @@ const TopNav = () => {
       });
     }
   };
-
-  const navigation=useNavigate()
-  
-  useEffect(()=>{
-    if(activeSection==='Games' || activeSection === "Fantasy"){
-      navigation('/soon');
-   }
-  },[activeSection])
 
   return (
     <>
