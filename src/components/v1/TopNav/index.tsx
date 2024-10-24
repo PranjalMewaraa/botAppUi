@@ -8,41 +8,53 @@ const TopNav = () => {
   const contentRef = useRef<HTMLDivElement | null>(null);
   const navRef = useRef<HTMLDivElement | null>(null);
   const gsapCtx = useRef<ReturnType<typeof gsap.context> | null>(null);
+  const animationTimeline = useRef<gsap.core.Timeline | null>(null); // Reusing timeline
+  const src ='https://media.wired.com/photos/62855b1bb6cfd378a30c474a/master/pass/Build-Game-Watch-It-Die-Hyper-Scape-Games.jpg';
 
   useLayoutEffect(() => {
     gsapCtx.current = gsap.context(() => {}, contentRef);
+    
+    // Initialize the timeline
+    animationTimeline.current = gsap.timeline({ paused: true });
+
     return () => {
-      gsapCtx.current?.revert(); // Clean up animations on unmount
+      gsapCtx.current?.revert();
+      animationTimeline.current?.kill(); // Clean up timeline on unmount
     };
   }, []);
-  const src ='https://media.wired.com/photos/62855b1bb6cfd378a30c474a/master/pass/Build-Game-Watch-It-Die-Hyper-Scape-Games.jpg'
-  const handleSectionClick = (section: string) => {
-    if (contentRef.current) {
-      const tl = gsap.timeline();
 
-      tl.to(contentRef.current, {
-        x: '-100%',
-        opacity: 0,
-        duration: 0.4,
-        ease: 'power2.out',
-        onComplete: () => {
-          setActiveSection(section);
-        },
-      })
-        .set(contentRef.current, { x: '100%', opacity: 0 }) // Reset to start position
+  const handleSectionClick = (section: string) => {
+    if (contentRef.current && animationTimeline.current) {
+      // Pause current animation if running
+      animationTimeline.current.clear();
+      
+      animationTimeline.current
+        .to(contentRef.current, {
+          x: '-100%',
+          autoAlpha: 0, // Optimized opacity/visibility handling
+          duration: 0.3,
+          ease: 'power2.out',
+          onComplete: () => setActiveSection(section), // Update content once animation is out
+        })
+        .set(contentRef.current, { x: '100%', autoAlpha: 0 }) // Reset to the start position
         .to(contentRef.current, {
           x: '0%',
-          opacity: 1,
+          autoAlpha: 1,
           duration: 0.4,
           ease: 'power2.inOut',
-        });
+        })
+        .play(); // Play the animation
     }
 
     // Animate the active section background
     if (navRef.current) {
-      gsap.to(navRef.current.querySelectorAll('.nav-item'), {
+      const navItems = navRef.current.querySelectorAll('.nav-item');
+
+      // Batch animation to prevent multiple reflows
+      gsap.to(navItems, {
         backgroundColor: '#1f2937', // Default inactive background
         duration: 0.4,
+        overwrite: 'auto', // Prevent overwriting previous animations
       });
 
       gsap.to(navRef.current.querySelector(`.nav-item[data-section="${section}"]`), {
@@ -71,36 +83,36 @@ const TopNav = () => {
           </div>
         ))}
       </div>
+
       <div ref={contentRef} className="h-20 w-full transition-all duration-300">
         {activeSection === 'Games' && (
           <div className="w-full h-fit p-1 mt-4 overflow-y-scroll">
             <div className="grid grid-cols-2 gap-4">
-             
-                <GameCard name={"Coming Soon"} fee={100} src={src}/>
-                <GameCard name={"Coming Soon"} fee={100} src={src}/>
-            
+              <GameCard name="Coming Soon" fee={100} src={src} />
+              <GameCard name="Coming Soon" fee={100} src={src} />
             </div>
           </div>
         )}
-        {activeSection === 'Mini Games' && <div className="w-full h-fit p-1 mt-4 overflow-y-scroll">
-              <div className="grid grid-cols-2 gap-4">
-                <Link to={'/game/rps'}>
-                  <GameCard name={"Rock Paper Scissor"} fee={100} src='/images/03.jpg'/>
-                </Link>
-                <Link to={'/game/mine'}>
-                  <GameCard name={"Mine Escape"} fee={10} src='/images/02.jpg'/>
-                </Link>
-              </div>
-            </div>
-          }
-        {activeSection === 'Fantasy' && <div className="w-full h-fit p-1 mt-4 overflow-y-scroll">
+        {activeSection === 'Mini Games' && (
+          <div className="w-full h-fit p-1 mt-4 overflow-y-scroll">
             <div className="grid grid-cols-2 gap-4">
-             
-                <GameCard name={"Coming Soon"} fee={100} src={src}/>
-                <GameCard name={"Coming Soon"} fee={100} src={src}/>
-            
+              <Link to="/game/rps">
+                <GameCard name="Rock Paper Scissor" fee={100} src="/images/03.jpg" />
+              </Link>
+              <Link to="/game/mine">
+                <GameCard name="Mine Escape" fee={10} src="/images/02.jpg" />
+              </Link>
             </div>
-          </div>}
+          </div>
+        )}
+        {activeSection === 'Fantasy' && (
+          <div className="w-full h-fit p-1 mt-4 overflow-y-scroll">
+            <div className="grid grid-cols-2 gap-4">
+              <GameCard name="Coming Soon" fee={100} src={src} />
+              <GameCard name="Coming Soon" fee={100} src={src} />
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
