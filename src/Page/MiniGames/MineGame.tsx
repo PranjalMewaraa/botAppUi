@@ -58,7 +58,7 @@ const MineGame = () => {
       $http.post('/clicker/transaction',{
         amount:amount,
         type:type,
-        remarks:remarks
+        remark:remarks
       }).then((res)=>{
         console.log(res.data)
       })
