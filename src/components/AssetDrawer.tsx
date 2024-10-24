@@ -69,9 +69,9 @@ const QuantityAdjust: React.FC<QuantityAdjustProps> = ({quantity,setQuantity})=>
   }
   return (
     <div className="flex gap-4">
-      <button className="w-36 h-36 flex justify-center items-center rounded-md bg-yellow-500" onClick={handleMinus}>-</button>
-      <div className="w-36 h-36 flex justify-center items-center">{quantity}</div>
-      <button className="w-36 h-36 rounded-md bg-yellow-500 flex justify-center items-center" onClick={handleAdd}>+</button>
+      <button className="w-6 h-6 flex justify-center items-center rounded-md bg-yellow-500" onClick={handleMinus}>-</button>
+      <div className="w-6 h-6 flex justify-center items-center">{quantity}</div>
+      <button className="w-6 h-6 rounded-md bg-yellow-500 flex justify-center items-center" onClick={handleAdd}>+</button>
     </div>
   )
 }
