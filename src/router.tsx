@@ -7,6 +7,7 @@ import Wallet from "./pages/Wallet";
 import GameDesktop from "./GameDesktop";
 import RockPaperScissors from "./Page/MiniGames/RockPaperScissor";
 import MineGame from "./Page/MiniGames/MineGame";
+import ComingSoon from "./components/ui/ComingSoon";
 
 
 const router = createBrowserRouter([
@@ -37,7 +38,12 @@ const router = createBrowserRouter([
   ,{
     path: "/game/mine",
     element:<MineGame/>
-  }
+  },
+  {
+    path: "/soon",
+    element:<ComingSoon/>
+  },
+  
   
 ]);
 

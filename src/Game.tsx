@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import BottomNavbar from "./components/v1/BottomNavBar"
 import Home from "./Page/Home";
 import Games from "./Page/Games";
-import Mine from "./Page/Mine";
+import Mine from "./BetaLaunchPages/Mine";
 import Earn from "./pages/Earn";
 import Profile from "./Page/Profile";
 import Airdrop from "./Page/Airdrop";

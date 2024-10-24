@@ -12,6 +12,7 @@ import MissionDrawer from "@/components/MissionDrawer";
 import MissionDrawer2 from "@/components/AssetDrawer";
 import TopNav from "@/components/v1/TopNavMine";
 import dollar from '../../assets/Images/TokenTycoon.png'
+import { useNavigate } from "react-router-dom";
 
 // Define types for props
 interface LockInfoProps {
@@ -113,6 +114,13 @@ export default function Missions() {
   useEffect(()=>{
     window.dispatchEvent(new Event("UpdateBalance"));
   },[activeType])  
+
+  const navigation = useNavigate()
+;  useEffect(()=>{
+    if(section==='NFT' || section === "Asset Tokenize"){
+      navigation('/soon');
+   }
+  },[section])
   return (
     <div className="h-[95%] flex flex-col justify-end bg-cover flex-1 text-white" >
       <div className="flex flex-col flex-1 w-full h-full px-6 pb-24 mt-12">
