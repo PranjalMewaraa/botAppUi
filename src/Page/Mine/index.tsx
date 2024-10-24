@@ -13,7 +13,6 @@ import MissionDrawer2 from "@/components/AssetDrawer";
 import TopNav from "@/components/v1/TopNavMine";
 import dollar from '../../assets/Images/TokenTycoon.png'
 
-
 // Define types for props
 interface LockInfoProps {
   mission: Mission;
