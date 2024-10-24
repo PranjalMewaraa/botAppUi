@@ -19,7 +19,7 @@ export default function MissionDrawer({
         className="object-contain h-32 mx-auto"
       />
       <h2 className="mt-6 text-2xl font-medium text-center">{"Property Info"}</h2>
-      <div className="p-2 w-full h-fit">
+      <div className="p-2 w-full h-fit flex justify-center">
           <QuantityAdjust quantity={units} setQuantity={setUnits}/>
       </div>
       <div className="w-full flex justify-between p-2">
