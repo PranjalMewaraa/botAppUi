@@ -24,13 +24,9 @@ export default function MissionDrawer({
         />
        </div>
        <div className="flex items-center justify-center mx-auto mt-6 space-x-1 text-white">
-        <img
-          src="/images/coin.png"
-          alt="coin"
-          className="object-contain w-8 h-8"
-        />
+        
         <span className="font-bold">
-          {"1000"}
+          {"$ 1000"}
         </span>
       </div>
       </div>
