@@ -16,7 +16,7 @@ export default function MissionDrawer({
       />
       <h2 className="mt-6 text-2xl font-medium text-center">{"Property Info"}</h2>
       <div className="w-full flex justify-between p-2">
-       <div className="flex gap-4 items-center mx-auto mt-4 w-fit">
+       <div className="flex gap-4 items-center mx-auto mt-6 w-fit">
         <p className="text-xs text-center">Bonus / hour</p>
         <Price
           amount={"+" + "100"}
