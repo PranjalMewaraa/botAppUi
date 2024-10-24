@@ -66,7 +66,7 @@ const QuantityAdjust: React.FC<QuantityAdjustProps> = ({quantity,setQuantity})=>
   }
   
   const handleMinus = ()=>{
-    if(quantity>=1) return;
+    if(quantity<=1) return;
     setQuantity(quantity-1);
   }
   return (
