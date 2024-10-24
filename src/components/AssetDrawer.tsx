@@ -20,7 +20,7 @@ export default function MissionDrawer({
         <p className="text-xs text-center">Bonus / hour</p>
         <Price
           amount={"+" + "100"}
-          className="justify-center mt-2 text-sm text-white"
+          className="justify-center text-sm text-white"
         />
        </div>
        <div className="flex items-center justify-center mx-auto mt-6 space-x-1 text-white">
@@ -47,7 +47,7 @@ export default function MissionDrawer({
         )}
         {insufficientBalance ? "Insufficient Balance" : "Go ahead"}
       </Button> */}
-      <button>Purchase Now</button>
+      <button className="w-full py-2 bg-yellow-500">Purchase Now</button>
     </Drawer>
   );
 }
