@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Loader2Icon } from "lucide-react";
 import UserGameDetails from "@/components/UserGameDetails";
 import MissionDrawer from "@/components/MissionDrawer";
+import MissionDrawer2 from "@/components/AssetDrawer";
 import TopNav from "@/components/v1/TopNavMine";
 import dollar from '../../assets/Images/TokenTycoon.png'
 
@@ -39,6 +40,10 @@ interface MineCardProps {
   userLevel: any ;
   totalReferals: number;
 }
+interface MineCardAssetProps {
+  setAssetTokenizeDrawer: (open: boolean) => void;
+}
+
 
 const MineCard: React.FC<MineCardProps> = ({ mission, setSelectedMission, setOpenDrawer, userLevel, totalReferals }) => {
   const isLocked =
@@ -90,6 +95,7 @@ export default function Missions() {
   const [activeType, setActiveType] = useState(missionTypes?.[0]);
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
+  const [openAssetTokenizeDrawer,setAssetTokenizeDrawer]=useState<boolean>(false)
    console.log(openDrawer)
    console.log(selectedMission)
   const missions = useQuery({
@@ -206,7 +212,7 @@ export default function Missions() {
               ) : (
                 missions.data &&
                 missions.data.map((item) => (
-                  <AssetTokenizeCard key={item.id}/>
+                  <AssetTokenizeCard key={item.id} setAssetTokenizeDrawer={setAssetTokenizeDrawer} />
                 ))
               )}
             </div>
@@ -215,6 +221,7 @@ export default function Missions() {
         
       </div>
       <MissionDrawer open={openDrawer} onOpenChange={setOpenDrawer} mission={selectedMission} />
+      <MissionDrawer2 open={openAssetTokenizeDrawer} onOpenChange={setAssetTokenizeDrawer} />
     </div>
   );
 }
@@ -249,12 +256,16 @@ const EmptyMineCard = () => {
     </div>
   );
 };
-const AssetTokenizeCard = () => {
+const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({setAssetTokenizeDrawer}) => {
 
+  const handleClick = () => {
+    setAssetTokenizeDrawer(true);
+  };
 
   return (
     <div
       className={cn("w-1/2 max-w-60 h-full p-1", { "opacity-40 cursor-not-allowed": "" })}
+      onClick={handleClick}
     >
      <div className="w-full h-full flex flex-col gap-2">
         <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg" className="w-full h-2/3" alt="" />
