@@ -5,6 +5,7 @@ import { useUserStore } from "@/store/user-store";
 import { Link } from "react-router-dom";
 import { FaArrowLeft, FaTimes } from "react-icons/fa";
 import { useNavBar } from "@/utils/useNavBar";
+import { $http } from "@/lib/http";
 
 interface Cell {
   id: number;
@@ -52,6 +53,19 @@ const MineGame = () => {
     { 15: [10] },
   ];
 
+  const transaction = (amount:number,type:string,remarks:string)=>{
+    try {
+      $http.post('/clicker/transaction',{
+        amount:amount,
+        type:type,
+        remarks:remarks
+      }).then((res)=>{
+        console.log(res.data)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const resetGame = () => {
     const newGrid = generateGrid(gridSize, numMines);
     setGrid(newGrid);
@@ -95,6 +109,7 @@ const MineGame = () => {
       setGameOver(true);
       setMessage(`Game Over! You Lost - ${Math.floor(balance)}`);
       user.descreaseBalance(balance);
+      transaction(balance,"debit",`user won ${balance} in mine game`)
       setBalance(10);
       gsap.to(`#cell-${index}`, { scale: 1.2, backgroundColor: "#ff0000" }); // Animate mine explosion
     } else {
@@ -140,6 +155,7 @@ const MineGame = () => {
     setGameOver(true);
     setMessage(`Game Over! You Won - ${Earning}`);
     user.IncreaseBalance(balance);
+    transaction(balance,"credit",`user won ${balance} in mine game`)
     setBalance(10);
     setIsplaying(false);
   }
