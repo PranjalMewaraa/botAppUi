@@ -65,6 +65,20 @@ export default function Boost() {
     () => dayjs().isAfter(dailyResetEnergy.next_available_at),
     [dailyResetEnergy.next_available_at]
   );
+  // const transaction = (amount:number,type:string,remarks:string)=>{
+  //   try {
+  //     $http.post('/clicker/transaction',{
+  //       amount:amount,
+  //       type:type,
+  //       remark:remarks
+  //     }).then((res)=>{
+  //       console.log(res.data)
+  //     })
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+
 
   const insufficientBalance = useMemo(() => {
     if (!boosters?.[activeBooster]?.cost) return false;
