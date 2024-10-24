@@ -117,8 +117,8 @@ const MineGame = () => {
       revealCell(index);
       setCountOpen(countOpen + 1);
       const currentProfit = profit[numMines - 1][numMines][countOpen];
-      setEarning((prev) => prev + balance * currentProfit);
-      setBalance(balance + balance * currentProfit);
+      setEarning( balance * currentProfit);
+      setBalance( balance * currentProfit);
       setMessage(`Current Profit - ${Math.floor(Earning)}`);
     }
   };
