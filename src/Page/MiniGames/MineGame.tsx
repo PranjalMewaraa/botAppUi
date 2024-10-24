@@ -109,7 +109,7 @@ const MineGame = () => {
       setGameOver(true);
       setMessage(`Game Over! You Lost - ${Math.floor(balance)}`);
       user.descreaseBalance(balance);
-      transaction(balance,"debit",`user won ${balance} in mine game`)
+      transaction(balance,"debit",`user lost ${balance} in mine game`)
       setBalance(10);
       gsap.to(`#cell-${index}`, { scale: 1.2, backgroundColor: "#ff0000" }); // Animate mine explosion
     } else {
