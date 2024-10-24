@@ -9,7 +9,7 @@ export default function MissionDrawer({
 }: DrawerProps) {
  
   const [units,setUnits]=useState<number>(1);
-
+  const cost = 50; 
   
   return (
     <Drawer {...props}>
@@ -33,7 +33,7 @@ export default function MissionDrawer({
        <div className="flex items-center justify-center mx-auto mt-6 space-x-1 text-white">
         
         <span className="font-bold">
-          {"$ 1000"}
+          {`$ ${cost*units}`}
         </span>
       </div>
       </div>
@@ -61,10 +61,12 @@ interface QuantityAdjustProps {
 const QuantityAdjust: React.FC<QuantityAdjustProps> = ({quantity,setQuantity})=>{
 
   const handleAdd = ()=>{
+    if(quantity>99) return;
     setQuantity(quantity+1);
   }
   
   const handleMinus = ()=>{
+    if(quantity>=1) return;
     setQuantity(quantity-1);
   }
   return (
