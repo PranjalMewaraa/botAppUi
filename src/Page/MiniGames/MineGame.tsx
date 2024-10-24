@@ -109,7 +109,7 @@ const MineGame = () => {
       setGameOver(true);
       setMessage(`Game Over! You Lost - ${Math.floor(balance)}`);
       user.descreaseBalance(balance);
-      transaction(balance,"debit",`user lost ${balance} in mine game`)
+      transaction(Math.floor(balance),"debit",`user lost ${Math.floor(balance)} in mine game`)
       setBalance(10);
       gsap.to(`#cell-${index}`, { scale: 1.2, backgroundColor: "#ff0000" }); // Animate mine explosion
     } else {
@@ -132,6 +132,7 @@ const MineGame = () => {
         setGrid(grid); // Pass the current grid instead of a newGrid that doesn't exist here
         setGameOver(true);
         setMessage(`Game Over! You Won - ${Earning}`);
+        transaction(Math.floor(balance),"credit",`user won ${Math.floor(balance)} in mine game`)
         user.IncreaseBalance(balance)
       }
   },[countOpen])
@@ -156,7 +157,7 @@ const MineGame = () => {
     setGameOver(true);
     setMessage(`Game Over! You Won - ${Earning}`);
     user.IncreaseBalance(balance);
-    transaction(balance,"credit",`user won ${balance} in mine game`)
+    transaction(Math.floor(balance),"credit",`user won ${Math.floor(balance)} in mine game`)
     setBalance(10);
     setIsplaying(false);
   }

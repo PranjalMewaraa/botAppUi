@@ -6,6 +6,7 @@ import { useUserStore } from "@/store/user-store";
 import { Link } from "react-router-dom";
 
 import { useNavBar } from "@/utils/useNavBar";
+import { $http } from "@/lib/http";
 
 // Enum for difficulty levels
 enum Difficulty {
@@ -136,10 +137,12 @@ const RockPaperScissors: React.FC = () => {
       changeInBalance = calculateReward(difficulty as Difficulty);
       setGameMessage(`Congrats! You won the game and earned ${changeInBalance}`);
       user.IncreaseBalance(changeInBalance);
+      transaction(Math.floor(changeInBalance),"credit",`user won ${changeInBalance} in mine game`)
       setBalance(user.balance)
     } else {
       changeInBalance = -calculateLoss(difficulty as Difficulty);
       setGameMessage(`You lost the game and lost ${-changeInBalance}`);
+      transaction(Math.floor(changeInBalance),"debit",`user lost ${changeInBalance} in mine game`)
       user.descreaseBalance(-changeInBalance)
       setBalance(user.balance)
     }
@@ -150,6 +153,19 @@ const RockPaperScissors: React.FC = () => {
     }, 5000);
   };
 
+  const transaction = (amount:number,type:string,remarks:string)=>{
+    try {
+      $http.post('/clicker/transaction',{
+        amount:amount,
+        type:type,
+        remark:remarks
+      }).then((res)=>{
+        console.log(res.data)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const resetGame = () => {
     setUserWins(0);
     setOpponentWins(0);
