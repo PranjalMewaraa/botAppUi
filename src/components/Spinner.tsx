@@ -1,83 +1,63 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef, useState, useEffect } from 'react';
 
-type SpinnerProps = {
-  onFinish: (position: number) => void;
-  timer: number;
-};
+interface SpinnerProps {
+  onFinish: (position: number) => void; // Callback to execute on finish
+  timer: number; // Duration of the spin
+}
 
-export type SpinnerRef = {
-  forceUpdateHandler: () => void;
-};
+// Define the type for the ref that will be forwarded
+interface SpinnerRef {
+  forceUpdateHandler: () => void; // Method to reset the spinner
+}
 
-const Spinner = React.forwardRef<SpinnerRef, SpinnerProps>(
-  ({ onFinish, timer }, ref) => {
-    const [position, setPosition] = useState(0);
-    const [timeRemaining, setTimeRemaining] = useState(timer);
-    const multiplier = Math.floor(Math.random() * (4 - 1) + 1);
-    const iconHeight = 188;
-    
+// Spinner component using forwardRef
+const Spinner = forwardRef<SpinnerRef, SpinnerProps>((props, ref) => {
+  const innerRef = useRef<HTMLDivElement>(null); // Local ref for the DOM element
+  const [position, setPosition] = useState<number>(0); // State for spinner position
+  const [timeRemaining, setTimeRemaining] = useState<number>(0); // Time remaining for the spin
+  let timerId: NodeJS.Timeout | null = null; // Timer reference
 
+  // Expose the forceUpdateHandler method through the ref
+  useImperativeHandle(ref, () => ({
+    forceUpdateHandler: reset, // Reference the reset function
+  }));
 
-    useEffect(() => {
-      reset();
-    }, []);
+  // Reset logic for the spinner
+  const reset = () => {
+    if (timerId) {
+      clearInterval(timerId); // Clear any existing timer
+    }
 
-    useEffect(() => {
-      if (timeRemaining <= 0) {
-        getSymbolFromPosition();
+    // Reset position and time remaining
+    setPosition(0); // Reset position to the initial value
+    setTimeRemaining(props.timer); // Reset time remaining to the original timer value
+
+    // Start a new timer
+    timerId = setInterval(() => {
+      if (timeRemaining > 0) {
+        setPosition((prev) => prev - (Spinner.length * (Math.random() * 4))); // Update the position
+        setTimeRemaining((prev) => prev - 100); // Decrease the time remaining
       } else {
-        const timerId = setInterval(() => {
-          moveBackground();
-        }, 100);
-        return () => clearInterval(timerId);
+        clearInterval(timerId!); // Clear the timer when finished
+        props.onFinish(position); // Call the finish handler
       }
-    }, [timeRemaining]);
+    }, 100);
+  };
 
-    const setStartPosition = () => {
-      return Math.floor(Math.random() * 9) * iconHeight * -1;
-    };
-    const start = useRef(setStartPosition());
-
-    const moveBackground = () => {
-      setPosition((prevPosition) => prevPosition - iconHeight * multiplier);
-      setTimeRemaining((prevTime) => prevTime - 100);
-    };
-
-    const getSymbolFromPosition = () => {
-      const totalSymbols = 9;
-      const maxPosition = iconHeight * (totalSymbols - 1) * -1;
-      let currentPosition = start.current;
-      const moved = (timer / 100) * multiplier;
-
-      for (let i = 0; i < moved; i++) {
-        currentPosition -= iconHeight;
-
-        if (currentPosition < maxPosition) {
-          currentPosition = 0;
-        }
+  // Clean up the timer when the component unmounts
+  useEffect(() => {
+    return () => {
+      if (timerId) {
+        clearInterval(timerId); // Clear timer on unmount
       }
-
-      onFinish(currentPosition);
     };
+  }, []);
 
-    const reset = () => {
-      setPosition(start.current);
-      setTimeRemaining(timer);
-    };
-
-    React.useImperativeHandle(ref, () => ({
-      forceUpdateHandler() {
-        reset();
-      },
-    }));
-
-    return (
-      <div
-        style={{ backgroundPosition: `0px ${position}px` }}
-        className="icons"
-      />
-    );
-  }
-);
+  return (
+    <div ref={innerRef} style={{ backgroundPosition: `0px ${position}px` }} className={`spinner`}>
+      {/* Spinner content or icons go here */}
+    </div>
+  );
+});
 
 export default Spinner;
