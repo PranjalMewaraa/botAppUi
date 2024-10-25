@@ -44,7 +44,7 @@ const router2 = createBrowserRouter([
     element:<ComingSoon/>
   },
   {
-    path: "/slot",
+    path: "/game/slot",
     element:<SlotMachine/>
   },
   
