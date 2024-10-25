@@ -1,4 +1,5 @@
 import Price from '@/components/Price';
+import { useUserStore } from '@/store/user-store';
 import React, { useState } from 'react';
 
 interface ReelProps {
@@ -17,6 +18,7 @@ const SlotMachine: React.FC = () => {
   const [reels, setReels] = useState<string[]>(['?', '?', '?']); // Initial state with three reels
   const [isSpinning, setIsSpinning] = useState<boolean>(false);
   const [message,setMessage]=useState<string>("Can You Hit the $-Jackpot-$");
+  const [bet,setBet]=useState<number>(10);
   const loser = [
     'Not quite', 
     'Stop gambling', 
@@ -52,6 +54,10 @@ const SlotMachine: React.FC = () => {
     }, 1000); // Delay for the spin effect
   };
 
+  const AddBet = ()=>{
+    setBet(bet+10);
+  }
+  const user=useUserStore()
   return (
     <div id='main_div' className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="flex flex-col items-center mt-10">
@@ -66,17 +72,25 @@ const SlotMachine: React.FC = () => {
           <div className='flex gap-4 justify-center items-center font-[ageo]'>
             <div className='flex flex-col items-center gap-1 rounded-lg'>
               <span className='text-white'>Bet:</span>
-              <div className='h-8 w-20 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black'>10</div>
+              <div className='h-8 w-20 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black'>{bet}</div>
             </div>
             <div className='flex flex-col items-center gap-1 rounded-lg'>
               <span className='text-white'>Win:</span>
-              <div className='h-8 w-28 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black'>10</div>
+              <div className='h-8 w-28 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black'>100K</div>
             </div>
             <div className='flex flex-col items-center gap-1 rounded-lg'>
               <span className='text-white'>Coins:</span>
-              <div className='h-8 w-32 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black'>10</div>
+              <div className='h-8 w-32 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black'>{user.balance}</div>
             </div>
           </div>
+        </div>
+        <div className='w-full flex gap-4'>
+          <button>Add Bet</button>
+          <button>Bet Max</button>
+          <button onClick={spinReels}
+            disabled={isSpinning}
+            className={`mt-4 mx-4 px-4 flex items-center justify-center gap-4 py-2 text-white rounded-lg ${isSpinning ? 'bg-yellow-400' : 'bg-yellow-500 hover:bg-yellow-700'}`}> {isSpinning ? 'Spinning...' : 'Spin!'} <span> <Price amount={1000}/> </span>
+          </button>
         </div>
        
         <button
