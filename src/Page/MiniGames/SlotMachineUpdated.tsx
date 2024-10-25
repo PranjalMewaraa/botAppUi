@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 
-// Define the props for the Reel component
 interface ReelProps {
   symbol: string;
 }
 
-// Reel component representing a single reel
 const Reel: React.FC<ReelProps> = ({ symbol }) => {
   return (
     <div className="flex items-center justify-center w-24 h-24 border-2 border-gray-600 bg-gray-200">
@@ -14,23 +12,28 @@ const Reel: React.FC<ReelProps> = ({ symbol }) => {
   );
 };
 
-// Main SlotMachine component
 const SlotMachine: React.FC = () => {
   const [reels, setReels] = useState<string[]>(['?', '?', '?']); // Initial state with three reels
   const [isSpinning, setIsSpinning] = useState<boolean>(false);
-  
+
   const symbols = ['🍒', '🍋', '🍊', '🍉', '🍇', '🍀'];
 
   const spinReels = () => {
-    if (isSpinning) return; // Prevent spinning while already spinning
+    if (isSpinning) return;
     setIsSpinning(true);
-    
-    // Generate new symbols for the three reels
+
     const newReels = Array.from({ length: 3 }, () => symbols[Math.floor(Math.random() * symbols.length)]);
-    
+
     setTimeout(() => {
-      setReels(newReels); // Update the reels with the new symbols
-      setIsSpinning(false); // Reset spinning state
+      setReels(newReels);
+      setIsSpinning(false);
+      
+      // Check for win condition
+      if (newReels.every((symbol) => symbol === newReels[0])) {
+        console.log("Win! All three reels are the same: ", newReels[0]);
+      } else {
+        console.log("Lost! Reels are: ", newReels);
+      }
     }, 1000); // Delay for the spin effect
   };
 
@@ -39,7 +42,7 @@ const SlotMachine: React.FC = () => {
       <div className="flex flex-col items-center mt-10">
         <div className="flex space-x-4">
           {reels.map((symbol, index) => (
-            <Reel key={index} symbol={symbol} /> // Render each reel
+            <Reel key={index} symbol={symbol} />
           ))}
         </div>
         <button
