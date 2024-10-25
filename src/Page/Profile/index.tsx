@@ -5,6 +5,7 @@ import useSkinConfig from "@/hooks/useSkinConfig";
 import { ReactEventHandler, useEffect, useState } from "react";
 import skinConfig from "@/config/skin-config";
 import { Link } from "react-router-dom";
+import { useUserStore } from "@/store/user-store";
 
 const Profile = () => {
   const { skinId, updateSkinId } = useSkinConfig();
@@ -28,7 +29,7 @@ const Profile = () => {
          <ProfileBox/>
          <ProfitBox/>
     </div>
-    <Link to={'/leaderboard'} className="w-full pt-4 text-xl font-[ageobold] text-center text-white">🏆 LeaderBoard</Link>
+    <Link to={'/leaderboard'} className="w-full p-4 text-xl font-[ageobold] text-center border border-yellow-500 rounded-md text-white">🏆 LeaderBoard</Link>
     <div className="w-full h-64 mt-6 px-8 flex justify-center items-center">
         <div className=" aspect-square h-full bg-slate-800 rounded-2xl">
         <img src={skinConfig.images[skinId || 1]} alt="" />
@@ -61,7 +62,7 @@ const Profile = () => {
 const CharCard = (props: { src: string | undefined; onLoad: ReactEventHandler<HTMLImageElement> | undefined; })=>{
     return(
         <div className="w-24 h-3/4 bg-slate-800 flex items-center justify-center rounded-2xl">
-        <img src={props.src} alt="" className="h-4/5" onLoad={props.onLoad}/>
+          <img src={props.src} alt="" className="h-4/5" onLoad={props.onLoad}/>
         </div>
     )
 }
@@ -70,12 +71,14 @@ const CharCard = (props: { src: string | undefined; onLoad: ReactEventHandler<HT
 
 
 const ProfileBox = ()=>{
+    const user = useUserStore();
+
     return(
         <div className="h-full flex gap-4 items-center">
             <div className="h-16 bg-[#283140] rounded-xl"> 
                 <img src={pic} alt="" className=" aspect-square h-full p-1 rounded-full"/>      
             </div>
-            <h1 className="text-white text-lg font-semibold">Pranjal (CEO)</h1>
+            <h1 className="text-white text-lg font-semibold">{user?.first_name} {user?.last_name}</h1>
         </div>
     )
 }
