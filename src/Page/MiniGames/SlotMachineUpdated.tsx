@@ -83,7 +83,7 @@ const SlotMachine: React.FC = () => {
             </div>
             <div className='flex flex-col items-center gap-1 rounded-lg'>
               <span className='text-white'>Coins:</span>
-              <div className='h-8 w-32 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black'>{user.balance}</div>
+              <div className='h-8 w-32 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black'>{Math.floor(user.balance)}</div>
             </div>
           </div>
         </div>
