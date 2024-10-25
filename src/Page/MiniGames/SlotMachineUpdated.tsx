@@ -57,6 +57,9 @@ const SlotMachine: React.FC = () => {
   const AddBet = ()=>{
     setBet(bet+10);
   }
+  const AddBetMax = ()=>{
+    setBet(1000);
+  }
   const user=useUserStore()
   return (
     <div id='main_div' className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -85,11 +88,11 @@ const SlotMachine: React.FC = () => {
           </div>
         </div>
         <div className='w-full flex gap-4'>
-          <button>Add Bet</button>
-          <button>Bet Max</button>
+          <button className='w-1/4 mt-4 px-4 text-white rounded-lg bg-yellow-400' onClick={AddBet}>Add Bet</button>
+          <button className='w-1/4 mt-4 px-4 text-white rounded-lg bg-yellow-400' onClick={AddBetMax}> Bet MAX</button>
           <button onClick={spinReels}
             disabled={isSpinning}
-            className={`mt-4 mx-4 px-4 flex items-center justify-center gap-4 py-2 text-white rounded-lg ${isSpinning ? 'bg-yellow-400' : 'bg-yellow-500 hover:bg-yellow-700'}`}> {isSpinning ? 'Spinning...' : 'Spin!'} <span> <Price amount={1000}/> </span>
+            className={`mt-4 px-4 flex items-center justify-center gap-4 py-2 text-white rounded-lg ${isSpinning ? 'bg-yellow-400' : 'bg-yellow-500 hover:bg-yellow-700'}`}> {isSpinning ? 'Spinning...' : 'Spin!'} <span> <Price amount={1000}/> </span>
           </button>
         </div>
        
