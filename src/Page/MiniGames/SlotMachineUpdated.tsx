@@ -157,7 +157,7 @@ const SlotMachineGamePage: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className='w-full h-full'>
       {winner && <WinningSound />}
       <h1 style={{ color: 'white' }}>
         <span>
