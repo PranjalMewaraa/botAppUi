@@ -63,9 +63,17 @@ const SlotMachine: React.FC = () => {
               <Reel key={index} symbol={symbol} />
             ))}
           </div>
-          <div className='flex gap-4 justify-center items-center'>
-            <div className='flex flex-col items-center gap-1 rounded'>
+          <div className='flex gap-4 justify-center items-center font-[ageo]'>
+            <div className='flex flex-col items-center gap-1 rounded-lg'>
               <span className='text-white'>Bet:</span>
+              <div className='h-8 w-20 flex justify-center items-center bg-white border-yellow-300 border text-black'>10</div>
+            </div>
+            <div className='flex flex-col items-center gap-1 rounded-lg'>
+              <span className='text-white'>Win:</span>
+              <div className='h-8 w-20 flex justify-center items-center bg-white border-yellow-300 border text-black'>10</div>
+            </div>
+            <div className='flex flex-col items-center gap-1 rounded-lg'>
+              <span className='text-white'>Coins:</span>
               <div className='h-8 w-20 flex justify-center items-center bg-white border-yellow-300 border text-black'>10</div>
             </div>
           </div>
