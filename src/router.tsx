@@ -8,6 +8,7 @@ import GameDesktop from "./GameDesktop";
 import RockPaperScissors from "./Page/MiniGames/RockPaperScissor";
 import MineGame from "./Page/MiniGames/MineGame";
 import ComingSoon from "./components/ui/ComingSoon";
+import SlotMachine from "./Page/MiniGames/SlotMachineGame";
 
 
 const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
   {
     path: "/soon",
     element:<ComingSoon/>
+  },
+  {
+    path: "/slot",
+    element:<SlotMachine/>
   },
   
   
