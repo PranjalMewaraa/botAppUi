@@ -47,9 +47,9 @@ const SlotMachineGamePage: React.FC = () => {
         <span>{winner === null ? 'Waiting…' : winner ? '🤑 Pure skill! 🤑' : getLoser()}</span>
       </h1>
       <div className="spinner-container">
-        <Spinner onFinish={finishHandler} ref={_child1} timer="1000" />
-        <Spinner onFinish={finishHandler} ref={_child2} timer="1400" />
-        <Spinner onFinish={finishHandler} ref={_child3} timer="2200" />
+        <Spinner onFinish={finishHandler} ref={_child1} timer={1000} />
+        <Spinner onFinish={finishHandler} ref={_child2} timer={1400} />
+        <Spinner onFinish={finishHandler} ref={_child3} timer={2200} />
         <div className="gradient-fade"></div>
       </div>
       {winner !== null && <RepeatButton onClick={handleClick} />}
