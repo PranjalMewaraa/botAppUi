@@ -29,7 +29,7 @@ const Profile = () => {
          <ProfileBox/>
          <ProfitBox/>
     </div>
-    <Link to={'/leaderboard'} className="w-full p-4 text-xl font-[ageobold] text-center border border-yellow-500 rounded-md text-white">🏆 LeaderBoard</Link>
+    <Link to={'/leaderboard'} className="w-full p-4 bg-slate-800 text-xl font-[ageobold] text-center border border-yellow-500 rounded-md text-white">🏆 LeaderBoard</Link>
     <div className="w-full h-64 mt-6 px-8 flex justify-center items-center">
         <div className=" aspect-square h-full bg-slate-800 rounded-2xl">
         <img src={skinConfig.images[skinId || 1]} alt="" />
