@@ -1,76 +1,56 @@
-import Spinner from '@/components/Spinner';
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState } from 'react';
 
-const SlotMachineGamePage: React.FC = () => {
-  const [winner, setWinner] = useState<boolean | null>(null);
-  const matches = useRef<number[]>([]); // Ref to avoid unnecessary re-renders
+// Define the props for the Reel component
+interface ReelProps {
+  symbol: string;
+}
 
-  const handleClick = useCallback(() => {
-    setWinner(null);
-    emptyArray();
-    _child1.current?.forceUpdateHandler();
-    _child2.current?.forceUpdateHandler();
-    _child3.current?.forceUpdateHandler();
-  }, []);
-
-  const emptyArray = useCallback(() => {
-    matches.current = [];
-  }, []);
-
-  const finishHandler = useCallback((value: number) => {
-    matches.current.push(value);
-
-    if (matches.current.length === 3) {
-      const first = matches.current[0];
-      const isWinner = matches.current.every(match => match === first);
-      setWinner(isWinner);
-    }
-  }, []);
-
-  const getLoser = useCallback(() => {
-    const loserMessages = [
-      'Not quite', 'Stop gambling', 'Hey, you lost!',
-      'Ouch! I felt that', 'Don\'t beat yourself up', 'There goes the college fund',
-      'I have a cat. You have a loss', 'You\'re awesome at losing', 'Coding is hard', 'Don\'t hate the coder'
-    ];
-    return loserMessages[Math.floor(Math.random() * loserMessages.length)];
-  }, []);
-
-  const _child1 = useRef<{ forceUpdateHandler: () => void } | null>(null);
-  const _child2 = useRef<{ forceUpdateHandler: () => void } | null>(null);
-  const _child3 = useRef<{ forceUpdateHandler: () => void } | null>(null);
-
+// Reel component representing a single reel
+const Reel: React.FC<ReelProps> = ({ symbol }) => {
   return (
-    <div>
-      {winner && <WinningSound />}
-      <h1 style={{ color: 'white' }}>
-        <span>{winner === null ? 'Waiting…' : winner ? '🤑 Pure skill! 🤑' : getLoser()}</span>
-      </h1>
-      <div className="spinner-container">
-        <Spinner onFinish={finishHandler} ref={_child1} timer={1000} />
-        <Spinner onFinish={finishHandler} ref={_child2} timer={1400} />
-        <Spinner onFinish={finishHandler} ref={_child3} timer={2200} />
-        <div className="gradient-fade"></div>
-      </div>
-      {winner !== null && <RepeatButton onClick={handleClick} />}
+    <div className="flex items-center justify-center w-24 h-24 border-2 border-gray-600 bg-gray-200">
+      <h2 className="text-3xl">{symbol}</h2>
     </div>
   );
 };
 
-const WinningSound: React.FC = () => (
-  <audio autoPlay className="player" preload="false">
-    <source src="https://andyhoffman.codes/random-assets/img/slots/winning_slot.wav" />
-  </audio>
-);
+// Main SlotMachine component
+const SlotMachine: React.FC = () => {
+  const [reels, setReels] = useState<string[]>(['?', '?', '?']);
+  const [isSpinning, setIsSpinning] = useState<boolean>(false);
+  
+  const symbols = ['🍒', '🍋', '🍊', '🍉', '🍇', '🍀'];
 
-interface RepeatButtonProps {
-  onClick: () => void;
-}
+  const spinReels = () => {
+    if (isSpinning) return;
+    setIsSpinning(true);
+    
+    const newReels = symbols.map(() => symbols[Math.floor(Math.random() * symbols.length)]);
+    
+    setTimeout(() => {
+      setReels(newReels);
+      setIsSpinning(false);
+    }, 1000); // Delay for the spin effect
+  };
 
-const RepeatButton: React.FC<RepeatButtonProps> = ({ onClick }) => (
-  <button aria-label="Play again." id="repeatButton" onClick={onClick}></button>
-);
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="flex flex-col items-center mt-10">
+      <div className="flex space-x-4">
+        {reels.map((symbol, index) => (
+          <Reel key={index} symbol={symbol} />
+        ))}
+      </div>
+      <button
+        onClick={spinReels}
+        disabled={isSpinning}
+        className={`mt-4 px-4 py-2 text-white rounded-lg ${isSpinning ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-700'}`}
+      >
+        {isSpinning ? 'Spinning...' : 'Spin!'}
+      </button>
+    </div>
+    </div>
+  );
+};
 
-
-
-export default SlotMachineGamePage;
+export default SlotMachine;
