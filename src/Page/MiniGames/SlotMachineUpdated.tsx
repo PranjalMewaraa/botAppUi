@@ -16,7 +16,19 @@ const Reel: React.FC<ReelProps> = ({ symbol }) => {
 const SlotMachine: React.FC = () => {
   const [reels, setReels] = useState<string[]>(['?', '?', '?']); // Initial state with three reels
   const [isSpinning, setIsSpinning] = useState<boolean>(false);
-
+  const [message,setMessage]=useState<string>("Can You Hit the $-Jackpot-$");
+  const loser = [
+    'Not quite', 
+    'Stop gambling', 
+    'Hey, you lost!', 
+    'Ouch! I felt that',      
+    'Don\'t beat yourself up',
+    'There goes the college fund',
+    'I have a cat. You have a loss',
+    'You\'re awesome at losing',
+    'Coding is hard',
+    'Don\'t hate the coder'
+  ];
   const symbols = ['🍒', '🍋', '🍊', '🍉', '🍇', '🍀'];
 
   const spinReels = () => {
@@ -34,6 +46,7 @@ const SlotMachine: React.FC = () => {
         console.log("Win! All three reels are the same: ", newReels[0]);
       } else {
         console.log("Lost! Reels are: ", newReels);
+        setMessage(loser[Math.floor(Math.random() * loser.length)])
       }
     }, 1000); // Delay for the spin effect
   };
@@ -42,7 +55,7 @@ const SlotMachine: React.FC = () => {
     <div id='main_div' className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="flex flex-col items-center mt-10">
         <h1 className='w-full font-[ageobold] text-4xl text-center my-2 text-white'>Slot Machine</h1>
-
+        <h3 className='w-full font-[ageobold] text-yellow-400 text-center text-xl my-2'>{message}</h3>
         <div className="flex border-2 border-yellow-500 rounded-lg">
           {reels.map((symbol, index) => (
             <Reel key={index} symbol={symbol} />
