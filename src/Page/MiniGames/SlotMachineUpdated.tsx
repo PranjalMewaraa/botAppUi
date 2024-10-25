@@ -64,9 +64,9 @@ const SlotMachine: React.FC = () => {
             ))}
           </div>
           <div className='flex gap-4 justify-center items-center'>
-            <div className='flex flex-col items-center gap-1 border-yellow-300 border rounded'>
-              <span>Bet:</span>
-              <div className='h-8 w-10 flex justify-center items-center bg-white text-black'>10</div>
+            <div className='flex flex-col items-center gap-1 rounded'>
+              <span className='text-white'>Bet:</span>
+              <div className='h-8 w-20 flex justify-center items-center bg-white border-yellow-300 border text-black'>10</div>
             </div>
           </div>
         </div>
