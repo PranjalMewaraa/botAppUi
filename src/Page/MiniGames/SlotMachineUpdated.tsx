@@ -16,39 +16,40 @@ const Reel: React.FC<ReelProps> = ({ symbol }) => {
 
 // Main SlotMachine component
 const SlotMachine: React.FC = () => {
-  const [reels, setReels] = useState<string[]>(['?', '?', '?']);
+  const [reels, setReels] = useState<string[]>(['?', '?', '?']); // Initial state with three reels
   const [isSpinning, setIsSpinning] = useState<boolean>(false);
   
   const symbols = ['🍒', '🍋', '🍊', '🍉', '🍇', '🍀'];
 
   const spinReels = () => {
-    if (isSpinning) return;
+    if (isSpinning) return; // Prevent spinning while already spinning
     setIsSpinning(true);
     
-    const newReels = symbols.map(() => symbols[Math.floor(Math.random() * symbols.length)]);
+    // Generate new symbols for the three reels
+    const newReels = Array.from({ length: 3 }, () => symbols[Math.floor(Math.random() * symbols.length)]);
     
     setTimeout(() => {
-      setReels(newReels);
-      setIsSpinning(false);
+      setReels(newReels); // Update the reels with the new symbols
+      setIsSpinning(false); // Reset spinning state
     }, 1000); // Delay for the spin effect
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-    <div className="flex flex-col items-center mt-10">
-      <div className="flex space-x-4">
-        {reels.map((symbol, index) => (
-          <Reel key={index} symbol={symbol} />
-        ))}
+      <div className="flex flex-col items-center mt-10">
+        <div className="flex space-x-4">
+          {reels.map((symbol, index) => (
+            <Reel key={index} symbol={symbol} /> // Render each reel
+          ))}
+        </div>
+        <button
+          onClick={spinReels}
+          disabled={isSpinning}
+          className={`mt-4 px-4 py-2 text-white rounded-lg ${isSpinning ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-700'}`}
+        >
+          {isSpinning ? 'Spinning...' : 'Spin!'}
+        </button>
       </div>
-      <button
-        onClick={spinReels}
-        disabled={isSpinning}
-        className={`mt-4 px-4 py-2 text-white rounded-lg ${isSpinning ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-700'}`}
-      >
-        {isSpinning ? 'Spinning...' : 'Spin!'}
-      </button>
-    </div>
     </div>
   );
 };
