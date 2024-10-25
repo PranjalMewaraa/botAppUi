@@ -58,7 +58,7 @@ const SlotMachine: React.FC = () => {
         <h1 className='w-full font-[ageobold] text-6xl text-center my-2 text-white'>Slot Machine</h1>
         <h3 className='w-full font-[ageobold] text-yellow-400 text-center text-xl mb-2'>{message}</h3>
         <div className='flex flex-col gap-4 pt-2 px-2'>
-          <div className="flex border-2 border-yellow-500 rounded-lg">
+          <div className="flex w-fit border-2 border-yellow-500 rounded-lg justify-center">
             {reels.map((symbol, index) => (
               <Reel key={index} symbol={symbol} />
             ))}
@@ -66,15 +66,15 @@ const SlotMachine: React.FC = () => {
           <div className='flex gap-4 justify-center items-center font-[ageo]'>
             <div className='flex flex-col items-center gap-1 rounded-lg'>
               <span className='text-white'>Bet:</span>
-              <div className='h-8 w-20 flex justify-center items-center bg-white border-yellow-300 border text-black'>10</div>
+              <div className='h-8 w-20 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black'>10</div>
             </div>
             <div className='flex flex-col items-center gap-1 rounded-lg'>
               <span className='text-white'>Win:</span>
-              <div className='h-8 w-28 flex justify-center items-center bg-white border-yellow-300 border text-black'>10</div>
+              <div className='h-8 w-28 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black'>10</div>
             </div>
             <div className='flex flex-col items-center gap-1 rounded-lg'>
               <span className='text-white'>Coins:</span>
-              <div className='h-8 w-36 flex justify-center items-center bg-white border-yellow-300 border text-black'>10</div>
+              <div className='h-8 w-32 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black'>10</div>
             </div>
           </div>
         </div>
