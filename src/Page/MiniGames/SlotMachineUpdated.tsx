@@ -43,7 +43,7 @@ const SlotMachine: React.FC = () => {
       <div className="flex flex-col items-center mt-10">
         <h1 className='w-full font-[ageobold] text-2xl text-center my-2 text-white'>Slot Machine</h1>
 
-        <div className="flex border border-yellow-500 rounded-lg">
+        <div className="flex border-2 border-yellow-500 rounded-lg">
           {reels.map((symbol, index) => (
             <Reel key={index} symbol={symbol} />
           ))}
