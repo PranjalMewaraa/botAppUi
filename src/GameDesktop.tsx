@@ -13,6 +13,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import PopupMessageDialog from "./components/PopupMessageDialog";
 import { useNavBar } from "./utils/useNavBar";
+import ComingSoon from "./components/ui/ComingSoon";
 
 
 export default function GameDesktop() {
@@ -77,6 +78,7 @@ export default function GameDesktop() {
         {activeIndex === 4 && <Earn />}
         {activeIndex === 5 && <Profile />}
         {activeIndex === 6 && <Boost />}
+        {activeIndex===7 && <ComingSoon/>}
         
       </div>
       <PopupMessageDialog message={popupMessage.data} />

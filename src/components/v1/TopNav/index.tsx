@@ -1,7 +1,8 @@
-import { useState, useRef, useLayoutEffect} from 'react';
+import { useState, useRef, useLayoutEffect, useEffect} from 'react';
 import { gsap } from 'gsap';
 import GameCard from '../GameCard';
 import { Link } from 'react-router-dom';
+import { useNavBar } from '@/utils/useNavBar';
 
 const TopNav = () => {
   const [activeSection, setActiveSection] = useState('Mini Games');
@@ -63,6 +64,13 @@ const TopNav = () => {
       });
     }
   };
+  const { activeIndex, setActiveIndex } = useNavBar();
+  console.log(activeIndex)
+  useEffect(()=>{
+    if(activeSection==='Games' || activeSection === "Fantasy"){
+      setActiveIndex(7)
+   }
+  },[activeSection])
 
 
   return (
@@ -103,9 +111,9 @@ const TopNav = () => {
               <Link to="/game/mine">
                 <GameCard name="Mine Escape" fee={10} src="/images/02.jpg" />
               </Link>
-              <Link to="/game/slot">
+              {/* <Link to="/game/slot">
                 <GameCard name="Slot Machine" fee={100} src="/images/02.jpg" />
-              </Link>
+              </Link> */}
             </div>
           </div>
         )}
