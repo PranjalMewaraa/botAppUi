@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef, useState, useEffect } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useState, useEffect } from 'react';
 
 interface SpinnerProps {
   onFinish: (position: number) => void; // Callback to execute on finish
