@@ -41,7 +41,9 @@ const SlotMachine: React.FC = () => {
   return (
     <div id='main_div' className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="flex flex-col items-center mt-10">
-        <div className="flex space-x-4">
+        <h1 className='w-full font-[ageobold] text-2xl text-center my-2 text-white'>Slot Machine</h1>
+
+        <div className="flex border border-yellow-500 rounded-lg">
           {reels.map((symbol, index) => (
             <Reel key={index} symbol={symbol} />
           ))}
@@ -49,7 +51,7 @@ const SlotMachine: React.FC = () => {
         <button
           onClick={spinReels}
           disabled={isSpinning}
-          className={`mt-4 mx-4 w-full px-4 flex items-center gap-4 py-2 text-white rounded-lg ${isSpinning ? 'bg-yellow-400' : 'bg-yellow-500 hover:bg-yellow-700'}`}
+          className={`mt-4 mx-4 w-full px-4 flex items-center justify-center gap-4 py-2 text-white rounded-lg ${isSpinning ? 'bg-yellow-400' : 'bg-yellow-500 hover:bg-yellow-700'}`}
         >
           {isSpinning ? 'Spinning...' : 'Spin!'} <span> <Price amount={1000}/> </span>
         </button>
