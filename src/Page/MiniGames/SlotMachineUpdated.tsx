@@ -56,7 +56,6 @@ const SlotMachine: React.FC = () => {
     <div id='main_div' className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="flex flex-col items-center mt-10">
         <h1 className='w-full font-[ageobold] text-6xl text-center my-2 text-white'>Slot Machine</h1>
-        <h3 className='w-full font-[ageobold] text-yellow-400 text-center text-xl mb-2'>{message}</h3>
         <div className='flex flex-col gap-4 pt-2 px-2'>
           <h3 className='w-full font-[ageobold] text-yellow-400 text-center text-xl mb-2'>{message}</h3>
           <div className="flex w-fit mx-auto border-2 border-yellow-500 rounded-lg justify-center">
