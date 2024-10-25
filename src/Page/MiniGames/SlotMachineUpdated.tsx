@@ -88,21 +88,13 @@ const SlotMachine: React.FC = () => {
           </div>
         </div>
         <div className='w-full flex gap-4'>
-          <button className='w-1/4 mt-4 px-4 text-white rounded-lg bg-yellow-400' onClick={AddBet}>Add Bet</button>
-          <button className='w-1/4 mt-4 px-4 text-white rounded-lg bg-yellow-400' onClick={AddBetMax}> Bet MAX</button>
+          <button className='w-1/5 mt-4 px-4 text-white rounded-lg bg-yellow-400' onClick={AddBet}>Add Bet</button>
+          <button className='w-1/5 mt-4 px-4 text-white rounded-lg bg-yellow-400' onClick={AddBetMax}> Bet MAX</button>
           <button onClick={spinReels}
             disabled={isSpinning}
             className={`mt-4 px-4 flex items-center justify-center gap-4 py-2 text-white rounded-lg ${isSpinning ? 'bg-yellow-400' : 'bg-yellow-500 hover:bg-yellow-700'}`}> {isSpinning ? 'Spinning...' : 'Spin!'} <span> <Price amount={1000}/> </span>
           </button>
         </div>
-       
-        <button
-          onClick={spinReels}
-          disabled={isSpinning}
-          className={`mt-4 mx-4 w-full px-4 flex items-center justify-center gap-4 py-2 text-white rounded-lg ${isSpinning ? 'bg-yellow-400' : 'bg-yellow-500 hover:bg-yellow-700'}`}
-        >
-          {isSpinning ? 'Spinning...' : 'Spin!'} <span> <Price amount={1000}/> </span>
-        </button>
       </div>
     </div>
   );
