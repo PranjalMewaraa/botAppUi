@@ -12,7 +12,6 @@ import MissionDrawer from "@/components/MissionDrawer";
 import MissionDrawer2 from "@/components/AssetDrawer";
 import TopNav from "@/components/v1/TopNavMine";
 import dollar from '../../assets/Images/TokenTycoon.png'
-import { useNavigate } from "react-router-dom";
 import { useNavBar } from "@/utils/useNavBar";
 
 // Define types for props
