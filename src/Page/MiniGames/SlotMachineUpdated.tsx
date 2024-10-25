@@ -7,7 +7,7 @@ interface ReelProps {
 
 const Reel: React.FC<ReelProps> = ({ symbol }) => {
   return (
-    <div className="flex items-center justify-center w-24 h-24 border-2 border-gray-600 bg-gradient-to-b from-gray-400 to-gray-200 shadow-lg">
+    <div className="flex items-center justify-center w-24 h-36 border-2 border-gray-600 bg-gradient-to-b from-gray-400 to-gray-200 shadow-lg">
       <h2 className="text-3xl">{symbol}</h2>
     </div>
   );
