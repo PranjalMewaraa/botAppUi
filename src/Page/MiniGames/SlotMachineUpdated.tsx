@@ -1,3 +1,4 @@
+import Price from '@/components/Price';
 import React, { useState } from 'react';
 
 interface ReelProps {
@@ -6,7 +7,7 @@ interface ReelProps {
 
 const Reel: React.FC<ReelProps> = ({ symbol }) => {
   return (
-    <div className="flex items-center justify-center w-24 h-24 border-2 border-gray-600 bg-gray-200">
+    <div className="flex items-center justify-center w-24 h-24 border-2 border-gray-600 bg-gradient-to-b from-gray-300 to-gray-200 shadow-lg rounded-lg">
       <h2 className="text-3xl">{symbol}</h2>
     </div>
   );
@@ -50,7 +51,7 @@ const SlotMachine: React.FC = () => {
           disabled={isSpinning}
           className={`mt-4 mx-4 w-full px-4 py-2 text-white rounded-lg ${isSpinning ? 'bg-yellow-400' : 'bg-yellow-500 hover:bg-yellow-700'}`}
         >
-          {isSpinning ? 'Spinning...' : 'Spin!'}
+          {isSpinning ? 'Spinning...' : 'Spin!'} <span> <Price amount={1000}/> </span>
         </button>
       </div>
     </div>
