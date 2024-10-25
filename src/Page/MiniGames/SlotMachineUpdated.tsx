@@ -1,180 +1,153 @@
-import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
-interface SpinnerProps {
+// Spinner Component Props
+type SpinnerProps = {
   timer: number;
-  onFinish: (position: number) => void;
-}
+  onFinish: (value: number) => void;
+};
 
-interface SpinnerHandle {
-  forceUpdateHandler: () => void;
-}
+// Constant for icon height
+const iconHeight = 188;
 
-const Spinner = forwardRef<SpinnerHandle, SpinnerProps>(({ timer, onFinish }, ref) => {
-  const iconHeight = 188;
-  const [position, setPosition] = useState<number>(0);
-  const [timeRemaining, setTimeRemaining] = useState<number>(timer);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+// Function to set the initial start position for the spinner
+const setStartPosition = () => {
+  return Math.floor(Math.random() * 9) * iconHeight * -1;
+};
 
-  const multiplier = useRef<number>(Math.floor(Math.random() * (4 - 1) + 1)).current;
-  const speed = useRef<number>(iconHeight * multiplier).current;
-  const start = useRef<number>(setStartPosition()).current;
+// Spinner Functional Component
+const Spinner: React.FC<SpinnerProps> = ({ timer, onFinish }) => {
+  const [position, setPosition] = useState(setStartPosition());
+  const [timeRemaining, setTimeRemaining] = useState(timer);
+  const multiplier = useRef(Math.floor(Math.random() * 3) + 1);
 
-  function setStartPosition(): number {
-    return (Math.floor(Math.random() * 9) * iconHeight) * -1;
-  }
-
-  useImperativeHandle(ref, () => ({
-    forceUpdateHandler() {
-      reset();
-    }
-  }));
-
-  const reset = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-    }
-
-    const newStart = setStartPosition();
-    setPosition(newStart);
-    setTimeRemaining(timer);
-  };
-
+  // Function to move the spinner background and calculate new position
   const moveBackground = () => {
-    setPosition((prevPosition) => prevPosition - speed);
+    setPosition((prevPosition) => prevPosition - iconHeight * multiplier.current);
     setTimeRemaining((prevTime) => prevTime - 100);
   };
 
+  // Calculate the symbol position after spinning stops
   const getSymbolFromPosition = () => {
+    let currentPosition = position;
     const totalSymbols = 9;
     const maxPosition = iconHeight * (totalSymbols - 1) * -1;
-    const moved = (timer / 100) * multiplier;
-    let currentPosition = start;
+    const moved = (timer / 100) * multiplier.current;
 
     for (let i = 0; i < moved; i++) {
       currentPosition -= iconHeight;
-
-      if (currentPosition < maxPosition) {
-        currentPosition = 0;
-      }
+      if (currentPosition < maxPosition) currentPosition = 0;
     }
 
+    // Trigger the callback with the final position value
     onFinish(currentPosition);
   };
 
-  const tick = () => {
-    if (timeRemaining <= 0) {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-      }
-      getSymbolFromPosition();
-    } else {
-      moveBackground();
-    }
-  };
-
+  // Effect hook to handle the spinning animation and timing
   useEffect(() => {
-    reset();
-
-    timerRef.current = setInterval(() => {
-      tick();
+    const interval = setInterval(() => {
+      if (timeRemaining <= 0) {
+        clearInterval(interval);
+        getSymbolFromPosition();
+      } else {
+        moveBackground();
+      }
     }, 100);
 
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-      }
-    };
+    // Cleanup interval when component unmounts or when timer is done
+    return () => clearInterval(interval);
   }, [timeRemaining]);
 
   return (
-    <div style={{ backgroundPosition: `0px ${position}px` }} className="icons" />
-  );
-});
-
-interface RepeatButtonProps {
-  onClick: () => void;
-}
-
-const RepeatButton: React.FC<RepeatButtonProps> = ({ onClick }) => {
-  return (
-    <button aria-label="Play again." id="repeatButton" onClick={onClick}></button>
+    <div
+      style={{ backgroundPosition: `0px ${position}px` }}
+      className="w-32 h-96 bg-white bg-repeat-y overflow-hidden transition-background duration-300 ease-in-out"
+    />
   );
 };
 
-const WinningSound: React.FC = () => {
-  return (
-    <audio autoPlay className="player" preload="false">
-      <source src="https://andyhoffman.codes/random-assets/img/slots/winning_slot.wav" />
-    </audio>
-  );
-};
-
-const SlotMachineGamePage: React.FC = () => {
+// SlotMachine Functional Component
+const SlotMachine: React.FC = () => {
   const [winner, setWinner] = useState<boolean | null>(null);
   const matches = useRef<number[]>([]);
 
-  const child1Ref = useRef<SpinnerHandle | null>(null);
-  const child2Ref = useRef<SpinnerHandle | null>(null);
-  const child3Ref = useRef<SpinnerHandle | null>(null);
-
-  const loser = [
-    'Not quite',
-    'Stop gambling',
-    'Hey, you lost!',
-    'Ouch! I felt that',
+  // List of potential losing phrases
+  const loserMessages = [
+    "Not quite",
+    "Stop gambling",
+    "Hey, you lost!",
+    "Ouch! I felt that",
     "Don't beat yourself up",
-    'There goes the college fund',
-    'I have a cat. You have a loss',
+    "There goes the college fund",
+    "I have a cat. You have a loss",
     "You're awesome at losing",
-    'Coding is hard',
+    "Coding is hard",
     "Don't hate the coder",
   ];
 
-  const emptyArray = () => {
-    matches.current = [];
-  };
-
-  const handleClick = () => {
-    setWinner(null);
-    emptyArray();
-    child1Ref.current?.forceUpdateHandler();
-    child2Ref.current?.forceUpdateHandler();
-    child3Ref.current?.forceUpdateHandler();
-  };
-
+  // Callback function to handle when each spinner finishes
   const finishHandler = (value: number) => {
     matches.current.push(value);
 
     if (matches.current.length === 3) {
       const first = matches.current[0];
-      const results = matches.current.every((match) => match === first);
-      setWinner(results);
+      const isWinner = matches.current.every((match) => match === first);
+      setWinner(isWinner);
+      matches.current = []; // Reset for the next round
     }
   };
 
-  const getLoser = () => {
-    return loser[Math.floor(Math.random() * loser.length)];
+  // Handle the "Play again" click event
+  const handleClick = () => {
+    setWinner(null);
+    matches.current = [];
   };
 
+  // Function to get a random losing message
+  const getRandomLoserMessage = () => loserMessages[Math.floor(Math.random() * loserMessages.length)];
+
   return (
-    <div className='w-full h-full'>
-      {winner && <WinningSound />}
-      <h1 style={{ color: 'white' }}>
-        <span>
-          {winner === null ? 'Waiting…' : winner ? '🤑 Pure skill! 🤑' : getLoser()}
-        </span>
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
+      {/* Conditionally play winning sound */}
+      {winner && (
+        <audio autoPlay className="hidden">
+          <source src="https://andyhoffman.codes/random-assets/img/slots/winning_slot.wav" />
+        </audio>
+      )}
+
+      {/* Display the current game status */}
+      <h1 className="text-4xl font-semibold">
+        {winner === null
+          ? "Waiting…"
+          : winner
+          ? "🤑 Pure skill! 🤑"
+          : getRandomLoserMessage()}
       </h1>
 
-      <div className="spinner-container">
-        <Spinner onFinish={finishHandler} ref={child1Ref} timer={1000} />
-        <Spinner onFinish={finishHandler} ref={child2Ref} timer={1400} />
-        <Spinner onFinish={finishHandler} ref={child3Ref} timer={2200} />
-        <div className="gradient-fade"></div>
+      {/* Spinner container */}
+      <div className="relative flex items-center justify-center overflow-hidden h-[632px] py-8">
+        {/* Each Spinner with different timer values */}
+        <Spinner timer={1000} onFinish={finishHandler} />
+        <Spinner timer={1400} onFinish={finishHandler}  />
+        <Spinner timer={2200} onFinish={finishHandler} />
+
+        {/* Overlay to create a shadow effect */}
+        <div className="absolute inset-8 bg-gradient-to-b from-gray-900 to-transparent"></div>
       </div>
 
-      {winner !== null && <RepeatButton onClick={handleClick} />}
+      {/* Button to restart the game */}
+      {winner !== null && (
+        <button
+          aria-label="Play again"
+          className="mt-4 w-12 h-12 bg-repeat bg-center bg-no-repeat animate-spin"
+          style={{
+            backgroundImage:
+              "url(https://andyhoffman.codes/random-assets/img/slots/repeat.png)",
+          }}
+          onClick={handleClick}
+        />
+      )}
     </div>
   );
 };
 
-export default SlotMachineGamePage;
+export default SlotMachine;
