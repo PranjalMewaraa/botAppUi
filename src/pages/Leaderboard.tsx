@@ -63,19 +63,19 @@ export default function Leaderboard() {
       <Link to={"/"} className="p-4"><FaArrowLeft size={24} color="white" className="text-white" onClick={()=>setActiveIndex(5)}/></Link>
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <div className="">
-          <Swiper
-            ref={swiperRef}
-            spaceBetween={30}
-            modules={[EffectFade, Navigation]}
-            effect={"fade"}
-            className="rounded-xl"
-            navigation={{
-              enabled: true,
-              nextEl: ".custom-swiper-button-next",
-              prevEl: ".custom-swiper-button-prev",
-            }}
-            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-          >
+        <Swiper
+          ref={swiperRef}
+          modules={[EffectFade, Navigation]}
+          effect={"fade"}
+          watchSlidesProgress={true}
+          fadeEffect={{ crossFade: true }}
+          navigation={{
+            enabled: true,
+            nextEl: ".custom-swiper-button-next",
+            prevEl: ".custom-swiper-button-prev",
+          }}
+          onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+        >
             {store.levels?.map((item, i) => (
               <SwiperSlide key={`slide-${i}`}>
                 <div

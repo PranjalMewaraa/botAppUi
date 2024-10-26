@@ -204,3 +204,11 @@ h1 span {
     transform: translate(-50%, -50%) scale(.4, .4);
   }
 }
+.swiper-slide {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+}
+
+.swiper-slide-active {
+  opacity: 1;
+}
