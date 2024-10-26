@@ -122,7 +122,7 @@ const SlotMachine: React.FC = () => {
         transaction(Math.floor(1000 * profitMultiplier*(occurrences/3)),"credit",`user Won ${Math.floor(win)} in slot game`);
         user.IncreaseBalance(Math.floor(win));
       } else {
-        setMessage(loserMessages[Math.floor(Math.random() * loserMessages.length)]);
+        setMessage(`You Lost, ${loserMessages[Math.floor(Math.random() * loserMessages.length)]}`);
         transaction(Math.floor(1000),"debit",`user lost ${1000} in slot game`);
         user.descreaseBalance(Math.floor(Math.floor(1000)))
       }
