@@ -158,8 +158,8 @@ const SlotMachine: React.FC = () => {
           <h1 className="w-full font-[ageobold] text-6xl text-center my-2 text-white">How to Play</h1>
           <div className='w-full p-4 bg-slate-800 rounded-lg text-white'>
             <ul className='w-full h-full flex flex-col gap-4'>
-              <li>Select a symbol - '🍒' | '🍋' | '🍊' | '🍉' | '🍇' </li>
-              <li>Spin to Win Rewards</li>
+              <li>STEP-I  ~ Select a symbol - '🍒' | '🍋' | '🍊' | '🍉' | '🍇' </li>
+              <li>STEP-II ~ Spin to Win Rewards</li>
               <li>
                 <div>
                   <span className='text-yellow-500'>Win System :</span>
