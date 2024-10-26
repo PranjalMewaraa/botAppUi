@@ -71,6 +71,7 @@ const SlotMachine: React.FC = () => {
           setReels((prevReels) => {
             const updatedReels = [...prevReels];
             updatedReels[i] = newReels[i];
+            setIsSpinning(false);
             return updatedReels;
           });
         });
