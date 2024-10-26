@@ -200,13 +200,14 @@ const SlotMachine: React.FC = () => {
             {isSpinning ? 'Spinning...' : 'Spin!'} <span> <Price amount={1000}/> </span>
           </button>
         </div>
-      </div>
-      <BottomDrawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
-        <div className='w-full h-full p-4 flex flex-col gap-4'>
-          <h1 className='text-xl font-semibold w-full text-center font-[ageobold]'>How to Play</h1>
+        <BottomDrawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
+          <div className='w-full h-full p-4 flex flex-col gap-4'>
+            <h1 className='text-xl font-semibold w-full text-center font-[ageobold]'>How to Play</h1>
 
-        </div>
-      </BottomDrawer>
+          </div>
+        </BottomDrawer>
+      </div>
+    
     </div>
   );
 };
