@@ -3,6 +3,9 @@ import { useUserStore } from '@/store/user-store';
 import React, { useState, useRef } from 'react';
 import gsap from 'gsap';
 import { $http } from '@/lib/http';
+import { Link } from 'react-router-dom';
+import { FaQuestion, FaTimes } from 'react-icons/fa';
+import { useNavBar } from '@/utils/useNavBar';
 
 interface ReelProps {
   symbol: string;
@@ -134,10 +137,16 @@ const SlotMachine: React.FC = () => {
     set_index((i_index+1)%betSymbol.length);
     setBet(betSymbol[i_index]);
   };
+  const { activeIndex, setActiveIndex } = useNavBar();
+  console.log(activeIndex)
   const user = useUserStore();
-
+  
   return (
     <div id="main_div" className="min-h-screen w-full flex items-center justify-center bg-gray-100">
+      <div className='w-full h-fit py-4 px-4 flex justify-between items-center'>
+        <Link to={'/'} className="text-white"><FaTimes size={24} color="white" onClick={()=>setActiveIndex(1)}/></Link>
+        <FaQuestion size={24} color='white'/>
+      </div>
       <div className="flex flex-col items-center mt-10">
         <h1 className="w-full font-[ageobold] text-6xl text-center my-2 text-white">Slot Machine</h1>
         <div className="flex flex-col gap-2 pt-2 px-2">
