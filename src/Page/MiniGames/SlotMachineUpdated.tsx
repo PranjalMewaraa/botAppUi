@@ -152,10 +152,11 @@ const SlotMachine: React.FC = () => {
       {isFaqOpen?
       <>
         <div className='w-full h-fit py-4 px-4 flex justify-start items-center'>
-          <Link to={'/'} className="text-white"><FaArrowLeft size={24} color="white" onClick={()=>setFaqOpen(!isFaqOpen)}/></Link>
+          <div className="text-white"><FaArrowLeft size={24} color="white" onClick={()=>setFaqOpen(!isFaqOpen)}/></div>
         </div>
         <div className='flex flex-col p-4 mt-4 gap-4'>
           <h1 className="w-full font-[ageobold] text-6xl text-center my-2 text-white">How to Play</h1>
+          <div className='w-full p-4 '></div>
         </div>
       </>
       :
