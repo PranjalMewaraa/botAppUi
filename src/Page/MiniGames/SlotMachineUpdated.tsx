@@ -2,6 +2,7 @@ import Price from '@/components/Price';
 import { useUserStore } from '@/store/user-store';
 import React, { useState, useRef } from 'react';
 import gsap from 'gsap';
+import { $http } from '@/lib/http';
 
 interface ReelProps {
   symbol: string;
@@ -49,6 +50,20 @@ const SlotMachine: React.FC = () => {
     'Coding is hard',
     "Don't hate the coder",
   ];
+  
+  const transaction = (amount:number,type:string,remarks:string)=>{
+    try {
+      $http.post('/clicker/transaction',{
+        amount:amount,
+        type:type,
+        remark:remarks
+      }).then((res)=>{
+        console.log(res.data)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
  
   // Refs for the reels
   const reelRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
@@ -100,19 +115,19 @@ const SlotMachine: React.FC = () => {
       }else if (newReels.every((symbol) => symbol === newReels[0])) {
         setMessage('Yohooo! You won the Mini Jackpot');
       } else if (newReels.includes(bet as SymbolType)) {
+        const occurrences = newReels.filter(symbol => symbol === bet as SymbolType).length;
         const profitMultiplier = WinProfit.find((item) => item[bet as SymbolType])?.[bet as SymbolType] || 0;
-        setMessage(`You won! ${10 * profitMultiplier}`);
+        setMessage(`You won! ${1000 * profitMultiplier*(occurrences/3)}`);
+        transaction(Math.floor(1000 * profitMultiplier*(occurrences/3)),"debit",`user lost ${1000 * profitMultiplier*(occurrences/3)} in slot game`);
       } else {
         setMessage(loserMessages[Math.floor(Math.random() * loserMessages.length)]);
+        transaction(Math.floor(1000),"debit",`user lost ${1000} in slot game`);
       }
       
     }, 2000); // Delay for spin completion
   };
 
   const AddBet = () => {
-    set_index((i_index+1)%betSymbol.length);
-  };
-  const AddBetMax = () => {
     set_index((i_index+1)%betSymbol.length);
     setBet(betSymbol[i_index]);
   };
