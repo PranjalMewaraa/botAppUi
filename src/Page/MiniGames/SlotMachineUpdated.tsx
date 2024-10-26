@@ -20,10 +20,23 @@ const Reel: React.FC<ReelProps> = ({ symbol, reelRef }) => {
 };
 
 const SlotMachine: React.FC = () => {
+  type SymbolType = '🍒' | '🍋' | '🍊' | '🍉' | '🍇' | '🍀';
+
+  const WinProfit: { [key in SymbolType]?: number }[] = [
+    { '🍒': 1 },
+    { '🍋': 2 },
+    { '🍊': 3 },
+    { '🍉': 4 },
+    { '🍇': 5 },
+  ];
+  const symbols = ['🍒','🍒','🍒','🍒','🍒','🍒', '🍋','🍋','🍋','🍋','🍋', '🍊','🍊','🍊','🍊', '🍉','🍉','🍉', '🍇','🍇', '🍀'];
+  const betSymbol = ['🍒','🍋','🍊','🍉','🍇'];
   const [reels, setReels] = useState<string[]>(['?', '?', '?']); // Initial state with three reels
   const [isSpinning, setIsSpinning] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('Can You Hit the $-Jackpot-$');
-  const [bet, setBet] = useState<number>(10);
+  const [i_index,set_index]=useState(0);
+  const [bet, setBet] = useState<string>(betSymbol[i_index]);
+ 
   const loserMessages = [
     'Not quite',
     'Stop gambling',
@@ -36,8 +49,7 @@ const SlotMachine: React.FC = () => {
     'Coding is hard',
     "Don't hate the coder",
   ];
-  const symbols = ['🍒','🍒','🍒','🍒','🍒','🍒', '🍋','🍋','🍋','🍋','🍋', '🍊','🍊','🍊','🍊', '🍉','🍉','🍉', '🍇','🍇', '🍀'];
-
+ 
   // Refs for the reels
   const reelRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
 
@@ -83,19 +95,24 @@ const SlotMachine: React.FC = () => {
 
     setTimeout(() => {
       // Check for win condition
-      if (newReels.every((symbol) => symbol === newReels[0])) {
+      if (newReels.every((symbol) => symbol === '🍀')) {
         setMessage('Yohooo! You won the Jackpot');
+      } else if (newReels.includes(bet as SymbolType)) {
+        const profitMultiplier = WinProfit.find((item) => item[bet as SymbolType])?.[bet as SymbolType] || 0;
+        setMessage(`You won! ${10 * profitMultiplier}`);
       } else {
         setMessage(loserMessages[Math.floor(Math.random() * loserMessages.length)]);
       }
+      
     }, 3000); // Delay for spin completion
   };
 
   const AddBet = () => {
-    setBet(bet + 10);
+    set_index((i_index+1)%betSymbol.length);
   };
   const AddBetMax = () => {
-    setBet(1000);
+    set_index((i_index+1)%betSymbol.length);
+    setBet(betSymbol[i_index]);
   };
   const user = useUserStore();
 
