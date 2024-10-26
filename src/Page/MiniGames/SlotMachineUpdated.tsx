@@ -104,7 +104,7 @@ const SlotMachine: React.FC = () => {
         setMessage(loserMessages[Math.floor(Math.random() * loserMessages.length)]);
       }
       
-    }, 3000); // Delay for spin completion
+    }, 2000); // Delay for spin completion
   };
 
   const AddBet = () => {
