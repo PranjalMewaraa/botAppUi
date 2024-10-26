@@ -115,6 +115,7 @@ const SlotMachine: React.FC = () => {
       // Check for win condition
       if (newReels.every((symbol) => symbol === '🍀')) {
         setMessage('Yohooo! You won the Jackpot');
+        transaction(100000,"credit",`user Won ${Math.floor(100000)} in slot game`);
       }else if(newReels.includes('💣')){
         setMessage('Oh No ! A Bomb Exploded')
         transaction(Math.floor(1000),"debit",`user lost ${1000} in slot game`);
@@ -122,6 +123,9 @@ const SlotMachine: React.FC = () => {
       }
       else if (newReels.every((symbol) => symbol === newReels[0])) {
         setMessage('Yohooo! You won the Mini Jackpot');
+        const profitMultiplier = WinProfit.find((item) => item[bet as SymbolType])?.[bet as SymbolType] || 0;
+        const profit = Math.floor(profitMultiplier * 1000);
+        transaction(profit,"credit",`user Won ${Math.floor(profit)} in slot game`);
       } else if (newReels.includes(bet as SymbolType)) {
         const occurrences = newReels.filter(symbol => symbol === bet as SymbolType).length;
         const profitMultiplier = WinProfit.find((item) => item[bet as SymbolType])?.[bet as SymbolType] || 0;
