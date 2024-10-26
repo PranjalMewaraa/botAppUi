@@ -87,7 +87,7 @@ const SlotMachine: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className='w-full flex gap-4'>
+        <div className='w-full px-2 flex gap-4'>
           <button className='w-1/5 mt-4 px-4 text-white rounded-lg bg-yellow-400' onClick={AddBet}>Add Bet</button>
           <button className='w-1/5 mt-4 px-4 text-white rounded-lg bg-yellow-400' onClick={AddBetMax}> Bet MAX</button>
           <button onClick={spinReels}
