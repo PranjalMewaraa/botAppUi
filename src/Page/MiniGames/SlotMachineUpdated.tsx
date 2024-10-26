@@ -33,7 +33,7 @@ const SlotMachine: React.FC = () => {
     { '🍉': 4 },
     { '🍇': 5 },
   ];
-  const symbols = ['💣','💣','💣','💣','🍒','🍒','🍒','🍒','🍒','🍒', '🍋','🍋','🍋','🍋','🍋', '🍊','🍊','🍊','🍊', '🍉','🍉','🍉', '🍇','🍇', '🍀'];
+  const symbols = ['💣','💣','🍒','🍒','🍒','🍒','🍒','🍒', '🍋','🍋','🍋','🍋','🍋', '🍊','🍊','🍊','🍊', '🍉','🍉','🍉', '🍇','🍇', '🍀'];
   const betSymbol = ['🍒','🍋','🍊','🍉','🍇'];
   const [reels, setReels] = useState<string[]>(['?', '?', '?']); // Initial state with three reels
   const [isSpinning, setIsSpinning] = useState<boolean>(false);
@@ -115,7 +115,12 @@ const SlotMachine: React.FC = () => {
       // Check for win condition
       if (newReels.every((symbol) => symbol === '🍀')) {
         setMessage('Yohooo! You won the Jackpot');
-      }else if (newReels.every((symbol) => symbol === newReels[0])) {
+      }else if(newReels.includes('💣')){
+        setMessage('Oh No ! A Bomb Exploded')
+        transaction(Math.floor(1000),"debit",`user lost ${1000} in slot game`);
+        user.descreaseBalance(Math.floor(Math.floor(1000)))
+      }
+      else if (newReels.every((symbol) => symbol === newReels[0])) {
         setMessage('Yohooo! You won the Mini Jackpot');
       } else if (newReels.includes(bet as SymbolType)) {
         const occurrences = newReels.filter(symbol => symbol === bet as SymbolType).length;
