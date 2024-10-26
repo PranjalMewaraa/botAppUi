@@ -93,7 +93,7 @@ const SlotMachine: React.FC = () => {
         <h1 className="w-full font-[ageobold] text-6xl text-center my-2 text-white">Slot Machine</h1>
         <div className="flex flex-col gap-2 pt-2 px-2">
           <h3 className="w-full font-[ageobold] text-yellow-400 text-center text-xl mb-2">{message}</h3>
-          <div className="flex w-fit mx-auto border-4 border-yellow-500 rounded-lg justify-center">
+          <div className="flex w-fit mx-auto border-4 border-yellow-500 h-fit overflow-hidden rounded-lg justify-center">
             {reels.map((symbol, index) => (
               <Reel key={index} symbol={symbol} reelRef={reelRefs[index]} />
             ))}
