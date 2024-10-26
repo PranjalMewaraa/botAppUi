@@ -111,9 +111,9 @@ const TopNav = () => {
               <Link to="/game/mine">
                 <GameCard name="Mine Escape" fee={10} src="/images/02.jpg" />
               </Link>
-              {/* <Link to="/game/slot">
+              <Link to="/game/slot">
                 <GameCard name="Slot Machine" fee={100} src="/images/02.jpg" />
-              </Link> */}
+              </Link>
             </div>
           </div>
         )}
