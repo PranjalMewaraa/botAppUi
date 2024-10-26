@@ -52,7 +52,7 @@ const SlotMachine: React.FC = () => {
 
       tl.to(reelRef.current, {
         repeat: 4, // Repeat spin effect for a few rounds 
-        duration: 0.2,
+        duration: 0.1,
         ease: 'power1.inOut',
         onRepeat: () => {
           // Change the symbol after each loop
@@ -64,7 +64,7 @@ const SlotMachine: React.FC = () => {
         },
       })
         .to(reelRef.current, {
-          duration: 0.5,
+          duration: 0.3,
           ease: 'bounce.out',
         })
         .eventCallback('onComplete', () => {
