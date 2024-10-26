@@ -163,7 +163,7 @@ const SlotMachine: React.FC = () => {
               <li>
                 <div>
                   <span className='text-yellow-500'>Win System :</span>
-                  <ul>
+                  <ul className='pl-4 list-disc'>
                     <li>Get all Rare 🍀 to Win Jackpot - 100K</li>
                     <li>Get 3 Bet (or any) Symbol to win 100% of Max Bet</li>
                     <li>Get 2 Bet Symbol to Win 66% of Max Win</li>
