@@ -94,7 +94,7 @@ const SlotMachine: React.FC = () => {
           </div>
           <button onClick={spinReels}
             disabled={isSpinning}
-            className={`mt-4 px-4 w-full flex items-center justify-center gap-4 py-2 text-white rounded-lg ${isSpinning ? 'bg-yellow-400' : 'bg-yellow-500 hover:bg-yellow-700'}`}> {isSpinning ? 'Spinning...' : 'Spin!'} <span> <Price amount={1000}/> </span>
+            className={`px-4 w-full flex items-center justify-center gap-4 py-2 text-white rounded-lg ${isSpinning ? 'bg-yellow-400' : 'bg-yellow-500 hover:bg-yellow-700'}`}> {isSpinning ? 'Spinning...' : 'Spin!'} <span> <Price amount={1000}/> </span>
           </button>
         </div>
       </div>
