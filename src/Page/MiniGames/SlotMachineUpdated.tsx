@@ -97,6 +97,8 @@ const SlotMachine: React.FC = () => {
       // Check for win condition
       if (newReels.every((symbol) => symbol === '🍀')) {
         setMessage('Yohooo! You won the Jackpot');
+      }else if (newReels.every((symbol) => symbol === newReels[0])) {
+        setMessage('Yohooo! You won the Mini Jackpot');
       } else if (newReels.includes(bet as SymbolType)) {
         const profitMultiplier = WinProfit.find((item) => item[bet as SymbolType])?.[bet as SymbolType] || 0;
         setMessage(`You won! ${10 * profitMultiplier}`);
@@ -135,9 +137,9 @@ const SlotMachine: React.FC = () => {
               </div>
             </div>
             <div className="flex flex-col items-center gap-1 rounded-lg">
-              <span className="text-white">Win:</span>
+              <span className="text-white">Max Win:</span>
               <div className="h-8 w-28 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black">
-                100K
+                {WinProfit.find((item) => item[bet as SymbolType])?.[bet as SymbolType] || 0}
               </div>
             </div>
             <div className="flex flex-col items-center gap-1 rounded-lg">
@@ -150,11 +152,8 @@ const SlotMachine: React.FC = () => {
         </div>
         <div className="w-full px-2 flex flex-col gap-4">
           <div className="w-full flex justify-between gap-4">
-            <button className="w-1/2 mt-4 px-4 text-white rounded-lg bg-yellow-400 py-2" onClick={AddBet}>
+            <button className="w-full mt-4 px-4 text-white rounded-lg bg-yellow-400 py-2" onClick={AddBet}>
               Add Bet
-            </button>
-            <button className="w-1/2 mt-4 px-4 text-white rounded-lg bg-yellow-400 py-2" onClick={AddBetMax}>
-              Bet MAX
             </button>
           </div>
           <button
