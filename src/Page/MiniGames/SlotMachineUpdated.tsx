@@ -4,10 +4,9 @@ import React, { useState, useRef } from 'react';
 import gsap from 'gsap';
 import { $http } from '@/lib/http';
 import { Link } from 'react-router-dom';
-import { FaQuestion, FaTimes } from 'react-icons/fa';
+import { FaArrowLeft, FaQuestion, FaTimes } from 'react-icons/fa';
 import { useNavBar } from '@/utils/useNavBar';
 
-import BottomDrawer from '@/components/v1/Drawer';
 interface ReelProps {
   symbol: string;
   reelRef: React.RefObject<HTMLDivElement>;
@@ -146,69 +145,77 @@ const SlotMachine: React.FC = () => {
   const { activeIndex, setActiveIndex } = useNavBar();
   console.log(activeIndex)
   const user = useUserStore();
-  const[isDrawerOpen,setIsDrawerOpen]=useState<boolean>(false);
-  const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
+  const [isFaqOpen,setFaqOpen]=useState<boolean>(false);
   return (
     <div id="main_div" className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-100">
-      <div className='w-full h-fit py-4 px-4 flex justify-between items-center'>
-        <Link to={'/'} className="text-white"><FaTimes size={24} color="white" onClick={()=>setActiveIndex(1)}/></Link>
-        <FaQuestion size={24} color='white'/>
-      </div>
-      <div className="flex flex-col items-center mt-10">
-        <h1 className="w-full font-[ageobold] text-6xl text-center my-2 text-white">Slot Machine</h1>
-        <div className="flex flex-col gap-2 pt-2 px-2">
-          <h3 className="w-full font-[ageobold] text-yellow-400 text-center text-xl mb-2">{message}</h3>
-          <div className="flex w-fit mx-auto border-4 border-yellow-500 h-fit overflow-hidden rounded-lg justify-center">
-            {reels.map((symbol, index) => (
-              <Reel key={index} symbol={symbol} reelRef={reelRefs[index]} />
-            ))}
-          </div>
-          <div className="flex gap-4 justify-center items-center font-[ageo]">
-            <div className="flex flex-col items-center gap-1 rounded-lg">
-              <span className="text-white">Bet:</span>
-              <div className="h-8 w-20 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black">
-                {bet}
-              </div>
-            </div>
-            <div className="flex flex-col items-center gap-1 rounded-lg">
-              <span className="text-white">Max Win:</span>
-              <div className="h-8 w-28 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black">
-                {WinProfit.find((item) => item[bet as SymbolType])?.[bet as SymbolType] || 0}k
-              </div>
-            </div>
-            <div className="flex flex-col items-center gap-1 rounded-lg">
-              <span className="text-white">Coins:</span>
-              <div className="h-8 w-32 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black">
-                {Math.floor(user.balance)}
-              </div>
-            </div>
-          </div>
+      
+      {isFaqOpen?
+      <>
+        <div className='w-full h-fit py-4 px-4 flex justify-start items-center'>
+          <Link to={'/'} className="text-white"><FaArrowLeft size={24} color="white" onClick={()=>setFaqOpen(!isFaqOpen)}/></Link>
         </div>
-        <div className="w-full px-2 flex flex-col gap-4">
-          <div className="w-full flex justify-between gap-4">
-            <button className="w-full mt-4 px-4 text-white rounded-lg bg-yellow-400 py-2" onClick={AddBet}>
-              Add Bet
+        <div className='flex flex-col p-4 mt-4 gap-4'>
+          <h1 className="w-full font-[ageobold] text-6xl text-center my-2 text-white">How to Play</h1>
+        </div>
+      </>
+      :
+      <>
+        <div className='w-full h-fit py-4 px-4 flex justify-between items-center'>
+          <Link to={'/'} className="text-white"><FaTimes size={24} color="white" onClick={()=>setActiveIndex(1)}/></Link>
+          <FaQuestion size={24} color='white' onClick={()=>setFaqOpen(!isFaqOpen)}/>
+        </div>
+        <div className="flex flex-col items-center mt-10">
+          <h1 className="w-full font-[ageobold] text-6xl text-center my-2 text-white">Slot Machine</h1>
+          <div className="flex flex-col gap-2 pt-2 px-2">
+            <h3 className="w-full font-[ageobold] text-yellow-400 text-center text-xl mb-2">{message}</h3>
+            <div className="flex w-fit mx-auto border-4 border-yellow-500 h-fit overflow-hidden rounded-lg justify-center">
+              {reels.map((symbol, index) => (
+                <Reel key={index} symbol={symbol} reelRef={reelRefs[index]} />
+              ))}
+            </div>
+            <div className="flex gap-4 justify-center items-center font-[ageo]">
+              <div className="flex flex-col items-center gap-1 rounded-lg">
+                <span className="text-white">Bet:</span>
+                <div className="h-8 w-20 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black">
+                  {bet}
+                </div>
+              </div>
+              <div className="flex flex-col items-center gap-1 rounded-lg">
+                <span className="text-white">Max Win:</span>
+                <div className="h-8 w-28 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black">
+                  {WinProfit.find((item) => item[bet as SymbolType])?.[bet as SymbolType] || 0}k
+                </div>
+              </div>
+              <div className="flex flex-col items-center gap-1 rounded-lg">
+                <span className="text-white">Coins:</span>
+                <div className="h-8 w-32 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black">
+                  {Math.floor(user.balance)}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="w-full px-2 flex flex-col gap-4">
+            <div className="w-full flex justify-between gap-4">
+              <button className="w-full mt-4 px-4 text-white rounded-lg bg-yellow-400 py-2" onClick={AddBet}>
+                Add Bet
+              </button>
+            </div>
+            <button
+              onClick={spinReels}
+              disabled={isSpinning}
+              className={`px-4 w-full flex items-center justify-center gap-4 py-2 text-white rounded-lg ${
+                isSpinning ? 'bg-yellow-400' : 'bg-yellow-500 hover:bg-yellow-700'
+              }`}
+            >
+              {isSpinning ? 'Spinning...' : 'Spin!'} <span> <Price amount={1000}/> </span>
             </button>
           </div>
-          <button
-            onClick={spinReels}
-            disabled={isSpinning}
-            className={`px-4 w-full flex items-center justify-center gap-4 py-2 text-white rounded-lg ${
-              isSpinning ? 'bg-yellow-400' : 'bg-yellow-500 hover:bg-yellow-700'
-            }`}
-          >
-            {isSpinning ? 'Spinning...' : 'Spin!'} <span> <Price amount={1000}/> </span>
-          </button>
         </div>
-        <BottomDrawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
-          <div className='w-full h-full p-4 flex flex-col gap-4'>
-            <h1 className='text-xl font-semibold w-full text-center font-[ageobold]'>How to Play</h1>
-
-          </div>
-        </BottomDrawer>
-      </div>
+      </>}
+      
     
     </div>
+    
   );
 };
 
