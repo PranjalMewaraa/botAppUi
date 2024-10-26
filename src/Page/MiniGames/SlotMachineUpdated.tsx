@@ -51,8 +51,7 @@ const SlotMachine: React.FC = () => {
       const tl = gsap.timeline({ onComplete: () => setIsSpinning(false) });
 
       tl.to(reelRef.current, {
-        repeat: 4, // Repeat spin effect for a few rounds
-        y: '+=500', // Spin down by 500px
+        repeat: 4, // Repeat spin effect for a few rounds 
         duration: 0.2,
         ease: 'power1.inOut',
         onRepeat: () => {
@@ -65,7 +64,6 @@ const SlotMachine: React.FC = () => {
         },
       })
         .to(reelRef.current, {
-          y: 0,
           duration: 0.5,
           ease: 'bounce.out',
         })
