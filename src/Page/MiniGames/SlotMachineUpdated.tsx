@@ -117,8 +117,9 @@ const SlotMachine: React.FC = () => {
       } else if (newReels.includes(bet as SymbolType)) {
         const occurrences = newReels.filter(symbol => symbol === bet as SymbolType).length;
         const profitMultiplier = WinProfit.find((item) => item[bet as SymbolType])?.[bet as SymbolType] || 0;
-        setMessage(`You won! ${1000 * profitMultiplier*(occurrences/3)}`);
-        transaction(Math.floor(1000 * profitMultiplier*(occurrences/3)),"debit",`user lost ${1000 * profitMultiplier*(occurrences/3)} in slot game`);
+        const win =1000 * profitMultiplier*(occurrences/3);
+        setMessage(`You won! ${Math.floor(win)}`);
+        transaction(Math.floor(1000 * profitMultiplier*(occurrences/3)),"credit",`user Won ${Math.floor(win)} in slot game`);
       } else {
         setMessage(loserMessages[Math.floor(Math.random() * loserMessages.length)]);
         transaction(Math.floor(1000),"debit",`user lost ${1000} in slot game`);
@@ -154,7 +155,7 @@ const SlotMachine: React.FC = () => {
             <div className="flex flex-col items-center gap-1 rounded-lg">
               <span className="text-white">Max Win:</span>
               <div className="h-8 w-28 flex justify-center items-center bg-white border-yellow-300 border-2 rounded-md text-black">
-                {WinProfit.find((item) => item[bet as SymbolType])?.[bet as SymbolType] || 0}
+                {WinProfit.find((item) => item[bet as SymbolType])?.[bet as SymbolType] || 0}k
               </div>
             </div>
             <div className="flex flex-col items-center gap-1 rounded-lg">
