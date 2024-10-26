@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { FaQuestion, FaTimes } from 'react-icons/fa';
 import { useNavBar } from '@/utils/useNavBar';
 
+import BottomDrawer from '@/components/v1/Drawer';
 interface ReelProps {
   symbol: string;
   reelRef: React.RefObject<HTMLDivElement>;
@@ -145,7 +146,8 @@ const SlotMachine: React.FC = () => {
   const { activeIndex, setActiveIndex } = useNavBar();
   console.log(activeIndex)
   const user = useUserStore();
-  
+  const[isDrawerOpen,setIsDrawerOpen]=useState<boolean>(false);
+  const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
   return (
     <div id="main_div" className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-100">
       <div className='w-full h-fit py-4 px-4 flex justify-between items-center'>
@@ -199,6 +201,12 @@ const SlotMachine: React.FC = () => {
           </button>
         </div>
       </div>
+      <BottomDrawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
+        <div className='w-full h-full p-4 flex flex-col gap-4'>
+          <h1 className='text-xl font-semibold w-full text-center font-[ageobold]'>How to Play</h1>
+
+        </div>
+      </BottomDrawer>
     </div>
   );
 };
