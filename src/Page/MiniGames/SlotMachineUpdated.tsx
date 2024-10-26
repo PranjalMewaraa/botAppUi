@@ -142,7 +142,7 @@ const SlotMachine: React.FC = () => {
   const user = useUserStore();
   
   return (
-    <div id="main_div" className="min-h-screen w-full flex items-center justify-center bg-gray-100">
+    <div id="main_div" className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-100">
       <div className='w-full h-fit py-4 px-4 flex justify-between items-center'>
         <Link to={'/'} className="text-white"><FaTimes size={24} color="white" onClick={()=>setActiveIndex(1)}/></Link>
         <FaQuestion size={24} color='white'/>
