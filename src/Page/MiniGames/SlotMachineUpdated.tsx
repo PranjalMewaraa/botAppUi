@@ -36,7 +36,7 @@ const SlotMachine: React.FC = () => {
     'Coding is hard',
     "Don't hate the coder",
   ];
-  const symbols = ['🍒', '🍋', '🍊', '🍉', '🍇', '🍀'];
+  const symbols = ['🍒','🍒','🍒','🍒','🍒','🍒', '🍋','🍋','🍋','🍋','🍋', '🍊','🍊','🍊','🍊', '🍉','🍉','🍉', '🍇','🍇', '🍀'];
 
   // Refs for the reels
   const reelRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
