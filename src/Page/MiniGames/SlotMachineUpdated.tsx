@@ -11,10 +11,10 @@ interface ReelProps {
 const Reel: React.FC<ReelProps> = ({ symbol, reelRef }) => {
   return (
     <div
-      ref={reelRef}
+      
       className="flex items-center justify-center w-28 h-36 border-2 border-gray-600 bg-gradient-to-b from-gray-400 to-gray-200 shadow-lg"
     >
-      <h2 className="text-3xl">{symbol}</h2>
+      <h2 ref={reelRef} className="text-3xl">{symbol}</h2>
     </div>
   );
 };
@@ -52,6 +52,7 @@ const SlotMachine: React.FC = () => {
 
       tl.to(reelRef.current, {
         repeat: 4, // Repeat spin effect for a few rounds 
+        y: '+=500',
         duration: 0.1,
         ease: 'power1.inOut',
         onRepeat: () => {
@@ -64,6 +65,7 @@ const SlotMachine: React.FC = () => {
         },
       })
         .to(reelRef.current, {
+          y: 0,
           duration: 0.3,
           ease: 'bounce.out',
         })
