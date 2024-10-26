@@ -81,11 +81,11 @@ export default function Leaderboard() {
                 <div
                   className="py-4 bg-center bg-cover rounded-xl"
                   style={{
-                    backgroundImage: `url('${levelConfig.bg[item.level]}')`,
+                    backgroundImage: `url('${levelConfig.bg[0]}')`,
                   }}
                 >
                   <img
-                    src={levelConfig.frogs[item.level]}
+                    src="/images/coin.png"
                     alt="level image"
                     className="object-contain mx-auto w-60 h-60"
                     style={{
