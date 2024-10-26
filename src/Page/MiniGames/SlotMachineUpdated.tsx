@@ -147,7 +147,7 @@ const SlotMachine: React.FC = () => {
   const user = useUserStore();
   const [isFaqOpen,setFaqOpen]=useState<boolean>(false);
   return (
-    <div id="main_div" className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-100">
+    <div id="main_div" className="min-h-screen w-full flex flex-col items-center justify-start bg-gray-100">
       
       {isFaqOpen?
       <>
