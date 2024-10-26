@@ -6,6 +6,7 @@ import { $http } from '@/lib/http';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft, FaQuestion, FaTimes } from 'react-icons/fa';
 import { useNavBar } from '@/utils/useNavBar';
+import Explosion from '@/components/Explosion';
 
 interface ReelProps {
   symbol: string;
@@ -53,7 +54,8 @@ const SlotMachine: React.FC = () => {
     'Coding is hard',
     "Don't hate the coder",
   ];
-  
+  const [showExplosion, setShowExplosion] = useState(false);
+
   const transaction = (amount:number,type:string,remarks:string)=>{
     try {
       $http.post('/clicker/transaction',{
@@ -67,7 +69,7 @@ const SlotMachine: React.FC = () => {
       console.log(error)
     }
   }
- 
+  
   // Refs for the reels
   const reelRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
 
@@ -116,6 +118,7 @@ const SlotMachine: React.FC = () => {
       if (newReels.every((symbol) => symbol === '🍀')) {
         setMessage('Yohooo! You won the Jackpot');
         transaction(100000,"credit",`user Won ${Math.floor(100000)} in slot game`);
+        setShowExplosion(true);
       }else if(newReels.includes('💣')){
         setMessage('Oh No ! A Bomb Exploded')
         transaction(Math.floor(1000),"debit",`user lost ${1000} in slot game`);
@@ -182,6 +185,7 @@ const SlotMachine: React.FC = () => {
       </>
       :
       <>
+        {showExplosion && <Explosion onAnimationComplete={() => setShowExplosion(false)} />}
         <div className='w-full h-fit py-4 px-4 flex justify-between items-center'>
           <Link to={'/'} className="text-white"><FaTimes size={24} color="white" onClick={()=>setActiveIndex(1)}/></Link>
           <FaQuestion size={24} color='white' onClick={()=>setFaqOpen(!isFaqOpen)}/>
