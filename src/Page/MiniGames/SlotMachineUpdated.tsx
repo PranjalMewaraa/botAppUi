@@ -5,7 +5,7 @@ import gsap from 'gsap';
 
 interface ReelProps {
   symbol: string;
-  reelRef: React.RefObject<HTMLDivElement>; // Pass a reference for GSAP animation
+  reelRef: React.RefObject<HTMLDivElement>;
 }
 
 const Reel: React.FC<ReelProps> = ({ symbol, reelRef }) => {
@@ -24,7 +24,7 @@ const SlotMachine: React.FC = () => {
   const [isSpinning, setIsSpinning] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('Can You Hit the $-Jackpot-$');
   const [bet, setBet] = useState<number>(10);
-  const loser = [
+  const loserMessages = [
     'Not quite',
     'Stop gambling',
     'Hey, you lost!',
@@ -38,46 +38,54 @@ const SlotMachine: React.FC = () => {
   ];
   const symbols = ['🍒', '🍋', '🍊', '🍉', '🍇', '🍀'];
 
-  // Refs for the reels for GSAP animation
+  // Refs for the reels
   const reelRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
 
   const spinReels = () => {
     if (isSpinning) return;
     setIsSpinning(true);
 
-    // GSAP spin animation
-    reelRefs.forEach((reelRef) => {
-      gsap.to(reelRef.current, {
-        y: 1000, // Moves the reel down by 1000px
-        duration: 0.5,
-        ease: 'power1.inOut',
-        repeat: 5, // Repeat for a total of 5 spins
-        onComplete: () => {
-          gsap.to(reelRef.current, {
-            y: 0, // Bring it back to normal
-            duration: 0.5,
-            ease: 'bounce.out',
-          });
-        },
-      });
-    });
-
-    // Simulate reels stopping after the animation
     const newReels = Array.from({ length: 3 }, () => symbols[Math.floor(Math.random() * symbols.length)]);
 
-    setTimeout(() => {
-      setReels(newReels);
-      setIsSpinning(false);
+    reelRefs.forEach((reelRef, i) => {
+      const tl = gsap.timeline({ onComplete: () => setIsSpinning(false) });
 
+      tl.to(reelRef.current, {
+        repeat: 4, // Repeat spin effect for a few rounds
+        y: '+=500', // Spin down by 500px
+        duration: 0.2,
+        ease: 'power1.inOut',
+        onRepeat: () => {
+          // Change the symbol after each loop
+          setReels((prevReels) => {
+            const updatedReels = [...prevReels];
+            updatedReels[i] = symbols[Math.floor(Math.random() * symbols.length)];
+            return updatedReels;
+          });
+        },
+      })
+        .to(reelRef.current, {
+          y: 0,
+          duration: 0.5,
+          ease: 'bounce.out',
+        })
+        .eventCallback('onComplete', () => {
+          setReels((prevReels) => {
+            const updatedReels = [...prevReels];
+            updatedReels[i] = newReels[i];
+            return updatedReels;
+          });
+        });
+    });
+
+    setTimeout(() => {
       // Check for win condition
       if (newReels.every((symbol) => symbol === newReels[0])) {
-        console.log('Win! All three reels are the same: ', newReels[0]);
         setMessage('Yohooo! You won the Jackpot');
       } else {
-        console.log('Lost! Reels are: ', newReels);
-        setMessage(loser[Math.floor(Math.random() * loser.length)]);
+        setMessage(loserMessages[Math.floor(Math.random() * loserMessages.length)]);
       }
-    }, 3000); // Delay for the total animation time
+    }, 3000); // Delay for spin completion
   };
 
   const AddBet = () => {
@@ -87,6 +95,7 @@ const SlotMachine: React.FC = () => {
     setBet(1000);
   };
   const user = useUserStore();
+
   return (
     <div id="main_div" className="min-h-screen w-full flex items-center justify-center bg-gray-100">
       <div className="flex flex-col items-center mt-10">
