@@ -55,6 +55,7 @@ export default function Leaderboard() {
   window.Telegram.WebApp.BackButton.show();
   console.log(leaderboard.data)
   console.log(user.telegram_id)
+  console.log(activeIndex)
   
   return (
     <div id="main_div" className="w-screen h-screen bg-slate-950 overflow-hidden">
