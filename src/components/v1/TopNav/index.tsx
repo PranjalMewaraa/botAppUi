@@ -1,8 +1,7 @@
-import { useState, useRef, useLayoutEffect, useEffect} from 'react';
+import { useState, useRef, useLayoutEffect} from 'react';
 import { gsap } from 'gsap';
 import GameCard from '../GameCard';
 import { Link } from 'react-router-dom';
-import { useNavBar } from '@/utils/useNavBar';
 
 const TopNav = () => {
   const [activeSection, setActiveSection] = useState('Mini Games');
@@ -10,7 +9,6 @@ const TopNav = () => {
   const navRef = useRef<HTMLDivElement | null>(null);
   const gsapCtx = useRef<ReturnType<typeof gsap.context> | null>(null);
   const animationTimeline = useRef<gsap.core.Timeline | null>(null); // Reusing timeline
-  const src ='https://media.wired.com/photos/62855b1bb6cfd378a30c474a/master/pass/Build-Game-Watch-It-Die-Hyper-Scape-Games.jpg';
 
   useLayoutEffect(() => {
     gsapCtx.current = gsap.context(() => {}, contentRef);
