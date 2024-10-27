@@ -11,7 +11,6 @@ import UserGameDetails from "@/components/UserGameDetails";
 import MissionDrawer from "@/components/MissionDrawer";
 import MissionDrawer2 from "@/components/AssetDrawer";
 import TopNav from "@/components/v1/TopNavMine";
-import { useNavBar } from "@/utils/useNavBar";
 
 // Define types for props
 interface LockInfoProps {
@@ -94,7 +93,6 @@ export default function Missions() {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
   const [openAssetTokenizeDrawer,setAssetTokenizeDrawer]=useState<boolean>(false)
-  const { activeIndex, setActiveIndex } = useNavBar();
    console.log(openDrawer)
    console.log(selectedMission)
   const missions = useQuery({
@@ -115,12 +113,6 @@ export default function Missions() {
     window.dispatchEvent(new Event("UpdateBalance"));
   },[activeType])  
 
-  console.log(activeIndex)
-  useEffect(()=>{
-    if(section==='NFT'){
-      setActiveIndex(7)
-   }
-  },[section])
   return (
     <div className="h-[95%] flex flex-col justify-end bg-cover flex-1 text-white" >
       <div className="flex flex-col flex-1 w-full h-full px-6 pb-24 mt-12">
