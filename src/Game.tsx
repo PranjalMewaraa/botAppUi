@@ -51,7 +51,7 @@ export default function Game() {
   }, [activeIndex, setActiveIndex]);
 
   useEffect(() => {
-    if (pathname !== "/") {
+    if (pathname !== "/" ) {
       window.Telegram.WebApp.BackButton.show();
     } else {
       window.Telegram.WebApp.BackButton.hide();

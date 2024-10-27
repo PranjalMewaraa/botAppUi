@@ -11,10 +11,6 @@ const router2 = createBrowserRouter([
     element: <GameDesktop/>,
   },
   {
-    path: "/desktop",
-    element: <GameDesktop/>,
-  },
-  {
     path: "/game/rps",
     element:<RockPaperScissors/>
   }

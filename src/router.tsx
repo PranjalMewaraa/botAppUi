@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import Game from "./Game";
-import GameDesktop from "./GameDesktop";
 import RockPaperScissors from "./Page/MiniGames/RockPaperScissor";
 import MineGame from "./Page/MiniGames/MineGame";
 import SlotMachineGamePage from "./Page/MiniGames/SlotMachineUpdated";
@@ -11,10 +10,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Game/>,
-  },
-  {
-    path: "/desktop",
-    element: <GameDesktop/>,
   },
   {
     path: "/game/rps",
