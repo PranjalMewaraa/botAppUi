@@ -84,7 +84,7 @@ export default function GameDesktop() {
         {activeIndex===7 && <ComingSoon/>}
         {activeIndex===8 && <Settings/>}
         {activeIndex===9 && <Wallet/>}
-        {activeIndex===10 && <Leaderboard/>}
+        {activeIndex===9.5 && <Leaderboard/>}
         
       </div>
       <PopupMessageDialog message={popupMessage.data} />
