@@ -64,6 +64,7 @@ export default function Game() {
     });
   }, []);
   console.log(activeIndex)
+  console.log(pathname)
   return (
     <div
       id="main_div"
