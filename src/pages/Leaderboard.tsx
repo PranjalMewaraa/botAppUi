@@ -63,7 +63,7 @@ export default function Leaderboard({toggleShow}:LeaderBoardProps) {
   }
   
   return (
-    <div id="main_div" className="w-screen h-[94%] bg-slate-950 overflow-hidden">
+    <div id="main_div" className="w-screen h-[90%] bg-slate-950 overflow-hidden">
       
     <div className="flex flex-col justify-end bg-cover w-full h-full text-white" >
       <div className="p-4"><FaArrowLeft size={24} color="white" className="text-white" onClick={toggleBack}/></div>
