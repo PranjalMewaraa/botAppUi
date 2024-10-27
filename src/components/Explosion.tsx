@@ -7,6 +7,7 @@ const Explosion: React.FC<{ onAnimationComplete: () => void }> = ({ onAnimationC
     const tl = gsap.timeline({ onComplete: onAnimationComplete });
     tl.to('.explosion', {
       scale: 2,
+      repeat:2,
       opacity: 0,
       duration: 0.5,
       ease: 'power2.out',
