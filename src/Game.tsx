@@ -16,7 +16,6 @@ import { useNavBar } from "./utils/useNavBar";
 import ComingSoon from "./components/ui/ComingSoon";
 import Settings from "./pages/Settings";
 import Wallet from "./pages/Wallet";
-import Leaderboard from "./pages/Leaderboard";
 
 
 export default function Game() {
@@ -85,7 +84,6 @@ export default function Game() {
         {activeIndex===7 && <ComingSoon/>}
         {activeIndex===8 && <Settings/>}
         {activeIndex===9 && <Wallet/>}
-        {activeIndex===9.5 && <Leaderboard/>}
       </div>
       <PopupMessageDialog message={popupMessage.data} />
       {/* Force navbar to remain visible */}

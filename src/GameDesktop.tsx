@@ -15,7 +15,6 @@ import PopupMessageDialog from "./components/PopupMessageDialog";
 import { useNavBar } from "./utils/useNavBar";
 import ComingSoon from "./components/ui/ComingSoon";
 import Settings from "./pages/Settings";
-import Leaderboard from "./pages/Leaderboard";
 import Wallet from "./pages/Wallet";
 
 
@@ -84,7 +83,6 @@ export default function GameDesktop() {
         {activeIndex===7 && <ComingSoon/>}
         {activeIndex===8 && <Settings/>}
         {activeIndex===9 && <Wallet/>}
-        {activeIndex===9.5 && <Leaderboard/>}
         
       </div>
       <PopupMessageDialog message={popupMessage.data} />

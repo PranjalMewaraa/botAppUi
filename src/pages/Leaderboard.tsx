@@ -11,11 +11,14 @@ import { UserType } from "@/types/UserType";
 import levelConfig from "@/config/level-config";
 import { uesStore } from "@/store";
 import { Loader2Icon } from "lucide-react";
-import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavBar } from "@/utils/useNavBar";
 
-export default function Leaderboard() {
+type LeaderBoardProps = {
+  toggleShow:(val:boolean)=>void;
+}
+
+export default function Leaderboard({toggleShow}:LeaderBoardProps) {
   const { balance, level, ...user } = useUserStore();
   const store = uesStore();
   const swiperRef = useRef<SwiperRef | null>(null);
@@ -61,7 +64,7 @@ export default function Leaderboard() {
     <div id="main_div" className="w-screen h-screen bg-slate-950 overflow-hidden">
       
     <div className="flex flex-col justify-end bg-cover w-full h-full text-white" >
-      <Link to={"/"} className="p-4"><FaArrowLeft size={24} color="white" className="text-white" onClick={()=>setActiveIndex(5)}/></Link>
+      <div className="p-4"><FaArrowLeft size={24} color="white" className="text-white" onClick={()=>toggleShow(true)}/></div>
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <div className="">
         <Swiper
