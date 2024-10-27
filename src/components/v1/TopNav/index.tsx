@@ -90,7 +90,7 @@ const TopNav = () => {
               <GameCard name="Coming Soon" fee={100} src={src} />
               <GameCard name="Coming Soon" fee={100} src={src} />
             </div> */}
-            <div className='w-full p-4 flex'>
+            <div className='w-full p-4 flex flex-col gap-4 text-slate-400'>
               <div className="text-2xl font-[ageobold]">Coming Soon</div>
               <div className="text-lg">Stay Tuned for more updates</div>
             </div>
