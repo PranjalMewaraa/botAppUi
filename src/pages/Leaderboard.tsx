@@ -58,12 +58,15 @@ export default function Leaderboard({toggleShow}:LeaderBoardProps) {
   console.log(leaderboard.data)
   console.log(user.telegram_id)
   console.log(activeIndex)
+  const toggleBack=()=>{
+    toggleShow(false)
+  }
   
   return (
     <div id="main_div" className="w-screen h-[94%] bg-slate-950 overflow-hidden">
       
     <div className="flex flex-col justify-end bg-cover w-full h-full text-white" >
-      <div className="p-4"><FaArrowLeft size={24} color="white" className="text-white" onClick={()=>toggleShow(true)}/></div>
+      <div className="p-4"><FaArrowLeft size={24} color="white" className="text-white" onClick={toggleBack}/></div>
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <div className="">
         <Swiper
