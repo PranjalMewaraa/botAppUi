@@ -14,6 +14,9 @@ import { useQuery } from "@tanstack/react-query";
 import PopupMessageDialog from "./components/PopupMessageDialog";
 import { useNavBar } from "./utils/useNavBar";
 import ComingSoon from "./components/ui/ComingSoon";
+import Settings from "./pages/Settings";
+import Wallet from "./pages/Wallet";
+import Leaderboard from "./pages/Leaderboard";
 
 
 export default function Game() {
@@ -80,7 +83,9 @@ export default function Game() {
         {activeIndex === 5 && <Profile />}
         {activeIndex === 6 && <Boost />}
         {activeIndex===7 && <ComingSoon/>}
-        
+        {activeIndex===8 && <Settings/>}
+        {activeIndex===9 && <Wallet/>}
+        {activeIndex===10 && <Leaderboard/>}
       </div>
       <PopupMessageDialog message={popupMessage.data} />
       {/* Force navbar to remain visible */}

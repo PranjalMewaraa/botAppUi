@@ -37,27 +37,27 @@ export default function Settings() {
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24">
         
         
-        <h1 className="text-2xl mb-4 font-bold text-center uppercase text-white flex justify-between">
+        <h2 className="text-2xl mb-4 font-bold text-center uppercase text-white flex justify-between">
          <span>Settings</span>
          <span className="text-white"><Link to={"/"} className="text-white"><FaArrowLeft size={24} onClick={()=>setActiveIndex(6)}/></Link> </span>
-        </h1>
+        </h2>
        
 
         <div className="mt-4 space-y-2">
           <LIstLInk
             title={"Wallet"}
           
-            action="/wallet"       
+            action={9}       
           />
           <LIstLInk
             title={"Choose Exchange"}
             subtitle={"Goat tapper exchange"} 
-            action=""       
+            action={8}       
           />
       
           <LIstLInk
             title={"Delete Account"}
-            action=""       
+            action={8}       
           />
            
          

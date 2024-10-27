@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils";
-import { Link } from "react-router-dom";
+import { useNavBar } from "@/utils/useNavBar";
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   icon?: JSX.Element;
   image?: string;
   title: string | JSX.Element;
   subtitle?: string | JSX.Element;
-  action: string 
+  action: number
 };
 
 export default function LIstLInk({
@@ -17,8 +17,11 @@ export default function LIstLInk({
   action
  
 }: Props) {
+  const { activeIndex, setActiveIndex } = useNavBar();
+  console.log(activeIndex)
   return (
-    <Link to={action}
+    <div
+    onClick={()=>setActiveIndex(action)}
       className={cn(
         "group flex items-center w-full gap-4 px-4 py-2 text-white bg-white/10 rounded-xl justify-between h-[3.5rem]",
 
@@ -47,7 +50,7 @@ export default function LIstLInk({
         />
       </div>
      
-    </Link>
+    </div>
   );
 }
 

@@ -14,6 +14,9 @@ import { useQuery } from "@tanstack/react-query";
 import PopupMessageDialog from "./components/PopupMessageDialog";
 import { useNavBar } from "./utils/useNavBar";
 import ComingSoon from "./components/ui/ComingSoon";
+import Settings from "./pages/Settings";
+import Leaderboard from "./pages/Leaderboard";
+import Wallet from "./pages/Wallet";
 
 
 export default function GameDesktop() {
@@ -71,7 +74,7 @@ export default function GameDesktop() {
       <div
         className="content-wrapper overflow-y-scroll w-full h-full"
       >
-        {activeIndex === 0 && <Home/>}
+      {activeIndex === 0 && <Home/>}
         {activeIndex === 1 && <Games />}
         {activeIndex === 2 && <Airdrop />}
         {activeIndex === 3 && <Mine />}
@@ -79,6 +82,9 @@ export default function GameDesktop() {
         {activeIndex === 5 && <Profile />}
         {activeIndex === 6 && <Boost />}
         {activeIndex===7 && <ComingSoon/>}
+        {activeIndex===8 && <Settings/>}
+        {activeIndex===9 && <Wallet/>}
+        {activeIndex===10 && <Leaderboard/>}
         
       </div>
       <PopupMessageDialog message={popupMessage.data} />

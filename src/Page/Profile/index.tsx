@@ -4,8 +4,8 @@ import set from "../../assets/Images/set.png"
 import useSkinConfig from "@/hooks/useSkinConfig";
 import { ReactEventHandler, useEffect, useState } from "react";
 import skinConfig from "@/config/skin-config";
-import { Link } from "react-router-dom";
 import { useUserStore } from "@/store/user-store";
+import { useNavBar } from "@/utils/useNavBar";
 
 const Profile = () => {
   const { skinId, updateSkinId } = useSkinConfig();
@@ -22,6 +22,8 @@ const Profile = () => {
   const handleImageLoad = () => {
     setLoadedCount(prevCount => prevCount + 1);
   };
+  const { activeIndex, setActiveIndex } = useNavBar();
+  console.log(activeIndex)
   return (
     
     <div className='w-full h-screen font-[ageo] flex flex-col p-4 gap-2'>
@@ -29,7 +31,7 @@ const Profile = () => {
          <ProfileBox/>
          <ProfitBox/>
     </div>
-    <Link to={'/leaderboard'} className="w-full p-4 bg-slate-800 text-xl font-[ageobold] text-center border border-yellow-500 rounded-md text-white">🏆 LeaderBoard</Link>
+    <div onClick={()=>setActiveIndex(10)} className="w-full p-4 bg-slate-800 text-xl font-[ageobold] text-center border border-yellow-500 rounded-md text-white">🏆 LeaderBoard</div>
     <div className="w-full h-64 mt-6 px-8 flex justify-center items-center">
         <div className=" aspect-square h-full bg-slate-800 rounded-2xl">
         <img src={skinConfig.images[skinId || 1]} alt="" />
@@ -83,10 +85,12 @@ const ProfileBox = ()=>{
     )
 }
 const ProfitBox = ()=>{
+  const { activeIndex, setActiveIndex } = useNavBar();
+  console.log(activeIndex)
     return(
-        <Link to={'/settings'} className=" flex flex-col px-3 py-1  items-center rounded-full bg-[#283140] border-t border-r border-yellow-600">
+        <div onClick={()=>setActiveIndex(8)} className=" flex flex-col px-3 py-1  items-center rounded-full bg-[#283140] border-t border-r border-yellow-600">
             <img src={set} alt="setting" />
-        </Link>
+        </div>
     )
 }
 export default Profile
