@@ -39,9 +39,9 @@ interface MineCardProps {
   userLevel: any ;
   totalReferals: number;
 }
-// interface MineCardAssetProps {
-//   setAssetTokenizeDrawer: (open: boolean) => void;
-// }
+interface MineCardAssetProps {
+  setAssetTokenizeDrawer: (open: boolean) => void;
+}
 
 
 const MineCard: React.FC<MineCardProps> = ({ mission, setSelectedMission, setOpenDrawer, userLevel, totalReferals }) => {
@@ -118,7 +118,7 @@ export default function Missions() {
 
   console.log(activeIndex)
   useEffect(()=>{
-    if(section==='NFT' || section === "Asset Tokenize"){
+    if(section==='NFT'){
       setActiveIndex(7)
    }
   },[section])
@@ -219,8 +219,7 @@ export default function Missions() {
               ) : (
                 missions.data &&
                 missions.data.map((item) => (
-                  // <AssetTokenizeCard key={item.id} setAssetTokenizeDrawer={setAssetTokenizeDrawer} />
-                  <EmptyMineCard key={item.id}/>
+                   <AssetTokenizeCard key={item.id} setAssetTokenizeDrawer={setAssetTokenizeDrawer} />
                 ))
               )}
             </div>
@@ -264,23 +263,23 @@ const EmptyMineCard = () => {
     </div>
   );
 };
-// const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({setAssetTokenizeDrawer}) => {
+const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({setAssetTokenizeDrawer}) => {
 
-//   const handleClick = () => {
-//     setAssetTokenizeDrawer(true);
-//   };
+  const handleClick = () => {
+    setAssetTokenizeDrawer(true);
+  };
 
-//   return (
-//     <div
-//       className={cn("w-1/2 max-w-60 h-full p-1", { "opacity-40 cursor-not-allowed": "" })}
-//       onClick={handleClick}
-//     >
-//      <div className="w-full h-full flex flex-col gap-2  bg-slate-800 text-white rounded-lg">
-//         <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg" className="w-full rounded-lg h-2/3 p-2" alt="" />
-//         <p className="w-full text-center">
-//           Property Name
-//         </p>
-//      </div>
-//     </div>
-//   );
-// };
+  return (
+    <div
+      className={cn("w-1/2 max-w-60 h-full p-1", { "opacity-40 cursor-not-allowed": "" })}
+      onClick={handleClick}
+    >
+     <div className="w-full h-full flex flex-col gap-2  bg-slate-800 text-white rounded-lg">
+        <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg" className="w-full rounded-lg h-2/3 p-2" alt="" />
+        <p className="w-full text-center">
+          Property Name
+        </p>
+     </div>
+    </div>
+  );
+};
