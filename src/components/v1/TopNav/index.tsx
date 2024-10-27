@@ -64,14 +64,6 @@ const TopNav = () => {
       });
     }
   };
-  const { activeIndex, setActiveIndex } = useNavBar();
-  console.log(activeIndex)
-  useEffect(()=>{
-    if(activeSection==='Games'){
-      setActiveIndex(7)
-   }
-  },[activeSection])
-
 
   return (
     <>
@@ -96,9 +88,13 @@ const TopNav = () => {
       <div ref={contentRef} className="h-20 w-full transition-all duration-300">
         {activeSection === 'Games' && (
           <div className="w-full h-fit p-1 mt-4 overflow-y-scroll">
-            <div className="grid grid-cols-2 gap-4">
+            {/* <div className="grid grid-cols-2 gap-4">
               <GameCard name="Coming Soon" fee={100} src={src} />
               <GameCard name="Coming Soon" fee={100} src={src} />
+            </div> */}
+            <div className='w-full p-4 flex'>
+              <div className="text-2xl font-[ageobold]">Coming Soon</div>
+              <div className="text-lg">Stay Tuned for more updates</div>
             </div>
           </div>
         )}
