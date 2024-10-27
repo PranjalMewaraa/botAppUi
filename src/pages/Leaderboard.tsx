@@ -60,7 +60,7 @@ export default function Leaderboard({toggleShow}:LeaderBoardProps) {
   console.log(activeIndex)
   
   return (
-    <div id="main_div" className="w-screen h-screen bg-slate-950 overflow-hidden">
+    <div id="main_div" className="w-screen h-[94%] bg-slate-950 overflow-hidden">
       
     <div className="flex flex-col justify-end bg-cover w-full h-full text-white" >
       <div className="p-4"><FaArrowLeft size={24} color="white" className="text-white" onClick={()=>toggleShow(true)}/></div>
