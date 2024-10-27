@@ -2,7 +2,7 @@ import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { EffectFade, Navigation } from "swiper/modules";
 import SwapPrevIcon from "@/components/icons/SwapPrevIcon";
 import SwapNextIcon from "@/components/icons/SwapNextIcon";
-import { useEffect, useRef} from "react";
+import { useEffect, useRef, useState} from "react";
 import { useUserStore } from "@/store/user-store";
 import { compactNumber } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
@@ -11,8 +11,7 @@ import { UserType } from "@/types/UserType";
 import levelConfig from "@/config/level-config";
 import { uesStore } from "@/store";
 import { Loader2Icon } from "lucide-react";
-import { FaArrowLeft } from "react-icons/fa";
-import { useNavBar } from "@/utils/useNavBar";
+import { FaArrowLeft } from "react-icons/fa"
 
 type LeaderBoardProps = {
   toggleShow:(val:boolean)=>void;
@@ -20,9 +19,9 @@ type LeaderBoardProps = {
 
 export default function Leaderboard({toggleShow}:LeaderBoardProps) {
   const { balance, level, ...user } = useUserStore();
+  const [activeIndex, setActiveIndex] = useState(0);
   const store = uesStore();
   const swiperRef = useRef<SwiperRef | null>(null);
-  const { activeIndex, setActiveIndex } = useNavBar();
   console.log(store.levels)
   const leaderboard = useQuery({
     queryKey: ["leaderboard", store.levels?.[activeIndex]?.id],
