@@ -275,7 +275,7 @@ const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({setAssetTokenizeDrawer}
       onClick={handleClick}
     >
      <div className="w-full h-full flex flex-col gap-2  bg-slate-800 text-white rounded-lg p-2">
-        <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg" className="w-full rounded-2xl h-2/3 p-1" alt="" />
+        <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg" className="w-full rounded-lg h-2/3 p-1" alt="" />
         <p className="w-full text-center">
           Property Name
         </p>
