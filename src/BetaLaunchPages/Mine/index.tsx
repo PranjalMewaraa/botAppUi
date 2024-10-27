@@ -182,7 +182,7 @@ export default function Missions() {
             ))}
           </div>
           <div className="mt-6">
-            <div className="flex flex-wrap">
+            {/* <div className="flex flex-wrap">
               {missions.isLoading ? (
                 <div className="flex items-center justify-center h-full col-span-2 mt-6">
                   <Loader2Icon className="w-12 h-12 animate-spin text-primary" />
@@ -193,6 +193,10 @@ export default function Missions() {
                   <EmptyMineCard key={item.id}/>
                 ))
               )}
+            </div> */}
+            <div className='w-full p-4 flex flex-col gap-4 text-white'>
+              <div className="text-2xl font-[ageobold]">Coming Soon</div>
+              <div className="text-lg">Stay Tuned for more updates</div>
             </div>
           </div>
         </div> }
