@@ -51,7 +51,7 @@ export default function GameDesktop() {
   }, [activeIndex, setActiveIndex]);
 
   useEffect(() => {
-    if (pathname !== "/" || pathname!==undefined) {
+    if (pathname !== "/") {
       window.Telegram.WebApp.BackButton.show();
     } else {
       window.Telegram.WebApp.BackButton.hide();
