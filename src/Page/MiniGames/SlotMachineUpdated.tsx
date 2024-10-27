@@ -216,7 +216,7 @@ const SlotMachine: React.FC = () => {
               <div className="flex flex-col items-center gap-1 rounded-lg">
                 <span className="text-white">Coins:</span>
                 <div className="h-8 w-32 flex justify-center items-center bg-white border-yellow-300 border-2 gap-2 rounded-md text-black">
-                  <span><img src="/images/coin.png" width={28} alt="" /></span>{Math.floor(user.balance)}
+                  <span><img src="/images/coin.png" width={26} alt="" /></span>{Math.floor(user.balance)}
                 </div>
               </div>
             </div>
