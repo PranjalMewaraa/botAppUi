@@ -118,7 +118,7 @@ const TopNav = () => {
           <div className="w-full h-fit p-1 mt-4 overflow-y-scroll">
             <div className="grid grid-cols-2 gap-4">
               <Link to="/game/slot">
-                <GameCard name="Slot Machine" fee={1000} src="/images/02.jpg" />
+                <GameCard name="Slot Machine" fee={1000} src="/images/slot.png" />
               </Link>
             </div>
           </div>
