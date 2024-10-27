@@ -237,36 +237,36 @@ export default function Missions() {
   );
 }
 
-const EmptyMineCard = () => {
+// const EmptyMineCard = () => {
 
 
-  return (
-    <div
-      className={cn("w-1/2 max-w-60 h-full p-1", { "opacity-40 cursor-not-allowed": "" })}
-    >
-      <div className="w-full h-fit p-2 flex-col gap-2 bg-slate-800 text-white rounded-lg">
-        <div className="text-lg w-full text-center font-bold">Coming Soon</div>
-        <div className="w-full items-center py-2 text-lg flex gap-2">
-          <img src={dollar} alt={"image"} className="w-1/3"/>
-          <div className="flex flex-col gap-1 text-xs">
-            Bonus per Hour
-            <span className="text-sm">
-              <Price amount={0} />
-            </span>
-          </div>
-        </div>
-        <div className="flex justify-between items-center py-1 border-t border-dashed border-white">
-          <div>LVL 1</div>
-          <div className="flex gap-1 items-center">
+//   return (
+//     <div
+//       className={cn("w-1/2 max-w-60 h-full p-1", { "opacity-40 cursor-not-allowed": "" })}
+//     >
+//       <div className="w-full h-fit p-2 flex-col gap-2 bg-slate-800 text-white rounded-lg">
+//         <div className="text-lg w-full text-center font-bold">Coming Soon</div>
+//         <div className="w-full items-center py-2 text-lg flex gap-2">
+//           <img src={dollar} alt={"image"} className="w-1/3"/>
+//           <div className="flex flex-col gap-1 text-xs">
+//             Bonus per Hour
+//             <span className="text-sm">
+//               <Price amount={0} />
+//             </span>
+//           </div>
+//         </div>
+//         <div className="flex justify-between items-center py-1 border-t border-dashed border-white">
+//           <div>LVL 1</div>
+//           <div className="flex gap-1 items-center">
            
-                <Price amount={compactNumber(10)} className="text-[10px]" />
+//                 <Price amount={compactNumber(10)} className="text-[10px]" />
     
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({setAssetTokenizeDrawer}) => {
 
   const handleClick = () => {
