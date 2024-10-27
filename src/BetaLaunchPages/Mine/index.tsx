@@ -185,7 +185,7 @@ export default function Missions() {
                 ))
               )}
             </div> */}
-            <div className='w-full p-4 flex flex-col gap-4 text-white'>
+            <div className='w-full h-64 p-4 flex flex-col gap-4 text-white'>
               <div className="text-2xl font-[ageobold]">Coming Soon</div>
               <div className="text-lg">Stay Tuned for more updates</div>
             </div>
