@@ -19,8 +19,7 @@ export default function Settings() {
   const tonAddress = useTonAddress();
   const { connected: isConnected } = useTonConnect();
   const { activeIndex, setActiveIndex } = useNavBar();
-  
-  window.Telegram.WebApp.BackButton.show();
+
   const tonPay = useTonPay({
     onSuccess: () => toast.success("Your transaction has been completed"),
     onError: () => toast.error("Request rejected"),
