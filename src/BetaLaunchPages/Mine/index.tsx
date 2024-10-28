@@ -192,7 +192,7 @@ export default function Missions() {
                 ))
               )}
             </div> */}
-           <div className="flex flex-wrap gap-1 min-h-64">
+           <div className="grid grid-cols-2 gap-4 min-h-64">
             <NFTCard name="NFT Card I" image="https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg" setAssetTokenizeDrawer={setNFTDrawer}/>
             <NFTCard name="NFT Card II" image="https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149611030.jpg" setAssetTokenizeDrawer={setNFTDrawer}/> 
            </div>
