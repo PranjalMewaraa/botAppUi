@@ -39,7 +39,7 @@ export default function Wallet() {
       <div className="p-4"><FaArrowLeft size={24} color="white" className="text-white" onClick={()=>setActiveIndex(5)}/></div>
       <div className=" relative flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12">
         <img
-          src="/images/toncoin.png"
+          src="/images/coin.png"
           alt="toncoin"
           className="object-contain w-32 h-32 mx-auto"
         />
@@ -64,7 +64,7 @@ export default function Wallet() {
           />
           <ListItem
             title={"Connect your TON Wallet"}
-            image="/images/wallet.png"
+            image="/images/toncoin.png"
             onClick={() => setOpenDrawer(true)}
             action={isConnected && <CheckIcon className="text-green-500" />}
           />
@@ -82,7 +82,7 @@ export default function Wallet() {
       <Drawer open={openDrawer} onOpenChange={setOpenDrawer}>
         <div className="mb-4">
           <img
-            src={"/images/wallet.png"}
+            src={"/images/toncoin.png"}
             alt={"wallet"}
             className="object-contain mx-auto w-28 h-28"
           />
