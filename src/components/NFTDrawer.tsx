@@ -5,21 +5,29 @@ import Price from "./Price";
 import { useState } from "react";
 import { compactNumber } from "@/lib/utils";
 
+type data = {
+    name:string,
+    img:string,
+    price:number,
+}
+
 export default function MissionDrawer3({
+    data,
   ...props
-}: DrawerProps) {
+}: DrawerProps & {
+    data: data | null | undefined;
+  }) {
  
   const [units,setUnits]=useState<number>(1);
-  const cost = 150; 
   
   return (
     <Drawer {...props}>
       <img
-        src={"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg"}
+        src={data?.img}
         alt={""}
         className="object-contain h-32 mx-auto"
       />
-      <h2 className="mt-6 text-2xl font-medium text-center">{"NFT Name"}</h2>
+      <h2 className="mt-6 text-2xl font-medium text-center">{data?.name}</h2>
       <div className="p-2 w-full h-fit flex justify-center gap-4 text-white font-[ageobold]">
           <p>Select Quantity: </p>
           <QuantityAdjust quantity={units} setQuantity={setUnits}/>
@@ -35,7 +43,7 @@ export default function MissionDrawer3({
        <div className="flex items-center justify-center mx-auto mt-6 space-x-1 text-white">
         
         <span className="font-bold w-24 text-end">
-          {`$ ${compactNumber( cost*units)}`}
+          {`$ ${compactNumber( data!.price*units)}`}
         </span>
       </div>
       </div>

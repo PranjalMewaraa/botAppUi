@@ -44,7 +44,9 @@ interface MineCardAssetProps {
 interface NFTAssetProps {
   name:string;
   image:string;
-  setAssetTokenizeDrawer: (open: boolean) => void;
+  data:data,
+  setAssetTokenizeDrawer: (open: boolean) => void,
+  setSelectedNFT:(obj:data)=>void;
 }
 
 const MineCard: React.FC<MineCardProps> = ({ mission, setSelectedMission, setOpenDrawer, userLevel, totalReferals }) => {
@@ -91,14 +93,23 @@ const MineCard: React.FC<MineCardProps> = ({ mission, setSelectedMission, setOpe
   );
 };
 
+type data = {
+  name:string,
+  img:string,
+  price:number,
+}
+
 export default function Missions() {
   const user = useUserStore();
   const { missionTypes, totalReferals } = uesStore();
   const [activeType, setActiveType] = useState(missionTypes?.[0]);
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
+  const [selectNFT,setSelectedNFT]=useState<data>();
   const [openAssetTokenizeDrawer,setAssetTokenizeDrawer]=useState<boolean>(false)
-  
+
+  const NFTdata=[{name:"Monkey NFT", img:"https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg",price:150},{name:"Ape NFT", img:"https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149611030.jpg",price:175}]
+
   const [openNFTDrawer,setNFTDrawer]=useState<boolean>(false)
    console.log(openDrawer)
    console.log(selectedMission)
@@ -193,10 +204,10 @@ export default function Missions() {
               )}
             </div> */}
            <div className="grid grid-cols-2 gap-4 min-h-64">
-              <NFTCard name="NFT Card I" image="https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg" setAssetTokenizeDrawer={setNFTDrawer}/>
-              <NFTCard name="NFT Card II" image="https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149611030.jpg" setAssetTokenizeDrawer={setNFTDrawer}/>
-              <NFTCard name="NFT Card I" image="https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg" setAssetTokenizeDrawer={setNFTDrawer}/>
-              <NFTCard name="NFT Card II" image="https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149611030.jpg" setAssetTokenizeDrawer={setNFTDrawer}/>
+              {NFTdata.map((data)=>{
+                return <NFTCard name={data.name} image={data.img} setAssetTokenizeDrawer={setNFTDrawer} data={data} setSelectedNFT={setSelectedNFT}/>
+              })}
+              
            </div>
           </div>
         </div> }
@@ -233,40 +244,13 @@ export default function Missions() {
       </div>
       <MissionDrawer open={openDrawer} onOpenChange={setOpenDrawer} mission={selectedMission} />
       <MissionDrawer2 open={openAssetTokenizeDrawer} onOpenChange={setAssetTokenizeDrawer} />
-      <MissionDrawer3 open={openNFTDrawer} onOpenChange={setNFTDrawer}/>
+      <MissionDrawer3 open={openNFTDrawer} onOpenChange={setNFTDrawer} data={selectNFT}/>
     </div>
   );
 }
 
 
 
-//   return (
-//     <div
-//       className={cn("w-1/2 max-w-60 h-full p-1", { "opacity-40 cursor-not-allowed": "" })}
-//     >
-//       <div className="w-full h-fit p-2 flex-col gap-2 bg-slate-800 text-white rounded-lg">
-//         <div className="text-lg w-full text-center font-bold">Coming Soon</div>
-//         <div className="w-full items-center py-2 text-lg flex gap-2">
-//           <img src={dollar} alt={"image"} className="w-1/3"/>
-//           <div className="flex flex-col gap-1 text-xs">
-//             Bonus per Hour
-//             <span className="text-sm">
-//               <Price amount={0} />
-//             </span>
-//           </div>
-//         </div>
-//         <div className="flex justify-between items-center py-1 border-t border-dashed border-white">
-//           <div>LVL 1</div>
-//           <div className="flex gap-1 items-center">
-           
-//                 <Price amount={compactNumber(10)} className="text-[10px]" />
-    
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
 const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({setAssetTokenizeDrawer}) => {
 
   const handleClick = () => {
@@ -288,9 +272,10 @@ const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({setAssetTokenizeDrawer}
   );
 };
 
-const NFTCard:React.FC<NFTAssetProps> = ({name,image,setAssetTokenizeDrawer}) => {
+const NFTCard:React.FC<NFTAssetProps> = ({name,image,setAssetTokenizeDrawer,setSelectedNFT,data}) => {
 
   const handleClick = () => {
+    setSelectedNFT(data);
     setAssetTokenizeDrawer(true);
   };
 
