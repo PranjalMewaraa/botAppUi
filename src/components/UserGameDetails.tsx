@@ -1,7 +1,6 @@
 import { cn, compactNumber } from "@/lib/utils";
 
 import { useUserStore } from "@/store/user-store";
-import { Link } from "react-router-dom";
 
 export default function UserGameDetails({
   className,
@@ -33,7 +32,7 @@ export default function UserGameDetails({
           </div>
         )}
       </div>
-      <Link to="/missions" className="flex flex-col items-center justify-center flex-1 p-2 select-none bg-white/10 backdrop-blur-sm rounded-xl">
+      <div className="flex flex-col items-center justify-center flex-1 p-2 select-none bg-white/10 backdrop-blur-sm rounded-xl">
         <p className="mb-1 text-xs text-center">Bonus per hour</p>
         <div className="inline-flex items-center space-x-1.5 text-white font-bold">
           <img className="object-contain w-5 h-5" src="/images/coin.png" />
@@ -41,7 +40,7 @@ export default function UserGameDetails({
             +{compactNumber(user.production_per_hour)}
           </span>
         </div>
-      </Link>
+      </div>
     </div>
   );
 }
