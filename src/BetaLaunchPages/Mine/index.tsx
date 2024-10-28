@@ -11,6 +11,7 @@ import UserGameDetails from "@/components/UserGameDetails";
 import MissionDrawer from "@/components/MissionDrawer";
 import MissionDrawer2 from "@/components/AssetDrawer";
 import TopNav from "@/components/v1/TopNavMine";
+import MissionDrawer3 from "@/components/NFTDrawer";
 
 // Define types for props
 interface LockInfoProps {
@@ -97,6 +98,8 @@ export default function Missions() {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
   const [openAssetTokenizeDrawer,setAssetTokenizeDrawer]=useState<boolean>(false)
+  
+  const [openNFTDrawer,setNFTDrawer]=useState<boolean>(false)
    console.log(openDrawer)
    console.log(selectedMission)
   const missions = useQuery({
@@ -189,8 +192,9 @@ export default function Missions() {
                 ))
               )}
             </div> */}
-           <div className="flex flex-wrap gap-2">
-            <NFTCard name="NFT Card I" image="https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg" setAssetTokenizeDrawer={setAssetTokenizeDrawer}/>
+           <div className="flex flex-wrap gap-2 min-h-64">
+            <NFTCard name="NFT Card I" image="https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg" setAssetTokenizeDrawer={setNFTDrawer}/>
+            <NFTCard name="NFT Card II" image="https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149611030.jpg" setAssetTokenizeDrawer={setNFTDrawer}/> 
            </div>
           </div>
         </div> }
@@ -227,6 +231,7 @@ export default function Missions() {
       </div>
       <MissionDrawer open={openDrawer} onOpenChange={setOpenDrawer} mission={selectedMission} />
       <MissionDrawer2 open={openAssetTokenizeDrawer} onOpenChange={setAssetTokenizeDrawer} />
+      <MissionDrawer3 open={openNFTDrawer} onOpenChange={setNFTDrawer}/>
     </div>
   );
 }
