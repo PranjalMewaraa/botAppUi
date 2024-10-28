@@ -40,7 +40,11 @@ interface MineCardProps {
 interface MineCardAssetProps {
   setAssetTokenizeDrawer: (open: boolean) => void;
 }
-
+interface NFTAssetProps {
+  name:string;
+  image:string;
+  setAssetTokenizeDrawer: (open: boolean) => void;
+}
 
 const MineCard: React.FC<MineCardProps> = ({ mission, setSelectedMission, setOpenDrawer, userLevel, totalReferals }) => {
   const isLocked =
@@ -185,10 +189,9 @@ export default function Missions() {
                 ))
               )}
             </div> */}
-            <div className='w-full min-h-64 p-4 flex flex-col gap-4 text-white'>
-              <div className="text-2xl font-[ageobold]">Coming Soon</div>
-              <div className="text-lg">Stay Tuned for more updates</div>
-            </div>
+           <div className="flex flex-wrap gap-2">
+            <NFTCard name="NFT Card I" image="https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg" setAssetTokenizeDrawer={setAssetTokenizeDrawer}/>
+           </div>
           </div>
         </div> }
         {section==="Asset Tokenize" && <div className="mt-10">
@@ -228,7 +231,6 @@ export default function Missions() {
   );
 }
 
-// const EmptyMineCard = () => {
 
 
 //   return (
@@ -273,6 +275,27 @@ const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({setAssetTokenizeDrawer}
         <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg" className="w-full rounded-lg h-2/3 p-1" alt="" />
         <p className="w-full text-center">
           Property Name
+        </p>
+     </div>
+    </div>
+  );
+};
+
+const NFTCard:React.FC<NFTAssetProps> = ({name,image,setAssetTokenizeDrawer}) => {
+
+  const handleClick = () => {
+    setAssetTokenizeDrawer(true);
+  };
+
+  return (
+    <div
+      className={cn("w-1/2 max-w-60 h-full p-1", { "opacity-40 cursor-not-allowed": "" })}
+      onClick={handleClick}
+    >
+     <div className="w-full h-full flex flex-col gap-2  bg-slate-800 text-white rounded-lg p-2">
+        <img src={image} className="w-full rounded-lg h-2/3 p-1" alt="" />
+        <p className="w-full text-center">
+          {name}
         </p>
      </div>
     </div>
