@@ -294,7 +294,7 @@ const NFTCard:React.FC<NFTAssetProps> = ({name,image,setAssetTokenizeDrawer}) =>
 
   return (
     <div
-      className={cn("w-full h-full max-h-72 p-1", { "opacity-40 cursor-not-allowed": "" })}
+      className={cn("w-full h-full max-h-56 p-1", { "opacity-40 cursor-not-allowed": "" })}
       onClick={handleClick}
     >
      <div className="w-full h-full flex flex-col gap-2  bg-slate-800 text-white rounded-lg p-2">
