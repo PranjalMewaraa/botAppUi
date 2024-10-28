@@ -108,7 +108,7 @@ export default function Missions() {
   const [selectNFT,setSelectedNFT]=useState<data>();
   const [openAssetTokenizeDrawer,setAssetTokenizeDrawer]=useState<boolean>(false)
 
-  const NFTdata=[{name:"Monkey NFT", img:"https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg",price:150},{name:"Ape NFT", img:"https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149611030.jpg",price:175}]
+  const NFTdata=[{name:"Monkey NFT", img:"https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg",price:'150'},{name:"Ape NFT", img:"https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149611030.jpg",price:'175'}]
 
   const [openNFTDrawer,setNFTDrawer]=useState<boolean>(false)
    console.log(openDrawer)

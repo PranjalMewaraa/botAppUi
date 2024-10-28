@@ -19,6 +19,7 @@ export default function MissionDrawer3({
   }) {
  
   const [units,setUnits]=useState<number>(1);
+  const price = data?.price;
   
   return (
     <Drawer {...props}>
@@ -43,7 +44,7 @@ export default function MissionDrawer3({
        <div className="flex items-center justify-center mx-auto mt-6 space-x-1 text-white">
         
         <span className="font-bold w-24 text-end">
-          {`$ ${compactNumber( data!.price*units)}`}
+          {`$ ${compactNumber( price*units)}`}
         </span>
       </div>
       </div>
