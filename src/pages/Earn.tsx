@@ -60,7 +60,7 @@ export default function Earn() {
     >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 ">
         <img
-          src="/images/coins.png"
+          src="/images/coin.png"
           alt="coins"
           className="object-contain w-32 h-32 mx-auto"
         />

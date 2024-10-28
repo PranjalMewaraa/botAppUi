@@ -44,10 +44,10 @@ export default function Wallet() {
           className="object-contain w-32 h-32 mx-auto"
         />
         <h1 className="mt-4 text-2xl font-bold text-center uppercase text-white">
-          TON Wallet
+          Withdrawal Method
         </h1>
         <p className="mt-2.5 font-medium text-center text-white">
-          Connect your TON wallet
+          Connect your wallet
         </p>
 
         <div className="mt-4 space-y-2">
