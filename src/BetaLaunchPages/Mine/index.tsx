@@ -96,7 +96,7 @@ const MineCard: React.FC<MineCardProps> = ({ mission, setSelectedMission, setOpe
 type data = {
   name:string,
   img:string,
-  price:number,
+  price:string,
 }
 
 export default function Missions() {

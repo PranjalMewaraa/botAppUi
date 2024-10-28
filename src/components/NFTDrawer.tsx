@@ -8,7 +8,7 @@ import { compactNumber } from "@/lib/utils";
 type data = {
     name:string,
     img:string,
-    price:number,
+    price:string,
 }
 
 export default function MissionDrawer3({
@@ -44,7 +44,7 @@ export default function MissionDrawer3({
        <div className="flex items-center justify-center mx-auto mt-6 space-x-1 text-white">
         
         <span className="font-bold w-24 text-end">
-          {`$ ${compactNumber( price*units)}`}
+          {`$ ${compactNumber( Number(price)*units)}`}
         </span>
       </div>
       </div>
