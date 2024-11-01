@@ -116,8 +116,10 @@ export default function Missions() {
   const NFTdata=[{name:"Monkey NFT", img:"https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg",price:'150'},{name:"Ape NFT", img:"https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149611030.jpg",price:'175'}]
 
   const Assetdata=[
-    {name:"RockFilde Mansion", img:"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",price:"50"},
-    {name:"Marco Mansion", img:"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",price:"50"}
+    {name:"RockFilde Mansion", img:"/images/pic1.jpg",price:"50"},
+    {name:"Marco Mansion", img:"/images/pic2.jpg",price:"50"},
+    {name:"Malfoy Mansion", img:"/images/pic3.jpg",price:"50"},
+    {name:"Hanley Mansion", img:"/images/pic4.jpg",price:"50"}
   ]
 
 
