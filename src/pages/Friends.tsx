@@ -35,7 +35,7 @@ export default function Friends() {
   });
 
   return (
-    <div id="main_div" className="h-[95%] w-full flex flex-col justify-end bg-cover flex-1" >
+    <div id="main_div" className="h-[95%] w-full flex flex-col justify-end bg-cover flex-1 text-white" >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <h1 className="text-2xl font-bold text-center uppercase">Friends</h1>
         <p className="mt-2.5 font-medium text-center">
