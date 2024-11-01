@@ -70,13 +70,13 @@ export default function Earn() {
           EARN MORE COINS
         </h1>
         <p className="mt-2.5 font-medium text-center p-2">Invite friends</p>
-        <ListItem
+        {/* <ListItem
           title={"Friends"}
           image={"/images/friends.png"}
           onClick={() => {
             console.log("clicked")
           }}
-        />
+        /> */}
         {videoTasks && videoTasks.length > 0 && (
           <>
             <p className="mt-2.5 font-medium text-center">
