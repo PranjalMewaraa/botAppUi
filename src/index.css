@@ -43,7 +43,7 @@
     background-size: cover;
   }
   #main_div2{
-    background: url("./assets/Images/IMG_5106.JPG");
+    background: url("/public/images/bg2.jpg");
     background-position: center;
     background-size: cover;
   }  
