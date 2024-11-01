@@ -11,12 +11,12 @@ import { cn } from "@/lib/utils";
 import { uesStore } from "@/store";
 import LoadingPage from "@/components/LoadingPage";
 import ReferralTaskDrawer from "@/components/ReferralTaskDrawer";
-import { useNavigate } from "react-router-dom";
 import RefferalAdditionalDrawer from "@/components/RefferalAdditionalDrawer";
 import AdditionalTaskDrawer from "@/components/AdditionalTaskDrawer";
 
 export default function Earn() {
-  const navigate = useNavigate();
+  // const { activeIndex, setActiveIndex } = useNavBar();
+  // console.log(activeIndex);
   const { totalDailyRewards } = uesStore();
   const [activeTask, setActiveTask] = useState<TaskType | null>(null);
   const [isTaskDrawerOpen, setIsTaskDrawerOpen] = useState(false);
@@ -52,6 +52,8 @@ export default function Earn() {
   );
 
   if (isLoading) return <LoadingPage />;
+  
+ 
 
   return (
     <div className='w-screen h-[90%] overflow-x-hidden overflow-y-scroll'>
@@ -72,7 +74,7 @@ export default function Earn() {
           title={"Friends"}
           image={"/images/friends.png"}
           onClick={() => {
-            navigate("/friends");
+            console.log("clicked")
           }}
         />
         {videoTasks && videoTasks.length > 0 && (
