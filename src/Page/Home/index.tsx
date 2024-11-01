@@ -17,17 +17,14 @@ import { useNavBar } from "@/utils/useNavBar";
 
 
 const Home = () => {
-  
-  const { activeIndex, setActiveIndex } = useNavBar();
-  const ButtonClick=(index:number)=>{
-       console.log('x',activeIndex)
-        setActiveIndex(index);
-  }  
+  const { activeIndex, setActiveIndex } = useNavBar()
+  console.log(activeIndex)
   useEffect(()=>{
     const handleLocalStorageUpdate = () => {
      setTapCount(  Number(decrypt(localStorage.getItem("alkine-db-val-er") || "0")) || 0)
     };
-
+   
+    
     // Add the event listener
     window.addEventListener("localStorageUpdated", handleLocalStorageUpdate);
 
@@ -44,7 +41,7 @@ const Home = () => {
 
   return (
     <div className="w-full h-[95%] font-[ageobold] flex flex-col p-4 gap-2">
-      <div id="profile_header" className="w-full mt-2 h-24 flex justify-between items-center" onClick={()=>ButtonClick(5)}>
+      <div id="profile_header" className="w-full mt-2 h-24 flex justify-between items-center">
         <ProfileBox />
         <ProfitBox />
       </div>
@@ -65,7 +62,7 @@ const Home = () => {
       </div>
       </div>
       <div className="absolute bottom-24 w-full h-20 flex justify-left items-center">
-      <div className="flex text-white items-center gap-2 text-xl" onClick={()=>ButtonClick(6)}>
+      <div className="flex text-white items-center gap-2 text-xl" onClick={()=>setActiveIndex(6)}>
         <span>
           <img src={boost} alt="boost" />
         </span>
@@ -81,10 +78,13 @@ const Home = () => {
 
 
 const ProfileBox: React.FC = () => {
-
+  
+  const { activeIndex, setActiveIndex } = useNavBar()
+  console.log(activeIndex)
   const user = useUserStore();
   return (
     <div
+      onClick={()=>setActiveIndex(5)}
       className="h-full flex gap-4 items-center"
     >
       <div className="h-16 bg-[#283140] rounded-xl">
@@ -96,10 +96,12 @@ const ProfileBox: React.FC = () => {
 };
 
 const ProfitBox: React.FC = () => {
+  const { activeIndex, setActiveIndex } = useNavBar()
+  console.log(activeIndex)
  
   return (
-    <div className=" flex flex-col px-3 py-1  items-center rounded-full bg-[#283140] border-t border-r border-yellow-600">
-            <img src={set} alt="setting" />
+    <div className=" flex flex-col px-3 py-1  items-center rounded-full bg-[#283140] border-t border-r border-yellow-600" onClick={()=>setActiveIndex(8)}>
+            <img src={set} alt="setting" /> 
     </div>
   );
 };
