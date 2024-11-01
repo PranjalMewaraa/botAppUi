@@ -145,7 +145,7 @@ export default function Missions() {
   },[activeType])  
 
   return (
-    <div className="h-[90%] flex flex-col justify-end bg-cover flex-1 text-white" >
+    <div className="h-[90%] overflow-y-scroll flex flex-col justify-end bg-cover flex-1 text-white" >
       <div className="flex flex-col flex-1 w-full h-full px-6 pb-24 mt-12">
        <TopNav active={section} handleClick={handleSectionChange}/> 
         <UserGameDetails className="mt-4"/>
@@ -273,7 +273,7 @@ const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({name,image,setAssetToke
 
   return (
     <div
-      className={cn("w-1/2 max-w-60 h-full p-1", { "opacity-40 cursor-not-allowed": "" })}
+      className={cn("w-1/2 max-w-60 h-48  p-1", { "opacity-40 cursor-not-allowed": "" })}
       onClick={handleClick}
     >
      <div className="w-full h-full flex flex-col gap-2  bg-slate-800 text-white rounded-lg p-2">
