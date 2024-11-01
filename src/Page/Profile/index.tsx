@@ -25,6 +25,9 @@ const Profile = () => {
   const handleImageLoad = () => {
     setLoadedCount(prevCount => prevCount + 1);
   };
+  
+  const { activeIndex, setActiveIndex } = useNavBar();
+  console.log(activeIndex)
   return (
     <>
     {showLeaderBoard?<Leaderboard toggleShow={setShowLeaderboard}/>:
@@ -35,7 +38,7 @@ const Profile = () => {
       </div>
       <div className="flex gap-2">
         <div onClick={()=>{setShowLeaderboard(true)}} className="w-1/2 p-4 bg-slate-800 text-xl font-[ageobold] text-center border border-yellow-500 rounded-md text-white">🏆 LeaderBoard</div>
-        <div className="w-1/2 p-4 bg-slate-800 text-xl justify-center items-center flex gap-1 font-[ageobold] text-center border border-yellow-500 rounded-md text-white"> <FaGrav color="white" size={24}/> Friends</div>
+        <div onClick={()=>{setActiveIndex(7)}} className="w-1/2 p-4 bg-slate-800 text-xl justify-center items-center flex gap-1 font-[ageobold] text-center border border-yellow-500 rounded-md text-white"> <FaGrav color="white" size={24}/> Friends</div>
       </div>
       <div className="w-full h-64 mt-6 px-8 flex justify-center items-center">
           <div className=" aspect-square h-full bg-slate-800 rounded-2xl">

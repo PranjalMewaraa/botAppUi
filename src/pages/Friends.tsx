@@ -10,7 +10,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useCopyToClipboard } from "@uidotdev/usehooks";
 import { useMemo, useState } from "react";
 import { toast } from "react-toastify";
-import levelConfig from "@/config/level-config";
 
 const shareMessage = encodeURI(
   "Play Goat Tapper with me!"
@@ -21,7 +20,7 @@ export default function Friends() {
   const { telegram_id } = useUserStore();
   const { referral, levels } = uesStore();
 
-  const user = useUserStore();
+  // const user = useUserStore();
 
   const [showMoreBonuses, setShowMoreBonuses] = useState(false);
 
@@ -36,7 +35,7 @@ export default function Friends() {
   });
 
   return (
-    <div className="flex flex-col justify-end bg-cover flex-1" style={{backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,}}>
+    <div id="main_div" className="h-[95%] w-full flex flex-col justify-end bg-cover flex-1" >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <h1 className="text-2xl font-bold text-center uppercase">Friends</h1>
         <p className="mt-2.5 font-medium text-center">
