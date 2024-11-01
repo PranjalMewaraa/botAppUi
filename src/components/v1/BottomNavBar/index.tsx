@@ -24,7 +24,7 @@ const BottomNavbar: FC<BottomNavbarProps> = ({ activeIndex, setActiveIndex }) =>
       }}
     >
       <div className="relative w-full h-full flex justify-between">
-        {["Home", "Games", "Housedrop", "Mine", "Earn"].map((label, index) => (
+        {["Home", "Games", "Airdrop", "Mine", "Earn"].map((label, index) => (
           <button
             key={label}
             className={`flex flex-col items-center justify-center w-12 h-12 bg-transparent rounded-lg transition-all duration-300 ease-in-out  ${
@@ -39,7 +39,7 @@ const BottomNavbar: FC<BottomNavbarProps> = ({ activeIndex, setActiveIndex }) =>
             {label === "Games" && (
               <img src={joystick} className="w-8 h-8 p-1" alt="Games" />
             )}
-            {label === "Housedrop" && (
+            {label === "Airdrop" && (
               <img
                 src={dollar}
                 className="w-12 h-12 p-1 -translate-y-5 scale-150"
@@ -55,7 +55,7 @@ const BottomNavbar: FC<BottomNavbarProps> = ({ activeIndex, setActiveIndex }) =>
 
             <span
               className={`${
-                label === "Housedrop" ? "text-lg -translate-y-2" : "text-xs"
+                label === "Airdrop" ? "text-lg -translate-y-2" : "text-xs"
               }`}
             >
               {label}

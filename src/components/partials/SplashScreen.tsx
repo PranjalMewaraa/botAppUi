@@ -52,7 +52,7 @@ export default function SplashScreen() {
           Goat Tapper
           </h1>
           <p className="mt-3 text-sm font-bold uppercase text-primary">
-            Stay tuned
+            Stay tuned for House Drop
           </p>
           <p className="mt-1 font-medium">More info in official channels</p>
           <div className="flex items-center gap-4 mt-6">
