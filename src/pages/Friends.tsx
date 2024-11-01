@@ -25,7 +25,7 @@ export default function Friends() {
   const [showMoreBonuses, setShowMoreBonuses] = useState(false);
 
   const referralLink = useMemo(
-    () => `http://t.me/@goattapper_bot/?startapp=ref${telegram_id}`,
+    () => `http://t.me/goattapper_bot/?startapp=ref${telegram_id}`,
     [telegram_id]
   );
 
