@@ -48,19 +48,6 @@ export default function MissionDrawer2({
         </span>
       </div>
       </div>
-     
-
-     
-      {/* <Button
-        className="w-full mt-6"
-        disabled={upgradeMution.isPending || insufficientBalance}
-        onClick={() => upgradeMution.mutate()}
-      >
-        {upgradeMution.isPending && (
-          <Loader2Icon className="w-6 h-6 mr-2 animate-spin" />
-        )}
-        {insufficientBalance ? "Insufficient Balance" : "Go ahead"}
-      </Button> */}
       <button className="w-full py-2 bg-yellow-500">Purchase Now</button>
     </Drawer>
   );
