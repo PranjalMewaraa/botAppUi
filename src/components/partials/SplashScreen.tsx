@@ -45,7 +45,7 @@ export default function SplashScreen() {
       id="main_div2"
       className="relative flex flex-col items-center text-white justify-between pt-16 bg-cover bg-center w-full max-w-lg h-[--tg-viewport-height] mx-auto"
     > 
-       <h1 id='stroked' className=" absolute top-1/2 text-5xl font-semibold text-center uppercase  stroke-black ">
+       <h1 id='stroked' className=" absolute top-1/3 text-5xl font-semibold text-center uppercase  stroke-black">
           Goat Tapper
         </h1>
       <div className="flex flex-col items-center w-full absolute bottom-0">
