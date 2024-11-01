@@ -40,9 +40,9 @@ interface MineCardProps {
 interface MineCardAssetProps {
   name:string;
   image:string;
-  data:data2,
+  data:data,
   setAssetTokenizeDrawer: (open: boolean) => void,
-  setSelectedNFT:(obj:data2)=>void;
+  setSelectedNFT:(obj:data)=>void;
 }
 interface NFTAssetProps {
   name:string;
@@ -101,10 +101,7 @@ type data = {
   img:string,
   price:string,
 }
-type data2 = {
-  name:string,
-  img:string,
-}
+
 
 export default function Missions() {
   const user = useUserStore();
@@ -114,12 +111,12 @@ export default function Missions() {
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
   const [selectNFT,setSelectedNFT]=useState<data>();
   const [openAssetTokenizeDrawer,setAssetTokenizeDrawer]=useState<boolean>(false)
-  const [AssetSelected,setSelectedAsset]=useState<data2>();
+  const [AssetSelected,setSelectedAsset]=useState<data>();
   const NFTdata=[{name:"Monkey NFT", img:"https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg",price:'150'},{name:"Ape NFT", img:"https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149611030.jpg",price:'175'}]
 
   const Assetdata=[
-    {name:"RockFilde Mansion", img:"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg"},
-    {name:"Marco Mansion", img:"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg"}
+    {name:"RockFilde Mansion", img:"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",price:"50"},
+    {name:"Marco Mansion", img:"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",price:"50"}
   ]
 
 
@@ -255,7 +252,7 @@ export default function Missions() {
         
       </div>
       <MissionDrawer open={openDrawer} onOpenChange={setOpenDrawer} mission={selectedMission} />
-      <MissionDrawer3 open={openAssetTokenizeDrawer} onOpenChange={setAssetTokenizeDrawer} asset={AssetSelected}/>
+      <MissionDrawer3 open={openAssetTokenizeDrawer} onOpenChange={setAssetTokenizeDrawer} data={AssetSelected}/>
       <MissionDrawer3 open={openNFTDrawer} onOpenChange={setNFTDrawer} data={selectNFT}/>
     </div>
   );
