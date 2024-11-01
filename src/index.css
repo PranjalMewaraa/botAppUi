@@ -47,6 +47,13 @@
     background-position: top;
     background-size:contain;
   }  
+  #stroked{
+    
+      color: #fff; /* Fill color */
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: #000;
+    
+  }
   #recbg{
     background: url("./assets/Images/recbg.png");
     background-position: center;
