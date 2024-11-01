@@ -9,9 +9,9 @@ import { useQuery } from "@tanstack/react-query";
 import { Loader2Icon } from "lucide-react";
 import UserGameDetails from "@/components/UserGameDetails";
 import MissionDrawer from "@/components/MissionDrawer";
-import MissionDrawer2 from "@/components/AssetDrawer";
 import TopNav from "@/components/v1/TopNavMine";
-import dollar from '../../assets/Images/TokenTycoon.png'
+import MissionDrawer3 from "@/components/NFTDrawer";
+import MissionDrawer2 from "@/components/AssetDrawer";
 
 // Define types for props
 interface LockInfoProps {
@@ -38,10 +38,20 @@ interface MineCardProps {
   userLevel: any ;
   totalReferals: number;
 }
-// interface MineCardAssetProps {
-//   setAssetTokenizeDrawer: (open: boolean) => void;
-// }
-
+interface MineCardAssetProps {
+  name:string;
+  image:string;
+  data:data,
+  setAssetTokenizeDrawer: (open: boolean) => void,
+  setSelectedNFT:(obj:data)=>void;
+}
+interface NFTAssetProps {
+  name:string;
+  image:string;
+  data:data,
+  setAssetTokenizeDrawer: (open: boolean) => void,
+  setSelectedNFT:(obj:data)=>void;
+}
 
 const MineCard: React.FC<MineCardProps> = ({ mission, setSelectedMission, setOpenDrawer, userLevel, totalReferals }) => {
   const isLocked =
@@ -87,13 +97,31 @@ const MineCard: React.FC<MineCardProps> = ({ mission, setSelectedMission, setOpe
   );
 };
 
+type data = {
+  name:string,
+  img:string,
+  price:string,
+}
+
+
 export default function Missions() {
   const user = useUserStore();
   const { missionTypes, totalReferals } = uesStore();
   const [activeType, setActiveType] = useState(missionTypes?.[0]);
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
+  const [selectNFT,setSelectedNFT]=useState<data>();
   const [openAssetTokenizeDrawer,setAssetTokenizeDrawer]=useState<boolean>(false)
+  const [AssetSelected,setSelectedAsset]=useState<data>();
+  const NFTdata=[{name:"Monkey NFT", img:"https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg",price:'150'},{name:"Ape NFT", img:"https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149611030.jpg",price:'175'}]
+
+  const Assetdata=[
+    {name:"RockFilde Mansion", img:"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",price:"50"},
+    {name:"Marco Mansion", img:"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",price:"50"}
+  ]
+
+
+  const [openNFTDrawer,setNFTDrawer]=useState<boolean>(false)
    console.log(openDrawer)
    console.log(selectedMission)
   const missions = useQuery({
@@ -113,8 +141,9 @@ export default function Missions() {
   useEffect(()=>{
     window.dispatchEvent(new Event("UpdateBalance"));
   },[activeType])  
+
   return (
-    <div className="h-[95%] flex flex-col justify-end bg-cover flex-1 text-white" >
+    <div className="h-[90%] flex flex-col justify-end bg-cover flex-1 text-white" >
       <div className="flex flex-col flex-1 w-full h-full px-6 pb-24 mt-12">
        <TopNav active={section} handleClick={handleSectionChange}/> 
         <UserGameDetails className="mt-4"/>
@@ -173,7 +202,7 @@ export default function Missions() {
             ))}
           </div>
           <div className="mt-6">
-            <div className="flex flex-wrap">
+            {/* <div className="flex flex-wrap">
               {missions.isLoading ? (
                 <div className="flex items-center justify-center h-full col-span-2 mt-6">
                   <Loader2Icon className="w-12 h-12 animate-spin text-primary" />
@@ -184,7 +213,13 @@ export default function Missions() {
                   <EmptyMineCard key={item.id}/>
                 ))
               )}
-            </div>
+            </div> */}
+           <div className="grid grid-cols-2 gap-4 min-h-64">
+              {NFTdata.map((data)=>{
+                return <NFTCard name={data.name} image={data.img} setAssetTokenizeDrawer={setNFTDrawer} data={data} setSelectedNFT={setSelectedNFT}/>
+              })}
+              
+           </div>
           </div>
         </div> }
         {section==="Asset Tokenize" && <div className="mt-10">
@@ -208,11 +243,9 @@ export default function Missions() {
                   <Loader2Icon className="w-12 h-12 animate-spin text-primary" />
                 </div>
               ) : (
-                missions.data &&
-                missions.data.map((item) => (
-                  // <AssetTokenizeCard key={item.id} setAssetTokenizeDrawer={setAssetTokenizeDrawer} />
-                  <EmptyMineCard key={item.id}/>
-                ))
+                Assetdata.map((data)=>{
+                  return <AssetTokenizeCard name={data.name} image={data.img} setAssetTokenizeDrawer={setAssetTokenizeDrawer} data={data} setSelectedNFT={setSelectedAsset}/>
+                })
               )}
             </div>
           </div>
@@ -220,58 +253,55 @@ export default function Missions() {
         
       </div>
       <MissionDrawer open={openDrawer} onOpenChange={setOpenDrawer} mission={selectedMission} />
-      <MissionDrawer2 open={openAssetTokenizeDrawer} onOpenChange={setAssetTokenizeDrawer} />
+      <MissionDrawer2 open={openAssetTokenizeDrawer} onOpenChange={setAssetTokenizeDrawer} data={AssetSelected}/>
+      <MissionDrawer3 open={openNFTDrawer} onOpenChange={setNFTDrawer} data={selectNFT}/>
     </div>
   );
 }
 
-const EmptyMineCard = () => {
 
+
+const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({name,image,setAssetTokenizeDrawer,setSelectedNFT,data}) => {
+
+  const handleClick = () => {
+    setSelectedNFT(data);
+    setAssetTokenizeDrawer(true);
+   
+  };
 
   return (
     <div
       className={cn("w-1/2 max-w-60 h-full p-1", { "opacity-40 cursor-not-allowed": "" })}
+      onClick={handleClick}
     >
-      <div className="w-full h-fit p-2 flex-col gap-2 bg-slate-800 text-white rounded-lg">
-        <div className="text-lg w-full text-center font-bold">Coming Soon</div>
-        <div className="w-full items-center py-2 text-lg flex gap-2">
-          <img src={dollar} alt={"image"} className="w-1/3"/>
-          <div className="flex flex-col gap-1 text-xs">
-            Bonus per Hour
-            <span className="text-sm">
-              <Price amount={0} />
-            </span>
-          </div>
-        </div>
-        <div className="flex justify-between items-center py-1 border-t border-dashed border-white">
-          <div>LVL 1</div>
-          <div className="flex gap-1 items-center">
-           
-                <Price amount={compactNumber(10)} className="text-[10px]" />
-    
-          </div>
-        </div>
-      </div>
+     <div className="w-full h-full flex flex-col gap-2  bg-slate-800 text-white rounded-lg p-2">
+        <img src={image} className="w-full rounded-lg h-2/3 p-1" alt="" />
+        <p className="w-full text-center">
+          {name}
+        </p>
+     </div>
     </div>
   );
 };
-// const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({setAssetTokenizeDrawer}) => {
 
-//   const handleClick = () => {
-//     setAssetTokenizeDrawer(true);
-//   };
+const NFTCard:React.FC<NFTAssetProps> = ({name,image,setAssetTokenizeDrawer,setSelectedNFT,data}) => {
 
-//   return (
-//     <div
-//       className={cn("w-1/2 max-w-60 h-full p-1", { "opacity-40 cursor-not-allowed": "" })}
-//       onClick={handleClick}
-//     >
-//      <div className="w-full h-full flex flex-col gap-2  bg-slate-800 text-white rounded-lg">
-//         <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg" className="w-full rounded-lg h-2/3 p-2" alt="" />
-//         <p className="w-full text-center">
-//           Property Name
-//         </p>
-//      </div>
-//     </div>
-//   );
-// };
+  const handleClick = () => {
+    setSelectedNFT(data);
+    setAssetTokenizeDrawer(true);
+  };
+
+  return (
+    <div
+      className={cn("w-full h-full max-h-48 p-1", { "opacity-40 cursor-not-allowed": "" })}
+      onClick={handleClick}
+    >
+     <div className="w-full h-full flex flex-col gap-2  bg-slate-800 text-white rounded-lg p-2">
+        <img src={image} className="w-full rounded-lg h-2/3 p-1" alt="" />
+        <p className="w-full text-center">
+          {name}
+        </p>
+     </div>
+    </div>
+  );
+};
