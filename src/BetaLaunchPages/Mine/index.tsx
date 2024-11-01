@@ -9,9 +9,9 @@ import { useQuery } from "@tanstack/react-query";
 import { Loader2Icon } from "lucide-react";
 import UserGameDetails from "@/components/UserGameDetails";
 import MissionDrawer from "@/components/MissionDrawer";
-import MissionDrawer2 from "@/components/AssetDrawer";
 import TopNav from "@/components/v1/TopNavMine";
 import MissionDrawer3 from "@/components/NFTDrawer";
+import MissionDrawer2 from "@/components/AssetDrawer";
 
 // Define types for props
 interface LockInfoProps {
@@ -256,7 +256,7 @@ export default function Missions() {
         
       </div>
       <MissionDrawer open={openDrawer} onOpenChange={setOpenDrawer} mission={selectedMission} />
-      <MissionDrawer2 open={openAssetTokenizeDrawer} onOpenChange={setAssetTokenizeDrawer} data={AssetSelected}/>
+      <MissionDrawer2 open={openAssetTokenizeDrawer} onOpenChange={setAssetTokenizeDrawer} asset={AssetSelected}/>
       <MissionDrawer3 open={openNFTDrawer} onOpenChange={setNFTDrawer} data={selectNFT}/>
     </div>
   );
