@@ -39,7 +39,11 @@ interface MineCardProps {
   totalReferals: number;
 }
 interface MineCardAssetProps {
-  setAssetTokenizeDrawer: (open: boolean) => void;
+  name:string;
+  image:string;
+  data:data2,
+  setAssetTokenizeDrawer: (open: boolean) => void,
+  setSelectedNFT:(obj:data2)=>void;
 }
 interface NFTAssetProps {
   name:string;
@@ -98,6 +102,10 @@ type data = {
   img:string,
   price:string,
 }
+type data2 = {
+  name:string,
+  img:string,
+}
 
 export default function Missions() {
   const user = useUserStore();
@@ -107,8 +115,14 @@ export default function Missions() {
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
   const [selectNFT,setSelectedNFT]=useState<data>();
   const [openAssetTokenizeDrawer,setAssetTokenizeDrawer]=useState<boolean>(false)
-
+  const [setAsset,setSelectedAsset]=useState<data2>();
   const NFTdata=[{name:"Monkey NFT", img:"https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg",price:'150'},{name:"Ape NFT", img:"https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149611030.jpg",price:'175'}]
+
+  const Assetdata=[
+    {name:"RockFilde Mansion", img:"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg"},
+    {name:"Marco Mansion", img:"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg"}
+  ]
+
 
   const [openNFTDrawer,setNFTDrawer]=useState<boolean>(false)
    console.log(openDrawer)
@@ -232,10 +246,9 @@ export default function Missions() {
                   <Loader2Icon className="w-12 h-12 animate-spin text-primary" />
                 </div>
               ) : (
-                missions.data &&
-                missions.data.map((item) => (
-                   <AssetTokenizeCard key={item.id} setAssetTokenizeDrawer={setAssetTokenizeDrawer} />
-                ))
+                Assetdata.map((data)=>{
+                  return <AssetTokenizeCard name={data.name} image={data.img} setAssetTokenizeDrawer={setAssetTokenizeDrawer} data={data} setSelectedNFT={setSelectedAsset}/>
+                })
               )}
             </div>
           </div>
@@ -243,7 +256,7 @@ export default function Missions() {
         
       </div>
       <MissionDrawer open={openDrawer} onOpenChange={setOpenDrawer} mission={selectedMission} />
-      <MissionDrawer2 open={openAssetTokenizeDrawer} onOpenChange={setAssetTokenizeDrawer} />
+      <MissionDrawer2 open={openAssetTokenizeDrawer} onOpenChange={setAssetTokenizeDrawer} data={setAsset}/>
       <MissionDrawer3 open={openNFTDrawer} onOpenChange={setNFTDrawer} data={selectNFT}/>
     </div>
   );
@@ -251,10 +264,11 @@ export default function Missions() {
 
 
 
-const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({setAssetTokenizeDrawer}) => {
+const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({name,image,setAssetTokenizeDrawer,setSelectedNFT,data}) => {
 
   const handleClick = () => {
     setAssetTokenizeDrawer(true);
+    setSelectedNFT(data);
   };
 
   return (
@@ -263,9 +277,9 @@ const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({setAssetTokenizeDrawer}
       onClick={handleClick}
     >
      <div className="w-full h-full flex flex-col gap-2  bg-slate-800 text-white rounded-lg p-2">
-        <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg" className="w-full rounded-lg h-2/3 p-1" alt="" />
+        <img src={image} className="w-full rounded-lg h-2/3 p-1" alt="" />
         <p className="w-full text-center">
-          Property Name
+          {name}
         </p>
      </div>
     </div>
