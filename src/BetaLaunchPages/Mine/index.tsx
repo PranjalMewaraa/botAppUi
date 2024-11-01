@@ -264,8 +264,9 @@ export default function Missions() {
 const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({name,image,setAssetTokenizeDrawer,setSelectedNFT,data}) => {
 
   const handleClick = () => {
-    setAssetTokenizeDrawer(true);
     setSelectedNFT(data);
+    setAssetTokenizeDrawer(true);
+   
   };
 
   return (
