@@ -39,7 +39,7 @@
 }
 #main_div{
     background: url("./assets/Images/bg.png");
-    background-position: center;
+    background-position: top;
     background-size: cover;
   }
   #main_div2{
