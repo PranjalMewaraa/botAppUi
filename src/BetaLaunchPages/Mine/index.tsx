@@ -277,7 +277,7 @@ const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({name,image,setAssetToke
       onClick={handleClick}
     >
      <div className="w-full h-full flex flex-col gap-2  bg-slate-800 text-white rounded-lg p-2">
-        <img src={image} className="w-full rounded-lg h-2/3 p-1" alt="" />
+        <img src={image} className="w-full rounded-lg h-2/3 p-1 aspect-square" alt="" />
         <p className="w-full text-center">
           {name}
         </p>
