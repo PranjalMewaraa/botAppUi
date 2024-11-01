@@ -69,7 +69,7 @@ export default function Earn() {
         <h1 className="mt-4 text-2xl font-bold text-center uppercase">
           EARN MORE COINS
         </h1>
-        <p className="mt-2.5 font-medium text-center p-2">Invite friends</p>
+        {/* <p className="mt-2.5 font-medium text-center p-2">Invite friends</p> */}
         {/* <ListItem
           title={"Friends"}
           image={"/images/friends.png"}
