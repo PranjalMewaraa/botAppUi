@@ -198,8 +198,7 @@ const InformationPage:React.FC<InfoProps> =({setOpen,propertyData})=>{
         <div id="noscroller" className="w-full h-[72vh] pb-8 overflow-y-scroll">
         {dataHIW.map((item,idx)=>{
           return(
-            <div key={idx} className="mb-1 w-full  bg-slate-800 rounded-lg p-2 flex gap-2">
-              <img src="/images/goat2.png" alt="" className="w-1/4 p-2 bg-slate-700 rounded-md" />
+            <div key={idx} className="mb-1 w-full min-h-24 bg-slate-800 rounded-lg p-2 flex gap-2">
               <div>
                 <p className="text-xl text-left px-2 font-[ageobold]">{item.title}</p>
                 <p className="text-sm text-justify px-2">{item.Info}</p>
