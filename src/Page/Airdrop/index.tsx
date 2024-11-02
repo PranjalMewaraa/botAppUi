@@ -22,7 +22,7 @@ const Airdrop = () => {
           <h3 className="text-xl font-[ageobold]">New Year's Eve House Drop Launch</h3>
           <CountdownTimer targetDate="2024-12-31T18:29:00Z"/>
           <ImageSlideShow setActiveProperty={setActiveProperty}/>
-          <button className=" mt-2 px-6 py-2 bg-yellow-400 text-slate-800 rounded-md" onClick={()=>setOpenInfo(true)}>Explore More</button>
+          <button className=" mt-2 px-12 py-2 bg-yellow-400 text-slate-800 rounded-md" onClick={()=>setOpenInfo(true)}>Explore More</button>
        </div>}
        
     </div>
@@ -76,7 +76,6 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
 
   return (
     <div>
-      <h2>Countdown Timer</h2>
       <p className="text-sm">
         <span className="text-yellow-500 text-3xl font-[counter]">{timeLeft.days}</span> Days - 
         <span className="text-yellow-500 text-3xl font-[counter]">{timeLeft.hours}</span> Hours - 
@@ -130,7 +129,7 @@ const ImageSlideShow:React.FC<ImageSlideShowProps> = ({setActiveProperty}) => {
   }, [images]);
 
   return (
-    <div className="w-full flex justify-center items-center h-36 rounded-xl overflow-hidden mt-4">
+    <div className="w-full flex justify-center items-center h-48 rounded-xl overflow-hidden mt-4">
       <img src={imageSrc} alt="Slideshow image" className="h-full border-2 rounded-lg border-yellow-500" />
     </div>
   );
@@ -156,7 +155,38 @@ const InformationPage:React.FC<InfoProps> =({setOpen,propertyData})=>{
     {title:"Claim Ownership",Info:"Winning bidders pay a processing fee in GTPR to recieve thier NFTs"},
     {title:"Own or trade",Info:"Use sell or leverage your NFT as valuable asset."}
   ]
+  const images = [
+    { 
+      img:"/images/pic1.jpg",
+      title:"Rockfield Mansion",
+      desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat error aliquam deleniti at quos perspiciatis numquam quidem eveniet modi ducimus, perferendis dignissimos sit tempora, ipsa, a mollitia iste impedit fuga?"
+    },
+    {
+      img: "/images/pic4.jpg",
+      title:"Gamma Mansion",
+      desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat error aliquam deleniti at quos perspiciatis numquam quidem eveniet modi ducimus, perferendis dignissimos sit tempora, ipsa, a mollitia iste impedit fuga?"
+    },
+    {
+      img:   "/images/pic3.jpg",
+      title:"Mangrove Mansion",
+      desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat error aliquam deleniti at quos perspiciatis numquam quidem eveniet modi ducimus, perferendis dignissimos sit tempora, ipsa, a mollitia iste impedit fuga?"
+    },
+    {
+      img:   "/images/pic2.jpg",
+      title:"Kingston Mansion",
+      desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat error aliquam deleniti at quos perspiciatis numquam quidem eveniet modi ducimus, perferendis dignissimos sit tempora, ipsa, a mollitia iste impedit fuga?"
+    },
+  
+  ];
+  const[data,setData]=useState(propertyData);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const randomImage = images[Math.floor(Math.random() * images.length)];
+      setData(randomImage)
+    }, 3000); 
 
+    return () => clearInterval(intervalId); // Clear interval on component unmount
+  }, [images]);
   return(
     <>
     
@@ -185,9 +215,9 @@ const InformationPage:React.FC<InfoProps> =({setOpen,propertyData})=>{
       :
         <div className="w-full flex items-center flex-col gap-2 rounded-t-2xl bg-slate-900 border-t-4 border-yellow-500 mt-16 h-full p-4">
           <span className="w-full"><FaArrowLeft size={24} onClick={()=>setOpen(false)}/></span>
-          <h1 className="text-3xl font-[ageobold]">{propertyData?.title}</h1>
-          <img src={propertyData?.img} alt="" className="w-4/5 h-52 my-2" />
-          <p className="text-justify w-4/5">{propertyData?.desc}</p>
+          <h1 className="text-3xl font-[ageobold]">{data?.title}</h1>
+          <img src={data?.img} alt="" className="w-4/5 h-52 my-2" />
+          <p className="text-justify w-4/5">{data?.desc}</p>
           <button className="mt-2 px-6 py-2 bg-yellow-400 text-slate-800 rounded-md font-semibold" onClick={()=>setOpenHowItWorks(true)}>How it Works?</button>
         </div>
       }
