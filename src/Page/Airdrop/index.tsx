@@ -178,9 +178,12 @@ const InformationPage:React.FC<InfoProps> =({setOpen,propertyData})=>{
     },
   
   ];
-  const[data,setData]=useState(propertyData);
+  const[data,setData]=useState({ 
+    img:"/images/pic1.jpg",
+    title:"Rockfield Mansion",
+    desc:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat error aliquam deleniti at quos perspiciatis numquam quidem eveniet modi ducimus, perferendis dignissimos sit tempora, ipsa, a mollitia iste impedit fuga?"
+  });
   useEffect(() => {
-    setData(propertyData);
     const intervalId = setInterval(() => {
       const randomImage = images[Math.floor(Math.random() * images.length)];
       setData(randomImage)
