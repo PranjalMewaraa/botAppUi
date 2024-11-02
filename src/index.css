@@ -15,6 +15,10 @@
     font-family: ageolight;
     src: url(./assets/fonts/lght.woff2);
 }
+@font-face {
+  font-family: counter;
+  src: url(/public/font/digital_counter_7.ttf);
+}
 .spinner-container {
   display: flex;
   justify-content: center;
