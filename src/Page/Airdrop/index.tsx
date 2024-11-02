@@ -122,7 +122,7 @@ const ImageSlideShow:React.FC<ImageSlideShowProps> = ({setActiveProperty}) => {
     const intervalId = setInterval(() => {
       const randomImage = images[Math.floor(Math.random() * images.length)];
       setImageSrc(randomImage.img);
-      setActiveProperty(randomImage)
+      setActiveProperty(randomImage);
     }, 3000); // Change image every 2 seconds
 
     return () => clearInterval(intervalId); // Clear interval on component unmount
@@ -180,6 +180,7 @@ const InformationPage:React.FC<InfoProps> =({setOpen,propertyData})=>{
   ];
   const[data,setData]=useState(propertyData);
   useEffect(() => {
+    setData(propertyData);
     const intervalId = setInterval(() => {
       const randomImage = images[Math.floor(Math.random() * images.length)];
       setData(randomImage)
