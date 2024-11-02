@@ -239,7 +239,7 @@ export default function Missions() {
             ))}
           </div>
           <div className="mt-6">
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap mb-6">
               {missions.isLoading ? (
                 <div className="flex items-center justify-center h-full col-span-2 mt-6">
                   <Loader2Icon className="w-12 h-12 animate-spin text-primary" />
@@ -273,12 +273,12 @@ const AssetTokenizeCard:React.FC<MineCardAssetProps> = ({name,image,setAssetToke
 
   return (
     <div
-      className={cn("w-1/2 max-w-60 h-48  p-1", { "opacity-40 cursor-not-allowed": "" })}
+      className={cn("w-full h-64 p-1", { "opacity-40 cursor-not-allowed": "" })}
       onClick={handleClick}
     >
-     <div className="w-full h-full flex flex-col gap-2  bg-slate-800 text-white rounded-lg p-2">
-        <img src={image} className="w-full rounded-lg h-2/3 p-1 aspect-square" alt="" />
-        <p className="w-full text-center">
+     <div className="w-full h-full flex flex-col gap-2  bg-slate-800 text-white rounded-lg py-4 px-4">
+        <img src={image} className="w-full border border-yellow-400 rounded-lg h-4/5 aspect-square" alt="" />
+        <p className="w-full text-center text-lg font-[ageobold]">
           {name}
         </p>
      </div>
