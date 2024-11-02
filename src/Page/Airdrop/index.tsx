@@ -199,7 +199,7 @@ const InformationPage:React.FC<InfoProps> =({setOpen,propertyData})=>{
       <div id="noscroller" className="w-full flex items-center flex-col gap-2 rounded-t-2xl bg-slate-900 border-t-4 border-yellow-500 mt-16 h-full p-4">
         <span className="w-full"><FaArrowLeft size={24} onClick={()=>setOpen(false)}/></span>
         <h1 className="text-3xl font-[ageobold]">How it Works?</h1>
-        <div id="noscroller" className="w-full h-[72vh] pb-8 overflow-y-scroll">
+        <div id="noscroller" className="w-full h-[72vh] pb-12 overflow-y-scroll">
         {dataHIW.map((item,idx)=>{
           return(
             <div key={idx} className="mb-1 w-full min-h-24 bg-slate-800 rounded-lg p-2 flex gap-2">

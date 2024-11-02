@@ -26,7 +26,7 @@ export default function MissionDrawer3({
       <img
         src={data?.img}
         alt={""}
-        className="object-contain h-32 mx-auto"
+        className="object-contain h-40 mx-auto"
       />
       <h2 className="mt-6 text-2xl font-medium text-center">{data?.name}</h2>
       <div className="p-2 w-full h-fit flex justify-center gap-4 text-white font-[ageobold]">
