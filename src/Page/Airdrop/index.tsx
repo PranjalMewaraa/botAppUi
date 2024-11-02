@@ -147,7 +147,7 @@ type dataProperty={
 
 const InformationPage:React.FC<InfoProps> =({setOpen,propertyData})=>{
   const [openHowItWorks,setOpenHowItWorks]=useState(false);
-
+  console.log(propertyData)
   const dataHIW=[
     {title:"Hold GTPR", Info:"Ensure you have at least $9 worth of GTPR tokens to qualify"},
     {title:"Earn Points", Info:"Play to accumulate, which act as your bidding power"},
