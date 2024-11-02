@@ -71,6 +71,7 @@ export default function GameDesktop() {
       className="max-w-screen-sm w-screen h-[800px] overflow-hidden relative"
     >
       <div
+       id="noscroller"
         className="content-wrapper overflow-y-scroll w-full h-full"
       >
        {activeIndex === 0 && <Home/>}

@@ -72,6 +72,7 @@ export default function Game() {
       style={{ height: "calc(var(--vh, 1vh) * 100)" }}
     >
       <div
+        id="noscroller"
         className="content-wrapper overflow-y-scroll"
         style={{ height: "calc(var(--vh, 1vh) * 100)" }}
       >
