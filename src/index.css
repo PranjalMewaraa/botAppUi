@@ -31,14 +31,14 @@
     flex-direction: row;
   }
 }
-* {
+#noscroller {
   overflow: scroll; /* Keep scroll functionality */
   scrollbar-width: none; /* Hide scrollbar in Firefox */
   -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
 }
 
 /* Hide scrollbar in Chrome, Safari, and other WebKit browsers */
-*::-webkit-scrollbar {
+#noscroller::-webkit-scrollbar {
   display: none;
 }
 .icons {
