@@ -13,10 +13,11 @@ import LoadingPage from "@/components/LoadingPage";
 import ReferralTaskDrawer from "@/components/ReferralTaskDrawer";
 import RefferalAdditionalDrawer from "@/components/RefferalAdditionalDrawer";
 import AdditionalTaskDrawer from "@/components/AdditionalTaskDrawer";
+import { useNavBar } from "@/utils/useNavBar";
 
 export default function Earn() {
-  // const { activeIndex, setActiveIndex } = useNavBar();
-  // console.log(activeIndex);
+  const { activeIndex, setActiveIndex } = useNavBar();
+  console.log(activeIndex);
   const { totalDailyRewards } = uesStore();
   const [activeTask, setActiveTask] = useState<TaskType | null>(null);
   const [isTaskDrawerOpen, setIsTaskDrawerOpen] = useState(false);
@@ -69,14 +70,14 @@ export default function Earn() {
         <h1 className="mt-4 text-2xl font-bold text-center uppercase">
           EARN MORE COINS
         </h1>
-        {/* <p className="mt-2.5 font-medium text-center p-2">Invite friends</p> */}
-        {/* <ListItem
+        <p className="mt-2.5 font-medium text-center p-2">Invite friends</p>
+        <ListItem
           title={"Friends"}
           image={"/images/friends.png"}
           onClick={() => {
-            console.log("clicked")
+           setActiveIndex(7)
           }}
-        /> */}
+        />
         {videoTasks && videoTasks.length > 0 && (
           <>
             <p className="mt-2.5 font-medium text-center">
