@@ -122,7 +122,7 @@ export default function Leaderboard({toggleShow}:LeaderBoardProps) {
                   <span>{level.name}</span>
                 </div>
                 <span className="font-medium">
-                  {Math.floor(user.balance)}
+                  {compactNumber(user.balance)}/{compactNumber(level!.to_balance)}
                 </span>
               </div>
               <div className="bg-[#FFDAA3]/10 border overflow-hidden border-[#FFDAA3]/10 rounded-full mt-2 h-4 w-full">
