@@ -158,7 +158,7 @@ export default function Missions() {
             {missionTypes.map((type, key) => (
               <button
                 key={key}
-                className={cn("text-xs font-bold uppercase", {
+                className={cn("text-xs text-nowrap whitespace-nowrap font-bold uppercase", {
                   "opacity-40": activeType.id !== type.id,
                 })}
                 onClick={() => setActiveType(type)}
@@ -194,7 +194,7 @@ export default function Missions() {
             {missionTypes.map((type, key) => (
               <button
                 key={key}
-                className={cn("text-xs font-bold uppercase", {
+                className={cn("text-xs text-nowrap whitespace-nowrap font-bold uppercase", {
                   "opacity-40": activeType.id !== type.id,
                 })}
                 onClick={() => setActiveType(type)}
@@ -229,7 +229,7 @@ export default function Missions() {
             {missionTypes.map((type, key) => (
               <button
                 key={key}
-                className={cn("text-xs font-bold uppercase", {
+                className={cn("text-xs text-nowrap whitespace-nowrap font-bold uppercase", {
                   "opacity-40": activeType.id !== type.id,
                 })}
                 onClick={() => setActiveType(type)}
@@ -239,7 +239,7 @@ export default function Missions() {
             ))}
           </div>
           <div className="mt-6">
-            <div className="flex flex-wrap mb-6">
+            <div className="flex flex-wrap mb-6 h-52">
               {missions.isLoading ? (
                 <div className="flex items-center justify-center h-full col-span-2 mt-6">
                   <Loader2Icon className="w-12 h-12 animate-spin text-primary" />

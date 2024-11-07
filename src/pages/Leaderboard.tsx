@@ -18,7 +18,7 @@ type LeaderBoardProps = {
 }
 
 export default function Leaderboard({toggleShow}:LeaderBoardProps) {
-  const { balance, level, ...user } = useUserStore();
+  const { level, ...user } = useUserStore();
   const [activeIndex, setActiveIndex] = useState(0);
   const store = uesStore();
   const swiperRef = useRef<SwiperRef | null>(null);
@@ -122,14 +122,14 @@ export default function Leaderboard({toggleShow}:LeaderBoardProps) {
                   <span>{level.name}</span>
                 </div>
                 <span className="font-medium">
-                  {compactNumber(balance)}/{compactNumber(level!.to_balance)}
+                  {Math.floor(user.balance)}
                 </span>
               </div>
               <div className="bg-[#FFDAA3]/10 border overflow-hidden border-[#FFDAA3]/10 rounded-full mt-2 h-4 w-full">
                 <div
                   className="bg-[linear-gradient(180deg,#FBEDE0_0%,#F7B87D_21%,#F3A155_52%,#E6824B_84%,#D36224_100%)] h-full"
                   style={{
-                    width: `${(balance / level.to_balance) * 100}%`,
+                    width: `${(user.balance / level.to_balance) * 100}%`,
                   }}
                 />
               </div>
@@ -137,6 +137,10 @@ export default function Leaderboard({toggleShow}:LeaderBoardProps) {
           )}
         <div className=" flex-1 mt-6">
           <div className="absolute w-full h-36 divide-y divide-[#D9D9D9]/10 overflow-y-auto">
+          <div className="w-11/12 flex justify-between">
+            <p>Name</p>
+            <p>Bonus/hr</p>
+          </div>
             {leaderboard.isLoading ? (
               <div className="flex items-center justify-center h-full">
                 <Loader2Icon className="w-12 h-12 animate-spin text-primary" />
@@ -183,7 +187,7 @@ export default function Leaderboard({toggleShow}:LeaderBoardProps) {
                   alt="coin"
                   className="object-contain w-5 h-5"
                 />
-                <span>{balance}</span>
+                <span>{user.balance}</span>
               </div>
             </div>
           )}
