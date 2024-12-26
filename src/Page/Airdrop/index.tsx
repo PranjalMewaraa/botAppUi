@@ -19,8 +19,8 @@ const Airdrop = () => {
           <img src="/images/goat3.png" alt="" className="h-28"/>
           <p className="font-[ageo]">Looking for an Airdrop? But we call it</p>
           <p className="text-yellow-500 text-lg">HOUSE-DROP</p>
-          <h3 className="text-xl font-[ageobold]">New Year's Eve House Drop Launch</h3>
-          <CountdownTimer targetDate="2024-12-31T18:29:00Z"/>
+          <h3 className="text-xl font-[ageobold]">Most Awaited House Drop Launch Coming Soon</h3>
+          //<CountdownTimer targetDate="2024-12-31T18:29:00Z"/>
           <ImageSlideShow setActiveProperty={setActiveProperty}/>
           <button className=" mt-2 px-12 py-2 bg-yellow-400 text-slate-800 rounded-md" onClick={()=>setOpenInfo(true)}>Explore More</button>
        </div>}
