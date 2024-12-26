@@ -34,72 +34,72 @@ const Airdrop = () => {
   );
 };
 
-interface CountdownTimerProps {
-  targetDate: string; // ISO string format date, e.g., "2024-12-31T23:59:59"
-}
+// interface CountdownTimerProps {
+//   targetDate: string; // ISO string format date, e.g., "2024-12-31T23:59:59"
+// }
 
-// Define the time left type
-interface TimeLeft {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
+// // Define the time left type
+// interface TimeLeft {
+//   days: number;
+//   hours: number;
+//   minutes: number;
+//   seconds: number;
+// }
 
-const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
-  // Function to calculate time left
-  const calculateTimeLeft = (): TimeLeft => {
-    const difference = new Date(targetDate).getTime() - new Date().getTime();
-    let timeLeft: TimeLeft;
+// const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
+//   // Function to calculate time left
+//   const calculateTimeLeft = (): TimeLeft => {
+//     const difference = new Date(targetDate).getTime() - new Date().getTime();
+//     let timeLeft: TimeLeft;
 
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    } else {
-      // If countdown is over
-      timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    }
-    return timeLeft;
-  };
+//     if (difference > 0) {
+//       timeLeft = {
+//         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+//         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+//         minutes: Math.floor((difference / 1000 / 60) % 60),
+//         seconds: Math.floor((difference / 1000) % 60),
+//       };
+//     } else {
+//       // If countdown is over
+//       timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+//     }
+//     return timeLeft;
+//   };
 
-  // Set initial state
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
+//   // Set initial state
+//   const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
+//   useEffect(() => {
+//     const timer = setInterval(() => {
+//       setTimeLeft(calculateTimeLeft());
+//     }, 1000);
 
-    return () => clearInterval(timer); // Cleanup interval on component unmount
-  }, [targetDate]);
+//     return () => clearInterval(timer); // Cleanup interval on component unmount
+//   }, [targetDate]);
 
-  return (
-    <div>
-      <p className="text-sm">
-        <span className="text-yellow-500 text-3xl font-[counter]">
-          {timeLeft.days}
-        </span>{" "}
-        Days -
-        <span className="text-yellow-500 text-3xl font-[counter]">
-          {timeLeft.hours}
-        </span>{" "}
-        Hours -
-        <span className="text-yellow-500 text-3xl font-[counter]">
-          {timeLeft.minutes}
-        </span>{" "}
-        Minutes -
-        <span className="text-yellow-500 text-3xl font-[counter]">
-          {timeLeft.seconds}
-        </span>{" "}
-        Seconds
-      </p>
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <p className="text-sm">
+//         <span className="text-yellow-500 text-3xl font-[counter]">
+//           {timeLeft.days}
+//         </span>{" "}
+//         Days -
+//         <span className="text-yellow-500 text-3xl font-[counter]">
+//           {timeLeft.hours}
+//         </span>{" "}
+//         Hours -
+//         <span className="text-yellow-500 text-3xl font-[counter]">
+//           {timeLeft.minutes}
+//         </span>{" "}
+//         Minutes -
+//         <span className="text-yellow-500 text-3xl font-[counter]">
+//           {timeLeft.seconds}
+//         </span>{" "}
+//         Seconds
+//       </p>
+//     </div>
+//   );
+// };
 
 interface ImageSlideShowProps {
   setActiveProperty: (data: dataProperty) => void;
